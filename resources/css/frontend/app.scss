@@ -1,0 +1,34 @@
+@import "./_tailwind.css";
+
+/* FONTS */
+@import "./custom/_fonts.scss";
+
+/* general */
+@import "./custom/_general.scss";
+
+/* components */
+@import "./components/_buttons.scss";
+@import "./components/_breadcrumb.scss";
+
+/* structure */
+@import "./custom/structure/_topnav.scss";
+@import "./custom/structure/_footer.scss";
+
+/* pages */
+@import "./custom/pages/_helper.scss";
+@import "./custom/pages/_hero.scss";
+@import "./custom/pages/_countdown.scss";
+@import "./custom/pages/_portfolio.scss";
+@import "./custom/pages/_contact.scss";
+
+/* Plugins */
+@import "./custom/plugins/_swiper-slider.scss";
+@import "./custom/plugins/_testi.scss";
+@import "./custom/plugins/_choices.scss";
+@import "./custom/plugins/_datepicker.scss";
+@import "swiper/swiper.min.css";
+
+@import "@iconscout/unicons/css/line.css";
+@import "tiny-slider/dist/tiny-slider.css";
+
+@import "lightbox2/src/css/lightbox.css";
