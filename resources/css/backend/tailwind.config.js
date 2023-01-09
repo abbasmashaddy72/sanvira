@@ -7,7 +7,7 @@ const {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     mode: "jit",
-    presets: [require("./vendor/wireui/wireui/tailwind.config.js")],
+    presets: [require("../../../vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Backend/**/*.php",
         "./config/livewire-datatables.php",

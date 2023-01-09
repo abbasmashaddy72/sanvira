@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/change-language/{lang}', [LanguageController::class, 'changeLanguage']);
 
 Route::get('/dashboard', function () {
+    view()->share('title', 'Dashboard');
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
