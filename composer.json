@@ -10,6 +10,7 @@
         "astrotomic/laravel-translatable": "^11.11",
         "barryvdh/laravel-dompdf": "^2.0",
         "bepsvpt/secure-headers": "^7.3",
+        "binarytorch/larecipe": "^2.5",
         "davmixcool/laravel-meta-manager": "^1.2",
         "dietercoopman/smart": "^1.6",
         "diglactic/laravel-breadcrumbs": "^8.0",
