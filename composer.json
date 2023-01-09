@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
-        "arcanedev/log-viewer": "^9.0",
         "asantibanez/livewire-charts": "^2.4",
         "astrotomic/laravel-translatable": "^11.11",
         "barryvdh/laravel-dompdf": "^2.0",
@@ -22,6 +21,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "opcodesio/log-viewer": "^1.8",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "^10.7",
