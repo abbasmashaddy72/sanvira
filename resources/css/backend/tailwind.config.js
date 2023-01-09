@@ -7,6 +7,7 @@ const {
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     mode: "jit",
+    presets: [require("./vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Backend/**/*.php",
         "./config/livewire-datatables.php",
@@ -26,6 +27,9 @@ module.exports = {
         // "./storage/framework/views/*.php",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/wire-elements/modal/resources/views/*.blade.php",
+        "./vendor/wireui/wireui/resources/**/*.blade.php",
+        "./vendor/wireui/wireui/ts/**/*.ts",
+        "./vendor/wireui/wireui/src/View/**/*.php",
     ],
     darkMode: "class",
     options: {

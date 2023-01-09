@@ -28,7 +28,8 @@
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "^10.7",
-        "wire-elements/modal": "^1.0"
+        "wire-elements/modal": "^1.0",
+        "wireui/wireui": "^1.17"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
