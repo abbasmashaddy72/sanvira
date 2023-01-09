@@ -21,6 +21,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.10",
+        "mediconesystems/livewire-datatables": "^0.10.0",
         "opcodesio/log-viewer": "^1.8",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-cookie-consent": "^3.2",
