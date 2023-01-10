@@ -415,6 +415,8 @@
                     value="en">English</option>
                 <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'ar' ? 'selected' : '') : '' }}
                     value="ar">Arabic</option>
+                    <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
+                    value="te">Telugu</option>
             </select>
         </div>
         {{ __('messages.title') }}

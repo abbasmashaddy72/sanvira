@@ -27,10 +27,12 @@
         "livewire/livewire": "^2.10",
         "mediconesystems/livewire-datatables": "^0.10.0",
         "opcodesio/log-viewer": "^1.8",
+        "outhebox/laravel-translations": "^0.0.4",
         "owen-it/laravel-auditing": "^13.0",
         "silviolleite/laravelpwa": "^2.0",
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "^10.7",
+        "tanmuhittin/laravel-google-translate": "^2.1",
         "wire-elements/modal": "^1.0",
         "wireui/wireui": "^1.17"
     },
