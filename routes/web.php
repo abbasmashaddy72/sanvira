@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Frontend URL
+Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
+    Route::get('/', 'FrontendController@index')->name('homepage');
 });
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'App\Http\Controllers'], function () {
+});
 Route::get('/change-language/{lang}', [LanguageController::class, 'changeLanguage']);
 
 Route::get('/dashboard', function () {

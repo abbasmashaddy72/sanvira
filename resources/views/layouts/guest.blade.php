@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="{{ $dark_mode ? 'dark' : '' }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <link href="{{ asset('temp/images/logo.svg') }}" rel="shortcut icon" type="image/svg+xml">
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
+    <title>
+        @if (\Route::currentRouteName() != 'homepage')
+            {{ $title . ' | ' ?? '' }}
+        @endif
+        {{ config('app.name', 'Laravel') }}
+    </title>
 
-    <!-- Scripts -->
-    @vite('resources/js/backend/app.js')
+    @vite('resources/js/frontend/app.js')
+    @stack('styles')
+    @livewireStyles
 </head>
 
-<body class="font-sans antialiased text-gray-900">
-    <div class="flex flex-col items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0 dark:bg-gray-900">
-        <div>
-            <a href="/">
-                <x-application-logo class="w-20 h-20 text-gray-500 fill-current" />
-            </a>
-        </div>
+<body class="text-base text-black font-nunito dark:text-white dark:bg-slate-900">
 
-        <div
-            class="w-full px-6 py-4 mt-6 overflow-hidden bg-white shadow-md sm:max-w-md dark:bg-gray-800 sm:rounded-lg">
-            {{ $slot }}
-        </div>
-    </div>
+    @include('layouts.fePartials.header')
+
+    {{ $slot }}
+
+    @include('layouts.fePartials.footer')
+
+    @livewireScripts
+    @stack('scripts')
 </body>
 
 </html>
