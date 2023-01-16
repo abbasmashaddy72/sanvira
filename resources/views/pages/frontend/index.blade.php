@@ -15,7 +15,7 @@
                 @endauth
             </div>
         @endif
-        <div class="bg-blue-600">
+        {{-- <div class="bg-blue-600">
             Langauge : <select onchange="changeLanguage(this.value)">
                 <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'en' ? 'selected' : '') : '' }}
                     value="en">English</option>
@@ -24,7 +24,7 @@
                 <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
                     value="te">Telugu</option>
             </select>
-        </div>
+        </div> --}}
         {{ __('messages.title') }}
 
     </section>

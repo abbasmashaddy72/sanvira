@@ -92,6 +92,19 @@
         <!-- button End-->
 
         <div id="navigation">
+            <div>
+                Langauge : <select onchange="changeLanguage(this.value)">
+                    <option
+                        {{ session()->has('lang_code') ? (session()->get('lang_code') == 'en' ? 'selected' : '') : '' }}
+                        value="en">English</option>
+                    <option
+                        {{ session()->has('lang_code') ? (session()->get('lang_code') == 'ar' ? 'selected' : '') : '' }}
+                        value="ar">Arabic</option>
+                    <option
+                        {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
+                        value="te">Telugu</option>
+                </select>
+            </div>
             <!-- Navigation Menu-->
             <ul class="navigation-menu nav-light">
 
@@ -154,6 +167,12 @@
             } else {
                 isOpen.style.display = "block";
             }
+        }
+    </script>
+
+    <script>
+        function changeLanguage(lang) {
+            window.location = '{{ url('change-language') }}/' + lang;
         }
     </script>
 @endpush

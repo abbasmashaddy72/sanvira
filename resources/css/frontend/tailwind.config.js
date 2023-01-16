@@ -4,15 +4,22 @@ const plugin = require("tailwindcss/plugin");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     mode: "jit",
+    presets: [require("../../../vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Frontend/**/*.php",
         "./resources/views/components/frontend/**/*.blade.php",
+        "./resources/views/auth/**/*.blade.php",
         "./resources/views/layouts/guest.blade.php",
         "./resources/views/layouts/fePartials/**/*.blade.php",
         "./resources/views/layouts/fePartials/**/*.blade.php",
         "./resources/views/livewire/frontend/**/*.blade.php",
         "./resources/views/pages/frontend/**/*.blade.php",
+        "./resources/views/vendor/wireui/**/*.blade.php",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./vendor/wire-elements/modal/resources/views/*.blade.php",
+        "./vendor/wireui/wireui/resources/**/*.blade.php",
+        "./vendor/wireui/wireui/ts/**/*.ts",
+        "./vendor/wireui/wireui/src/View/**/*.php",
     ],
     darkMode: "class",
     important: true,
