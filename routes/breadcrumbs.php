@@ -12,3 +12,15 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 Breadcrumbs::for('#', function (BreadcrumbTrail $trail) {
     $trail->push('Application', '/');
 });
+
+// Application > User
+Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('User', route('admin.user.index'));
+});
+
+// Application > Role
+Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Role', route('admin.role.index'));
+});

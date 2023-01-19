@@ -20,7 +20,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('/', 'FrontendController@index')->name('homepage');
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'App\Http\Controllers'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
+    Route::resource('role', RoleController::class); // Role List
+    Route::resource('user', UserController::class); // User List
 });
 Route::get('/change-language/{lang}', [LanguageController::class, 'changeLanguage']);
 

@@ -12,6 +12,25 @@ if (!function_exists('getRouteAction')) {
     }
 }
 
+// Gets array of custom key & values from Model with Map
+if (!function_exists('getKeyValuesWithMap')) {
+    function getKeyValuesWithMap($model, $value, $key, $where_column = null, $where_id = null)
+    {
+        $model = "\\App\\Models\\" . $model;
+        if ($where_column != null && $where_id != null) {
+            $data1 = $model::where($where_column, $where_id)->pluck($value, $key);
+
+            $data = collect($data1)->map(function ($data1, $key) {
+                return ['name' => $data1, 'id' => $key];
+            })->toArray();
+        } else {
+            $data = $model::all()->map->only($value, $key)->toArray();
+        }
+
+        return $data;
+    }
+}
+
 // Gets array of custom key & values from Model
 if (!function_exists('getKeyValues')) {
     function getKeyValues($model, $value, $key, $where_column = null, $where_id = null)

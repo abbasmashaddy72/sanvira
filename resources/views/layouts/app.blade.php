@@ -22,12 +22,14 @@
         {{ config('app.name', 'Laravel') }}
     </title>
 
+    @wireUiScripts
     @vite('resources/js/backend/app.js')
     @stack('styles')
     @livewireStyles
 </head>
 
 <body class="py-5">
+    <x-notifications />
     <!-- BEGIN: Mobile Menu -->
     @include('layouts.bePartials.mobile-menu')
     <!-- END: Mobile Menu -->

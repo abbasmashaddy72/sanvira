@@ -31,6 +31,16 @@ class AppLayout extends Component
                 'title' => 'Dashboard',
                 'route_name' => 'dashboard',
             ],
+            'user' => [
+                'icon' => 'user',
+                'title' => 'Users',
+                'route_name' => 'admin.user.index',
+            ],
+            'role' => [
+                'icon' => 'settings',
+                'title' => 'Roles',
+                'route_name' => 'admin.role.index',
+            ],
         ];
     }
 
