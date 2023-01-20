@@ -7,6 +7,7 @@ module.exports = {
     presets: [require("../../../vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Frontend/**/*.php",
+        "./node_modules/flowbite/**/*.js",
         "./resources/views/components/frontend/**/*.blade.php",
         "./resources/views/auth/**/*.blade.php",
         "./resources/views/layouts/guest.blade.php",
@@ -80,4 +81,5 @@ module.exports = {
             },
         },
     },
+    plugins: [require("flowbite/plugin")],
 };
