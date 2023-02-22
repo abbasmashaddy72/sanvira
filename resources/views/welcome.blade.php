@@ -397,7 +397,7 @@
         @if (Route::has('login'))
             <div class="fixed top-0 right-0 hidden px-6 py-4 sm:block">
                 @auth
-                    <a href="{{ url('/dashboard') }}"
+                    <a href="{{ route('admin.dashboard') }}"
                         class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                 @else
                     <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Log in</a>
@@ -415,7 +415,7 @@
                     value="en">English</option>
                 <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'ar' ? 'selected' : '') : '' }}
                     value="ar">Arabic</option>
-                    <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
+                <option {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
                     value="te">Telugu</option>
             </select>
         </div>

@@ -16,11 +16,29 @@ Breadcrumbs::for('#', function (BreadcrumbTrail $trail) {
 // Application > User
 Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('User', route('admin.user.index'));
+    $trail->push('User', route('admin.user'));
 });
 
 // Application > Role
 Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Role', route('admin.role.index'));
+    $trail->push('Role', route('admin.role'));
+});
+
+// Application > Supplier
+Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Supplier', route('admin.supplier'));
+});
+
+// Application > Contractor
+Breadcrumbs::for('contractor.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Contractor', route('admin.contractor'));
+});
+
+// Application > Sub Contractor
+Breadcrumbs::for('sub-contractor.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Sub Contractor', route('admin.sub-contractor'));
 });

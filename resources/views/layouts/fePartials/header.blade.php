@@ -42,16 +42,13 @@
         <ul class="mb-0 list-none buy-button">
             <li class="inline mb-0">
                 <div>
-                    Langauge : <select onchange="changeLanguage(this.value)">
-                        <option
-                            {{ session()->has('lang_code') ? (session()->get('lang_code') == 'en' ? 'selected' : '') : '' }}
-                            value="en">English</option>
-                        <option
-                            {{ session()->has('lang_code') ? (session()->get('lang_code') == 'ar' ? 'selected' : '') : '' }}
-                            value="ar">Arabic</option>
-                        <option
-                            {{ session()->has('lang_code') ? (session()->get('lang_code') == 'te' ? 'selected' : '') : '' }}
-                            value="te">Telugu</option>
+                    Langauge :
+                    <select onchange="changeLanguage(this.value)">
+                        @foreach (config('translatable.locales') as $item)
+                            <option
+                                {{ session()->has('lang_code') ? (session()->get('lang_code') == $item ? 'selected' : '') : '' }}
+                                value="{{ $item }}">{{ $item }}</option>
+                        @endforeach
                     </select>
                 </div>
             </li>
@@ -59,7 +56,7 @@
                 @if (Route::has('login'))
                     <div class="hidden px-6 py-4 sm:block">
                         @auth
-                            <a href="{{ url('/dashboard') }}"
+                            <a href="{{ route('admin.dashboard') }}"
                                 class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Log

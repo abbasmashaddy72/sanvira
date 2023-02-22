@@ -3,18 +3,17 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
 use Illuminate\Http\Request;
 
-class RoleController extends Controller
+class SubContractorController extends Controller
 {
     public function __construct()
     {
-        view()->share('title', 'Role');
+        view()->share('title', 'Sub Contractor');
     }
 
     public function index()
     {
-        return view('pages.backend.role.index');
+        return view('pages.backend.sub-contractor.index');
     }
 }

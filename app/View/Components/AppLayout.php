@@ -29,17 +29,32 @@ class AppLayout extends Component
             'dashboard' => [
                 'icon' => 'home',
                 'title' => 'Dashboard',
-                'route_name' => 'dashboard',
+                'route_name' => 'admin.dashboard',
             ],
             'user' => [
                 'icon' => 'user',
                 'title' => 'Users',
-                'route_name' => 'admin.user.index',
+                'route_name' => 'admin.user',
             ],
             'role' => [
                 'icon' => 'settings',
                 'title' => 'Roles',
-                'route_name' => 'admin.role.index',
+                'route_name' => 'admin.role',
+            ],
+            'supplier' => [
+                'icon' => 'fast-forward',
+                'title' => 'Suppliers',
+                'route_name' => 'admin.supplier',
+            ],
+            'contractor' => [
+                'icon' => 'bar-chart-2',
+                'title' => 'Contractors',
+                'route_name' => 'admin.contractor',
+            ],
+            'sub-contractor' => [
+                'icon' => 'link',
+                'title' => 'Sub Contractors',
+                'route_name' => 'admin.sub-contractor',
             ],
         ];
     }

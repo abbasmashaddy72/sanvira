@@ -12,7 +12,7 @@
             @endif
         </h2>
 
-        @if (Route::currentRouteName() != 'dashboard' && isset($top_right_button))
+        @if (Route::currentRouteName() != 'admin.dashboard' && isset($top_right_button))
             <div class="flex w-full mt-4 sm:w-auto sm:mt-0">
                 {{ $top_right_button }}
             </div>
