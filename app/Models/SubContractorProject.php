@@ -19,4 +19,9 @@ class SubContractorProject extends Model
         'images',
         'feedback',
     ];
+
+    public function subContractors()
+    {
+        return $this->belongsTo(SubContractor::class);
+    }
 }

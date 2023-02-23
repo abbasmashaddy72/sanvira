@@ -17,4 +17,9 @@ class SupplierTestimonial extends Model
         'year',
         'rating',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

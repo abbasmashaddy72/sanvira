@@ -14,4 +14,9 @@ class SupplierProductAttributes extends Model
         'name',
         'value',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

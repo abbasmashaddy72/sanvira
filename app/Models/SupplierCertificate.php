@@ -14,4 +14,9 @@ class SupplierCertificate extends Model
         'title',
         'attachment',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

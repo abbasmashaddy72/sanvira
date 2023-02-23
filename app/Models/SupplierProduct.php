@@ -23,4 +23,14 @@ class SupplierProduct extends Model
         'item_type',
         'sku',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+
+    public function supplierProductCategory()
+    {
+        return $this->belongsTo(SupplierProductCategory::class);
+    }
 }

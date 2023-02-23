@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
-use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Supplier extends Model  implements TranslatableContract
+class Supplier extends Model
 {
-    use HasFactory, Translatable;
+    use HasFactory;
 
     protected $fillable = [
         'user_id',
@@ -28,4 +26,39 @@ class Supplier extends Model  implements TranslatableContract
         'contact_person_email',
         'contact_person_number',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function supplierCertificates()
+    {
+        return $this->belongsTo(SupplierCertificate::class);
+    }
+
+    public function supplierProducts()
+    {
+        return $this->belongsTo(SupplierProduct::class);
+    }
+
+    public function supplierProductCatagories()
+    {
+        return $this->belongsTo(SupplierProductCategory::class);
+    }
+
+    public function supplierProjects()
+    {
+        return $this->belongsTo(SupplierProject::class);
+    }
+
+    public function supplierTeams()
+    {
+        return $this->belongsTo(SupplierTeam::class);
+    }
+
+    public function supplierTestimonials()
+    {
+        return $this->belongsTo(SupplierTestimonial::class);
+    }
 }

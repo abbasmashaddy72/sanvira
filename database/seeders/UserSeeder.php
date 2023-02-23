@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\SupplierProductAttributes;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SupplierProductAttributesSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class SupplierProductAttributesSeeder extends Seeder
      */
     public function run()
     {
-        SupplierProductAttributes::factory()->count(rand(10, 300))->create();
+        User::factory()->count(rand(10, 300))->create();
     }
 }

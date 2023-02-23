@@ -15,4 +15,9 @@ class SupplierProductCategory extends Model
         'image',
         'parent_id',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

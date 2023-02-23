@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Supplier;
+use App\Models\SupplierProduct;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,10 @@ class SupplierProductCategoryFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
+            'name' => $this->faker->name(),
+            'image' => 0,
+            'parent_id' => rand(0, 12),
         ];
     }
 }

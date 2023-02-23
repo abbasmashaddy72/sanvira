@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\SupplierProductCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,6 @@ class SupplierProductCategorySeeder extends Seeder
      */
     public function run()
     {
-        //
+        SupplierProductCategory::factory()->count(rand(10, 300))->create();
     }
 }

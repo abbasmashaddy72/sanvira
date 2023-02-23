@@ -15,4 +15,9 @@ class SupplierTeam extends Model
         'designation',
         'image',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

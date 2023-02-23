@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('company_email');
             $table->longText('company_address');
-            $table->integer('company_number');
+            $table->bigInteger('company_number');
             $table->string('company_locality');
             $table->string('tagline');
             $table->longText('logo');
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->longText('terms_conditions');
             $table->string('contact_person_name');
             $table->string('contact_person_email');
-            $table->string('contact_person_number');
+            $table->bigInteger('contact_person_number');
             $table->timestamps();
         });
     }

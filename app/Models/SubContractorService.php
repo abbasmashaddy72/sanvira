@@ -15,4 +15,9 @@ class SubContractorService extends Model
         'image',
         'parent_id',
     ];
+
+    public function subContractors()
+    {
+        return $this->belongsTo(SubContractor::class);
+    }
 }

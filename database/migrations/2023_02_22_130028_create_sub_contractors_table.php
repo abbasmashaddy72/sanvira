@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->longText('address');
-            $table->integer('number');
+            $table->bigInteger('number');
             $table->string('locality');
             $table->longText('description');
             $table->longText('terms_conditions');

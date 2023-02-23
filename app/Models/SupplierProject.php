@@ -19,4 +19,9 @@ class SupplierProject extends Model
         'images',
         'feedback',
     ];
+
+    public function suppliers()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }
