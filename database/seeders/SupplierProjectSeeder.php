@@ -15,6 +15,6 @@ class SupplierProjectSeeder extends Seeder
      */
     public function run()
     {
-        SupplierProject::factory()->count(rand(10, 300))->create();
+        SupplierProject::factory()->count(rand(100, 500))->create();
     }
 }

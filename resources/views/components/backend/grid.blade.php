@@ -10,7 +10,7 @@
             {{ $title }}
         @endif
     </h2>
-    @if (Route::currentRouteName() != 'admin.dashboard')
+    @if (Route::currentRouteName() != 'admin.dashboard' && !empty($rt_button))
         <div class="flex w-full mt-4 sm:w-auto sm:mt-0">
             {{ $rt_button }}
         </div>

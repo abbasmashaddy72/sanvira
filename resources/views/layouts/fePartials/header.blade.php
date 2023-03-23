@@ -14,13 +14,13 @@
         <!-- Logo container-->
         <a class="pl-0 logo" href="{{ route('homepage') }}">
             <span class="inline-block dark:hidden">
-                <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="l-dark" height="24"
+                <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-20 py-2 l-dark" height="24"
                     alt="" />
-                <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="l-light" height="24"
+                <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-20 py-2 l-light" height="24"
                     alt="" />
             </span>
             <img src="{{ asset('storage/' . get_static_option('logo')) }}" height="24"
-                class="hidden dark:inline-block" alt="" />
+                class="hidden h-20 py-2 dark:inline-block" alt="" />
         </a>
 
         <!-- End Logo container-->
@@ -41,20 +41,8 @@
         <!--button Start-->
         <ul class="mb-0 list-none buy-button">
             <li class="inline mb-0">
-                <div>
-                    Langauge :
-                    <select onchange="changeLanguage(this.value)">
-                        @foreach (config('translatable.locales') as $item)
-                            <option
-                                {{ session()->has('lang_code') ? (session()->get('lang_code') == $item ? 'selected' : '') : '' }}
-                                value="{{ $item }}">{{ $item }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </li>
-            <li class="inline mb-0">
                 @if (Route::has('login'))
-                    <div class="hidden px-6 py-4 sm:block">
+                    <div class="hidden px-6 py-6 sm:block">
                         @auth
                             <a href="{{ route('admin.dashboard') }}"
                                 class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
@@ -73,10 +61,8 @@
         </ul>
         <!-- button End-->
 
-        <div id="navigation">
-            <div class="">
-                @include('components.frontend.search')
-            </div>
+        <div class="pt-4">
+            @include('components.frontend.search')
         </div>
         <!--end navigation-->
     </div>

@@ -15,6 +15,6 @@ class SupplierSeeder extends Seeder
      */
     public function run()
     {
-        Supplier::factory()->count(rand(10, 300))->create();
+        Supplier::factory()->count(rand(100, 250))->create();
     }
 }

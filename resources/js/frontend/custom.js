@@ -318,8 +318,8 @@ if (document.getElementsByClassName("tiny-six-item").length > 0) {
         autoplayTimeout: 3000,
         navPosition: "bottom",
         controlsText: [
-            '<i class="mdi mdi-chevron-left "></i>',
-            '<i class="mdi mdi-chevron-right"></i>',
+            '<i class="uil uil-arrow-left"></i>',
+            '<i class="uil uil-arrow-right"></i>',
         ],
         nav: false,
         speed: 400,

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('model');
             $table->string('item_type');
             $table->string('sku');
+            $table->boolean('on_sale')->default(0);
+            $table->string('image');
             $table->timestamps();
         });
     }

@@ -56,6 +56,11 @@ class AppLayout extends Component
                 'title' => 'Sub Contractors',
                 'route_name' => 'admin.sub-contractor',
             ],
+            'homepage' => [
+                'icon' => 'layout',
+                'title' => 'Home Page',
+                'route_name' => 'admin.homepage',
+            ],
         ];
     }
 

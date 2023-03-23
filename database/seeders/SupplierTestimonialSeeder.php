@@ -15,6 +15,6 @@ class SupplierTestimonialSeeder extends Seeder
      */
     public function run()
     {
-        SupplierTestimonial::factory()->count(rand(10, 300))->create();
+        SupplierTestimonial::factory()->count(rand(100, 300))->create();
     }
 }

@@ -15,6 +15,6 @@ class SupplierProductAttributesSeeder extends Seeder
      */
     public function run()
     {
-        SupplierProductAttributes::factory()->count(rand(10, 300))->create();
+        SupplierProductAttributes::factory()->count(rand(100, 500))->create();
     }
 }

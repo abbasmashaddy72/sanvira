@@ -15,6 +15,6 @@ class SubContractorServiceSeeder extends Seeder
      */
     public function run()
     {
-        SubContractorService::factory()->count(rand(10, 300))->create();
+        SubContractorService::factory()->count(rand(50, 100))->create();
     }
 }

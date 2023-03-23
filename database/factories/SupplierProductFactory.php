@@ -39,6 +39,8 @@ class SupplierProductFactory extends Factory
             'model' => $this->faker->streetSuffix(),
             'item_type' => $this->faker->mimeType(),
             'sku' => $this->faker->regexify('[A-Za-z0-9]{20}'),
+            'on_sale' => rand(0, 1),
+            'image' => 0,
         ];
     }
 }

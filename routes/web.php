@@ -20,7 +20,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::group(['middleware' => ['verified']], function () {
         Route::get('supplier_profile', 'FrontendController@supplier_profile')->name('supplier_profile');
         Route::get('products', 'FrontendController@products')->name('products');
-        Route::get('products_details', 'FrontendController@products_details')->name('products_details');
+        Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details');
     });
 
     Route::get('/change-language/{lang}', 'LanguageController@changeLanguage');
@@ -43,8 +43,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
 
     Route::get('supplier', 'SupplierController@index')->name('supplier');
+    Route::get('supplier_profile/{supplier}', 'SupplierController@supplier_profile')->name('supplier_profile');
     Route::get('contractor', 'ContractorController@index')->name('contractor');
     Route::get('sub-contractor', 'SubContractorController@index')->name('sub-contractor');
+    Route::get('homepage', 'StaticController@homepage')->name('homepage');
 });
 
 require __DIR__ . '/auth.php';

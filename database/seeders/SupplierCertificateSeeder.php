@@ -15,6 +15,6 @@ class SupplierCertificateSeeder extends Seeder
      */
     public function run()
     {
-        SupplierCertificate::factory()->count(rand(10, 300))->create();
+        SupplierCertificate::factory()->count(rand(50, 100))->create();
     }
 }

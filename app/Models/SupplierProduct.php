@@ -22,6 +22,8 @@ class SupplierProduct extends Model
         'model',
         'item_type',
         'sku',
+        'on_sale',
+        'image',
     ];
 
     public function suppliers()
