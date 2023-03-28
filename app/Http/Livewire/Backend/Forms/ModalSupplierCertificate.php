@@ -13,7 +13,7 @@ class ModalSupplierCertificate extends ModalComponent
     // Set Data
     public $supplier_certificate_id, $supplier_id;
     // Model Values
-    public $title, $attachment;
+    public $title, $attachment, $type;
 
     public function mount()
     {
@@ -22,12 +22,14 @@ class ModalSupplierCertificate extends ModalComponent
             $this->supplier_id = $data->supplier_id;
             $this->title = $data->title;
             $this->attachment = $data->attachment;
+            $this->type = $data->type;
         }
     }
 
     protected $rules = [
         'title' => '',
         'attachment' => '',
+        'type' => '',
     ];
 
     public function updated($propertyName)

@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SupplierCertificate extends Model
+class SupplierTermCondition extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'supplier_id',
-        'title',
-        'attachment',
-        'type',
+        'description',
     ];
 
     public function suppliers()

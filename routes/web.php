@@ -18,7 +18,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('/', 'FrontendController@index')->name('homepage');
 
     Route::group(['middleware' => ['verified']], function () {
-        Route::get('supplier_profile', 'FrontendController@supplier_profile')->name('supplier_profile');
+        Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales');
+        Route::get('products_category/{product_category}', 'FrontendController@products_category')->name('products_category');
+        Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category');
+        Route::get('supplier_profile/{profile}', 'FrontendController@supplier_profile')->name('supplier_profile');
         Route::get('products', 'FrontendController@products')->name('products');
         Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details');
     });

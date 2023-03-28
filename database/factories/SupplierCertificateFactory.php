@@ -17,10 +17,13 @@ class SupplierCertificateFactory extends Factory
      */
     public function definition()
     {
+        $types = ['Award', 'Certificate'];
+
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'title' => $this->faker->title(),
             'attachment' => 0,
+            'type' => $types[array_rand($types)]
         ];
     }
 }

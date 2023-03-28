@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('supplier_certificates', function (Blueprint $table) {
+        Schema::create('supplier_term_conditions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('title');
-            $table->longText('attachment');
-            $table->enum('type', ['Award', 'Certificate']);
+            $table->longText('description');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplier_certificates');
+        Schema::dropIfExists('supplier_term_conditions');
     }
 };

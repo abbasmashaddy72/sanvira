@@ -34,7 +34,7 @@ class Supplier extends Model
 
     public function supplierCertificates()
     {
-        return $this->belongsTo(SupplierCertificate::class);
+        return $this->hasMany(SupplierCertificate::class);
     }
 
     public function supplierProducts()

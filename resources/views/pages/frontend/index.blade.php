@@ -12,7 +12,7 @@
 
                             @foreach ($supplier_products_on_sale as $item)
                                 <div class="tiny-slide">
-                                    <a href="{{ route('supplier_profile') }}"
+                                    <a href="{{ route('supplier_products_sales', ['sales_id' => $item->id]) }}"
                                         class="relative block m-2 overflow-hidden bg-white rounded-md shadow group dark:bg-slate-900 dark:shadow-gray-800">
                                         <span class="block p-4 text-center bg-white dark:bg-slate-900">
                                             <img src="{{ asset('storage/' . $item->image) }}"
@@ -59,7 +59,8 @@
                                 class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
                                 <img class="w-5 h-5 rotate-45" src="{{ asset($item->image) }}" />
                             </div>
-                            <a href="{{ route('products_details', ['data' => $item->id]) }}" class="flex-1">
+                            <a href="{{ route('products_category', ['product_category' => $item->id]) }}"
+                                class="flex-1">
                                 <h4 class="mb-0 text-lg font-medium">{{ $item->name }}</h4>
                             </a>
                         </div>
@@ -69,7 +70,7 @@
 
             <div class="grid justify-center grid-cols-1">
                 <div class="mt-6 text-center">
-                    <a href="{{ route('products') }}"
+                    <a href="{{ route('all_products_category') }}"
                         class="mt-2 mr-2 text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700">See
                         More <i class="uil uil-arrow-right"></i></a>
                 </div>
@@ -99,7 +100,7 @@
                         </div>
 
                         <div class="mt-6">
-                            <a href="{{ route('supplier_profile') }}"
+                            <a href="{{ route('supplier_profile', ['profile' => $item->id]) }}"
                                 class="text-lg font-medium transition-all duration-500 ease-in-out group-hover:text-white">{{ $item->company_name }}</a>
                             <p
                                 class="mt-3 transition-all duration-500 ease-in-out text-slate-400 group-hover:text-white/50">
@@ -167,25 +168,6 @@
                                     <span class="ml-2">{{ $item->model }}</span>
                                 </li>
                             </ul>
-
-                            {{-- <ul class="flex items-center justify-between pt-6 list-none">
-                            <li>
-                                <span class="text-slate-400">Price</span>
-                                <p class="text-lg font-medium">$5000</p>
-                            </li>
-
-                            <li>
-                                <span class="text-slate-400">Rating</span>
-                                <ul class="text-lg font-medium list-none text-amber-400">
-                                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                                    <li class="inline text-black dark:text-white">5.0(30)</li>
-                                </ul>
-                            </li>
-                        </ul> --}}
                         </div>
                     </div>
                 @endforeach
@@ -226,9 +208,9 @@
                     Get in touch!</h3>
 
                 <div class="mt-6">
-                    <a href="{{ route('supplier_profile') }}"
+                    {{-- <a href="{{ route('supplier_profile') }}"
                         class="text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700"><i
-                            class="mr-2 align-middle uil uil-phone"></i> Contact us</a>
+                            class="mr-2 align-middle uil uil-phone"></i> Contact us</a> --}}
                 </div>
             </div>
             <!--end grid-->
