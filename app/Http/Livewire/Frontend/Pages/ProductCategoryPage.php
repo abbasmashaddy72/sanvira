@@ -20,7 +20,7 @@ class ProductCategoryPage extends Component
             $category_based_products = SupplierProduct::where('supplier_product_category_id', $this->product_category->id)->paginate(6);
         } else {
             $sub_product_category = SupplierProductCategory::where('parent_id', 0)->get();
-            $category_based_products = SupplierProduct::paginate(6);
+            $category_based_products = [];
         }
 
         return view('livewire.frontend.pages.product-category-page', compact([

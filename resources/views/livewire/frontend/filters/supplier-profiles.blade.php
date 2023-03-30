@@ -13,7 +13,7 @@
             <div class="px-4 md:py-12 lg:px-20 md:px-6 py-9">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-3xl font-semibold leading-7 text-gray-800 lg:text-4xl dark:text-white lg:leading-9">
-                        On Sale Products</h2>
+                        All Suppliers</h2>
 
                     <!-- filters Button (md and plus Screen) -->
                     <button onclick="showFilters()"
@@ -24,7 +24,7 @@
                         Filters
                     </button>
                 </div>
-                <p class="text-xl font-medium leading-5 text-gray-600 dark:text-gray-400">Products
+                <p class="text-xl font-medium leading-5 text-gray-600 dark:text-gray-400">Suppliers
                 </p>
 
                 <!-- Filters Button (Small Screen) -->
@@ -266,72 +266,32 @@
 
     <section class="relative py-16 lg:pt-0 lg:py-24">
         <div class="container">
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
-                @foreach ($on_sale_products as $item)
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
+                @foreach ($suppliers as $item)
                     <div
-                        class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
-                        <div class="relative">
-                            <img class="h-32" src="{{ asset($item->image) }}" alt="">
+                        class="relative p-6 overflow-hidden text-center transition-all duration-500 ease-in-out bg-white shadow group dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded-xl dark:bg-slate-900">
+                        <div class="relative -m-3 overflow-hidden text-transparent">
+                            <i data-feather="hexagon"
+                                class="w-24 h-24 mx-auto fill-indigo-600/5 group-hover:fill-white/10"></i>
+                            <div
+                                class="absolute left-0 right-0 flex items-center justify-center mx-auto text-3xl text-indigo-600 align-middle transition-all duration-500 ease-in-out top-2/4 -translate-y-2/4 rounded-xl group-hover:text-white">
+                                <img class="w-24 h-24 mx-auto" src="{{ asset('storage/' . $item->logo) }}" />
+                            </div>
                         </div>
 
-                        <div class="p-6">
-                            <div class="pb-6">
-                                <a href="{{ route('products_details', ['data' => $item->id]) }}"
-                                    class="text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->name }}</a>
-                            </div>
-
-                            <ul
-                                class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
-                                <li class="flex items-center justify-between">
-                                    <span
-                                        class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
-                                    <span class="ml-2">{{ $item->min_max_oq }}</span>
-                                </li>
-
-                                <li class="flex items-center justify-between">
-                                    <span
-                                        class="mr-2 font-semibold text-indigo-600">{{ __('Estimate Delivery Time in Days:') }}</span>
-                                    <span class="ml-2">{{ $item->edt }}</span>
-                                </li>
-
-                                <li class="flex items-center justify-between">
-                                    <span class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
-                                    <span class="ml-2">{{ $item->brand }}</span>
-                                </li>
-
-                                <li class="flex items-center justify-between">
-                                    <span
-                                        class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
-                                    <span class="ml-2">{{ $item->manufacturer }}</span>
-                                </li>
-
-                                <li class="flex items-center justify-between">
-                                    <span class="mr-2 font-semibold text-indigo-600">{{ __('Model Name:') }}</span>
-                                    <span class="ml-2">{{ $item->model }}</span>
-                                </li>
-                            </ul>
-
-                            <ul class="flex items-center justify-between pt-6 list-none">
-                                <li>
-                                    <button class="text-lg font-medium">
-                                        Add to RFQ
-                                    </button>
-                                </li>
-
-                                <li>
-                                    <button class="text-lg font-medium">
-                                        Add to Cart
-                                    </button>
-                                </li>
-                            </ul>
+                        <div class="mt-6">
+                            <a href="{{ route('supplier_profile', ['profile' => $item->id]) }}"
+                                class="text-lg font-medium transition-all duration-500 ease-in-out group-hover:text-white">{{ $item->company_name }}</a>
+                            <p
+                                class="mt-3 transition-all duration-500 ease-in-out text-slate-400 group-hover:text-white/50">
+                                {{ $item->tagline }}</p>
                         </div>
                     </div>
                 @endforeach
-
             </div>
 
             <div class="mt-8">
-                {{ $on_sale_products->links() }}
+                {{ $suppliers->links() }}
             </div>
 
         </div>

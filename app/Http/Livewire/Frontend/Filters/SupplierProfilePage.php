@@ -6,7 +6,6 @@ use App\Models\SupplierCertificate;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProject;
 use App\Models\SupplierTeam;
-use App\Models\SupplierTermCondition;
 use App\Models\SupplierTestimonial;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -111,7 +110,6 @@ class SupplierProfilePage extends Component
         $supplier_projects = SupplierProject::where('supplier_id', $this->profile->id)->get();
         $supplier_teams = SupplierTeam::where('supplier_id', $this->profile->id)->get();
         $supplier_testimonials = SupplierTestimonial::where('supplier_id', $this->profile->id)->orderBy('year', 'ASC')->get();
-        $supplier_term_conditions = SupplierTermCondition::where('supplier_id', $this->profile->id)->first('description');
 
         return view('livewire.frontend.filters.supplier-profile-page', compact([
             'supplier_certificates',
@@ -119,7 +117,6 @@ class SupplierProfilePage extends Component
             'supplier_projects',
             'supplier_teams',
             'supplier_testimonials',
-            'supplier_term_conditions',
         ]));
     }
 }

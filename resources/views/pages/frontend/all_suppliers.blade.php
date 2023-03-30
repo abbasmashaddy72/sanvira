@@ -7,7 +7,7 @@
         </style>
     @endpush
 
-    @livewire('frontend.filters.supplier-products')
+    @livewire('frontend.filters.supplier-profiles')
 
     @push('scripts')
         <script>

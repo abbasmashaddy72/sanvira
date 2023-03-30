@@ -212,11 +212,11 @@
                                     <span class="text-base font-normal text-gray-500 dark:text-gray-400">
                                         {{ $item->city . ', ' . $item->country }}</span>
                                 </h3>
-                                <p class="text-base font-normal text-gray-500 dark:text-gray-400 mt-2">
+                                <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
                                     {!! $item->description !!}</p>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        class="inline-block h-7 w-7 pr-2" viewBox="0 0 24 24">
+                                        class="inline-block pr-2 h-7 w-7" viewBox="0 0 24 24">
                                         <path
                                             d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
                                     </svg>
@@ -286,7 +286,7 @@
                                 </div>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        class="inline-block h-7 w-7 pr-2" viewBox="0 0 24 24">
+                                        class="inline-block pr-2 h-7 w-7" viewBox="0 0 24 24">
                                         <path
                                             d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
                                     </svg>
@@ -302,7 +302,7 @@
             @if ($termsConditionsShow)
                 <h5 class="text-xl font-semibold mt-[30px]">Terms & Conditions :</h5>
 
-                <div class="mt-3 text-slate-600 dark:text-slate-300 ck-content">{!! $supplier_term_conditions->description !!}</div>
+                <div class="mt-3 text-slate-600 dark:text-slate-300 ck-content">{!! $profile->terms_conditions !!}</div>
             @endif
 
             @if ($productsShow)
@@ -324,28 +324,33 @@
 
                                 <ul
                                     class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
-                                    <li class="flex items-center mr-4">
-                                        <span class="font-semibold">{{ __('Min Max Order Quantity:') }}</span>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
                                         <span class="ml-2">{{ $item->min_max_oq }}</span>
                                     </li>
 
-                                    <li class="flex items-center mr-4">
-                                        <span class="font-semibold">{{ __('Estimate Delivery Time in Days:') }}</span>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Estimate Delivery Time in Days:') }}</span>
                                         <span class="ml-2">{{ $item->edt }}</span>
                                     </li>
 
-                                    <li class="flex items-center mr-4">
-                                        <span class="font-semibold">{{ __('Brand Name:') }}</span>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
                                         <span class="ml-2">{{ $item->brand }}</span>
                                     </li>
 
-                                    <li class="flex items-center mr-4">
-                                        <span class="font-semibold">{{ __('Manufacturer Name:') }}</span>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
                                         <span class="ml-2">{{ $item->manufacturer }}</span>
                                     </li>
 
-                                    <li class="flex items-center mr-4">
-                                        <span class="font-semibold">{{ __('Model Name:') }}</span>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Model Name:') }}</span>
                                         <span class="ml-2">{{ $item->model }}</span>
                                     </li>
                                 </ul>

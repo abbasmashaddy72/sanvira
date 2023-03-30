@@ -13,7 +13,7 @@
             <div class="px-4 md:py-12 lg:px-20 md:px-6 py-9">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="text-3xl font-semibold leading-7 text-gray-800 lg:text-4xl dark:text-white lg:leading-9">
-                        On Sale Products</h2>
+                        All Products</h2>
 
                     <!-- filters Button (md and plus Screen) -->
                     <button onclick="showFilters()"
@@ -266,8 +266,8 @@
 
     <section class="relative py-16 lg:pt-0 lg:py-24">
         <div class="container">
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
-                @foreach ($on_sale_products as $item)
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
+                @foreach ($supplier_products as $item)
                     <div
                         class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
                         <div class="relative">
@@ -327,11 +327,10 @@
                         </div>
                     </div>
                 @endforeach
-
             </div>
 
             <div class="mt-8">
-                {{ $on_sale_products->links() }}
+                {{ $supplier_products->links() }}
             </div>
 
         </div>

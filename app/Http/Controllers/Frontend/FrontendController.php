@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
+use App\Models\SupplierProductAttributes;
 use App\Models\SupplierProductCategory;
 use Illuminate\Http\Request;
 
@@ -28,6 +29,13 @@ class FrontendController extends Controller
             'featured_products',
             'top_suppliers'
         ]));
+    }
+
+    public function contact_us()
+    {
+        view()->share('title', 'Contact Us');
+
+        return view('pages.frontend.contact_us');
     }
 
     public function supplier_products_sales($sales_id)
@@ -58,9 +66,16 @@ class FrontendController extends Controller
         return view('pages.frontend.supplier', compact('profile'));
     }
 
+    public function all_supplier_profile()
+    {
+        view()->share('title', 'All Supplier Profiles');
+
+        return view('pages.frontend.all_suppliers');
+    }
+
     public function products()
     {
-        view()->share('title', 'Products');
+        view()->share('title', 'All Products');
 
         return view('pages.frontend.products');
     }
@@ -68,14 +83,11 @@ class FrontendController extends Controller
     public function products_details(SupplierProduct $data)
     {
         view()->share('title', 'Products Details');
+        $data_attributes = SupplierProductAttributes::where('supplier_product_id', $data->id)->get();
 
-        return view('pages.frontend.products_details');
-    }
-
-    public function product_catagories(SupplierProductCategory $data)
-    {
-        view()->share('title', 'Products Catagories');
-
-        return view('pages.frontend.products_catagories');
+        return view('pages.frontend.products_details', compact([
+            'data',
+            'data_attributes'
+        ]));
     }
 }

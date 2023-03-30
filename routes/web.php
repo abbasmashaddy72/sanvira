@@ -15,15 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend URL
 Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
-    Route::get('/', 'FrontendController@index')->name('homepage');
+    Route::get('/', 'FrontendController@index')->name('homepage'); // Done
+    Route::get('contact_us', 'FrontendController@contact_us')->name('contact_us');
 
     Route::group(['middleware' => ['verified']], function () {
-        Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales');
-        Route::get('products_category/{product_category}', 'FrontendController@products_category')->name('products_category');
-        Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category');
-        Route::get('supplier_profile/{profile}', 'FrontendController@supplier_profile')->name('supplier_profile');
-        Route::get('products', 'FrontendController@products')->name('products');
-        Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details');
+        Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales'); // Done
+        Route::get('products_category/{product_category}', 'FrontendController@products_category')->name('products_category'); // Done
+        Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category'); // Done
+        Route::get('supplier_profile/{profile}', 'FrontendController@supplier_profile')->name('supplier_profile'); // Done
+        Route::get('all_supplier_profile', 'FrontendController@all_supplier_profile')->name('all_supplier_profile'); // Done
+        Route::get('products', 'FrontendController@products')->name('products'); // Done
+        Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details'); // Done
     });
 
     Route::get('/change-language/{lang}', 'LanguageController@changeLanguage');

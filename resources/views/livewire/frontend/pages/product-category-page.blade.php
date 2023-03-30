@@ -22,73 +22,78 @@
         </div>
     </section>
 
-    <section class="relative py-16 lg:pt-0 lg:py-24">
-        <div class="container">
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
-                @foreach ($category_based_products as $item)
-                    <div
-                        class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
-                        <div class="relative">
-                            <img class="h-32" src="{{ asset($item->image) }}" alt="">
-                        </div>
-
-                        <div class="p-6">
-                            <div class="pb-6">
-                                <a href="{{ route('products_details', ['data' => $item->id]) }}"
-                                    class="text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->name }}</a>
+    @if (!empty($category_based_products))
+        <section class="relative py-16 lg:pt-0 lg:py-24">
+            <div class="container">
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
+                    @foreach ($category_based_products as $item)
+                        <div
+                            class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
+                            <div class="relative">
+                                <img class="h-32" src="{{ asset($item->image) }}" alt="">
                             </div>
 
-                            <ul
-                                class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Min Max Order Quantity:') }}</span>
-                                    <span class="ml-2">{{ $item->min_max_oq }}</span>
-                                </li>
+                            <div class="p-6">
+                                <div class="pb-6">
+                                    <a href="{{ route('products_details', ['data' => $item->id]) }}"
+                                        class="text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->name }}</a>
+                                </div>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Estimate Delivery Time in Days:') }}</span>
-                                    <span class="ml-2">{{ $item->edt }}</span>
-                                </li>
+                                <ul
+                                    class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
+                                        <span class="ml-2">{{ $item->min_max_oq }}</span>
+                                    </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Brand Name:') }}</span>
-                                    <span class="ml-2">{{ $item->brand }}</span>
-                                </li>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Estimate Delivery Time in Days:') }}</span>
+                                        <span class="ml-2">{{ $item->edt }}</span>
+                                    </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Manufacturer Name:') }}</span>
-                                    <span class="ml-2">{{ $item->manufacturer }}</span>
-                                </li>
+                                    <li class="flex items-center justify-between">
+                                        <span class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
+                                        <span class="ml-2">{{ $item->brand }}</span>
+                                    </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Model Name:') }}</span>
-                                    <span class="ml-2">{{ $item->model }}</span>
-                                </li>
-                            </ul>
+                                    <li class="flex items-center justify-between">
+                                        <span
+                                            class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
+                                        <span class="ml-2">{{ $item->manufacturer }}</span>
+                                    </li>
 
-                            <ul class="flex items-center justify-between pt-6 list-none">
-                                <li>
-                                    <button class="text-lg font-medium">
-                                        Add to RFQ
-                                    </button>
-                                </li>
+                                    <li class="flex items-center justify-between">
+                                        <span class="mr-2 font-semibold text-indigo-600">{{ __('Model Name:') }}</span>
+                                        <span class="ml-2">{{ $item->model }}</span>
+                                    </li>
+                                </ul>
 
-                                <li>
-                                    <button class="text-lg font-medium">
-                                        Add to Cart
-                                    </button>
-                                </li>
-                            </ul>
+                                <ul class="flex items-center justify-between pt-6 list-none">
+                                    <li>
+                                        <button class="text-lg font-medium">
+                                            Add to RFQ
+                                        </button>
+                                    </li>
+
+                                    <li>
+                                        <button class="text-lg font-medium">
+                                            Add to Cart
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+
+                </div>
+
+                <div class="mt-8">
+                    {{ $category_based_products->links() }}
+                </div>
 
             </div>
-
-            <div class="mt-8">
-                {{ $category_based_products->links() }}
-            </div>
-
-        </div>
-    </section>
+        </section>
+    @endif
 </div>

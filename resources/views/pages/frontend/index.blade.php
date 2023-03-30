@@ -112,7 +112,7 @@
 
             <div class="grid justify-center grid-cols-1">
                 <div class="mt-6 text-center">
-                    <a href="{{ route('products') }}"
+                    <a href="{{ route('all_supplier_profile') }}"
                         class="mt-2 mr-2 text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700">See
                         More <i class="uil uil-arrow-right"></i></a>
                 </div>
@@ -143,28 +143,31 @@
                             </div>
 
                             <ul class="grid items-center grid-cols-1 gap-2 py-6 list-none">
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Min Max Order Quantity:') }}</span>
+                                <li class="flex items-center justify-between">
+                                    <span
+                                        class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
                                     <span class="ml-2">{{ $item->min_max_oq }}</span>
                                 </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Estimate Delivery Time in Days:') }}</span>
+                                <li class="flex items-center justify-between">
+                                    <span
+                                        class="mr-2 font-semibold text-indigo-600">{{ __('Estimate Delivery Time in Days:') }}</span>
                                     <span class="ml-2">{{ $item->edt }}</span>
                                 </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Brand Name:') }}</span>
+                                <li class="flex items-center justify-between">
+                                    <span class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
                                     <span class="ml-2">{{ $item->brand }}</span>
                                 </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Manufacturer Name:') }}</span>
+                                <li class="flex items-center justify-between">
+                                    <span
+                                        class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
                                     <span class="ml-2">{{ $item->manufacturer }}</span>
                                 </li>
 
-                                <li class="flex items-center mr-4">
-                                    <span class="font-semibold">{{ __('Model Name:') }}</span>
+                                <li class="flex items-center justify-between">
+                                    <span class="mr-2 font-semibold text-indigo-600">{{ __('Model Name:') }}</span>
                                     <span class="ml-2">{{ $item->model }}</span>
                                 </li>
                             </ul>
@@ -208,9 +211,9 @@
                     Get in touch!</h3>
 
                 <div class="mt-6">
-                    {{-- <a href="{{ route('supplier_profile') }}"
+                    <a href="{{ route('contact_us') }}"
                         class="text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700"><i
-                            class="mr-2 align-middle uil uil-phone"></i> Contact us</a> --}}
+                            class="mr-2 align-middle uil uil-phone"></i> Contact us</a>
                 </div>
             </div>
             <!--end grid-->
