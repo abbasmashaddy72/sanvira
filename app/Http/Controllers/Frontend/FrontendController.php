@@ -54,7 +54,7 @@ class FrontendController extends Controller
 
     public function all_products_category()
     {
-        view()->share('title', 'All Available Products');
+        view()->share('title', 'All Available Categories');
 
         return view('pages.frontend.product_category');
     }

@@ -313,15 +313,29 @@
 
                             <ul class="flex items-center justify-between pt-6 list-none">
                                 <li>
-                                    <button class="text-lg font-medium">
-                                        Add to RFQ
-                                    </button>
+                                    @if (!in_array($item->id, $rfqProducts))
+                                        <a wire:click="addToRfq({{ $item->id }})"
+                                            class="px-2 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                                            href="#" class="btn btn-sm btn-primary">Add to Rfq</a>
+                                    @else
+                                        <a wire:click="removeFromRfq({{ $item->id }})"
+                                            class="px-2 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                                            href="#" class="btn btn-sm btn-danger">Remove from Rfq</a>
+                                    @endif
                                 </li>
-
                                 <li>
-                                    <button class="text-lg font-medium">
-                                        Add to Cart
-                                    </button>
+                                    <x-inputs.number wire:model="quantity.{{ $item->id }}" />
+                                </li>
+                                <li>
+                                    @if (!in_array($item->id, $cartProducts))
+                                        <a wire:click="addToCart({{ $item->id }})"
+                                            class="px-2 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+                                            href="#" class="btn btn-sm btn-primary">Add to Cart</a>
+                                    @else
+                                        <a wire:click="removeFromCart({{ $item->id }})"
+                                            class="px-2 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                                            href="#" class="btn btn-sm btn-danger">Remove from Cart</a>
+                                    @endif
                                 </li>
                             </ul>
                         </div>

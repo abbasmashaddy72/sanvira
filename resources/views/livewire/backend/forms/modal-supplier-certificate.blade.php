@@ -7,6 +7,8 @@
         <div class="grid gap-y-2">
             <x-input name="title" label="Title" type="text" wire:model='title' />
 
+            <x-select name="type" label="Type" :options="['Award', 'Certificate']" wire:model='type' />
+
             <x-input name="attachment" label="Attachment" type="file" wire:model='attachment' />
         </div>
     </x-slot>

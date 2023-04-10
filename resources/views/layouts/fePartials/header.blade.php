@@ -46,6 +46,8 @@
                         @auth
                             <a href="{{ route('admin.dashboard') }}"
                                 class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
+                            @livewire('frontend.counter.rfq-counter')
+                            @livewire('frontend.counter.cart-counter')
                         @else
                             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Log
                                 in</a>

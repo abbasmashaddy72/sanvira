@@ -19,8 +19,8 @@
                 <p>{{ $supplier->logo }}</p>
                 <p>{{ $supplier->yoe }}</p>
                 <p>{{ $supplier->website_url }}</p>
-                <p>{!! $supplier->description !!}</p>
-                <p>{!! $supplier->terms_conditions !!}</p>
+                <div>{!! $supplier->description !!}</div>
+                <div>{!! $supplier->terms_conditions !!}</div>
                 <p>{{ $supplier->contact_person_name }}</p>
                 <p>{{ $supplier->contact_person_email }}</p>
                 <p>{{ $supplier->contact_person_number }}</p>
@@ -49,18 +49,6 @@
 
         <div class="col-span-12">
             @livewire('backend.tables.supplier-projects-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
-
-    <x-backend.grid title="Categories">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-category', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
-
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-categories-table', ['supplier_id' => $supplier->id])
         </div>
     </x-backend.grid>
 
