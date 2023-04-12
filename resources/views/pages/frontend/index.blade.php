@@ -57,7 +57,7 @@
                             class="flex items-center p-3 transition-all duration-500 ease-in-out bg-white rounded-md shadow-md hover:scale-105 dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 dark:bg-slate-900">
                             <div
                                 class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                                <img class="w-5 h-5 rotate-45" src="{{ asset($item->image) }}" />
+                                <img class="w-5 h-5 rotate-45" src="{{ asset('storage/' . $item->image) }}" />
                             </div>
                             <a href="{{ route('products_category', ['product_category' => $item->id]) }}"
                                 class="flex-1">
@@ -133,7 +133,7 @@
                     <div
                         class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
                         <div class="relative">
-                            <img class="h-32" src="{{ asset($item->image) }}" alt="">
+                            <img class="h-32" src="{{ asset('storage/' . $item->image) }}" alt="">
                         </div>
 
                         <div class="p-6">

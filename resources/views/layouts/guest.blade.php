@@ -31,6 +31,7 @@
     @include('layouts.fePartials.footer')
 
     @livewireScripts
+    @livewire('livewire-ui-modal')
     @stack('scripts')
 </body>
 

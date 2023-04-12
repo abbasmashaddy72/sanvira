@@ -90,7 +90,7 @@
 <!-- Back to top -->
 
 <!-- Switcher -->
-<div class="fixed z-50 top-1/4 -right-1">
+<div class="fixed z-10 top-1/4 -right-1">
     <span class="relative inline-block rotate-90">
         <input type="checkbox" class="absolute opacity-0 checkbox" id="chk" />
         <label
