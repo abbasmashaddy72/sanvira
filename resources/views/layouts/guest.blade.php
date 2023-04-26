@@ -26,6 +26,11 @@
 
     @include('layouts.fePartials.header')
 
+    @if (\Route::currentRouteName() != 'homepage')
+        @include('layouts.fePartials.common-top')
+    @else
+    @endif
+
     {{ $slot }}
 
     @include('layouts.fePartials.footer')

@@ -23,7 +23,7 @@
                         <ul class="mt-3 mb-0 list-none sidebar-nav" id="navmenu-nav">
                             <li class="navbar-item account-menu">
                                 <button wire:click='showProfile'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($profileShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-dashboard"></i></span>
                                     <h6 class="mb-0 font-semibold">Profile</h6>
                                 </button>
@@ -31,7 +31,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click='showCertificatesAwards'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($certificatesAwardsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-diary-alt"></i></span>
                                     <h6 class="mb-0 font-semibold">Certificate / Award</h6>
                                 </button>
@@ -39,7 +39,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click='showProjects'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($projectsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-credit-card"></i></span>
                                     <h6 class="mb-0 font-semibold">Projects</h6>
                                 </button>
@@ -47,7 +47,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click='showTeams'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($teamsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-receipt"></i></span>
                                     <h6 class="mb-0 font-semibold">Team Members</h6>
                                 </button>
@@ -55,7 +55,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click='showTestimonials'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($testimonialsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-process"></i></span>
                                     <h6 class="mb-0 font-semibold">Testimonials</h6>
                                 </button>
@@ -63,7 +63,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click='showTermsConditions'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($termsConditionsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-bell"></i></span>
                                     <h6 class="mb-0 font-semibold">Terms & Conditions</h6>
                                 </button>
@@ -71,7 +71,7 @@
 
                             <li class="navbar-item account-menu">
                                 <button wire:click.prefetch='showProducts'
-                                    class="flex items-center py-2 rounded navbar-link text-slate-400">
+                                    class="flex items-center py-2 rounded hover:text-indigo-600 dark:text-white @if ($productsShow) text-indigo-600 dark:text-white @else text-slate-400 @endif">
                                     <span class="mr-2 text-[18px] mb-0"><i class="uil uil-setting"></i></span>
                                     <h6 class="mb-0 font-semibold">Products</h6>
                                 </button>
@@ -182,11 +182,24 @@
                         @foreach ($supplier_certificates as $item)
                             <div
                                 class="flex items-center p-4 mt-6 transition-all duration-500 ease-in-out bg-white rounded-md shadow hover:scale-105 dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 dark:bg-slate-900">
-                                <img src="assets/images/client/circle-logo.png"
-                                    class="w-16 h-16 p-4 rounded-md shadow bg-slate-50 dark:bg-slate-800 dark:shadow-gray-800"
-                                    alt="">
+                                @if ($item->type == 'Award')
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="w-16 h-16 p-4 rounded-md shadow bg-slate-50 dark:bg-slate-800 dark:shadow-gray-800">
+                                        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                @else
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="w-16 h-16 p-4 rounded-md shadow bg-slate-50 dark:bg-slate-800 dark:shadow-gray-800">
+                                        <circle cx="12" cy="8" r="7"></circle>
+                                        <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                    </svg>
+                                @endif
                                 <div class="flex-1 ml-4 content">
-                                    <h4 class="text-lg text-medium">{{ $item->title }}</h4>
+                                    <h4 class="text-lg text-medium">{{ $item->title }}, {{ $item->type }}</h4>
                                     <a href="{{ asset('storage/' . $item->attachment) }}"
                                         class="mb-0 text-slate-400">Attachment</a>
                                 </div>
@@ -306,76 +319,7 @@
             @endif
 
             @if ($productsShow)
-                <h5 class="text-xl font-semibold mt-[30px]">Products :</h5>
-
-                <div class="grid lg:grid-cols-2 mt-4 md:grid-cols-2 grid-cols-1 gap-[30px]">
-                    @foreach ($supplier_products as $item)
-                        <div
-                            class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
-                            <div class="relative">
-                                <img class="h-32" src="{{ asset('storage/' . $item->image) }}" alt="">
-                            </div>
-
-                            <div class="p-6">
-                                <div class="pb-6">
-                                    <a href="{{ route('products_details', ['data' => $item->id]) }}"
-                                        class="text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->name }}</a>
-                                </div>
-
-                                <ul
-                                    class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
-                                    <li class="flex items-center justify-between">
-                                        <span
-                                            class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
-                                        <span class="ml-2">{{ $item->min_max_oq }}</span>
-                                    </li>
-
-                                    <li class="flex items-center justify-between">
-                                        <span
-                                            class="mr-2 font-semibold text-indigo-600">{{ __('Estimate Delivery Time in Days:') }}</span>
-                                        <span class="ml-2">{{ $item->edt }}</span>
-                                    </li>
-
-                                    <li class="flex items-center justify-between">
-                                        <span
-                                            class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
-                                        <span class="ml-2">{{ $item->brand }}</span>
-                                    </li>
-
-                                    <li class="flex items-center justify-between">
-                                        <span
-                                            class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
-                                        <span class="ml-2">{{ $item->manufacturer }}</span>
-                                    </li>
-
-                                    <li class="flex items-center justify-between">
-                                        <span
-                                            class="mr-2 font-semibold text-indigo-600">{{ __('Model Name:') }}</span>
-                                        <span class="ml-2">{{ $item->model }}</span>
-                                    </li>
-                                </ul>
-
-                                <ul class="flex items-center justify-between pt-6 list-none">
-                                    <li>
-                                        <button class="text-lg font-medium">
-                                            Add to RFQ
-                                        </button>
-                                    </li>
-
-                                    <li>
-                                        <button class="text-lg font-medium">
-                                            Add to Cart
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    @endforeach
-
-                </div>
-                <div class="mt-8">
-                    {{ $supplier_products->links() }}
-                </div>
+                @livewire('frontend.filters.supplier-products', ['profile_id' => $profile->id, 'type' => 'Profile Page', 'page_title' => 'All Products'])
             @endif
         </div>
 

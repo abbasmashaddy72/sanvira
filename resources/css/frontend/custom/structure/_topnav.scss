@@ -624,29 +624,3 @@
         @apply top-[47px] #{!important};
     }
 }
-
-.sidebar-nav {
-    > .navbar-item {
-        &:hover,
-        &.active {
-            .navbar-link {
-                @apply text-indigo-600;
-            }
-        }
-    }
-    li {
-        &.active {
-            a {
-                @apply text-indigo-600;
-            }
-        }
-        &.account-menu {
-            &.active,
-            &:hover {
-                .navbar-link {
-                    @apply text-indigo-600 dark:text-white #{!important};
-                }
-            }
-        }
-    }
-}

@@ -7,7 +7,6 @@ module.exports = {
     presets: [require("../../../vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Frontend/**/*.php",
-        "./node_modules/flowbite/**/*.js",
         "./resources/views/components/frontend/**/*.blade.php",
         "./resources/views/auth/**/*.blade.php",
         "./resources/views/layouts/guest.blade.php",
@@ -38,13 +37,13 @@ module.exports = {
         },
         container: {
             center: true,
-            padding: {
-                DEFAULT: "12px",
-                sm: "1rem",
-                lg: "45px",
-                xl: "5rem",
-                "2xl": "13rem",
-            },
+            // padding: {
+            //     DEFAULT: "12px",
+            //     sm: "1rem",
+            //     lg: "45px",
+            //     xl: "5rem",
+            //     "2xl": "13rem",
+            // },
         },
         extend: {
             colors: {
@@ -81,5 +80,4 @@ module.exports = {
             },
         },
     },
-    plugins: [require("flowbite/plugin")],
 };

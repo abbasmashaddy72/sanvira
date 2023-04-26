@@ -12,8 +12,12 @@ class SupplierProfiles extends Component
 
     public function render()
     {
-        $suppliers = Supplier::paginate(8);
+        $suppliers = Supplier::paginate(15);
+        $supplier_profile_count = Supplier::count();
 
-        return view('livewire.frontend.filters.supplier-profiles', compact('suppliers'));
+        return view('livewire.frontend.filters.supplier-profiles', compact([
+            'suppliers',
+            'supplier_profile_count'
+        ]));
     }
 }

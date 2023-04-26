@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08a6ad4dd766d0c6c2e0f1c9112c4132",
+    "content-hash": "278ec27a0a848c0a2c9753d434c5172e",
     "packages": [
         {
             "name": "asantibanez/livewire-charts",
@@ -5942,6 +5942,76 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "ralphjsmit/livewire-urls",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ralphjsmit/livewire-urls.git",
+                "reference": "5600447be283ab6381ddaaf8b77bf0fa76677c5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ralphjsmit/livewire-urls/zipball/5600447be283ab6381ddaaf8b77bf0fa76677c5e",
+                "reference": "5600447be283ab6381ddaaf8b77bf0fa76677c5e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.83|^9.0|^10.0",
+                "livewire/livewire": "^2.10",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.8",
+                "nesbot/carbon": "^2.66",
+                "nunomaduro/collision": "^5.0|^6.0|^7.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpunit/phpunit": "^9.5|^10.0",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RalphJSmit\\Livewire\\Urls\\LivewireUrlsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LivewireUrls": "RalphJSmit\\Livewire\\Urls\\Facades\\Url"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RalphJSmit\\Livewire\\Urls\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ralph J. Smit",
+                    "email": "rjs@ralphjsmit.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get the previous and current url in Livewire.",
+            "homepage": "https://github.com/ralphjsmit/livewire-urls",
+            "keywords": [
+                "laravel",
+                "livewire-urls",
+                "ralphjsmit"
+            ],
+            "support": {
+                "issues": "https://github.com/ralphjsmit/livewire-urls/issues",
+                "source": "https://github.com/ralphjsmit/livewire-urls/tree/1.2.0"
+            },
+            "time": "2023-02-17T17:40:53+00:00"
         },
         {
             "name": "ramsey/collection",

@@ -43,7 +43,7 @@
             }
         </style>
     @endpush
-    <section class="relative pt-20 pb-16 lg:pb-24">
+    <section class="relative pb-16 lg:pb-24">
         <div class="container-fluid">
             <div class="relative text-transparent profile-banner">
                 <div class="relative shrink-0">
