@@ -26,6 +26,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
         Route::get('all_supplier_profile', 'FrontendController@all_supplier_profile')->name('all_supplier_profile'); // Done
         Route::get('products', 'FrontendController@products')->name('products'); // Done
         Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details'); // Done
+        Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm');
     });
 
     Route::get('/change-language/{lang}', 'LanguageController@changeLanguage');
@@ -48,6 +49,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
 
     Route::get('supplier', 'SupplierController@index')->name('supplier');
+    Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');
     Route::get('supplier_profile/{supplier}', 'SupplierController@supplier_profile')->name('supplier_profile');
     Route::get('contractor', 'ContractorController@index')->name('contractor');
     Route::get('sub-contractor', 'SubContractorController@index')->name('sub-contractor');

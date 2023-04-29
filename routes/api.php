@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['as' => 'api.admin.', 'namespace' => 'App\Http\Controllers\Backend'], function () {
+    Route::get('supplier_categories', 'ApiController@supplier_categories')->name('supplier_categories');
+});

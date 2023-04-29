@@ -11,13 +11,7 @@
                         construction commerce using state of art technology</p>
 
                     <div class="mt-6 mb-3">
-                        <form class="relative max-w-4xl mx-auto">
-                            <input type="url" id="site-url" name="url"
-                                class="pt-4 pr-40 pb-4 pl-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white/60 dark:bg-slate-900/60 shadow dark:shadow-gray-800"
-                                placeholder="http://www.yourdomain.com">
-                            <button type="submit"
-                                class="btn absolute top-[2px] right-[3px] h-[46px] bg-indigo-600 hover:bg-indigo-700 border-indigo-600 hover:border-indigo-700 text-white rounded-full">Search</button>
-                        </form>
+                        @livewire('frontend.form.search', ['type' => 'index'])
                     </div>
 
                     <span class="font-medium">Looking for help? <a href="{{ route('contact_us') }}"

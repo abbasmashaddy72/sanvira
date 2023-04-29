@@ -3,12 +3,13 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Supplier;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplier extends ModalComponent
 {
-    use Actions;
+    use Actions, WithFileUploads;
     // Set Data
     public $supplier_id;
     // Model Values
@@ -63,10 +64,16 @@ class ModalSupplier extends ModalComponent
         $validatedData = $this->validate();
 
         if (!empty($this->supplier_id)) {
+            if (!empty($this->logo) && gettype($this->logo) != 'string') {
+                $validatedData['logo'] = $this->logo->store('supplier', 'public');
+            }
             Supplier::where('id', $this->supplier_id)->update($validatedData);
 
             $this->notification()->success($title = 'Supplier Updated Successfully!');
         } else {
+            if (!empty($this->logo) && gettype($this->logo) != 'string') {
+                $validatedData['logo'] = $this->logo->store('supplier', 'public');
+            }
             Supplier::create($validatedData);
 
             $this->notification()->success($title = 'Supplier Saved Successfully!');

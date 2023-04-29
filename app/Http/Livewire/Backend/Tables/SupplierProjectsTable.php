@@ -11,7 +11,6 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class SupplierProjectsTable extends LivewireDatatable
 {
     public $supplier_id;
-    public $model = SupplierProject::class;
     public $exportable = true;
 
     public function builder()

@@ -12,7 +12,6 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 class SupplierProductsTable extends LivewireDatatable
 {
     public $supplier_id;
-    public $model = SupplierProduct::class;
     public $exportable = true;
 
     public function builder()
@@ -37,7 +36,11 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('min_max_oq')
+            Column::name('min_oq')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('max_oq')
                 ->searchable()
                 ->filterable(),
 

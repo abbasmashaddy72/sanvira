@@ -46,6 +46,11 @@ class AppLayout extends Component
                 'title' => 'Suppliers',
                 'route_name' => 'admin.supplier',
             ],
+            'supplier-categories' => [
+                'icon' => 'chevrons-up',
+                'title' => 'Supplier Categories',
+                'route_name' => 'admin.supplier-categories',
+            ],
             'contractor' => [
                 'icon' => 'bar-chart-2',
                 'title' => 'Contractors',

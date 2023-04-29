@@ -31,6 +31,12 @@ Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
     $trail->push('Supplier', route('admin.supplier'));
 });
 
+// Application > Supplier Category
+Breadcrumbs::for('supplier-category.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Supplier Category', route('admin.supplier-categories'));
+});
+
 // Application > Supplier > [Supplier Profile]
 Breadcrumbs::for('supplier.profile', function (BreadcrumbTrail $trail, $supplier) {
     $trail->parent('supplier.index');

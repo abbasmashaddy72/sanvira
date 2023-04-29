@@ -18,11 +18,16 @@ class SupplierProductCategory extends Model
 
     public function suppliers()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'supplier_id');
     }
 
     public function products()
     {
         return $this->hasMany(SupplierProduct::class, 'supplier_product_category_id');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany(SupplierProductCategory::class, 'id', 'parent_id');
     }
 }

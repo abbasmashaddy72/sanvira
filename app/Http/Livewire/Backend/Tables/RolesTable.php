@@ -10,7 +10,6 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 
 class RolesTable extends LivewireDatatable
 {
-    public $model = Role::class;
     public $exportable = true;
 
     public function builder()

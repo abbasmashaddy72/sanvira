@@ -142,7 +142,7 @@
                                     <li class="flex items-center justify-between">
                                         <span
                                             class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
-                                        <span class="ml-2">{{ $data->min_max_oq }}</span>
+                                        <span class="ml-2">{{ $data->min_oq }} - {{ $data->max_oq }}</span>
                                     </li>
 
                                     <li class="flex items-center justify-between">

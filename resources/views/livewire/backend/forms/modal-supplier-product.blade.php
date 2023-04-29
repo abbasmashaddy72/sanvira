@@ -1,10 +1,10 @@
-<x-backend.modal-form form-action="add">
+<x-backend.modal-form form-action="submit">
     <x-slot name="title">
         Update {{ $name }}
     </x-slot>
 
     <x-slot name="content">
-        <div class="grid gap-y-2">
+        <div class="grid grid-cols-2 gap-y-2 gap-x-2">
             <x-input name="name" label="Name" type="text" wire:model='name' />
 
             <x-textarea name="description" label="Description" type="text" wire:model='description' />
@@ -29,8 +29,33 @@
 
             <x-input name="image" label="Image" type="file" wire:model='image' />
 
-            <x-input name="supplier_product_category_id" label="Supplier_Product_Category_Id" type="text"
-                wire:model='supplier_product_category_id' />
+            <x-select label="Select Parent Category" wire:model.defer="supplier_product_category_id"
+                placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id" />
+        </div>
+
+        <div>
+            <div class="flex items-center">
+                <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
+                    <x-input name="name_spa.0" label="Attribute Name" type="text" wire:model='name_spa.0' />
+                    <x-input name="value_spa.0" label="Attribute Value" type="text" wire:model='value_spa.0' />
+                </div>
+                <button class="inline-flex flex-shrink-0 ml-2 btn btn-primary"
+                    wire:click.prevent="add({{ $i }})">Add</button>
+            </div>
+
+            @foreach ($inputs as $key => $input_value)
+                <div class="flex items-center">
+                    <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
+                        <x-input name="name_spa.{{ $input_value }}" label="Attribute Name" type="text"
+                            wire:model='name_spa.{{ $input_value }}' />
+                        <x-input name="value_spa.{{ $input_value }}" label="Attribute Value" type="text"
+                            wire:model='value_spa.{{ $input_value }}' />
+                    </div>
+                    <button class="inline-flex flex-shrink-0 ml-2 btn btn-danger"
+                        wire:click.prevent="remove({{ $key }})">Remove</button>
+
+                </div>
+            @endforeach
         </div>
     </x-slot>
 

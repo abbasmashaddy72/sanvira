@@ -11,7 +11,6 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 
 class UsersTable extends LivewireDatatable
 {
-    public $model = User::class;
     public $exportable = true;
 
     public function builder()

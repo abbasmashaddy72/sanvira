@@ -9,7 +9,6 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class ContractorsTable extends LivewireDatatable
 {
-    public $model = Contractor::class;
     public $exportable = true;
 
     public function builder()

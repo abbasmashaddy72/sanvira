@@ -90,4 +90,12 @@ class FrontendController extends Controller
             'data_attributes'
         ]));
     }
+
+    public function searchForm(Request $request)
+    {
+        $data = $request->search;
+        view()->share('title', $request->search);
+
+        return view('pages.frontend.searchForm', compact('data'));
+    }
 }

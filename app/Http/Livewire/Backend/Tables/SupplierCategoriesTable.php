@@ -9,13 +9,11 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class SupplierCategoriesTable extends LivewireDatatable
 {
-    public $supplier_id;
-    public $model = SupplierProductCategory::class;
     public $exportable = true;
 
     public function builder()
     {
-        return SupplierProductCategory::query()->where('supplier_id', $this->supplier_id);
+        return SupplierProductCategory::query()->with('suppliers', 'categories');
     }
 
     public function columns()
@@ -27,31 +25,28 @@ class SupplierCategoriesTable extends LivewireDatatable
             Column::index($this)
                 ->unsortable(),
 
-            // Column::name('company_name')
-            // ->searchable()
-            //     ->filterable(),
+            Column::name('name')
+                ->searchable()
+                ->filterable(),
 
-            // Column::name('company_email')
-            // ->searchable()
-            //     ->filterable(),
+            Column::name('image')
+                ->searchable()
+                ->filterable(),
 
-            // Column::name('company_address')
-            // ->searchable()
-            //     ->filterable(),
+            Column::name('categories.name')
+                ->label('Sub Category Name')
+                ->searchable()
+                ->filterable(),
 
-            // Column::name('company_number')
-            // ->searchable()
-            //     ->filterable(),
-
-            // Column::name('company_locality')
-            // ->searchable()
-            //     ->filterable(),
+            Column::name('suppliers.company_name')
+                ->searchable()
+                ->filterable(),
 
             DateColumn::name('created_at')
                 ->filterable(),
 
             Column::callback(['id'], function ($id) {
-                return view('pages.backend.supplier.categories_actions', ['id' => $id]);
+                return view('pages.backend.supplier-category.actions', ['id' => $id]);
             })->excludeFromExport()->unsortable()->label('Action'),
         ];
     }

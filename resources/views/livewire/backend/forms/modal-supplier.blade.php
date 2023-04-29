@@ -17,7 +17,7 @@
 
             <x-input name="tagline" label="Tagline" type="text" wire:model='tagline' />
 
-            <x-input name="logo" label="Logo" type="text" wire:model='logo' />
+            <x-input name="logo" label="Logo" type="file" wire:model='logo' />
 
             <x-input name="yoe" label="Year of Establishment" type="number" wire:model='yoe' />
 

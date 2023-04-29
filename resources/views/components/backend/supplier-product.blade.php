@@ -13,7 +13,7 @@
         <ul class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
             <li class="flex items-center justify-between">
                 <span class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
-                <span class="ml-2">{{ $item->min_max_oq }}</span>
+                <span class="ml-2">{{ $item->min_oq }} - {{ $item->max_oq }}</span>
             </li>
 
             <li class="flex items-center justify-between">
@@ -37,7 +37,7 @@
             </li>
         </ul>
 
-        @if (!empty($rfqProducts) && !empty($cartProducts))
+        @if (\Route::currentRouteName() != 'homepage')
             <div class="flex items-center justify-between pt-6">
                 <div>
                     @if (!in_array($item->id, $rfqProducts))

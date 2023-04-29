@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreignId('supplier_product_category_id')->constrained('supplier_product_categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->longText('description');
-            $table->string('min_max_oq');
+            $table->bigInteger('min_oq');
+            $table->bigInteger('max_oq');
             $table->string('edt');
             $table->string('avb_stock');
             $table->string('manufacturer');

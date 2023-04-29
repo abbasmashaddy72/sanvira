@@ -9,8 +9,11 @@
 
 <header class="fixed top-0 left-0 z-10 w-full px-12 py-2 text-white bg-white drop-shadow-2xl">
     <nav class="flex items-center justify-between mx-auto">
-        <img src="{{ asset('storage/' . get_static_option('logo')) }}" height="24" class="h-12 py-2" alt="Logo" />
-        @include('components.frontend.search')
+        <a href="{{ route('homepage') }}">
+            <img src="{{ asset('storage/' . get_static_option('logo')) }}" height="24" class="h-12 py-2"
+                alt="Logo" />
+        </a>
+        @livewire('frontend.form.search', ['type' => 'header'])
         <div class="flex items-center space-x-3">
             @auth
                 <a href="{{ route('admin.dashboard') }}"

@@ -52,6 +52,34 @@
             </div>
 
             <x-textarea name="short_description" label="Short Description" wire:model='short_description' />
+            <div>
+                <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
+                    {{ __('Social Media Links') }}
+                </h4>
+
+                <x-input name="twitter" label="Twitter" type="text" wire:model='twitter' />
+
+                <x-input name="facebook" label="Facebook" type="text" wire:model='facebook' />
+
+                <x-input name="instagram" label="Instagram" type="text" wire:model='instagram' />
+
+                <x-input name="linkedin" label="Linkedin" type="text" wire:model='linkedin' />
+
+                <x-input name="youtube" label="Youtube" type="text" wire:model='youtube' />
+
+                <x-input name="google_business" label="Google Business" type="text" wire:model='google_business' />
+            </div>
+
+            <div>
+                <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
+                    {{ __('Google Map') }}
+                </h4>
+
+                <x-input name="embed_map_link"
+                    label="Embed Map Link(Directly from Google Maps Search, Share, Embed copy src link & paste)"
+                    type="text" wire:model='embed_map_link' />
+
+            </div>
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>
