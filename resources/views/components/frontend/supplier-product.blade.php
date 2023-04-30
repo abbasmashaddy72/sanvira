@@ -1,7 +1,7 @@
 <div
     class="overflow-hidden duration-500 ease-in-out bg-white rounded-md shadow group dark:bg-slate-900 hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-800 dark:hover:shadow-gray-700">
     <div class="relative">
-        <img class="h-32" src="{{ asset('storage/' . $item->image) }}" alt="">
+        <img class="object-cover w-full h-40" src="{{ asset('storage/' . $item->images[0]) }}" alt="">
     </div>
 
     <div class="p-6">

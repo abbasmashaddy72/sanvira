@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +25,11 @@ class SupplierProduct extends Model
         'item_type',
         'sku',
         'on_sale',
-        'image',
+        'images',
+    ];
+
+    protected $casts = [
+        'images' => 'array'
     ];
 
     public function suppliers()

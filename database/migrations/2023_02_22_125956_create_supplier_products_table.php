@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('item_type');
             $table->string('sku');
             $table->boolean('on_sale')->default(0);
-            $table->string('image');
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

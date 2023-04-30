@@ -14,11 +14,11 @@ class ModalSupplierProduct extends ModalComponent
     // Set Data
     public $supplier_product_id, $supplier_id;
     // SupplierProduct Model Values
-    public $supplier_product_category_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $manufacturer, $brand, $model, $item_type, $sku, $on_sale = false, $image;
+    public $supplier_product_category_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $manufacturer, $brand, $model, $item_type, $sku, $on_sale = false, $images = [];
     // SupplierProductAttributes Model Values
     public $supplier_product_id_spa, $name_spa = [], $value_spa = [];
     // Model Custom Values
-    public $min_max_oq, $inputs = [], $i = 1;
+    public $min_max_oq, $inputs = [], $i = 1, $isUploaded = false;
 
     public function add($i)
     {
@@ -49,7 +49,7 @@ class ModalSupplierProduct extends ModalComponent
             $this->item_type = $data->item_type;
             $this->sku = $data->sku;
             $this->on_sale = $data->on_sale;
-            $this->image = $data->image;
+            $this->images = $data->images;
             $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
             foreach ($data_spa as $key => $value) {
                 $this->name_spa[] = $value->name;
@@ -76,12 +76,15 @@ class ModalSupplierProduct extends ModalComponent
         'item_type' => '',
         'sku' => '',
         'on_sale' => '',
-        'image' => '',
+        'images' => '',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->images) != 'string') {
+            $this->isUploaded = true;
+        }
     }
 
     public function submit()
@@ -94,8 +97,14 @@ class ModalSupplierProduct extends ModalComponent
         $validatedData['max_oq'] = $min_max_oq_data[1];
 
         if (!empty($this->supplier_product_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
-                $validatedData['image'] = $this->image->store('supplier_products', 'public');
+            if (!empty($this->images) && gettype($this->images) != 'string') {
+                $images = $validatedData['images'];
+                unset($validatedData['images']);
+                $multiImage = [];
+                foreach ($images as $key => $image) {
+                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                }
+                $validatedData['images'] = $multiImage;
             }
             SupplierProduct::where('id', $this->supplier_product_id)->update($validatedData);
             SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->delete();
@@ -105,8 +114,14 @@ class ModalSupplierProduct extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Product Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
-                $validatedData['image'] = $this->image->store('supplier_products', 'public');
+            if (!empty($this->images) && gettype($this->images) != 'string') {
+                $images = $validatedData['images'];
+                unset($validatedData['images']);
+                $multiImage = [];
+                foreach ($images as $key => $image) {
+                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                }
+                $validatedData['image'] = $multiImage;
             }
             $supplierProduct = SupplierProduct::create($validatedData);
             foreach ($this->name_spa as $key => $value) {
@@ -119,6 +134,37 @@ class ModalSupplierProduct extends ModalComponent
         $this->emit('refreshLivewireDatatable');
 
         $this->closeModal();
+    }
+
+    public function deleteImage($supplier_product_id, $key)
+    {
+        $this->dialog()->confirm([
+            'title'       => 'Are you Sure?',
+            'description' => 'To delete the Image?',
+            'icon'        => 'error',
+            'accept'      => [
+                'label'  => 'Yes, delete it',
+                'method' => 'delete',
+                'params' => ['supplier_product_id' => $supplier_product_id, 'key' => $key],
+            ],
+            'reject' => [
+                'label'  => 'No, cancel',
+                'method' => 'cancel',
+            ],
+        ]);
+    }
+
+    public function delete($params)
+    {
+        $currentImages = SupplierProduct::where('id', $params['supplier_product_id'])->pluck('images')->first();
+        $toRemoveImages = [$currentImages[$params['key']]];
+
+        $updatedImages = collect($currentImages)->reject(function ($value) use ($toRemoveImages) {
+            return in_array($value, $toRemoveImages);
+        });
+        SupplierProduct::where('id', $params['supplier_product_id'])->update(['images' => $updatedImages]);
+
+        $this->notification()->success($title = 'Supplier Product Image Deleted Successfully!');
     }
 
     public function render()

@@ -226,15 +226,22 @@
                                         {{ $item->city . ', ' . $item->country }}</span>
                                 </h3>
                                 <p class="mt-2 text-base font-normal text-gray-500 dark:text-gray-400">
-                                    {!! $item->description !!}</p>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        class="inline-block pr-2 h-7 w-7" viewBox="0 0 24 24">
-                                        <path
-                                            d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-                                    </svg>
-                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                    {!! $item->description !!}
+                                </p>
+                                <blockquote
+                                    class="p-4 my-4 border-l-4 border-indigo-600 bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                                    <p
+                                        class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">
                                         {{ $item->feedback }}</p>
+                                </blockquote>
+                                <div class="flex space-x-2">
+                                    @foreach ($item->images as $item2)
+                                        <a href="{{ asset('storage/' . $item2) }}"
+                                            data-lightbox="supplier_projects{{ strtolower(str_replace(' ', '_', $item->name)) }}">
+                                            <img class="w-12 h-12 rounded-lg shadow-md"
+                                                src='{{ asset('storage/' . $item2) }}' />
+                                        </a>
+                                    @endforeach
                                 </div>
                             </li>
                         @endforeach
@@ -297,15 +304,12 @@
                                         </svg>
                                     @endfor
                                 </div>
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                        class="inline-block pr-2 h-7 w-7" viewBox="0 0 24 24">
-                                        <path
-                                            d="M13 14.725c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275zm-13 0c0-5.141 3.892-10.519 10-11.725l.984 2.126c-2.215.835-4.163 3.742-4.38 5.746 2.491.392 4.396 2.547 4.396 5.149 0 3.182-2.584 4.979-5.199 4.979-3.015 0-5.801-2.305-5.801-6.275z" />
-                                    </svg>
-                                    <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                <blockquote
+                                    class="p-4 my-4 border-l-4 border-indigo-600 bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                                    <p
+                                        class="text-xl italic font-medium leading-relaxed text-gray-900 dark:text-white">
                                         {{ $item->message }}</p>
-                                </div>
+                                </blockquote>
                             </li>
                         @endforeach
                     </ol>

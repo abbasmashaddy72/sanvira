@@ -76,7 +76,7 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            BooleanColumn::name('image')
+            BooleanColumn::name('images')
                 ->searchable()
                 ->filterable(),
 

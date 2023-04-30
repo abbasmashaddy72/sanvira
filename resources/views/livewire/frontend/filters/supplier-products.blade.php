@@ -73,7 +73,7 @@
                                     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
                         @endif
                         @foreach ($supplier_products as $item)
-                            <x-backend.supplier-product :item="$item" :rfqProducts="$rfqProducts" :cartProducts="$cartProducts" />
+                            <x-frontend.supplier-product :item="$item" :rfqProducts="$rfqProducts" :cartProducts="$cartProducts" />
                         @endforeach
                         @if ($type == 'Profile Page')
                 </div>

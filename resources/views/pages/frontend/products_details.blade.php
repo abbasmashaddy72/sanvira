@@ -45,83 +45,15 @@
     @endpush
     <section class="relative pb-16 mt-20 md:pb-24">
         <div class="container-fluid">
-            <div class="mt-4 md:flex">
-                <div class="p-1 lg:w-1/2 md:w-1/2">
-                    <div class="relative overflow-hidden group">
-                        <img src="{{ asset('assets/images/real/property/single/1.jpg') }}" alt="">
-                        <div class="absolute inset-0 duration-500 ease-in-out group-hover:bg-slate-900/70"></div>
-                        <div
-                            class="absolute left-0 right-0 invisible text-center -translate-y-1/2 top-1/2 group-hover:visible">
-                            <a href="{{ asset('assets/images/real/property/single/1.jpg') }}"
-                                class="text-white bg-indigo-600 border-indigo-600 rounded-full btn btn-icon hover:bg-indigo-700 hover:border-indigo-700 lightbox"><i
-                                    class="uil uil-camera"></i></a>
-                        </div>
+            <div class="grid grid-cols-4 gap-2">
+                @foreach ($data->images as $item)
+                    <div class="">
+                        <a href="{{ asset('storage/' . $item) }}" data-lightbox="supplier_products">
+                            <img class="object-cover w-full rounded-lg h-72" src="{{ asset('storage/' . $item) }}" />
+                        </a>
                     </div>
-                </div>
-
-                <div class="lg:w-1/2 md:w-1/2">
-                    <div class="flex">
-                        <div class="w-1/2 p-1">
-                            <div class="relative overflow-hidden group">
-                                <img src="{{ asset('assets/images/real/property/single/2.jpg') }}" alt="">
-                                <div class="absolute inset-0 duration-500 ease-in-out group-hover:bg-slate-900/70">
-                                </div>
-                                <div
-                                    class="absolute left-0 right-0 invisible text-center -translate-y-1/2 top-1/2 group-hover:visible">
-                                    <a href="{{ asset('assets/images/real/property/single/2.jpg') }}"
-                                        class="text-white bg-indigo-600 border-indigo-600 rounded-full btn btn-icon hover:bg-indigo-700 hover:border-indigo-700 lightbox"><i
-                                            class="uil uil-camera"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-1/2 p-1">
-                            <div class="relative overflow-hidden group">
-                                <img src="{{ asset('assets/images/real/property/single/3.jpg') }}" alt="">
-                                <div class="absolute inset-0 duration-500 ease-in-out group-hover:bg-slate-900/70">
-                                </div>
-                                <div
-                                    class="absolute left-0 right-0 invisible text-center -translate-y-1/2 top-1/2 group-hover:visible">
-                                    <a href="{{ asset('assets/images/real/property/single/3.jpg') }}"
-                                        class="text-white bg-indigo-600 border-indigo-600 rounded-full btn btn-icon hover:bg-indigo-700 hover:border-indigo-700 lightbox"><i
-                                            class="uil uil-camera"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flex">
-                        <div class="w-1/2 p-1">
-                            <div class="relative overflow-hidden group">
-                                <img src="{{ asset('assets/images/real/property/single/4.jpg') }}" alt="">
-                                <div class="absolute inset-0 duration-500 ease-in-out group-hover:bg-slate-900/70">
-                                </div>
-                                <div
-                                    class="absolute left-0 right-0 invisible text-center -translate-y-1/2 top-1/2 group-hover:visible">
-                                    <a href="{{ asset('assets/images/real/property/single/4.jpg') }}"
-                                        class="text-white bg-indigo-600 border-indigo-600 rounded-full btn btn-icon hover:bg-indigo-700 hover:border-indigo-700 lightbox"><i
-                                            class="uil uil-camera"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="w-1/2 p-1">
-                            <div class="relative overflow-hidden group">
-                                <img src="{{ asset('assets/images/real/property/single/5.jpg') }}" alt="">
-                                <div class="absolute inset-0 duration-500 ease-in-out group-hover:bg-slate-900/70">
-                                </div>
-                                <div
-                                    class="absolute left-0 right-0 invisible text-center -translate-y-1/2 top-1/2 group-hover:visible">
-                                    <a href="{{ asset('assets/images/real/property/single/5.jpg') }}"
-                                        class="text-white bg-indigo-600 border-indigo-600 rounded-full btn btn-icon hover:bg-indigo-700 hover:border-indigo-700 lightbox"><i
-                                            class="uil uil-camera"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
-            <!--end flex-->
         </div>
         <!--end container fluid-->
 

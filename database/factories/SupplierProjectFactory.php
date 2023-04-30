@@ -31,7 +31,7 @@ class SupplierProjectFactory extends Factory
             'city' => $this->faker->city(),
             'description' => $description,
             'year_range' => rand(1994, 2023) . '-' . rand(1994, 2023),
-            'images' => 0,
+            'images' => null,
             'feedback' => $this->faker->realText(),
         ];
     }

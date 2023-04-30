@@ -20,6 +20,10 @@ class SupplierProject extends Model
         'feedback',
     ];
 
+    protected $casts = [
+        'images' => 'array'
+    ];
+
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class);

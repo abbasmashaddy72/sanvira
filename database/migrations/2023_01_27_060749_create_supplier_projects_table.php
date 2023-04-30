@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('city');
             $table->longText('description');
             $table->string('year_range');
-            $table->longText('images');
+            $table->json('images')->nullable();
             $table->longText('feedback');
             $table->timestamps();
         });
