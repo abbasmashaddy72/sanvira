@@ -19,7 +19,7 @@ class FrontendController extends Controller
         $product_categories = SupplierProductCategory::where('parent_id', 0)->withCount('products')->get()->take(15);
         $suppliers = Supplier::get()->take(8);
         $featured_products = SupplierProduct::whereIn('supplier_id', $top_suppliers)->inRandomOrder()->get()->unique('supplier_id')->take(8);
-        $top_suppliers = Supplier::whereIn('id', $top_suppliers)->get();
+        $top_suppliers = Supplier::whereIn('id', $top_suppliers)->get()->take(6);
 
         return view('pages.frontend.index', compact([
             'home_image',
@@ -82,7 +82,7 @@ class FrontendController extends Controller
 
     public function products_details(SupplierProduct $data)
     {
-        view()->share('title', 'Products Details');
+        view()->share('title', $data->name);
         $data_attributes = SupplierProductAttributes::where('supplier_product_id', $data->id)->get();
 
         return view('pages.frontend.products_details', compact([

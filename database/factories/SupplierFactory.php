@@ -32,7 +32,7 @@ class SupplierFactory extends Factory
             'company_number' => rand(7000000000, 9000000000),
             'company_locality' => $this->faker->streetName(),
             'tagline' => $this->faker->realText(),
-            'logo' => 0,
+            'logo' => "supplier_products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg",
             'yoe' => rand(1994, 2020),
             'website_url' => $this->faker->url(),
             'description' => $description,

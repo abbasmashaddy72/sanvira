@@ -20,7 +20,7 @@ class SupplierTestimonialFactory extends Factory
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'name' => $this->faker->name(),
-            'logo' => 0,
+            'logo' => "supplier_products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg",
             'message' => $this->faker->realText(),
             'year' => rand(1994, 2020),
             'rating' => rand(1, 5),

@@ -5,12 +5,13 @@
     </div>
 
     <div class="p-6">
-        <div class="pb-6">
+        <div>
             <a href="{{ route('products_details', ['data' => $item->id]) }}"
                 class="text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->name }}</a>
         </div>
 
-        <ul class="grid items-center grid-cols-1 gap-2 py-6 list-none border-gray-100 border-y dark:border-gray-800">
+        <ul
+            class="grid items-center grid-cols-1 gap-2 pt-6 list-none @if (\Route::currentRouteName() != 'homepage') border-gray-100 border-y dark:border-gray-800 @endif">
             <li class="flex items-center justify-between">
                 <span class="mr-2 font-semibold text-indigo-600">{{ __('Min Max Order Quantity:') }}</span>
                 <span class="ml-2">{{ $item->min_oq }} - {{ $item->max_oq }}</span>

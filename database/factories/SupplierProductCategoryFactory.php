@@ -21,7 +21,7 @@ class SupplierProductCategoryFactory extends Factory
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'name' => $this->faker->name(),
-            'image' => 0,
+            'image' => "supplier_products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg",
             'parent_id' => rand(0, 12),
         ];
     }

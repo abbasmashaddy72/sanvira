@@ -20,6 +20,10 @@ class SubContractorProject extends Model
         'feedback',
     ];
 
+    protected $casts = [
+        'images' => 'array'
+    ];
+
     public function subContractors()
     {
         return $this->belongsTo(SubContractor::class);

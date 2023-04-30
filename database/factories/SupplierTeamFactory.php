@@ -21,7 +21,7 @@ class SupplierTeamFactory extends Factory
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'name' => $this->faker->name(),
             'designation' => $this->faker->companySuffix(),
-            'image' => 0,
+            'image' => "supplier_products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg",
         ];
     }
 }

@@ -33,8 +33,9 @@
                                 <a href="{{ route('supplier_products_sales', ['sales_id' => $item->id]) }}"
                                     class="relative block m-2 overflow-hidden bg-white rounded-md shadow group dark:bg-slate-900 dark:shadow-gray-800">
                                     <span class="block p-4 text-center bg-white dark:bg-slate-900">
-                                        <img src="{{ asset('storage/' . $item->image) }}"
-                                            class="h-32 mx-auto mb-3 rounded-sm shadow-md" alt="{{ $item->name }}">
+                                        <img src="{{ asset('storage/' . $item->images[0]) }}"
+                                            class="object-cover w-full h-32 mx-auto mb-3 rounded-lg shadow-md"
+                                            alt="{{ $item->name }}">
 
                                         <span
                                             class="text-xl font-medium transition-all duration-500 ease-in-out group-hover:text-indigo-600">{{ $item->name }}</span>
@@ -61,18 +62,7 @@
     <x-frontend.index-container containerTitle='Categories'>
         <div class="grid grid-cols-5 gap-[30px] mt-8">
             @foreach ($product_categories as $item)
-                <div
-                    class="flex items-center p-3 transition-all duration-500 ease-in-out bg-white rounded-md shadow-md hover:scale-105 dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 dark:bg-slate-900">
-                    <div
-                        class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                        <img class="w-5 h-5 rotate-45" src="{{ asset('storage/' . $item->image) }}" />
-                    </div>
-                    <a href="{{ route('products_category', ['product_category' => $item->id]) }}" class="flex-1">
-                        <h4 class="mb-0 text-lg font-medium">{{ $item->name }}<span
-                                class="ml-2 text-indigo-600">{{ '(' . $item->products_count . ')' }}</span>
-                        </h4>
-                    </a>
-                </div>
+                <x-frontend.supplier-product-category :item="$item" />
             @endforeach
         </div>
 
@@ -88,25 +78,7 @@
     <x-frontend.index-container containerTitle='Supplier Stores'>
         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
             @foreach ($suppliers as $item)
-                <a href="{{ route('supplier_profile', ['profile' => $item->id]) }}">
-                    <div
-                        class="relative p-6 overflow-hidden text-center transition-all duration-500 ease-in-out bg-white shadow group dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 hover:bg-indigo-600 dark:hover:bg-indigo-600 rounded-xl dark:bg-slate-900">
-                        <div class="relative -m-3 overflow-hidden text-transparent">
-                            <i data-feather="hexagon"
-                                class="w-24 h-24 mx-auto fill-indigo-600/5 group-hover:fill-white/10"></i>
-                            <div
-                                class="absolute left-0 right-0 flex items-center justify-center mx-auto text-3xl text-indigo-600 align-middle transition-all duration-500 ease-in-out top-2/4 -translate-y-2/4 rounded-xl group-hover:text-white">
-                                <img class="w-24 h-24 mx-auto" src="{{ asset('storage/' . $item->logo) }}" />
-                            </div>
-                        </div>
-
-                        <div class="mt-6">
-                            <p
-                                class="text-lg font-medium transition-all duration-500 ease-in-out group-hover:text-white">
-                                {{ $item->company_name }}</p>
-                        </div>
-                    </div>
-                </a>
+                <x-frontend.supplier-profile :item="$item" />
             @endforeach
         </div>
 
@@ -122,7 +94,7 @@
     <x-frontend.index-container containerTitle='Featured Products'>
         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
             @foreach ($featured_products as $item)
-                <x-backend.supplier-product :item="$item" />
+                <x-frontend.supplier-product :item="$item" />
             @endforeach
         </div>
 
@@ -139,8 +111,9 @@
     <x-frontend.index-container containerTitle='Some of our top brands'>
         <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
             @foreach ($top_suppliers as $item)
-                <div class="py-4 mx-auto">
-                    <img src="{{ asset('storage/' . $item->logo) }}" class="h-6" alt="">
+                <div class="">
+                    <img src="{{ asset('storage/' . $item->logo) }}"
+                        class="object-cover w-full h-16 mx-auto rounded-lg" alt="">
                 </div>
             @endforeach
         </div>

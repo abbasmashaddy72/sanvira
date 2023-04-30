@@ -4,18 +4,7 @@
             <x-frontend.index-container>
                 <div class="grid grid-cols-5 gap-[30px] mt-8">
                     @foreach ($sub_product_category as $item)
-                        <div
-                            class="flex items-center p-3 transition-all duration-500 ease-in-out bg-white rounded-md shadow-md hover:scale-105 dark:shadow-gray-800 hover:shadow-md dark:hover:shadow-gray-700 dark:bg-slate-900">
-                            <div
-                                class="flex items-center justify-center h-[45px] min-w-[45px] -rotate-45 bg-gradient-to-r from-transparent to-indigo-600/10 text-indigo-600 text-center rounded-full mr-3">
-                                <img class="w-5 h-5 rotate-45" src="{{ asset('storage/' . $item->image) }}" />
-                            </div>
-                            <a href="{{ route('products_category', ['product_category' => $item->id]) }}" class="flex-1">
-                                <h4 class="mb-0 text-lg font-medium">{{ $item->name }}<span
-                                        class="ml-2 text-indigo-600">{{ '(' . $item->products_count . ')' }}</span>
-                                </h4>
-                            </a>
-                        </div>
+                        <x-frontend.supplier-product-category :item="$item" />
                     @endforeach
                 </div>
             </x-frontend.index-container>
@@ -66,33 +55,21 @@
 
                 <div class="lg:col-span-9 md:col-span-6">
                     <section class="relative py-16 lg:pt-0 lg:py-24">
-                        @if ($type == 'Profile Page')
-                            <div class="grid lg:grid-cols-2 mt-4 md:grid-cols-2 grid-cols-1 gap-[30px]">
-                            @else
-                                <div class="container">
-                                    <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                        @endif
-                        @foreach ($supplier_products as $item)
-                            <x-frontend.supplier-product :item="$item" :rfqProducts="$rfqProducts" :cartProducts="$cartProducts" />
-                        @endforeach
-                        @if ($type == 'Profile Page')
+                        <div class="container">
+                            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
+                                @foreach ($supplier_products as $item)
+                                    <x-frontend.supplier-product :item="$item" :rfqProducts="$rfqProducts"
+                                        :cartProducts="$cartProducts" />
+                                @endforeach
+                            </div>
+                            @if ($supplier_products != [])
+                                <div class="mt-8">
+                                    {{ $supplier_products->links() }}
+                                </div>
+                            @endif
+                        </div>
+                    </section>
                 </div>
-            @else
-            </div>
-            @if ($supplier_products != [])
-                <div class="mt-8">
-                    {{ $supplier_products->links() }}
-                </div>
-            @endif
-</div>
-@endif
-</div>
-</x-frontend.index-container>
-</div>
-</div>
-<!--end grid-->
-</div>
-<!--end container-->
-</section>
-@endif
+        </x-frontend.index-container>
+    @endif
 </div>

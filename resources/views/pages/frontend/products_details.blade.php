@@ -62,8 +62,12 @@
                 <div class="px-3 lg:w-2/3 md:w-1/2 md:p-4">
                     <h4 class="text-2xl font-medium">{{ $data->name }}</h4>
 
-                    <div class="mt-3 text-slate-600 dark:text-slate-300 ck-content">{!! $data->description !!}</div>
-
+                    <blockquote
+                        class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                        <div class="text-gray-900 dark:text-white ck-content">
+                            {!! $data->description !!}
+                        </div>
+                    </blockquote>
                 </div>
 
                 <div class="px-3 mt-8 lg:w-1/3 md:w-1/2 md:p-4 md:mt-0">

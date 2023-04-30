@@ -21,7 +21,7 @@ class SubContractorServiceFactory extends Factory
         return [
             'sub_contractor_id' => SubContractor::pluck('id')[$this->faker->numberBetween(1, SubContractor::count() - 1)],
             'name' => $this->faker->name(),
-            'image' => 0,
+            'image' => "supplier_products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg",
             'parent_id' => rand(0, 12),
         ];
     }
