@@ -10,14 +10,50 @@ class SupplierProfiles extends Component
 {
     use WithPagination;
 
+    // Custom Values
+    public $applyFilter = false;
+    // Custom Filter Values
+    public $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
+
+    public function apply()
+    {
+        $this->applyFilter = true;
+    }
+
+    public function clearFilters()
+    {
+        $this->brand_id = [];
+        $this->manufacturer_id = [];
+        $this->supplier_product_category_id = [];
+        $this->applyFilter = false;
+    }
+
     public function render()
     {
-        $suppliers = Supplier::paginate(15);
-        $supplier_profile_count = Supplier::count();
+        if ($this->applyFilter == true) {
+            $brand_id = $this->brand_id;
+            $manufacturer_id = $this->manufacturer_id;
+            $supplier_product_category_id = $this->supplier_product_category_id;
+
+            $suppliers = Supplier::whereHas('supplierProducts', function ($query) use ($brand_id, $manufacturer_id, $supplier_product_category_id) {
+                $query->whereIn('brand_id', $brand_id)
+                    ->orWhereIn('manufacturer_id', $manufacturer_id)
+                    ->orWhereIn('supplier_product_category_id', $supplier_product_category_id);
+            })->paginate(15);
+
+            $suppliers_count = Supplier::whereHas('supplierProducts', function ($query) use ($brand_id, $manufacturer_id, $supplier_product_category_id) {
+                $query->whereIn('brand_id', $brand_id)
+                    ->orWhereIn('manufacturer_id', $manufacturer_id)
+                    ->orWhereIn('supplier_product_category_id', $supplier_product_category_id);
+            })->count();
+        } else {
+            $suppliers = Supplier::paginate(15);
+            $suppliers_count = Supplier::count();
+        }
 
         return view('livewire.frontend.filters.supplier-profiles', compact([
             'suppliers',
-            'supplier_profile_count'
+            'suppliers_count'
         ]));
     }
 }

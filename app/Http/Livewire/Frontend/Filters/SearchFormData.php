@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Frontend\Filters;
 
+use App\Models\Brand;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
@@ -17,10 +18,10 @@ class SearchFormData extends Component
 
     public function render()
     {
-        $this->supplierProductsList = SupplierProduct::where('name', 'like', '%' . $this->data . '%')->get();
+        $this->supplierProductsList = SupplierProduct::with(['brands', 'manufacturers'])->where('name', 'like', '%' . $this->data . '%')->get();
         $this->supplierList = Supplier::where('company_name', 'like', '%' . $this->data . '%')->get();
-        $this->categoriesList = SupplierProductCategory::where('name', 'like', '%' . $this->data . '%')->get();
-        $this->brandList = SupplierProduct::where('brand', 'like', '%' . $this->data . '%')->get();
+        $this->categoriesList = SupplierProductCategory::where('name', 'like', '%' . $this->data . '%')->withCount('products')->get();
+        $this->brandList = Brand::where('name', 'like', '%' . $this->data . '%')->get();
 
         return view('livewire.frontend.filters.search-form-data');
     }

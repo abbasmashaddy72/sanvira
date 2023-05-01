@@ -52,6 +52,6 @@ class SupplierProduct extends Model
 
     public function supplierProductCategory()
     {
-        return $this->belongsTo(SupplierProductCategory::class);
+        return $this->belongsTo(SupplierProductCategory::class, 'supplier_product_category_id');
     }
 }

@@ -13,12 +13,12 @@
     @if (!empty($query))
         <div class="fixed top-0 bottom-0 left-0 right-0" wire:click="resetData"></div>
 
-        <div class="absolute z-10 w-full bg-white rounded-lg shadow-lg">
+        <div class="absolute z-10 w-full p-4 bg-white rounded-lg shadow-lg">
             <div wire:loading>
                 <div class="p-4 text-left text-indigo-600">Searching...</div>
             </div>
 
-            <p class="text-lg font-semibold">Supplier Product List</p>
+            <p class="text-lg font-semibold text-center text-gray-900">Supplier Product List</p>
             @if (!empty($supplierProductsList))
                 @foreach ($supplierProductsList as $i => $contact)
                     <a href="{{ route('products_details', $contact['id']) }}"
@@ -28,7 +28,7 @@
                 <div class="p-4 text-left text-indigo-600">No results!</div>
             @endif
 
-            <p class="text-lg font-semibold">Supplier List</p>
+            <p class="text-lg font-semibold text-center text-gray-900">Supplier List</p>
             @if (!empty($supplierList))
                 @foreach ($supplierList as $i => $contact)
                     <a href="{{ route('supplier_profile', $contact['id']) }}"
@@ -38,7 +38,7 @@
                 <div class="p-4 text-left text-indigo-600">No results!</div>
             @endif
 
-            <p class="text-lg font-semibold">Categories List</p>
+            <p class="text-lg font-semibold text-center text-gray-900">Categories List</p>
             @if (!empty($categoriesList))
                 @foreach ($categoriesList as $i => $contact)
                     <a href="{{ route('products_category', $contact['id']) }}"
@@ -48,7 +48,7 @@
                 <div class="p-4 text-left text-indigo-600">No results!</div>
             @endif
 
-            <p class="text-lg font-semibold">Brand List</p>
+            <p class="text-lg font-semibold text-center text-gray-900">Brand List</p>
             @if (!empty($brandList))
                 @foreach ($brandList as $i => $contact)
                     <a href="{{ route('products_details', $contact['id']) }}"

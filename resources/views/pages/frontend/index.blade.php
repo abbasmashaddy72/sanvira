@@ -110,9 +110,9 @@
 
     <x-frontend.index-container containerTitle='Some of our top brands'>
         <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
-            @foreach ($top_suppliers as $item)
+            @foreach ($top_brands as $item)
                 <div class="">
-                    <img src="{{ asset('storage/' . $item->logo) }}"
+                    <img src="{{ asset('storage/' . $item->image) }}"
                         class="object-cover w-full h-16 mx-auto rounded-lg" alt="">
                 </div>
             @endforeach

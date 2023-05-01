@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Frontend\Form;
 
+use App\Models\Brand;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
@@ -30,7 +31,7 @@ class Search extends Component
         $this->supplierProductsList = SupplierProduct::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
         $this->supplierList = Supplier::where('company_name', 'like', '%' . $this->query . '%')->get()->toArray();
         $this->categoriesList = SupplierProductCategory::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
-        $this->brandList = SupplierProduct::where('brand', 'like', '%' . $this->query . '%')->get()->toArray();
+        $this->brandList = Brand::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
     }
 
     public function render()

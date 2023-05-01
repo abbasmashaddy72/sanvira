@@ -1,9 +1,15 @@
 <div>
-    <x-frontend.index-container containerTitle="All Suppliers" containerSlot="{{ $supplier_profile_count }} Products">
+    <x-frontend.index-container containerTitle="All Suppliers" containerSlot="{{ $suppliers_count }} Products">
 
         <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
             <div class="lg:col-span-3 md:col-span-6">
                 <div class="sticky mt-8 top-20">
+                    <div class="flex justify-between m-2">
+                        <button wire:click="clearFilters"
+                            class="px-2 py-2 font-bold text-white bg-red-500 rounded-lg hover:bg-red-700">Clear</button>
+                        <button wire:click="apply"
+                            class="px-2 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700">Apply</button>
+                    </div>
                     <h5
                         class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                         Brand Name</h5>

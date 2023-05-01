@@ -22,9 +22,9 @@ class SupplierProducts extends Component
     // Profile Page Values
     public $profile_id;
     // Custom Values
-    public $cartProducts = [], $rfqProducts = [], $quantity = [], $type, $page_title;
+    public $cartProducts = [], $rfqProducts = [], $quantity = [], $type, $page_title, $applyFilter = false;
     // Filter Options
-    public $min_oq, $max_oq, $min_edt, $max_edt, $brand_name, $brand_id = [], $manufacturer_name, $manufacturer_id = [];
+    public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
 
     public function mount()
     {
@@ -35,45 +35,99 @@ class SupplierProducts extends Component
         } else {
             $this->page_title = $this->page_title ?? $this->type;
         }
-        $this->brand_name = SupplierProduct::distinct('brand_id')->pluck('brand_id');
-        $this->manufacturer_name = SupplierProduct::distinct('manufacturer_id')->pluck('manufacturer_id');
+    }
+
+    public function apply()
+    {
+        $this->applyFilter = true;
+    }
+
+    public function clearFilters()
+    {
+        $this->min_oq = null;
+        $this->max_oq = null;
+        $this->min_price = null;
+        $this->max_price = null;
+        $this->min_edt = null;
+        $this->max_edt = null;
+        $this->brand_id = [];
+        $this->manufacturer_id = [];
+        $this->supplier_product_category_id = [];
+        $this->applyFilter = false;
     }
 
     public function render()
     {
-        if ($this->type == 'On Sale') {
-            $supplier_products = SupplierProduct::where('on_sale', 1)->orderByRaw("id = $this->sales_id DESC")->paginate(6);
-            $sub_product_category = [];
-        }
+        $sub_product_category = [];
 
-        if ($this->type == 'All Products') {
-            $supplier_products = SupplierProduct::paginate(6);
-            $sub_product_category = [];
-        }
+        if ($this->applyFilter == true) {
+            $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory']);
 
-        if ($this->type == 'Profile Page') {
-            $supplier_products = SupplierProduct::where('supplier_id', $this->profile_id)->paginate(6);
-            $sub_product_category = [];
-        }
+            if ($this->type == 'On Sale') {
+                $supplier_products->where('on_sale', 1);
+            }
+            if ($this->type == 'Profile Page') {
+                $supplier_products->where('supplier_id', $this->profile_id);
+            }
+            if ($this->type == 'Category Page') {
+                $supplier_products->where('supplier_product_category_id', $this->product_category->id);
+            }
+            if ($this->min_oq != null) {
+                $supplier_products->where('min_oq', '>=', $this->min_oq);
+            }
+            if ($this->max_oq != null) {
+                $supplier_products->where('max_oq', '<=', $this->max_oq);
+            }
+            if ($this->min_price != null) {
+                $supplier_products->where('price', '>=', $this->min_price);
+            }
+            if ($this->max_price != null) {
+                $supplier_products->where('price', '<=', $this->max_price);
+            }
+            if ($this->min_price != null) {
+                $supplier_products->where('min_price', '>=', $this->min_price);
+            }
+            if ($this->max_price != null) {
+                $supplier_products->where('max_price', '<=', $this->max_price);
+            }
+            if ($this->min_edt != null) {
+                $supplier_products->where('edt', '>=', $this->min_edt);
+            }
+            if ($this->max_edt != null) {
+                $supplier_products->where('edt', '<=', $this->max_edt);
+            }
+            if (count($this->brand_id) > 0) {
+                $supplier_products->orWhereIn('brand_id', $this->brand_id);
+            }
+            if (count($this->manufacturer_id) > 0) {
+                $supplier_products->orWhereIn('manufacturer_id', $this->manufacturer_id);
+            }
+            if (count($this->supplier_product_category_id) > 0) {
+                $supplier_products->orWhereIn('supplier_product_category_id', $this->supplier_product_category_id);
+            }
+            $supplier_products = $supplier_products->paginate(12);
+        } else {
+            if ($this->type == 'On Sale' && $this->applyFilter != true) {
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('on_sale', 1)->orderByRaw("id = $this->sales_id DESC")->paginate(12);
+            }
 
-        if ($this->type == 'All Category Page') {
-            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->get();
-            $supplier_products = [];
-        }
-        if ($this->type == 'Category Page') {
-            $sub_product_category = SupplierProductCategory::where('parent_id', $this->product_category->id)->withCount('products')->get();
-            $supplier_products = SupplierProduct::where('supplier_product_category_id', $this->product_category->id)->paginate(6);
-        }
+            if ($this->type == 'All Products' && $this->applyFilter != true) {
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->paginate(12);
+            }
 
-        if (!empty($this->min_oq) && !empty($this->max_oq) && !empty($this->min_edt) && !empty($this->max_edt) && !empty($this->brand) && !empty($this->manufacturer)) {
-            $supplier_products = SupplierProduct::where('on_sale', 1)
-                ->where('min_oq', '>=', $this->min_oq)
-                ->where('max_oq', '<=', $this->max_oq)
-                ->where('edt', '>=', $this->min_edt)
-                ->where('edt', '<=', $this->max_edt)
-                ->whereIn('brand', array_keys(array_filter($this->brand)))
-                ->whereIn('manufacturer', array_keys(array_filter($this->manufacturer)))->paginate(6);
-            $sub_product_category = [];
+            if ($this->type == 'Profile Page' && $this->applyFilter != true) {
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('supplier_id', $this->profile_id)->paginate(12);
+            }
+
+            if ($this->type == 'All Category Page' && $this->applyFilter != true) {
+                $supplier_products = [];
+                $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->get();
+            }
+
+            if ($this->type == 'Category Page' && $this->applyFilter != true) {
+                $sub_product_category = SupplierProductCategory::where('parent_id', $this->product_category->id)->withCount('products')->get();
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('supplier_product_category_id', $this->product_category->id)->paginate(12);
+            }
         }
 
         return view('livewire.frontend.filters.supplier-products', compact([

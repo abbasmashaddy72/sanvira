@@ -24,12 +24,12 @@
 
             <li class="flex items-center justify-between">
                 <span class="mr-2 font-semibold text-indigo-600">{{ __('Brand Name:') }}</span>
-                <span class="ml-2">{{ $item->brand }}</span>
+                <span class="ml-2">{{ $item->brands->name }}</span>
             </li>
 
             <li class="flex items-center justify-between">
                 <span class="mr-2 font-semibold text-indigo-600">{{ __('Manufacturer Name:') }}</span>
-                <span class="ml-2">{{ Str::limit($item->manufacturer, 15) }}</span>
+                <span class="ml-2">{{ Str::limit($item->manufacturers->name, 15) }}</span>
             </li>
 
             <li class="flex items-center justify-between">
@@ -38,7 +38,7 @@
             </li>
         </ul>
 
-        @if (\Route::currentRouteName() != 'homepage')
+        @if (\Route::currentRouteName() != 'homepage' && !empty($rfqProducts) && !empty($cartProducts))
             <div class="flex items-center justify-between pt-6">
                 <div>
                     @if (!in_array($item->id, $rfqProducts))

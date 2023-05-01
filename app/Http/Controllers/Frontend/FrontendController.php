@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductAttributes;
@@ -15,11 +16,11 @@ class FrontendController extends Controller
     {
         $top_suppliers = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
         $home_image = get_static_option('home_image');
-        $supplier_products_on_sale = SupplierProduct::where('on_sale', 1)->whereIn('supplier_id', $top_suppliers)->get()->unique('supplier_id')->take(9);
+        $supplier_products_on_sale = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('on_sale', 1)->whereIn('supplier_id', $top_suppliers)->get()->unique('supplier_id')->take(9);
         $product_categories = SupplierProductCategory::where('parent_id', 0)->withCount('products')->get()->take(15);
         $suppliers = Supplier::get()->take(8);
-        $featured_products = SupplierProduct::whereIn('supplier_id', $top_suppliers)->inRandomOrder()->get()->unique('supplier_id')->take(8);
-        $top_suppliers = Supplier::whereIn('id', $top_suppliers)->get()->take(6);
+        $featured_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->whereIn('supplier_id', $top_suppliers)->inRandomOrder()->get()->unique('supplier_id')->take(8);
+        $top_brands = Brand::whereIn('id', $top_suppliers)->get()->take(6);
 
         return view('pages.frontend.index', compact([
             'home_image',
@@ -27,7 +28,7 @@ class FrontendController extends Controller
             'product_categories',
             'suppliers',
             'featured_products',
-            'top_suppliers'
+            'top_brands'
         ]));
     }
 
