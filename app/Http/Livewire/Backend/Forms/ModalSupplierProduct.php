@@ -14,7 +14,7 @@ class ModalSupplierProduct extends ModalComponent
     // Set Data
     public $supplier_product_id, $supplier_id;
     // SupplierProduct Model Values
-    public $supplier_product_category_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $manufacturer, $brand, $model, $item_type, $sku, $on_sale = false, $images = [];
+    public $supplier_product_category_id, $brand_id, $manufacturer_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $model, $item_type, $sku, $on_sale = false, $images = [], $price, $min_price, $max_price;
     // SupplierProductAttributes Model Values
     public $supplier_product_id_spa, $name_spa = [], $value_spa = [];
     // Model Custom Values
@@ -38,18 +38,23 @@ class ModalSupplierProduct extends ModalComponent
             $data = SupplierProduct::findOrFail($this->supplier_product_id);
             $this->supplier_id = $data->supplier_id;
             $this->supplier_product_category_id = $data->supplier_product_category_id;
+            $this->brand_id = $data->brand_id;
+            $this->manufacturer_id = $data->manufacturer_id;
             $this->name = $data->name;
             $this->description = $data->description;
             $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
             $this->edt = $data->edt;
             $this->avb_stock = $data->avb_stock;
-            $this->manufacturer = $data->manufacturer;
-            $this->brand = $data->brand;
             $this->model = $data->model;
             $this->item_type = $data->item_type;
             $this->sku = $data->sku;
             $this->on_sale = $data->on_sale;
             $this->images = $data->images;
+            if (!is_null($data->price)) {
+                $this->price = $data->price;
+            } else {
+                $this->price = $data->min_price . '-' . $data->max_price;
+            }
             $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
             foreach ($data_spa as $key => $value) {
                 $this->name_spa[] = $value->name;
@@ -65,24 +70,27 @@ class ModalSupplierProduct extends ModalComponent
     protected $rules = [
         'supplier_id' => '',
         'supplier_product_category_id' => '',
+        'brand_id' => '',
+        'manufacturer_id' => '',
         'name' => '',
         'description' => '',
         'min_max_oq' => '',
         'edt' => '',
         'avb_stock' => '',
-        'manufacturer' => '',
-        'brand' => '',
         'model' => '',
         'item_type' => '',
         'sku' => '',
         'on_sale' => '',
         'images' => '',
+        'price' => '',
+        'min_price' => '',
+        'max_price' => '',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
-        if (gettype($this->images) != 'string') {
+        if (gettype($this->images) != 'array') {
             $this->isUploaded = true;
         }
     }
@@ -96,8 +104,20 @@ class ModalSupplierProduct extends ModalComponent
         $validatedData['min_oq'] = $min_max_oq_data[0];
         $validatedData['max_oq'] = $min_max_oq_data[1];
 
+        $price_data = explode('-', $validatedData['price']);
+        unset($validatedData['price']);
+        if (count($price_data) > 1) {
+            $validatedData['min_price'] = $price_data[0];
+            $validatedData['max_price'] = $price_data[1];
+            $validatedData['price'] = null;
+        } else {
+            $validatedData['min_price'] = null;
+            $validatedData['max_price'] = null;
+            $validatedData['price'] = $price_data[0];
+        }
+
         if (!empty($this->supplier_product_id)) {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && $this->images != $this->images) {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -114,7 +134,7 @@ class ModalSupplierProduct extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Product Updated Successfully!');
         } else {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && $this->images != $this->images) {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];

@@ -1,6 +1,6 @@
 <div>
     @if ($type == 'header')
-        <form class="relative hidden w-[46rem]" action="{{ url('searchForm') }}">
+        <form class="relative w-[46rem]" action="{{ url('searchForm') }}">
         @else
             <form class="relative max-w-4xl mx-auto" action="{{ url('searchForm') }}">
     @endif

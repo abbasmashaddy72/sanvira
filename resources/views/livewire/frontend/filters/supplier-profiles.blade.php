@@ -6,58 +6,26 @@
                 <div class="sticky mt-8 top-20">
                     <h5
                         class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
-                        Min Max Order Quantity</h5>
-                    <div class="m-8">
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                    </div>
-                    <h5
-                        class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
-                        Estimate Delivery Time in Days</h5>
-                    <div class="m-8">
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                    </div>
-                    <h5
-                        class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                         Brand Name</h5>
                     <div class="m-8">
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
+                        <x-select label="Select Brand" wire:model.defer="brand_id" placeholder="Select Brand"
+                            :async-data="route('api.admin.brands')" option-label="name" option-value="id" multiselect />
                     </div>
                     <h5
                         class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                         Manufacturer Name</h5>
                     <div class="m-8">
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
+                        <x-select label="Select Manufacturer" wire:model.defer="manufacturer_id"
+                            placeholder="Select Manufacturer" :async-data="route('api.admin.manufacturers')" option-label="name" option-value="id"
+                            multiselect />
                     </div>
                     <h5
                         class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
-                        Model Name</h5>
+                        Category Name</h5>
                     <div class="m-8">
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
-                        <x-checkbox id="right-label" label="Label in Right" wire:model.defer="model" />
+                        <x-select label="Select Parent Category" wire:model.defer="supplier_product_category_id"
+                            placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id"
+                            multiselect />
                     </div>
                 </div>
             </div>

@@ -30,6 +30,9 @@ return new class extends Migration
             $table->string('sku');
             $table->boolean('on_sale')->default(0);
             $table->json('images')->nullable();
+            $table->bigInteger('price')->nullable();
+            $table->bigInteger('min_price')->nullable();
+            $table->bigInteger('max_price')->nullable();
             $table->timestamps();
         });
     }

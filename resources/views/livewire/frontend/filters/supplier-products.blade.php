@@ -27,6 +27,13 @@
                         </div>
                         <h5
                             class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
+                            Min Max Price</h5>
+                        <div class="flex justify-between m-8 space-x-5">
+                            <x-input label="Minimum" placeholder="Min." type='number' wire:model='min_price' />
+                            <x-input label="Maximum" placeholder="Max." type='number' wire:model='max_price' />
+                        </div>
+                        <h5
+                            class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                             Estimate Delivery Time in Days</h5>
                         <div class="flex justify-between m-8 space-x-5">
                             <x-input label="Minimum" placeholder="Min." type='number' wire:model='min_edt' />
@@ -36,19 +43,24 @@
                             class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                             Brand Name</h5>
                         <div class="m-8">
-                            @foreach ($brand_name as $data)
-                                <x-checkbox id="{{ str_replace(' ', '_', $data) }}" label="{{ $data }}"
-                                    wire:model="brand.{{ str_replace(' ', '_', $data) }}" />
-                            @endforeach
+                            <x-select label="Select Brand" wire:model.defer="brand_id" placeholder="Select Brand"
+                                :async-data="route('api.admin.brands')" option-label="name" option-value="id" multiselect />
                         </div>
                         <h5
                             class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
                             Manufacturer Name</h5>
                         <div class="m-8">
-                            @foreach ($manufacturer_name as $data)
-                                <x-checkbox id="{{ str_replace(' ', '_', $data) }}" label="{{ $data }}"
-                                    wire:model="manufacturer.{{ str_replace(' ', '_', $data) }}" />
-                            @endforeach
+                            <x-select label="Select Manufacturer" wire:model.defer="manufacturer_id"
+                                placeholder="Select Manufacturer" :async-data="route('api.admin.manufacturers')" option-label="name"
+                                option-value="id" multiselect />
+                        </div>
+                        <h5
+                            class="p-2 text-lg font-semibold text-center rounded-md shadow bg-gray-50 dark:bg-slate-800 dark:shadow-gray-800">
+                            Category Name</h5>
+                        <div class="m-8">
+                            <x-select label="Select Parent Category" wire:model.defer="supplier_product_category_id"
+                                placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name"
+                                option-value="id" multiselect />
                         </div>
                     </div>
                 </div>

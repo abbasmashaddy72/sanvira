@@ -16,10 +16,6 @@
 
             <x-input name="avb_stock" label="Available Stock" type="text" wire:model='avb_stock' />
 
-            <x-input name="manufacturer" label="Manufacturer" type="text" wire:model='manufacturer' />
-
-            <x-input name="brand" label="Brand" type="text" wire:model='brand' />
-
             <x-input name="model" label="Model" type="text" wire:model='model' />
 
             <x-input name="item_type" label="Item Type" type="text" wire:model='item_type' />
@@ -27,6 +23,9 @@
             <x-input name="sku" label="Stock Keeping Unit" type="text" wire:model='sku' />
 
             <x-checkbox name="on_sale" label="On Sale" wire:model='on_sale' />
+
+            <x-input name="price" label="Price if Range (123-321) & Specific Price (123)" type="text"
+                wire:model='price' />
 
             <div class="card">
                 <div class="card-body">
@@ -64,6 +63,12 @@
 
             <x-select label="Select Parent Category" wire:model.defer="supplier_product_category_id"
                 placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id" />
+
+            <x-select label="Select Brand" wire:model.defer="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
+                option-label="name" option-value="id" />
+
+            <x-select label="Select Manufacturer" wire:model.defer="manufacturer_id" placeholder="Select Manufacturer"
+                :async-data="route('api.admin.manufacturers')" option-label="name" option-value="id" />
         </div>
 
         <div>

@@ -24,7 +24,6 @@ module.exports = {
         "./resources/views/pages/backend/**/*.blade.php",
         "./resources/views/profile/**/*.blade.php",
         "./resources/views/vendor/**/*.blade.php",
-        // "./storage/framework/views/*.php",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/wire-elements/modal/resources/views/*.blade.php",
         "./vendor/wireui/wireui/resources/**/*.blade.php",
@@ -97,7 +96,7 @@ module.exports = {
             },
         },
     },
-    plugins: [require("@tailwindcss/forms")],
+    // plugins: [require("@tailwindcss/forms")],
     variants: {
         extend: {
             boxShadow: ["dark"],

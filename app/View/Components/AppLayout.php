@@ -41,6 +41,16 @@ class AppLayout extends Component
                 'title' => 'Roles',
                 'route_name' => 'admin.role',
             ],
+            'brand' => [
+                'icon' => 'globe',
+                'title' => 'Brands',
+                'route_name' => 'admin.brand',
+            ],
+            'manufacturer' => [
+                'icon' => 'bar-chart-2',
+                'title' => 'Manufacturers',
+                'route_name' => 'admin.manufacturer',
+            ],
             'supplier' => [
                 'icon' => 'fast-forward',
                 'title' => 'Suppliers',

@@ -25,6 +25,18 @@ Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
     $trail->push('Role', route('admin.role'));
 });
 
+// Application > Brand
+Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Brand', route('admin.brand'));
+});
+
+// Application > Manufacturer
+Breadcrumbs::for('manufacturer.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Manufacturer', route('admin.manufacturer'));
+});
+
 // Application > Supplier
 Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');

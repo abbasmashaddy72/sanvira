@@ -37,13 +37,6 @@ module.exports = {
         },
         container: {
             center: true,
-            // padding: {
-            //     DEFAULT: "12px",
-            //     sm: "1rem",
-            //     lg: "45px",
-            //     xl: "5rem",
-            //     "2xl": "13rem",
-            // },
         },
         extend: {
             colors: {

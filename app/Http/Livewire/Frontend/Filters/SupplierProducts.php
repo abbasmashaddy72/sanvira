@@ -24,7 +24,7 @@ class SupplierProducts extends Component
     // Custom Values
     public $cartProducts = [], $rfqProducts = [], $quantity = [], $type, $page_title;
     // Filter Options
-    public $min_oq, $max_oq, $min_edt, $max_edt, $brand_name, $brand = [], $manufacturer_name, $manufacturer = [];
+    public $min_oq, $max_oq, $min_edt, $max_edt, $brand_name, $brand_id = [], $manufacturer_name, $manufacturer_id = [];
 
     public function mount()
     {
@@ -35,8 +35,8 @@ class SupplierProducts extends Component
         } else {
             $this->page_title = $this->page_title ?? $this->type;
         }
-        $this->brand_name = SupplierProduct::distinct('brand')->pluck('brand');
-        $this->manufacturer_name = SupplierProduct::distinct('manufacturer')->pluck('manufacturer');
+        $this->brand_name = SupplierProduct::distinct('brand_id')->pluck('brand_id');
+        $this->manufacturer_name = SupplierProduct::distinct('manufacturer_id')->pluck('manufacturer_id');
     }
 
     public function render()

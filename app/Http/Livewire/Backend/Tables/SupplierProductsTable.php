@@ -16,7 +16,7 @@ class SupplierProductsTable extends LivewireDatatable
 
     public function builder()
     {
-        return SupplierProduct::query()->where('supplier_id', $this->supplier_id);
+        return SupplierProduct::query()->with('manufacturers', 'brands')->where('supplier_id', $this->supplier_id);
     }
 
     public function columns()
@@ -52,11 +52,13 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('manufacturer')
+            Column::name('manufacturers.name')
+                ->label('Manufacturer')
                 ->searchable()
                 ->filterable(),
 
-            Column::name('brand')
+            Column::name('brands.name')
+                ->label('Brand')
                 ->searchable()
                 ->filterable(),
 

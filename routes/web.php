@@ -48,6 +48,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('/{user}/impersonate', 'UserController@impersonate')->name('users.impersonate');
     Route::get('/leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
 
+    Route::get('brand', 'BrandController@index')->name('brand');
+    Route::get('manufacturer', 'ManufacturerController@index')->name('manufacturer');
+
+
     Route::get('supplier', 'SupplierController@index')->name('supplier');
     Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');
     Route::get('supplier_profile/{supplier}', 'SupplierController@supplier_profile')->name('supplier_profile');

@@ -1,6 +1,5 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
-        {{-- <x-logo class="mr-auto" /> --}}
         <x-logo class="mr-auto">
             <span class="ml-3 text-lg text-white">
                 {{ config('app.name', 'Laravel') }}

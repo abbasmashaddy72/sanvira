@@ -1,5 +1,5 @@
 <nav class="side-nav">
-    <x-logo class="items-center pt-4 pl-5 intro-x">
+    <x-logo class="items-center pt-4 pl-5">
         <span class="hidden ml-3 text-lg text-white xl:block">
             {{ config('app.name', 'Laravel') }}
         </span>
