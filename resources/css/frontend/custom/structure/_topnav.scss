@@ -170,7 +170,7 @@
         .has-submenu {
             .menu-arrow {
                 border-width: 0 2px 2px 0;
-                @apply border-black dark:border-white rounded-[0.5px] inline-block p-[3px] rotate-[45deg] absolute transition-all duration-500 -right-px top-[30px];
+                @apply border-black dark:border-white rounded-[0.5px] inline-block p-[3px] rotate-[45deg] absolute transition-all duration-500 -right-px top-[25px];
             }
             &:hover {
                 .menu-arrow {
@@ -316,7 +316,7 @@
                     @apply top-[33px] #{!important};
                 }
                 &.active .menu-arrow {
-                    @apply top-[30px];
+                    @apply top-[25px];
                 }
             }
             > li {
@@ -352,7 +352,7 @@
                     }
                 }
                 > a {
-                    @apply py-[25px] min-h-[62px];
+                    @apply py-[20px] min-h-[62px];
                 }
                 &:hover {
                     > .menu-arrow {

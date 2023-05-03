@@ -38,7 +38,7 @@
             </li>
         </ul>
 
-        @if (\Route::currentRouteName() != 'homepage' && !empty($rfqProducts) && !empty($cartProducts))
+        @if (\Route::currentRouteName() != 'homepage')
             <div class="flex items-center justify-between pt-6">
                 <div>
                     @if (!in_array($item->id, $rfqProducts))

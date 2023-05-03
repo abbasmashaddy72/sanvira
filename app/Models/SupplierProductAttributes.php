@@ -15,8 +15,8 @@ class SupplierProductAttributes extends Model
         'value',
     ];
 
-    public function suppliers()
+    public function supplierProducts()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id');
     }
 }

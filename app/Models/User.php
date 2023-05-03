@@ -57,9 +57,4 @@ class User extends Authenticatable implements MustVerifyEmail
 
         return $firstWord[0] . $lastWord[0];
     }
-
-    public function suppliers()
-    {
-        return $this->belongsTo(Supplier::class);
-    }
 }

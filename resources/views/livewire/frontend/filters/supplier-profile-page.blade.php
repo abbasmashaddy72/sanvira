@@ -130,7 +130,7 @@
                 </blockquote>
 
                 <blockquote
-                    class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                    class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-indigo-800">
                     <div class="text-gray-900 dark:text-white ck-content">
                         {!! $profile->description !!}
                     </div>
@@ -192,7 +192,7 @@
                             </h3>
 
                             <blockquote
-                                class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                                class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-indigo-800">
                                 <div class="text-gray-900 dark:text-white ck-content">
                                     {!! $item->description !!}
                                 </div>
@@ -299,7 +299,7 @@
             <h5 class="text-xl font-semibold mt-[30px]">Terms & Conditions :</h5>
 
             <blockquote
-                class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-indigo-50 dark:border-indigo-500 dark:bg-indigo-800">
+                class="p-4 my-4 border-l-4 border-indigo-300 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-indigo-800">
                 <div class="text-gray-900 dark:text-white ck-content">
                     {!! $profile->terms_conditions !!}
                 </div>

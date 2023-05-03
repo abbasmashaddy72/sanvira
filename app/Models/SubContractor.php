@@ -24,14 +24,4 @@ class SubContractor extends Model
     {
         return $this->hasMany(User::class);
     }
-
-    public function subContractorProjects()
-    {
-        return $this->belongsTo(SubContractorProject::class);
-    }
-
-    public function subContractorServices()
-    {
-        return $this->belongsTo(SubContractorService::class);
-    }
 }

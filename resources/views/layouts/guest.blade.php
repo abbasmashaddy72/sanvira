@@ -22,14 +22,17 @@
     @livewireStyles
 </head>
 
-<body class="text-base text-black font-nunito dark:text-white dark:bg-slate-900">
+<body class="text-base text-black bg-gray-100 font-nunito dark:text-white dark:bg-slate-900">
 
     @include('layouts.fePartials.header')
 
     @if (\Route::currentRouteName() != 'homepage')
-        @include('layouts.fePartials.common-top')
+        @livewire('frontend.form.search', ['type' => 'common-top'])
     @else
+        @livewire('frontend.form.search')
     @endif
+
+    @include('layouts.fePartials.sub-nav')
 
     {{ $slot }}
 

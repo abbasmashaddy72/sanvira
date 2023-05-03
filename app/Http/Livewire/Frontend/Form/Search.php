@@ -11,8 +11,7 @@ use Livewire\Component;
 class Search extends Component
 {
     // Custom Values
-    public $type;
-    public $query;
+    public $query, $type;
     public $supplierProductsList, $supplierList, $categoriesList, $brandList;
 
     public function mount()
@@ -28,10 +27,10 @@ class Search extends Component
 
     public function updatedQuery()
     {
-        $this->supplierProductsList = SupplierProduct::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
-        $this->supplierList = Supplier::where('company_name', 'like', '%' . $this->query . '%')->get()->toArray();
-        $this->categoriesList = SupplierProductCategory::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
-        $this->brandList = Brand::where('name', 'like', '%' . $this->query . '%')->get()->toArray();
+        $this->supplierProductsList = SupplierProduct::where('name', 'like', '%' . $this->query . '%')->get();
+        $this->supplierList = Supplier::where('company_name', 'like', '%' . $this->query . '%')->get();
+        $this->categoriesList = SupplierProductCategory::where('name', 'like', '%' . $this->query . '%')->get();
+        $this->brandList = Brand::where('name', 'like', '%' . $this->query . '%')->get();
     }
 
     public function render()

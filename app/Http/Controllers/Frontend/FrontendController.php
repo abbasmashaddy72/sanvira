@@ -74,7 +74,7 @@ class FrontendController extends Controller
         return view('pages.frontend.all_suppliers');
     }
 
-    public function products()
+    public function all_products()
     {
         view()->share('title', 'All Products');
 

@@ -73,37 +73,37 @@ class SupplierProducts extends Component
                 $supplier_products->where('supplier_product_category_id', $this->product_category->id);
             }
             if ($this->min_oq != null) {
-                $supplier_products->where('min_oq', '>=', $this->min_oq);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('min_oq', '>=', $this->min_oq);
             }
             if ($this->max_oq != null) {
-                $supplier_products->where('max_oq', '<=', $this->max_oq);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('max_oq', '<=', $this->max_oq);
             }
             if ($this->min_price != null) {
-                $supplier_products->where('price', '>=', $this->min_price);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('price', '>=', $this->min_price);
             }
             if ($this->max_price != null) {
-                $supplier_products->where('price', '<=', $this->max_price);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('price', '<=', $this->max_price);
             }
             if ($this->min_price != null) {
-                $supplier_products->where('min_price', '>=', $this->min_price);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('min_price', '>=', $this->min_price);
             }
             if ($this->max_price != null) {
-                $supplier_products->where('max_price', '<=', $this->max_price);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('max_price', '<=', $this->max_price);
             }
             if ($this->min_edt != null) {
-                $supplier_products->where('edt', '>=', $this->min_edt);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('edt', '>=', $this->min_edt);
             }
             if ($this->max_edt != null) {
-                $supplier_products->where('edt', '<=', $this->max_edt);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('edt', '<=', $this->max_edt);
             }
             if (count($this->brand_id) > 0) {
-                $supplier_products->orWhereIn('brand_id', $this->brand_id);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhereIn' : 'whereIn'}('brand_id', $this->brand_id);
             }
             if (count($this->manufacturer_id) > 0) {
-                $supplier_products->orWhereIn('manufacturer_id', $this->manufacturer_id);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhereIn' : 'whereIn'}('manufacturer_id', $this->manufacturer_id);
             }
             if (count($this->supplier_product_category_id) > 0) {
-                $supplier_products->orWhereIn('supplier_product_category_id', $this->supplier_product_category_id);
+                $supplier_products->{$this->type == 'All Products' ? 'orWhereIn' : 'whereIn'}('supplier_product_category_id', $this->supplier_product_category_id);
             }
             $supplier_products = $supplier_products->paginate(12);
         } else {

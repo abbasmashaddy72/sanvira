@@ -32,33 +32,8 @@ class Supplier extends Model
         return $this->hasMany(User::class);
     }
 
-    public function supplierCertificates()
-    {
-        return $this->hasMany(SupplierCertificate::class);
-    }
-
     public function supplierProducts()
     {
         return $this->belongsTo(SupplierProduct::class, 'id', 'supplier_id');
-    }
-
-    public function supplierProductCatagories()
-    {
-        return $this->belongsTo(SupplierProductCategory::class);
-    }
-
-    public function supplierProjects()
-    {
-        return $this->belongsTo(SupplierProject::class);
-    }
-
-    public function supplierTeams()
-    {
-        return $this->belongsTo(SupplierTeam::class);
-    }
-
-    public function supplierTestimonials()
-    {
-        return $this->belongsTo(SupplierTestimonial::class);
     }
 }

@@ -18,6 +18,6 @@ class SubContractorService extends Model
 
     public function subContractors()
     {
-        return $this->belongsTo(SubContractor::class);
+        return $this->belongsTo(SubContractor::class, 'sub_contractor_id');
     }
 }

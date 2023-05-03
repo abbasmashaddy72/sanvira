@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SupplierTestimonial extends Model
+class SupplierTransaction extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'supplier_id',
-        'name',
-        'logo',
-        'message',
-        'year',
-        'rating',
+        'account_type',
+        'transaction_type',
+        'amount',
+        'start_date',
+        'end_days',
+        'image',
+        'status',
     ];
 
     public function suppliers()

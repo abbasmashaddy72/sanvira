@@ -1,11 +1,11 @@
-<button onclick="Livewire.emit('openModal', 'frontend.modal.rfq-modal')"
-    class="px-2 py-1 mb-1 leading-normal text-right text-blue-700 bg-blue-100 rounded-lg" role="alert">
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none"
-        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        class="feather feather-shopping-bag">
-        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <path d="M16 10a4 4 0 0 1-8 0"></path>
+<button onclick="Livewire.emit('openModal', 'frontend.modal.rfq-modal')" class="relative flex">
+    <svg xmlns="http://www.w3.org/2000/svg" class="flex-1 w-8 h-8 fill-yellow-300" viewBox="0 0 24 24" stroke-width="1.5"
+        stroke="transparent">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9.568 3H5.25A2.25 2.25 0 003 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 005.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 009.568 3z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6z" />
     </svg>
-    RFQ ({{ $rfqCount }})
+    <span
+        class="absolute top-0 right-0 w-4 h-4 p-0 m-0 font-mono text-sm leading-tight text-center text-white bg-blue-600 rounded-full top right">{{ $rfqCount }}
+    </span>
 </button>

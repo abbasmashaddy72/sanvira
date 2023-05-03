@@ -1,66 +1,12 @@
 <x-guest-layout>
-    <section
-        class="relative md:py-64 py-36 items-center bg-[url('../../assets/images/bg-seo.png')] bg-center bg-no-repeat">
-        <div class="container">
-            <div class="grid justify-center grid-cols-1 text-center">
-                <div class="">
-                    <h1 class="mb-5 text-4xl font-bold leading-normal lg:leading-normal lg:text-5xl">Your <span
-                            class="text-indigo-600">SuperCharged</span>
-                        Procurement Marketplace</h1>
-                    <p class="max-w-xl mx-auto text-lg">Reinventing the way organization procure by digitizing
-                        construction commerce using state of art technology</p>
-
-                    <div class="mt-6 mb-3">
-                        @livewire('frontend.form.search', ['type' => 'index'])
-                    </div>
-
-                    <span class="font-medium">Looking for help? <a href="{{ route('contact_us') }}"
-                            class="text-indigo-600">Get in touch
-                            with us</a></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <x-frontend.index-container type="on_sale">
-        <div class="grid grid-cols-1">
-            <div class="relative z-2 transition-all duration-500 ease-in-out sm:-mt-[200px] -mt-[140px] m-0">
-                <div class="grid grid-cols-1 mt-8">
-                    <div class="tiny-six-item">
-
-                        @foreach ($supplier_products_on_sale as $item)
-                            <div class="tiny-slide">
-                                <a href="{{ route('supplier_products_sales', ['sales_id' => $item->id]) }}"
-                                    class="relative block m-2 overflow-hidden bg-white rounded-md shadow group dark:bg-slate-900 dark:shadow-gray-800">
-                                    <span class="block p-4 text-center bg-white dark:bg-slate-900">
-                                        <img src="{{ asset('storage/' . $item->images[0]) }}"
-                                            class="object-cover w-full h-32 mx-auto mb-3 rounded-lg shadow-md"
-                                            alt="{{ $item->name }}">
-
-                                        <span
-                                            class="text-xl font-medium transition-all duration-500 ease-in-out group-hover:text-indigo-600">{{ $item->name }}</span>
-                                    </span>
-
-                                    @php
-                                        $colors = ['bg-indigo-600', 'bg-emerald-600', 'bg-red-600', 'bg-sky-600', 'bg-amber-500', 'bg-orange-500', 'bg-yellow-500', 'bg-lime-500', 'bg-violet-500'];
-                                    @endphp
-
-                                    <span
-                                        class="block p-4 text-center @if ($loop->index == count($colors)) {{ $colors[$loop->index - -count($colors)] }} @else {{ $colors[$loop->index] }} @endif">
-                                        <span class="block font-medium text-white uppercase">On Sale</span>
-                                    </span>
-                                </a>
-                            </div>
-                        @endforeach
-
-                    </div>
-                </div>
-            </div>
+    <x-frontend.index-container>
+        <div class="flex flex-wrap justify-center">
+            <img src="{{ asset('storage/' . get_static_option('home_image')) }}" alt="..."
+                class="object-cover w-full align-middle border-none rounded shadow h-96" />
         </div>
     </x-frontend.index-container>
-
     <x-frontend.index-container containerTitle='Categories'>
-        <div class="grid grid-cols-5 gap-[30px] mt-8">
+        <div class="grid grid-cols-5 gap-[30px]">
             @foreach ($product_categories as $item)
                 <x-frontend.supplier-product-category :item="$item" />
             @endforeach
@@ -100,7 +46,7 @@
 
         <div class="justify-center mt-6 text-center md:flex">
             <div class="md:w-full">
-                <a href="{{ route('products') }}"
+                <a href="{{ route('all_products') }}"
                     class="text-indigo-600 duration-500 ease-in-out btn btn-link hover:text-indigo-600 after:bg-indigo-600">View
                     More Products <i class="ml-1 uil uil-arrow-right"></i></a>
             </div>

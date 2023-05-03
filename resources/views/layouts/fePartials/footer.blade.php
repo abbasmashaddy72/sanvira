@@ -12,7 +12,7 @@
                             </a>
                             <p class="text-gray-300">{{ get_static_option('short_description') }}</p>
                             <ul class="flex mt-6">
-                                <a href="{{ '//' . get_static_option('facebook') }}" target="_blank">
+                                <a href="{{ get_static_option('facebook') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35"
                                         height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#3F51B5"
@@ -23,7 +23,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{ '//' . get_static_option('instagram') }}" target="_blank">
+                                <a href="{{ get_static_option('instagram') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35"
                                         height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#304ffe"
@@ -89,7 +89,7 @@
                                         </g>
                                     </svg>
                                 </a>
-                                <a href="{{ '//' . get_static_option('linkedin') }}" target="_blank">
+                                <a href="{{ get_static_option('linkedin') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35"
                                         height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#0288D1"
@@ -100,7 +100,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                                <a href="{{ '//' . get_static_option('twitter') }}" target="_blank">
+                                <a href="{{ get_static_option('twitter') }}" target="_blank">
                                     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                         width="35px" height="36px" viewBox="0 0 35 36"
@@ -110,7 +110,7 @@
                                             href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAkCAMAAAA0AnPTAAABklBMVEUAAAAAqv8DqfMDqfQDqPQAgP8DqvQDqfUDqPUDqPMDqfQDqfQDqfQDqPQEqfQDqfQDqfQEqfUDqfQDqfQDqfQDqfQDqfQDqfQEqPQDqfQEqPUDqPYDqfQDqfQDqfQDp/YDqfQCqfQBqPQGqvQFqvQEqfQTr/Vtzfms4/up4vtpzPgbsfUptvZRxPcWr/UAqPRGwPdozPgMrPSW2/r9/v/////6/f/O7v3K7f1yz/kOrfR+0/ny+/5qzPhFwPfc8/6G1voQrfVrzPmE1fp20Pnc8/0yufYjtPXP7/38/v+86PxSxPgVr/WA1Pm96PwIq/QwufZ50fnm9/71/P/J7f2X2/vD6/yx5Pxiyfji9f7r+P6P2foCqPQcsvW/6fxZxvgst/aj4Pv2/P/T8P0esvVcx/jR7/37/v900Pkfs/WY3Pro9/615vwvuPZ60vnf9P7H7P0tt/ZMwvd80vnF6/z4/f/5/f+r4vsqtvYJq/RPw/eq4vvj9f665/xfyPgTrvU0uvZzz/l90/l30PldyPgPrfV2UAoLAAAAIHRSTlMAAAAAAAAAAAADN3GAAwRv6AQ/7IWbnIQEbgQDNnB/A+Aw2HsAAAFkSURBVDjLvdTXU8IwHAdwbYsgqCDLBUhScEscBBcOHCjuPXDgQHHvPXH93wKlwJnkjie+L3353CX9jeTl5Tb5HMfTIwiKpOG4QrWmiIxGXcwXJA1fotXZadFpS3nZ6A12egz6lDHaWTGmjIlpTCljZhozwwAoOmAsTtKIDiCRmtq6+obGpmYX+G9QS2sCgbZ2N8aejs6ubtL0eHtFGPv2eXE8/QM+0gxi75ALATScIHjED4n7wNExHBifmERTkpmeIf8LzM7NY7ywuLQsmRWKQatrQZyRdUp9Nja3MoknhCg1hNs7u2mzF4a0Ou8fRFLEfQhovQBHxycB2Zy6qAYi59n5hUQuryCtp2LYf31zexcX9w+PkNr3p+eX1/hRkeDbu08mxH0+oqHPr++f6C8CzPkBSEpaZJpsZpU982XZ7I6QNEI5awcrKmXD8VUWq41YZZvVUs3LZymUSsaboFLJb0Ku8gcHrHjSQN06QAAAAABJRU5ErkJggg==" />
                                     </svg>
                                 </a>
-                                <a href="{{ '//' . get_static_option('youtube') }}" target="_blank">
+                                <a href="{{ get_static_option('youtube') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                         width="35" height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#FF3D00"
@@ -119,7 +119,7 @@
                                         <path fill="#FFF" d="M20 31L20 17 32 24z"></path>
                                     </svg>
                                 </a>
-                                <a href="{{ '//' . get_static_option('google_business') }}" target="_blank">
+                                <a href="{{ get_static_option('google_business') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                         width="35" height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#1c9957"
@@ -167,7 +167,7 @@
                         <div class="lg:col-span-4 md:col-span-4">
                             <div class="grid grid-cols-1">
                                 <div class="w-full leading-[0] border-0">
-                                    <iframe src="{{ '//' . get_static_option('embed_map_link') }}" style="border:0"
+                                    <iframe src="{{ get_static_option('embed_map_link') }}" style="border:0"
                                         class="w-full h-[150px]" allowfullscreen></iframe>
                                 </div>
                             </div>

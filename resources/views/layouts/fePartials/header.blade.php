@@ -7,44 +7,80 @@
     </div>
 </div>
 
-<header class="fixed top-0 left-0 z-10 w-full px-12 py-2 text-white bg-white drop-shadow-2xl">
-    <nav class="flex items-center justify-between mx-auto">
-        <a href="{{ route('homepage') }}">
-            <img src="{{ asset('storage/' . get_static_option('logo')) }}" height="24" class="h-12 py-2"
+<nav id='topnav' class="items-center bg-white defaultscroll is-sticky">
+    <div class="container">
+        <a class="flex items-center pt-1 mr-4 logo" href="{{ route('homepage') }}">
+            <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="object-cover w-24 h-14"
                 alt="Logo" />
         </a>
-        @livewire('frontend.form.search', ['type' => 'header'])
-        <div class="flex items-center space-x-3">
+
+        <div class="menu-extras">
+            <div class="menu-item">
+                <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
+                    <div class="lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="flex items-center float-right pl-4 ml-4 space-x-3 pt-3.5">
             @auth
-                <a href="{{ route('admin.dashboard') }}"
-                    class="text-sm text-gray-700 underline dark:text-gray-500">Dashboard</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
+                        class="p-2 font-semibold text-white bg-red-600 rounded-lg text-md">
+                        Logout
+                    </a>
+                </form>
                 @livewire('frontend.counter.rfq-counter')
                 @livewire('frontend.counter.cart-counter')
             @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline dark:text-gray-500">Log
+                <a href="{{ route('register') }}" class="font-semibold text-gray-600 text-md">Register</a>
+                <a href="{{ route('login') }}" class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg text-md">Log
                     in</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}"
-                        class="ml-4 text-sm text-gray-700 underline dark:text-gray-500">Register</a>
-                @endif
             @endauth
         </div>
-    </nav>
-</header>
 
-@push('scripts')
-    <script>
-        const header = document.querySelector('header');
-        const searchForm = header.querySelector('form');
+        <div id="navigation" class="block">
+            <!-- Navigation Menu-->
+            <ul class="flex flex-wrap float-left navigation-menu">
+                <li>
+                    <a href="{{ route('about_us') }}" class="sub-menu-item">About Us</a>
+                </li>
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                searchForm.classList.remove('hidden');
-                searchForm.classList.add('transition-opacity', 'opacity-0', 'opacity-100');
-            } else {
-                searchForm.classList.add('hidden');
-            }
-        });
-    </script>
-@endpush
+                <li class="has-submenu parent-parent-menu-item">
+                    <a href="javascript:void(0)">Resources</a><span class="menu-arrow"></span>
+                    <ul class="submenu">
+                        <li>
+                            <a class="sub-menu-item" href="{{ route('all_products_category') }}">
+                                View All Categories
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sub-menu-item" href="{{ route('all_supplier_profile') }}">
+                                View All Suppliers
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sub-menu-item" href="{{ route('all_products') }}">
+                                View All Products
+                            </a>
+                        </li>
+                        <li>
+                            <a class="sub-menu-item" href="{{ route('all_brands') }}">
+                                View All Brands
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="{{ route('contact_us') }}" class="sub-menu-item">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

@@ -1,4 +1,4 @@
-<section class="relative py-16 md:py-12">
+<section {{ $attributes->merge(['class' => 'relative py-4']) }}>
     @if (!empty($type))
         <div class="relative container-fluid">
         @else

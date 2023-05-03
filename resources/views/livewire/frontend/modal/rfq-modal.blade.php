@@ -31,7 +31,7 @@
 
                                     <div class="flex">
                                         <button type="button"
-                                            class="font-medium text-indigo-600 hover:text-indigo-500">Remove</button>
+                                            class="font-medium text-indigo-600 hover:text-blue-600">Remove</button>
                                     </div>
                                 </div>
                             </div>

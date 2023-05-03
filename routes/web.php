@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('/', 'FrontendController@index')->name('homepage'); // Done
     Route::get('contact_us', 'FrontendController@contact_us')->name('contact_us');
+    Route::get('about_us', 'FrontendController@about_us')->name('about_us');
 
     Route::group(['middleware' => ['verified']], function () {
         Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales'); // Done
@@ -24,9 +25,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
         Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category'); // Done
         Route::get('supplier_profile/{profile}', 'FrontendController@supplier_profile')->name('supplier_profile'); // Done
         Route::get('all_supplier_profile', 'FrontendController@all_supplier_profile')->name('all_supplier_profile'); // Done
-        Route::get('products', 'FrontendController@products')->name('products'); // Done
+        Route::get('all_products', 'FrontendController@all_products')->name('all_products'); // Done
+        Route::get('all_brands', 'FrontendController@all_brands')->name('all_brands');
         Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details'); // Done
-        Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm');
+        Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm'); // Done
     });
 
     Route::get('/change-language/{lang}', 'LanguageController@changeLanguage');
