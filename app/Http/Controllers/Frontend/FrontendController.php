@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Cart;
+use App\Models\Rfq;
+use App\Models\Slider;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductAttributes;
@@ -12,23 +15,32 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+    public function __construct()
+    {
+        view()->share('rfqProducts', Rfq::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray());
+        view()->share('cartProducts', Cart::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray());
+    }
+
     public function index()
     {
-        $top_suppliers = [1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
-        $home_image = get_static_option('home_image');
-        $supplier_products_on_sale = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('on_sale', 1)->whereIn('supplier_id', $top_suppliers)->get()->unique('supplier_id')->take(9);
+        $sliders = Slider::get();
+        $featured_suppliers = Supplier::withCount('products')->whereHas('transactions', function ($query) {
+            $query->where('account_type', '=', 'Featured');
+        })->get()->take(14);
         $product_categories = SupplierProductCategory::where('parent_id', 0)->withCount('products')->get()->take(15);
+        $featured_brands = Brand::withCount('products')->whereHas('transactions', function ($query) {
+            $query->where('account_type', '=', 'Featured');
+        })->get()->take(14);
+        $on_sale_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('on_sale', 1)->whereIn('supplier_id', $featured_suppliers->pluck('id'))->get()->take(8);
         $suppliers = Supplier::get()->take(8);
-        $featured_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->whereIn('supplier_id', $top_suppliers)->inRandomOrder()->get()->unique('supplier_id')->take(8);
-        $top_brands = Brand::whereIn('id', $top_suppliers)->get()->take(6);
 
         return view('pages.frontend.index', compact([
-            'home_image',
-            'supplier_products_on_sale',
+            'sliders',
+            'featured_suppliers',
             'product_categories',
+            'featured_brands',
+            'on_sale_products',
             'suppliers',
-            'featured_products',
-            'top_brands'
         ]));
     }
 
@@ -84,11 +96,10 @@ class FrontendController extends Controller
     public function products_details(SupplierProduct $data)
     {
         view()->share('title', $data->name);
-        $data_attributes = SupplierProductAttributes::where('supplier_product_id', $data->id)->get();
+        $data->with(['brands', 'manufactures', 'productAttributes']);
 
         return view('pages.frontend.products_details', compact([
-            'data',
-            'data_attributes'
+            'data'
         ]));
     }
 
@@ -98,5 +109,26 @@ class FrontendController extends Controller
         view()->share('title', $request->search);
 
         return view('pages.frontend.searchForm', compact('data'));
+    }
+
+    public function all_brands()
+    {
+        view()->share('title', 'All Brands');
+
+        return view('pages.frontend.brands');
+    }
+
+    public function brand_products(Brand $brand)
+    {
+        view()->share('title', $brand->name);
+
+        return view('pages.frontend.brands_details', compact('brand'));
+    }
+
+    public function about_us()
+    {
+        view()->share('title', 'About Us');
+
+        return view('pages.frontend.about_us');
     }
 }

@@ -313,7 +313,7 @@
             @apply flex flex-wrap justify-center;
             > .has-submenu {
                 &:hover .menu-arrow {
-                    @apply top-[33px] #{!important};
+                    @apply top-[30px] #{!important};
                 }
                 &.active .menu-arrow {
                     @apply top-[25px];

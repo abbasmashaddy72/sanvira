@@ -13,4 +13,14 @@ class Brand extends Model
         'name',
         'image',
     ];
+
+    public function products()
+    {
+        return $this->belongsTo(SupplierProduct::class, 'id', 'brand_id');
+    }
+
+    public function transactions()
+    {
+        return $this->belongsTo(BrandTransaction::class, 'id', 'brand_id');
+    }
 }

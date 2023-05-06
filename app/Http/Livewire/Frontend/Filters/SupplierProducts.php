@@ -23,8 +23,10 @@ class SupplierProducts extends Component
     public $profile_id;
     // Custom Values
     public $cartProducts = [], $rfqProducts = [], $quantity = [], $type, $page_title, $applyFilter = false;
-    // Filter Options
+    // 1st Filter Options
     public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
+    // 2nd Filter Options
+    public $setButton = 'relevance';
 
     public function mount()
     {
@@ -42,6 +44,12 @@ class SupplierProducts extends Component
         $this->applyFilter = true;
     }
 
+    public function applyButton($value)
+    {
+        $this->setButton = $value;
+        $this->applyFilter = true;
+    }
+
     public function clearFilters()
     {
         $this->min_oq = null;
@@ -53,6 +61,7 @@ class SupplierProducts extends Component
         $this->brand_id = [];
         $this->manufacturer_id = [];
         $this->supplier_product_category_id = [];
+        $this->setButton = 'relevance';
         $this->applyFilter = false;
     }
 
@@ -71,6 +80,12 @@ class SupplierProducts extends Component
             }
             if ($this->type == 'Category Page') {
                 $supplier_products->where('supplier_product_category_id', $this->product_category->id);
+            }
+            if ($this->setButton == 'lowToHigh') {
+                $supplier_products->orderBy('price', 'ASC')->orderBy('min_price', 'ASC');
+            }
+            if ($this->setButton == 'highToLow') {
+                $supplier_products->orderBy('price', 'DESC')->orderBy('min_price', 'DESC');
             }
             if ($this->min_oq != null) {
                 $supplier_products->{$this->type == 'All Products' ? 'orWhere' : 'where'}('min_oq', '>=', $this->min_oq);

@@ -54,4 +54,9 @@ class SupplierProduct extends Model
     {
         return $this->belongsTo(SupplierProductCategory::class, 'supplier_product_category_id');
     }
+
+    public function productAttributes()
+    {
+        return $this->hasMany(SupplierProductAttributes::class, 'supplier_product_id', 'id');
+    }
 }

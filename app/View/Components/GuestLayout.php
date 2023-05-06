@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\Cart;
+use App\Models\Rfq;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 

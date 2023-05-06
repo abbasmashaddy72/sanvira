@@ -1,5 +1,81 @@
 <!-- Footer Start -->
-<footer class="relative text-gray-200 footer bg-dark-footer dark:text-gray-200">
+<x-frontend.index-container class="bg-white p-14">
+    <div class="text-center">
+        <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-2xl">Procurement redefined for the
+            industry.</h2>
+        <p class="mx-auto mt-4 text-base leading-relaxed text-gray-600">Kasper provides a b2b network that
+            connects your complete supply chain ecosystem</p>
+    </div>
+
+    <div class="relative mt-6">
+        <div class="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
+            <div>
+                <div
+                    class="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                    <span class="text-xl font-semibold text-gray-700"> 1 </span>
+                </div>
+                <p class="mt-4 text-base text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit mollit.</p>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-center h-16">
+                    <div class="flex items-center">
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>First star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Second star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Third star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <title>Fourth star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                        <svg aria-hidden="true" class="w-5 h-5 text-gray-300 dark:text-gray-500" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <title>Fifth star</title>
+                            <path
+                                d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
+                            </path>
+                        </svg>
+                    </div>
+
+                </div>
+                <p class="mt-4 text-base text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit mollit.</p>
+            </div>
+
+            <div>
+                <div
+                    class="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-200 rounded-full shadow">
+                    <span class="text-xl font-semibold text-gray-700"> 3 </span>
+                </div>
+                <p class="mt-4 text-base text-gray-600">Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit mollit.</p>
+            </div>
+        </div>
+    </div>
+</x-frontend.index-container>
+
+<footer class="relative text-gray-200 bg-white footer dark:text-gray-200">
     <div class="container">
         <div class="grid grid-cols-12">
             <div class="col-span-12">
@@ -10,7 +86,7 @@
                                 <img class="h-14" src="{{ asset('storage/' . get_static_option('logo')) }}"
                                     alt="" />
                             </a>
-                            <p class="text-gray-300">{{ get_static_option('short_description') }}</p>
+                            <p class="mt-2 text-justify text-gray-700">{{ get_static_option('short_description') }}</p>
                             <ul class="flex mt-6">
                                 <a href="{{ get_static_option('facebook') }}" target="_blank">
                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35"
@@ -90,8 +166,8 @@
                                     </svg>
                                 </a>
                                 <a href="{{ get_static_option('linkedin') }}" target="_blank">
-                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="35"
-                                        height="35" viewBox="0 0 48 48" style=" fill:#000000;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        width="35" height="35" viewBox="0 0 48 48" style=" fill:#000000;">
                                         <path fill="#0288D1"
                                             d="M42,37c0,2.762-2.238,5-5,5H11c-2.761,0-5-2.238-5-5V11c0-2.762,2.239-5,5-5h26c2.762,0,5,2.238,5,5V37z">
                                         </path>
@@ -154,11 +230,23 @@
                             <ul class="mt-6 list-none footer-list">
                                 <li>
                                     <a href="{{ route('homepage') }}"
-                                        class="text-gray-300 duration-500 ease-in-out hover:text-gray-400">
+                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Home</a>
                                 <li class="mt-[10px]">
                                     <a href="{{ route('contact_us') }}"
-                                        class="text-gray-300 duration-500 ease-in-out hover:text-gray-400">
+                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
+                                        <i class="uil uil-angle-right-b me-1"></i>Contact</a>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-2 md:col-span-4">
+                            <ul class="mt-6 list-none footer-list">
+                                <li>
+                                    <a href="{{ route('homepage') }}"
+                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
+                                        <i class="uil uil-angle-right-b me-1"></i>Home</a>
+                                <li class="mt-[10px]">
+                                    <a href="{{ route('contact_us') }}"
+                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Contact</a>
                             </ul>
                         </div>
@@ -168,7 +256,7 @@
                             <div class="grid grid-cols-1">
                                 <div class="w-full leading-[0] border-0">
                                     <iframe src="{{ get_static_option('embed_map_link') }}" style="border:0"
-                                        class="w-full h-[150px]" allowfullscreen></iframe>
+                                        class="w-full h-[250px]" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <!--end grid-->

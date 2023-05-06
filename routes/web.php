@@ -27,6 +27,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
         Route::get('all_supplier_profile', 'FrontendController@all_supplier_profile')->name('all_supplier_profile'); // Done
         Route::get('all_products', 'FrontendController@all_products')->name('all_products'); // Done
         Route::get('all_brands', 'FrontendController@all_brands')->name('all_brands');
+        Route::get('brand_products/{brand}', 'FrontendController@brand_products')->name('brand_products');
         Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details'); // Done
         Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm'); // Done
     });

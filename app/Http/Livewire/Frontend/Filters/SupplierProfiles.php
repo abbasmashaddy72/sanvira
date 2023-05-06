@@ -35,25 +35,17 @@ class SupplierProfiles extends Component
             $manufacturer_id = $this->manufacturer_id;
             $supplier_product_category_id = $this->supplier_product_category_id;
 
-            $suppliers = Supplier::whereHas('supplierProducts', function ($query) use ($brand_id, $manufacturer_id, $supplier_product_category_id) {
+            $suppliers = Supplier::withCount('products')->whereHas('products', function ($query) use ($brand_id, $manufacturer_id, $supplier_product_category_id) {
                 $query->whereIn('brand_id', $brand_id)
                     ->orWhereIn('manufacturer_id', $manufacturer_id)
                     ->orWhereIn('supplier_product_category_id', $supplier_product_category_id);
-            })->paginate(15);
-
-            $suppliers_count = Supplier::whereHas('supplierProducts', function ($query) use ($brand_id, $manufacturer_id, $supplier_product_category_id) {
-                $query->whereIn('brand_id', $brand_id)
-                    ->orWhereIn('manufacturer_id', $manufacturer_id)
-                    ->orWhereIn('supplier_product_category_id', $supplier_product_category_id);
-            })->count();
+            })->paginate(16);
         } else {
-            $suppliers = Supplier::paginate(15);
-            $suppliers_count = Supplier::count();
+            $suppliers = Supplier::withCount('products')->paginate(16);
         }
 
         return view('livewire.frontend.filters.supplier-profiles', compact([
             'suppliers',
-            'suppliers_count'
         ]));
     }
 }

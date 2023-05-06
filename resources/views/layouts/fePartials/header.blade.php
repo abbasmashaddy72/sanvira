@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<nav id='topnav' class="items-center bg-white defaultscroll is-sticky">
+<nav id='topnav' class="z-30 items-center bg-white defaultscroll is-sticky">
     <div class="container">
         <a class="flex items-center pt-1 mr-4 logo" href="{{ route('homepage') }}">
             <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="object-cover w-24 h-14"

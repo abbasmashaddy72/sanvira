@@ -37,6 +37,41 @@
 /*            01) Tiny slider              */
 //=========================================//
 
+if (document.getElementsByClassName("tiny-single-item").length > 0) {
+    var slider = tns({
+        container: ".tiny-single-item",
+        items: 1,
+        controls: false,
+        mouseDrag: true,
+        loop: true,
+        rewind: true,
+        autoplay: true,
+        autoplayButtonOutput: false,
+        autoplayTimeout: 3000,
+        navPosition: "bottom",
+        speed: 400,
+        gutter: 16,
+    });
+}
+
+if (document.getElementsByClassName("tiny-single-item-products").length > 0) {
+    var slider = tns({
+        container: ".tiny-single-item-products",
+        items: 1,
+        controls: false,
+        mouseDrag: true,
+        loop: true,
+        rewind: true,
+        autoplay: true,
+        autoplayButtonOutput: false,
+        autoplayTimeout: 3000,
+        navPosition: "bottom",
+        speed: 400,
+        fixedWidth: 400,
+        center: true,
+    });
+}
+
 if (document.getElementsByClassName("tiny-three-item").length > 0) {
     var slider = tns({
         container: ".tiny-three-item",

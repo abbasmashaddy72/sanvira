@@ -31,5 +31,6 @@ class DatabaseSeeder extends Seeder
         $this->call(SupplierTestimonialSeeder::class);
         $this->call(BrandTransactionSeeder::class);
         $this->call(SupplierTransactionSeeder::class);
+        $this->call(SliderSeeder::class);
     }
 }

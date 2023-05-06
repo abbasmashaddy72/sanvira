@@ -306,9 +306,9 @@ try {
 } catch (error) {}
 
 // Tiny Slider
-if (document.getElementsByClassName("tiny-six-item").length > 0) {
+if (document.getElementsByClassName("tiny-five-item").length > 0) {
     var slider = tns({
-        container: ".tiny-six-item",
+        container: ".tiny-five-item",
         controls: true,
         mouseDrag: true,
         loop: true,
@@ -326,15 +326,15 @@ if (document.getElementsByClassName("tiny-six-item").length > 0) {
         gutter: 0,
         responsive: {
             1025: {
-                items: 6,
+                items: 5,
             },
 
             992: {
-                items: 4,
+                items: 3,
             },
 
             767: {
-                items: 3,
+                items: 2,
             },
 
             320: {

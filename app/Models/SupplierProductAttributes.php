@@ -17,6 +17,6 @@ class SupplierProductAttributes extends Model
 
     public function supplierProducts()
     {
-        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id');
+        return $this->belongsTo(SupplierProduct::class);
     }
 }

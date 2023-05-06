@@ -107,9 +107,9 @@ class SupplierProfilePage extends Component
     {
         $supplier_certificates = SupplierCertificate::where('supplier_id', $this->profile->id)->get();
         $supplier_products = SupplierProduct::where('supplier_id', $this->profile->id)->paginate(6);
-        $supplier_projects = SupplierProject::where('supplier_id', $this->profile->id)->get();
+        $supplier_projects = SupplierProject::where('supplier_id', $this->profile->id)->orderBy('year_range', 'DESC')->get();
         $supplier_teams = SupplierTeam::where('supplier_id', $this->profile->id)->get();
-        $supplier_testimonials = SupplierTestimonial::where('supplier_id', $this->profile->id)->orderBy('year', 'ASC')->get();
+        $supplier_testimonials = SupplierTestimonial::where('supplier_id', $this->profile->id)->orderBy('year', 'DESC')->get();
 
         return view('livewire.frontend.filters.supplier-profile-page', compact([
             'supplier_certificates',
