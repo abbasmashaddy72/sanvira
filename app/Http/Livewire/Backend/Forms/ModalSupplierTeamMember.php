@@ -13,7 +13,7 @@ class ModalSupplierTeamMember extends ModalComponent
     // Set Data
     public $supplier_team_member_id, $supplier_id;
     // Model Values
-    public $name, $image, $designation;
+    public $name, $image, $email, $phone, $designation;
 
     public function mount()
     {
@@ -21,6 +21,8 @@ class ModalSupplierTeamMember extends ModalComponent
             $data = SupplierTeam::findOrFail($this->supplier_team_member_id);
             $this->supplier_id = $data->supplier_id;
             $this->name = $data->name;
+            $this->email = $data->email;
+            $this->phone = $data->phone;
             $this->image = $data->image;
             $this->designation = $data->designation;
         }
@@ -28,6 +30,8 @@ class ModalSupplierTeamMember extends ModalComponent
 
     protected $rules = [
         'name' => '',
+        'email' => '',
+        'phone' => '',
         'image' => '',
         'designation' => '',
     ];

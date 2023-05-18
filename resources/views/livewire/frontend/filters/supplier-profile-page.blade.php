@@ -115,54 +115,43 @@
         </div>
 
         <div class="mt-4 bg-white rounded">
-            <ul class="flex flex-col justify-center w-full text-center sm:flex-row lg:justify-start">
+            <ul class="flex items-center justify-start w-full p-2 space-x-2 text-center">
                 <li>
                     <button wire:click='showProfile'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($profileShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Profile</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($profileShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Profile</button>
                 </li>
 
                 <li>
                     <button wire:click='showCertificatesAwards'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($certificatesAwardsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Certificate / Award</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($certificatesAwardsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Certificate
+                        / Award</button>
                 </li>
 
                 <li>
                     <button wire:click='showProjects'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($projectsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Projects</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($projectsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Projects</button>
                 </li>
 
                 <li>
                     <button wire:click='showTeams'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($teamsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Team Members</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($teamsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Team
+                        Members</button>
                 </li>
 
                 <li>
                     <button wire:click='showTestimonials'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($testimonialsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Testimonials</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($testimonialsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Testimonials</button>
                 </li>
 
                 <li>
                     <button wire:click='showTermsConditions'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($termsConditionsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Terms & Conditions</h6>
-                    </button>
+                        class="py-2 px-4 font-medium rounded @if ($termsConditionsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Terms
+                        & Conditions</button>
                 </li>
 
                 <li>
-                    <button wire:click.prefetch='showProducts'
-                        class="block p-5 py-4 border-2 border-transparent  @if ($productsShow) font-medium border-b-blue-600 @else text-gray-600 @endif">
-                        <h6 class="font-medium">Products</h6>
-                    </button>
+                    <button wire:click='showProducts'
+                        class="py-2 px-4 font-medium rounded @if ($productsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">Products</button>
                 </li>
             </ul>
         </div>

@@ -17,7 +17,26 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = 'admin/dashboard';
+    public static function HOME()
+    {
+        $role = auth()->user()->roles->first()->name;
+        switch ($role) {
+            case 'admin':
+                return 'admin/dashboard';
+                break;
+            case 'supplier':
+                return 'admin/dashboard';
+                break;
+            case 'contractor':
+                return '/';
+                break;
+
+            default:
+                return '/';
+                break;
+        }
+    }
+
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

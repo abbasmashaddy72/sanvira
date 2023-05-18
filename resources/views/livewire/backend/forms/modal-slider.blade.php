@@ -7,11 +7,7 @@
         <div class="grid gap-y-2">
             <x-input name="name" label="Name" type="text" wire:model='name' />
 
-            <x-input name="email" label="Email" type="email" wire:model='email' />
-
-            <x-input name="phone" label="Phone Number" type="number" wire:model='phone' />
-
-            <x-input name="designation" label="Designation" type="text" wire:model='designation' />
+            <x-input name="url" label="Redirect Url" type="text" wire:model='url' />
 
             <x-input name="image" label="Image" type="file" wire:model='image' />
         </div>

@@ -12,6 +12,8 @@ class SupplierTeam extends Model
     protected $fillable = [
         'supplier_id',
         'name',
+        'email',
+        'phone',
         'designation',
         'image',
     ];

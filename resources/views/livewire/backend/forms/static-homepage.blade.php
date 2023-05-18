@@ -2,12 +2,12 @@
     <form wire:submit.prevent="add">
         <div class="grid grid-cols-3 gap-2">
             <div>
-                @if ($this->home_image)
+                @if ($this->footer_logo)
                     <div class="my-4">
                         <div class="mb-2">
                             <label class="block">
-                                <x-label label="Uploaded Home Image Preview" />
-                                <img src="{{ $this->homeImageIsUploaded ? $this->home_image->temporaryUrl() : url('storage/' . $this->home_image) }}"
+                                <x-label label="Uploaded Footer Logo Preview" />
+                                <img src="{{ $this->homeImageIsUploaded ? $this->footer_logo->temporaryUrl() : url('storage/' . $this->footer_logo) }}"
                                     class="mt-2" width="250" height="300">
                             </label>
                         </div>
@@ -17,12 +17,12 @@
                 <div class="my-4">
                     <div class="mb-2">
                         <label class="block">
-                            <x-label label="Home Image" />
-                            <input type="file" accept="image/*" wire:model="home_image"
+                            <x-label label="Footer Logo" />
+                            <input type="file" accept="image/*" wire:model="footer_logo"
                                 class="block w-full mt-2 text-xl font-normal text-gray-500 border rounded outline-none focus:border-blue-400 focus:shadow">
                         </label>
                     </div>
-                    <x-errors name="home_image" />
+                    <x-errors name="footer_logo" />
                 </div>
             </div>
 
@@ -80,6 +80,15 @@
                     type="text" wire:model='embed_map_link' />
 
             </div>
+        </div>
+
+        <div>
+            <x-backend.ckEditor id="body1en" lang="EN" name="privacy_policy" label="Privacy Policy"
+                wire:model='privacy_policy' />
+        </div>
+        <div>
+            <x-backend.ckEditor id="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
+                wire:model='terms_conditions' />
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>

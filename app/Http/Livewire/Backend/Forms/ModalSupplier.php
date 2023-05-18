@@ -84,6 +84,11 @@ class ModalSupplier extends ModalComponent
         $this->closeModal();
     }
 
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
+    }
+
     public function render()
     {
         return view('livewire.backend.forms.modal-supplier');

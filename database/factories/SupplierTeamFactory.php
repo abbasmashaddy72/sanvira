@@ -22,6 +22,8 @@ class SupplierTeamFactory extends Factory
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'name' => $this->faker->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'phone' => rand(7000000000, 9000000000),
             'designation' => $this->faker->companySuffix(),
             'image' => $images[array_rand($images)],
         ];

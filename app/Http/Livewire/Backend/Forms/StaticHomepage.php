@@ -10,16 +10,18 @@ class StaticHomepage extends Component
 {
     use WithFileUploads, Actions;
 
-    public $home_image, $logo, $short_description, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link;
+    public $footer_logo, $logo, $short_description,$privacy_policy,$terms_conditions, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link;
 
     public $homeImageIsUploaded = false;
     public $logoIsUploaded = false;
 
     public function mount()
     {
-        $this->home_image = get_static_option('home_image');
+        $this->footer_logo = get_static_option('footer_logo');
         $this->logo = get_static_option('logo');
         $this->short_description = get_static_option('short_description');
+        $this->privacy_policy = get_static_option('privacy_policy');
+        $this->terms_conditions = get_static_option('terms_conditions');
         $this->twitter = get_static_option('twitter');
         $this->facebook = get_static_option('facebook');
         $this->instagram = get_static_option('instagram');
@@ -30,7 +32,7 @@ class StaticHomepage extends Component
     }
 
     protected $rules = [
-        'home_image' => 'required',
+        'footer_logo' => 'required',
         'logo' => 'required',
         'short_description' => 'required',
         'twitter' => 'required',
@@ -46,7 +48,7 @@ class StaticHomepage extends Component
     {
         $this->validateOnly($propertyName);
 
-        if (gettype($this->home_image) != 'string') {
+        if (gettype($this->footer_logo) != 'string') {
             $this->homeImageIsUploaded = true;
         }
 
@@ -60,10 +62,10 @@ class StaticHomepage extends Component
         $validatedData = $this->validate();
 
         foreach ($validatedData as $key => $value) {
-            if ($key == 'home_image' && !empty($validatedData['home_image']) && gettype($validatedData['home_image']) != 'string') {
-                $home_image = $validatedData['home_image']->store('frontend', 'public');
-                set_static_option($key, $home_image);
-                unset($validatedData['home_image']);
+            if ($key == 'footer_logo' && !empty($validatedData['footer_logo']) && gettype($validatedData['footer_logo']) != 'string') {
+                $footer_logo = $validatedData['footer_logo']->store('frontend', 'public');
+                set_static_option($key, $footer_logo);
+                unset($validatedData['footer_logo']);
             } elseif ($key == 'logo' && !empty($validatedData['logo']) && gettype($validatedData['logo']) != 'string') {
                 $logo = $validatedData['logo']->store('frontend', 'public');
                 set_static_option($key, $logo);

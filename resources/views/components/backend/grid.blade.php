@@ -1,5 +1,5 @@
-<div class="flex items-center mt-8">
-    <h2 class="mr-auto text-lg font-medium">
+<div class="flex items-center justify-between mt-8">
+    <h2 class="inline-flex text-lg font-medium">
         @if (getRouteAction() == 'create')
             {{ __('Create') }} {{ $title }}
         @elseif(getRouteAction() == 'edit')
@@ -8,6 +8,9 @@
             {{ __('Show') }} {{ $title }}
         @else
             {{ $title }}
+        @endif
+        @if (!empty($externalLink))
+            {{ $externalLink }}
         @endif
     </h2>
     @if (Route::currentRouteName() != 'admin.dashboard' && !empty($rt_button))

@@ -6,12 +6,11 @@
                 class="text-4xl font-bold leading-normal lg:leading-normal @if ($type == 'common-top') lg:text-3xl @else lg:text-5xl @endif">
                 Your
                 <span class="text-blue-600">SuperCharged</span>
-                Procurement Marketplace
+                Construction Marketplace!
             </h1>
             @if ($type == 'common-top')
             @else
-                <p class="max-w-xl mx-auto mt-5 text-lg">Reinventing the way organization procure by digitizing
-                    construction commerce using state of art technology</p>
+                <p class="max-w-3xl mx-auto mt-5 text-lg">{{ get_static_option('short_description') }}</p>
             @endif
         </div>
         <div class="">

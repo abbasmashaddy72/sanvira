@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
+            $table->string('email');
+            $table->bigInteger('phone');
             $table->string('designation');
             $table->string('image');
             $table->timestamps();

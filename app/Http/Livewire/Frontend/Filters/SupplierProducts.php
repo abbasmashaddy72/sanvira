@@ -27,6 +27,8 @@ class SupplierProducts extends Component
     public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
     // 2nd Filter Options
     public $setButton = 'relevance';
+    // 3rd Filter Options
+    public $availableLetters, $alphabet = 'A';
 
     public function mount()
     {
@@ -37,6 +39,20 @@ class SupplierProducts extends Component
         } else {
             $this->page_title = $this->page_title ?? $this->type;
         }
+        if (!empty($this->product_category)) {
+            $this->supplier_product_category_id = $this->product_category->id;
+        }
+        if ($this->type == 'All Category Page') {
+            $this->availableLetters = SupplierProductCategory::where('parent_id', 0)->pluck('name')->map(function ($name) {
+                return substr($name, 0, 1);
+            })->unique()->toArray();
+        }
+    }
+
+    public function applyAlp($item)
+    {
+        $this->alphabet = $item;
+        $this->applyFilter = true;
     }
 
     public function apply()
@@ -67,12 +83,16 @@ class SupplierProducts extends Component
 
     public function render()
     {
-        $sub_product_category = [];
+        if (!empty($this->alphabet) && $this->applyFilter == true) {
+            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . "%")->get();
+        } else {
+            $sub_product_category = [];
+        }
 
         if ($this->applyFilter == true) {
             $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory']);
 
-            if ($this->type == 'On Sale') {
+            if ($this->type == 'On Sale' || $this->setButton == 'onSale') {
                 $supplier_products->where('on_sale', 1);
             }
             if ($this->type == 'Profile Page') {

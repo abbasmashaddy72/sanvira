@@ -61,6 +61,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('contractor', 'ContractorController@index')->name('contractor');
     Route::get('sub-contractor', 'SubContractorController@index')->name('sub-contractor');
     Route::get('homepage', 'StaticController@homepage')->name('homepage');
+    Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });
 
 require __DIR__ . '/auth.php';

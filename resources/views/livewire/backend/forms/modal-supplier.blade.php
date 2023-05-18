@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
+        <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
             <x-input name="company_name" label="Company Name" type="text" wire:model='company_name' />
 
             <x-input name="company_email" label="Company Email" type="email" wire:model='company_email' />
@@ -23,8 +23,6 @@
 
             <x-input name="website_url" label="Website Url" type="text" wire:model='website_url' />
 
-            <x-input name="description" label="Description" type="text" wire:model='description' />
-
             <x-input name="terms_conditions" label="Terms & Conditions" type="text" wire:model='terms_conditions' />
 
             <x-input name="contact_person_name" label="Contact Person Name" type="text"
@@ -35,6 +33,14 @@
 
             <x-input name="contact_person_number" label="Contact Person Number" type="number"
                 wire:model='contact_person_number' />
+        </div>
+        <div>
+            <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
+                wire:model='description' />
+        </div>
+        <div>
+            <x-backend.ckEditor id="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
+                wire:model='terms_conditions' />
         </div>
     </x-slot>
 

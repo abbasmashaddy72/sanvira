@@ -58,3 +58,7 @@ import "./components/side-menu-tooltip";
 import "./components/new-dark-mode-switcher";
 
 // import "../../../vendor/wire-elements/modal/resources/js/modal";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+window.ClassicEditor = ClassicEditor;
+

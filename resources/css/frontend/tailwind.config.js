@@ -20,6 +20,7 @@ module.exports = {
         "./vendor/wireui/wireui/resources/**/*.blade.php",
         "./vendor/wireui/wireui/ts/**/*.ts",
         "./vendor/wireui/wireui/src/View/**/*.php",
+        "./node_modules/flowbite/**/*.js",
     ],
     darkMode: "class",
     important: true,
@@ -73,5 +74,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require("@tailwindcss/line-clamp")],
+    plugins: [require("@tailwindcss/line-clamp"), require("flowbite/plugin")],
 };

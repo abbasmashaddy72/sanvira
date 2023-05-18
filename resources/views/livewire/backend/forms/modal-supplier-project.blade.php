@@ -5,20 +5,16 @@
 
     <x-slot name="content">
         <x-dialog z-index="z-50" blur="md" align="center" />
-        <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
+        <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
             <x-input name="name" label="Name" type="text" wire:model='name' />
 
             <x-input name="country" label="Country" type="text" wire:model='country' />
 
             <x-input name="city" label="City" type="text" wire:model='city' />
 
-            <x-textarea name="description" label="Description" type="text" wire:model='description' />
-
             <x-input name="year_range" label="Year Range" type="text" wire:model='year_range' />
 
             <x-textarea name="feedback" label="Feedback" type="text" wire:model='feedback' />
-
-            <x-checkbox name="on_sale" label="On Sale" wire:model='on_sale' />
 
             <div class="card">
                 <div class="card-body">
@@ -53,6 +49,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div>
+            <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
+                wire:model='description' />
         </div>
     </x-slot>
 

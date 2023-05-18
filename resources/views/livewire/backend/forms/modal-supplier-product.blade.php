@@ -5,10 +5,8 @@
 
     <x-slot name="content">
         <x-dialog z-index="z-50" blur="md" align="center" />
-        <div class="grid grid-cols-2 gap-y-2 gap-x-2">
+        <div class="grid grid-cols-2 gap-x-2">
             <x-input name="name" label="Name" type="text" wire:model='name' />
-
-            <x-textarea name="description" label="Description" type="text" wire:model='description' />
 
             <x-input name="min_max_oq" label="Min - Max Order Quantity" type="text" wire:model='min_max_oq' />
 
@@ -94,6 +92,11 @@
 
                 </div>
             @endforeach
+        </div>
+
+        <div>
+            <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
+                wire:model='description' />
         </div>
     </x-slot>
 

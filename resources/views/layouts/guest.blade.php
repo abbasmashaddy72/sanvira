@@ -26,13 +26,17 @@
 
     @include('layouts.fePartials.header')
 
-    @if (\Route::currentRouteName() != 'homepage')
-        @livewire('frontend.form.search', ['type' => 'common-top'])
+    @if (!empty($topSection))
+        {{ $topSection }}
     @else
-        @livewire('frontend.form.search')
-    @endif
+        @if (\Route::currentRouteName() != 'homepage')
+            @livewire('frontend.form.search', ['type' => 'common-top'])
+        @else
+            @livewire('frontend.form.search')
+        @endif
 
-    @include('layouts.fePartials.sub-nav')
+        @include('layouts.fePartials.sub-nav')
+    @endif
 
     {{ $slot }}
 
