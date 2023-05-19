@@ -34,13 +34,13 @@ class SupplierFactory extends Factory
             'company_locality' => $this->faker->streetName(),
             'tagline' => $this->faker->realText(),
             'logo' => $images[array_rand($images)],
-            'yoe' => rand(1994, 2020),
+            'doe' => $this->faker->date('Y-m-d'),
+            'license' => rand(7000000000, 9000000000),
+            'type' => $this->faker->mimeType(),
             'website_url' => $this->faker->url(),
             'description' => $description,
             'terms_conditions' => $description,
-            'contact_person_name' => $this->faker->name(),
-            'contact_person_email' => $this->faker->email(),
-            'contact_person_number' => rand(7000000000, 9000000000),
+            'agree' => rand(0, 1)
         ];
     }
 }

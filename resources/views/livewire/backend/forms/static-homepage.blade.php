@@ -18,7 +18,7 @@
                     <div class="mb-2">
                         <label class="block">
                             <x-label label="Footer Logo" />
-                            <input type="file" accept="image/*" wire:model="footer_logo"
+                            <input type="file" accept="image/*" wire:model.defer="footer_logo"
                                 class="block w-full mt-2 text-xl font-normal text-gray-500 border rounded outline-none focus:border-blue-400 focus:shadow">
                         </label>
                     </div>
@@ -43,7 +43,7 @@
                     <div class="mb-2">
                         <label class="block">
                             <x-label label="Logo" />
-                            <input type="file" accept="image/*" wire:model="logo"
+                            <input type="file" accept="image/*" wire:model.defer="logo"
                                 class="block w-full mt-2 text-xl font-normal text-gray-500 border rounded outline-none focus:border-blue-400 focus:shadow">
                         </label>
                     </div>
@@ -51,23 +51,24 @@
                 </div>
             </div>
 
-            <x-textarea name="short_description" label="Short Description" wire:model='short_description' />
+            <x-textarea name="short_description" label="Short Description" wire:model.defer='short_description' />
             <div>
                 <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
                     {{ __('Social Media Links') }}
                 </h4>
 
-                <x-input name="twitter" label="Twitter" type="text" wire:model='twitter' />
+                <x-input name="twitter" label="Twitter" type="text" wire:model.defer='twitter' />
 
-                <x-input name="facebook" label="Facebook" type="text" wire:model='facebook' />
+                <x-input name="facebook" label="Facebook" type="text" wire:model.defer='facebook' />
 
-                <x-input name="instagram" label="Instagram" type="text" wire:model='instagram' />
+                <x-input name="instagram" label="Instagram" type="text" wire:model.defer='instagram' />
 
-                <x-input name="linkedin" label="Linkedin" type="text" wire:model='linkedin' />
+                <x-input name="linkedin" label="Linkedin" type="text" wire:model.defer='linkedin' />
 
-                <x-input name="youtube" label="Youtube" type="text" wire:model='youtube' />
+                <x-input name="youtube" label="Youtube" type="text" wire:model.defer='youtube' />
 
-                <x-input name="google_business" label="Google Business" type="text" wire:model='google_business' />
+                <x-input name="google_business" label="Google Business" type="text"
+                    wire:model.defer='google_business' />
             </div>
 
             <div>
@@ -77,18 +78,18 @@
 
                 <x-input name="embed_map_link"
                     label="Embed Map Link(Directly from Google Maps Search, Share, Embed copy src link & paste)"
-                    type="text" wire:model='embed_map_link' />
+                    type="text" wire:model.defer='embed_map_link' />
 
             </div>
         </div>
 
         <div>
             <x-backend.ckEditor id="body1en" lang="EN" name="privacy_policy" label="Privacy Policy"
-                wire:model='privacy_policy' />
+                wire:model.defer='privacy_policy' />
         </div>
         <div>
             <x-backend.ckEditor id="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
-                wire:model='terms_conditions' />
+                wire:model.defer='terms_conditions' />
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>

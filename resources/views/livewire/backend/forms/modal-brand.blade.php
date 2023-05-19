@@ -5,9 +5,9 @@
 
     <x-slot name="content">
         <div class="grid gap-y-2">
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
-            <x-input name="image" label="Image" type="file" wire:model='image' />
+            <x-input name="image" label="Image" type="file" wire:model.defer='image' />
         </div>
     </x-slot>
 

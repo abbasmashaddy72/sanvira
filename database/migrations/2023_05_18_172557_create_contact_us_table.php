@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('supplier_product_categories', function (Blueprint $table) {
+        Schema::create('contact_us', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->string('image');
-            $table->unsignedInteger('parent_id')->default(0)->nullable();
+            $table->string('email');
+            $table->string('company_name');
+            $table->string('job_title');
+            $table->string('tob');
+            $table->string('contact_no');
+            $table->longText('message');
+            $table->boolean('agree')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('supplier_product_categories');
+        Schema::dropIfExists('contact_us');
     }
 };

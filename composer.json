@@ -26,6 +26,7 @@
         "laravel/tinker": "^2.7.3",
         "livewire/livewire": "^2.10.8",
         "mediconesystems/livewire-datatables": "^0.10.0",
+        "monarobase/country-list": "^3.4",
         "opcodesio/log-viewer": "^2.4",
         "outhebox/laravel-translations": "^0.0.6",
         "owen-it/laravel-auditing": "^13.0.5",

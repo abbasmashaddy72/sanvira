@@ -6,24 +6,24 @@
     <x-slot name="content">
         <x-dialog z-index="z-50" blur="md" align="center" />
         <div class="grid grid-cols-2 gap-x-2">
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
-            <x-input name="min_max_oq" label="Min - Max Order Quantity" type="text" wire:model='min_max_oq' />
+            <x-input name="min_max_oq" label="Min - Max Order Quantity" type="text" wire:model.defer='min_max_oq' />
 
-            <x-input name="edt" label="Estimate Delivery Time in Days" type="text" wire:model='edt' />
+            <x-input name="edt" label="Estimate Delivery Time in Days" type="text" wire:model.defer='edt' />
 
-            <x-input name="avb_stock" label="Available Stock" type="text" wire:model='avb_stock' />
+            <x-input name="avb_stock" label="Available Stock" type="text" wire:model.defer='avb_stock' />
 
-            <x-input name="model" label="Model" type="text" wire:model='model' />
+            <x-input name="model" label="Model" type="text" wire:model.defer='model' />
 
-            <x-input name="item_type" label="Item Type" type="text" wire:model='item_type' />
+            <x-input name="item_type" label="Item Type" type="text" wire:model.defer='item_type' />
 
-            <x-input name="sku" label="Stock Keeping Unit" type="text" wire:model='sku' />
+            <x-input name="sku" label="Stock Keeping Unit" type="text" wire:model.defer='sku' />
 
-            <x-checkbox name="on_sale" label="On Sale" wire:model='on_sale' />
+            <x-checkbox name="on_sale" label="On Sale" wire:model.defer='on_sale' />
 
             <x-input name="price" label="Price if Range (123-321) & Specific Price (123)" type="text"
-                wire:model='price' />
+                wire:model.defer='price' />
 
             <div class="card">
                 <div class="card-body">
@@ -53,7 +53,8 @@
                         </div>
                     @endif
                     <div class="mb-3">
-                        <x-input name="images" label="Upload Images" type="file" wire:model='images' multiple />
+                        <x-input name="images" label="Upload Images" type="file" wire:model.defer='images'
+                            multiple />
                         <div wire:loading wire:target="images">Uploading...</div>
                     </div>
                 </div>
@@ -72,8 +73,8 @@
         <div>
             <div class="flex items-center">
                 <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
-                    <x-input name="name_spa.0" label="Attribute Name" type="text" wire:model='name_spa.0' />
-                    <x-input name="value_spa.0" label="Attribute Value" type="text" wire:model='value_spa.0' />
+                    <x-input name="name_spa.0" label="Attribute Name" type="text" wire:model.defer='name_spa.0' />
+                    <x-input name="value_spa.0" label="Attribute Value" type="text" wire:model.defer='value_spa.0' />
                 </div>
                 <button class="inline-flex flex-shrink-0 ml-2 btn btn-primary"
                     wire:click.prevent="add({{ $i }})">Add</button>
@@ -83,9 +84,9 @@
                 <div class="flex items-center">
                     <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
                         <x-input name="name_spa.{{ $input_value }}" label="Attribute Name" type="text"
-                            wire:model='name_spa.{{ $input_value }}' />
+                            wire:model.defer='name_spa.{{ $input_value }}' />
                         <x-input name="value_spa.{{ $input_value }}" label="Attribute Value" type="text"
-                            wire:model='value_spa.{{ $input_value }}' />
+                            wire:model.defer='value_spa.{{ $input_value }}' />
                     </div>
                     <button class="inline-flex flex-shrink-0 ml-2 btn btn-danger"
                         wire:click.prevent="remove({{ $key }})">Remove</button>
@@ -96,7 +97,7 @@
 
         <div>
             <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
-                wire:model='description' />
+                wire:model.defer='description' />
         </div>
     </x-slot>
 

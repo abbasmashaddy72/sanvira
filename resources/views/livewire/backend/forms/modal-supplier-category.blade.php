@@ -6,13 +6,13 @@
     <x-slot name="content">
         <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
             <div class="flex space-x-6">
-                <x-radio id="main-category" label="Main Category" wire:model="type" value='Main Category' />
-                <x-radio id="sub-category" label="Sub Category" wire:model="type" value='Sub Category' />
+                <x-radio id="main-category" label="Main Category" wire:model.defer="type" value='Main Category' />
+                <x-radio id="sub-category" label="Sub Category" wire:model.defer="type" value='Sub Category' />
             </div>
 
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
-            <x-input name="image" label="Image" type="file" wire:model='image' />
+            <x-input name="image" label="Image" type="file" wire:model.defer='image' />
 
             @if ($type == 'Sub Category')
                 <x-select label="Select Parent Category" wire:model.defer="parent_id"

@@ -5,12 +5,14 @@
 
     <x-slot name="content">
         <div class="grid gap-y-2">
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
-            @foreach ($permissions as $permission)
-                <x-checkbox id="{{ $permission->slug }}" label="{{ $permission->name }}"
-                    wire:model='permissions_array.{{ $permission->id }}' />
-            @endforeach
+            <div class="grid grid-cols-5 gap-2">
+                @foreach ($permissions as $permission)
+                    <x-checkbox id="{{ $permission->slug }}" label="{{ $permission->name }}"
+                        wire:model.defer='permissions_array.{{ $permission->id }}' />
+                @endforeach
+            </div>
         </div>
     </x-slot>
 

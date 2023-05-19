@@ -11,6 +11,7 @@ class SupplierTeam extends Model
 
     protected $fillable = [
         'supplier_id',
+        'user_id',
         'name',
         'email',
         'phone',
@@ -21,5 +22,10 @@ class SupplierTeam extends Model
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

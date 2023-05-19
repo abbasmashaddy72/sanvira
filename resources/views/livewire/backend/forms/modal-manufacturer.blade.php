@@ -5,7 +5,7 @@
 
     <x-slot name="content">
         <div class="grid gap-y-2">
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
         </div>
     </x-slot>
 

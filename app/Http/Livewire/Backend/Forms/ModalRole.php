@@ -23,6 +23,9 @@ class ModalRole extends ModalComponent
             $data = Role::findOrFail($this->role_id);
             $this->name = $data->name;
             $this->slug = $data->slug;
+            $this->permissions_array = Permission::whereHas('roles', function ($query) {
+                $query->where('id', $this->role_id);
+            })->get('id')->toArray();
         }
     }
 
@@ -45,15 +48,18 @@ class ModalRole extends ModalComponent
 
             Role::where('id', $this->role_id)->update($validatedData);
 
-            $role->permissions()->sync($this->permissions_array);
+            foreach (array_filter($this->permissions_array) as $key => $item) {
+                $role->permissions()->syncWithoutDetaching($key);
+            }
 
             $this->notification()->success($title = 'Role Updated Successfully!');
         } else {
             $validatedData['slug'] = str_replace(' ', '-', strtolower($validatedData['name']));
-
             $role = Role::create($validatedData);
 
-            $role->permissions()->sync($this->permissions_array)->dd();
+            foreach (array_filter($this->permissions_array) as $key => $item) {
+                $role->permissions()->attach($key);
+            }
 
             $this->notification()->success($title = 'Role Saved Successfully!');
         }
@@ -61,6 +67,11 @@ class ModalRole extends ModalComponent
         $this->emit('refreshLivewireDatatable');
 
         $this->closeModal();
+    }
+
+    public static function modalMaxWidth(): string
+    {
+        return '7xl';
     }
 
     public function render()

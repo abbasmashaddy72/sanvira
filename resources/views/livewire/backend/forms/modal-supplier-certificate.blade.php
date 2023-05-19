@@ -5,11 +5,11 @@
 
     <x-slot name="content">
         <div class="grid gap-y-2">
-            <x-input name="title" label="Title" type="text" wire:model='title' />
+            <x-input name="title" label="Title" type="text" wire:model.defer='title' />
 
-            <x-select name="type" label="Type" :options="['Award', 'Certificate']" wire:model='type' />
+            <x-select name="type" label="Type" :options="['Award', 'Certificate']" wire:model.defer='type' />
 
-            <x-input name="attachment" label="Attachment" type="file" wire:model='attachment' />
+            <x-input name="attachment" label="Attachment" type="file" wire:model.defer='attachment' />
         </div>
     </x-slot>
 

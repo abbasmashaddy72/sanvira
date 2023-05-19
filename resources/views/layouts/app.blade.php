@@ -24,7 +24,6 @@
 
     @wireUiScripts
     @vite('resources/js/backend/app.js')
-    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/27.1.0/classic/ckeditor.js"></script> --}}
     @stack('styles')
     @livewireStyles
 </head>

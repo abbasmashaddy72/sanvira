@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Supplier;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +22,7 @@ class SupplierTeamFactory extends Factory
 
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
+            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
             'name' => $this->faker->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => rand(7000000000, 9000000000),

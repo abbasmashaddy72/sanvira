@@ -113,7 +113,7 @@ class AuthPermissionCommand extends Command
         if ($role = Role::where('name', 'Super Admin')->first()) {
             $role = Role::where('name', 'Super Admin')->first();
 
-            $role->permissions()->attach(Permission::all());
+            $role->permissions()->sync(Permission::all());
 
             $this->info('Super Admin permissions updated.');
         } else {

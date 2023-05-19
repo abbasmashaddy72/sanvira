@@ -6,15 +6,15 @@
     <x-slot name="content">
         <x-dialog z-index="z-50" blur="md" align="center" />
         <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
-            <x-input name="name" label="Name" type="text" wire:model='name' />
+            <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
-            <x-input name="country" label="Country" type="text" wire:model='country' />
+            <x-input name="country" label="Country" type="text" wire:model.defer='country' />
 
-            <x-input name="city" label="City" type="text" wire:model='city' />
+            <x-input name="city" label="City" type="text" wire:model.defer='city' />
 
-            <x-input name="year_range" label="Year Range" type="text" wire:model='year_range' />
+            <x-input name="year_range" label="Year Range" type="text" wire:model.defer='year_range' />
 
-            <x-textarea name="feedback" label="Feedback" type="text" wire:model='feedback' />
+            <x-textarea name="feedback" label="Feedback" type="text" wire:model.defer='feedback' />
 
             <div class="card">
                 <div class="card-body">
@@ -44,7 +44,8 @@
                         </div>
                     @endif
                     <div class="mb-3">
-                        <x-input name="images" label="Upload Images" type="file" wire:model='images' multiple />
+                        <x-input name="images" label="Upload Images" type="file" wire:model.defer='images'
+                            multiple />
                         <div wire:loading wire:target="images">Uploading...</div>
                     </div>
                 </div>
@@ -53,7 +54,7 @@
 
         <div>
             <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
-                wire:model='description' />
+                wire:model.defer='description' />
         </div>
     </x-slot>
 
