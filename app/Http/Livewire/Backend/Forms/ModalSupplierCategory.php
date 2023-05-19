@@ -16,13 +16,14 @@ class ModalSupplierCategory extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_category_id)) {
-            $data = SupplierProductCategory::findOrFail($this->supplier_category_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->name = $data->name;
-            $this->image = $data->image;
-            $this->parent_id = $data->parent_id;
+        if (empty($this->supplier_category_id)) {
+            return;
         }
+        $data = SupplierProductCategory::findOrFail($this->supplier_category_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->name = $data->name;
+        $this->image = $data->image;
+        $this->parent_id = $data->parent_id;
     }
 
     protected $rules = [

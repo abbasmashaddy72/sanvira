@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\StaticOption;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 // Gets Route Action Names
@@ -56,14 +55,14 @@ if (!function_exists('set_static_option')) {
                 'option_value' => $value
             ]);
             return true;
-        } else {
+        }
             StaticOption::where('option_name', $key)->update([
                 'option_name' => $key,
                 'option_value' => $value
             ]);
-            Cache::forget($key);
+            cache()->forget($key);
             return true;
-        }
+        
         return false;
     }
 }
@@ -75,7 +74,7 @@ if (!function_exists('get_static_option')) {
         global $option_name;
         $option_name = $key;
         $value = StaticOption::where('option_name', $option_name)->first();
-        Cache::remember($option_name, 86400, function () {
+        cache()->remember($option_name, 86400, function () {
             global $option_name;
             return StaticOption::where('option_name', $option_name)->first();
         });

@@ -96,7 +96,8 @@ class AppLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (isset($menu['sub_menu']) ?? $menu['sub_menu'] = []) {
+            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])){
+        continue;} 
 
                 foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
 
@@ -105,7 +106,8 @@ class AppLayout extends Component
                         $secondLevelActiveIndex = $subMenuKey;
                     }
 
-                    if (isset($subMenu['sub_menu'])) {
+                    if (!isset($subMenu['sub_menu'])){
+                continue;} 
 
                         foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
 
@@ -115,9 +117,9 @@ class AppLayout extends Component
                                 $thirdLevelActiveIndex = $lastSubMenuKey;
                             }
                         }
-                    }
+                    
                 }
-            }
+            
         }
 
         return [

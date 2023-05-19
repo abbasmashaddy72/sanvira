@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\SubContractor;
-use App\Models\SubContractorService;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

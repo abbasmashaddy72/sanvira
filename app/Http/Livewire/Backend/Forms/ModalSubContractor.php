@@ -16,17 +16,18 @@ class ModalSubContractor extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->sub_contractor_id)) {
-            $data = SubContractor::findOrFail($this->sub_contractor_id);
-            $this->user_id = $data->user_id;
-            $this->name = $data->name;
-            $this->email = $data->email;
-            $this->address = $data->address;
-            $this->number = $data->number;
-            $this->locality = $data->locality;
-            $this->description = $data->description;
-            $this->terms_conditions = $data->terms_conditions;
+        if (empty($this->sub_contractor_id)) {
+            return;
         }
+        $data = SubContractor::findOrFail($this->sub_contractor_id);
+        $this->user_id = $data->user_id;
+        $this->name = $data->name;
+        $this->email = $data->email;
+        $this->address = $data->address;
+        $this->number = $data->number;
+        $this->locality = $data->locality;
+        $this->description = $data->description;
+        $this->terms_conditions = $data->terms_conditions;
     }
 
     protected $rules = [

@@ -4,7 +4,7 @@
         <img src="{{ asset('storage/' . $item->image) }}"
             class="object-cover w-full h-32 mx-auto mb-3 rounded-lg shadow-md" alt="{{ $item->name }}">
         <span
-            class="text-xl font-medium transition-all duration-500 ease-in-out group-hover:text-indigo-600 line-clamp-1">{{ $item->name }}
+            class="text-xl font-medium transition-all duration-500 ease-in-out group-hover:text-blue-600 line-clamp-1">{{ $item->name }}
         </span>
         <div class="flex justify-between text-blue-600">
             <div class="text-sm font-medium text-gray-600 transition-all duration-500 ease-in-out">

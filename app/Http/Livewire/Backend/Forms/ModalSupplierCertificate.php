@@ -17,13 +17,14 @@ class ModalSupplierCertificate extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_certificate_id)) {
-            $data = SupplierCertificate::findOrFail($this->supplier_certificate_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->title = $data->title;
-            $this->attachment = $data->attachment;
-            $this->type = $data->type;
+        if (empty($this->supplier_certificate_id)) {
+            return;
         }
+        $data = SupplierCertificate::findOrFail($this->supplier_certificate_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->title = $data->title;
+        $this->attachment = $data->attachment;
+        $this->type = $data->type;
     }
 
     protected $rules = [

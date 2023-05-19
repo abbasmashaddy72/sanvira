@@ -34,8 +34,9 @@
         @else
             @livewire('frontend.form.search')
         @endif
-
-        @include('layouts.fePartials.sub-nav')
+        @if (\Route::currentRouteName() != 'contact_us')
+            @include('layouts.fePartials.sub-nav')
+        @endif
     @endif
 
     {{ $slot }}

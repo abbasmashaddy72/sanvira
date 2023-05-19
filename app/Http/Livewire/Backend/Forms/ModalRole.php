@@ -19,14 +19,15 @@ class ModalRole extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->role_id)) {
-            $data = Role::findOrFail($this->role_id);
-            $this->name = $data->name;
-            $this->slug = $data->slug;
-            $this->permissions_array = Permission::whereHas('roles', function ($query) {
-                $query->where('id', $this->role_id);
-            })->get('id')->toArray();
+        if (empty($this->role_id)) {
+            return;
         }
+        $data = Role::findOrFail($this->role_id);
+        $this->name = $data->name;
+        $this->slug = $data->slug;
+        $this->permissions_array = Permission::whereHas('roles', function ($query) {
+            $query->where('id', $this->role_id);
+        })->get('id')->toArray();
     }
 
     protected $rules = [

@@ -34,37 +34,38 @@ class ModalSupplierProduct extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_product_id)) {
-            $data = SupplierProduct::findOrFail($this->supplier_product_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->supplier_product_category_id = $data->supplier_product_category_id;
-            $this->brand_id = $data->brand_id;
-            $this->manufacturer_id = $data->manufacturer_id;
-            $this->name = $data->name;
-            $this->description = $data->description;
-            $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
-            $this->edt = $data->edt;
-            $this->avb_stock = $data->avb_stock;
-            $this->model = $data->model;
-            $this->item_type = $data->item_type;
-            $this->sku = $data->sku;
-            $this->on_sale = $data->on_sale;
-            $this->images = $data->images;
-            if (!is_null($data->price)) {
-                $this->price = $data->price;
-            } else {
-                $this->price = $data->min_price . '-' . $data->max_price;
-            }
-            $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
-            foreach ($data_spa as $key => $value) {
-                $this->name_spa[] = $value->name;
-                $this->value_spa[] = $value->value;
-                if ($key != 0) {
-                    $this->inputs[] = $key;
-                }
-            }
-            $this->i = $data_spa->count();
+        if (empty($this->supplier_product_id)) {
+            return;
         }
+        $data = SupplierProduct::findOrFail($this->supplier_product_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->supplier_product_category_id = $data->supplier_product_category_id;
+        $this->brand_id = $data->brand_id;
+        $this->manufacturer_id = $data->manufacturer_id;
+        $this->name = $data->name;
+        $this->description = $data->description;
+        $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
+        $this->edt = $data->edt;
+        $this->avb_stock = $data->avb_stock;
+        $this->model = $data->model;
+        $this->item_type = $data->item_type;
+        $this->sku = $data->sku;
+        $this->on_sale = $data->on_sale;
+        $this->images = $data->images;
+        if (!is_null($data->price)) {
+            $this->price = $data->price;
+        } else {
+            $this->price = $data->min_price . '-' . $data->max_price;
+        }
+        $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
+        foreach ($data_spa as $key => $value) {
+            $this->name_spa[] = $value->name;
+            $this->value_spa[] = $value->value;
+            if ($key != 0) {
+                $this->inputs[] = $key;
+            }
+        }
+        $this->i = $data_spa->count();
     }
 
     protected $rules = [

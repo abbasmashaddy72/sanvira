@@ -8,7 +8,6 @@ use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
 use Livewire\Component;
 use Livewire\WithPagination;
-use RalphJSmit\Livewire\Urls\Facades\Url;
 use WireUi\Traits\Actions;
 
 class SupplierProducts extends Component

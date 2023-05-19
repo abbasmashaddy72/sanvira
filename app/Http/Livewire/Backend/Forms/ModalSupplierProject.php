@@ -20,17 +20,18 @@ class ModalSupplierProject extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_project_id)) {
-            $data = SupplierProject::findOrFail($this->supplier_project_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->name = $data->name;
-            $this->country = $data->country;
-            $this->city = $data->city;
-            $this->description = $data->description;
-            $this->year_range = $data->year_range;
-            $this->images = $data->images;
-            $this->feedback = $data->feedback;
+        if (empty($this->supplier_project_id)) {
+            return;
         }
+        $data = SupplierProject::findOrFail($this->supplier_project_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->name = $data->name;
+        $this->country = $data->country;
+        $this->city = $data->city;
+        $this->description = $data->description;
+        $this->year_range = $data->year_range;
+        $this->images = $data->images;
+        $this->feedback = $data->feedback;
     }
 
     protected $rules = [

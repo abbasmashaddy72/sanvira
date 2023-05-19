@@ -20,14 +20,15 @@ class ModalUser extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->user_id)) {
-            $data = User::findOrFail($this->user_id);
-            $this->name = $data->name;
-            $this->email = $data->email;
-            $this->password = $data->password;
-            if (!empty($data->roles->first()->name)) {
-                $this->role = Role::where('name', $data->roles->first()->name)->pluck('id');
-            }
+        if (empty($this->user_id)) {
+            return;
+        }
+        $data = User::findOrFail($this->user_id);
+        $this->name = $data->name;
+        $this->email = $data->email;
+        $this->password = $data->password;
+        if (!empty($data->roles->first()->name)) {
+            $this->role = Role::where('name', $data->roles->first()->name)->pluck('id');
         }
     }
 

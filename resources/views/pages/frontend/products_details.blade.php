@@ -63,7 +63,7 @@
                     <h4 class="text-2xl font-medium">{{ $data->name }}</h4>
 
                     <blockquote
-                        class="pl-4 border-l-4 border-blue-600 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-indigo-800">
+                        class="pl-4 border-l-4 border-blue-600 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-blue-800">
                         <div class="text-gray-900 dark:text-white ck-content">
                             {!! $data->description !!}
                         </div>

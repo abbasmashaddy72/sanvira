@@ -9,7 +9,6 @@ use App\Models\Rfq;
 use App\Models\Slider;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
-use App\Models\SupplierProductAttributes;
 use App\Models\SupplierProductCategory;
 use Illuminate\Http\Request;
 

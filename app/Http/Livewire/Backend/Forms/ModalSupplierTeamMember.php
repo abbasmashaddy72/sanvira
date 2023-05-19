@@ -17,15 +17,16 @@ class ModalSupplierTeamMember extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_team_member_id)) {
-            $data = SupplierTeam::findOrFail($this->supplier_team_member_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->name = $data->name;
-            $this->email = $data->email;
-            $this->phone = $data->phone;
-            $this->image = $data->image;
-            $this->designation = $data->designation;
+        if (empty($this->supplier_team_member_id)) {
+            return;
         }
+        $data = SupplierTeam::findOrFail($this->supplier_team_member_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->name = $data->name;
+        $this->email = $data->email;
+        $this->phone = $data->phone;
+        $this->image = $data->image;
+        $this->designation = $data->designation;
     }
 
     protected $rules = [

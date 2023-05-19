@@ -17,24 +17,25 @@ class ModalSupplier extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_id)) {
-            $data = Supplier::findOrFail($this->supplier_id);
-            $this->user_id = $data->user_id;
-            $this->company_name = $data->company_name;
-            $this->company_email = $data->company_email;
-            $this->company_address = $data->company_address;
-            $this->company_number = $data->company_number;
-            $this->company_locality = $data->company_locality;
-            $this->tagline = $data->tagline;
-            $this->logo = $data->logo;
-            $this->yoe = $data->yoe;
-            $this->website_url = $data->website_url;
-            $this->description = $data->description;
-            $this->terms_conditions = $data->terms_conditions;
-            $this->contact_person_name = $data->contact_person_name;
-            $this->contact_person_email = $data->contact_person_email;
-            $this->contact_person_number = $data->contact_person_number;
+        if (empty($this->supplier_id)) {
+            return;
         }
+        $data = Supplier::findOrFail($this->supplier_id);
+        $this->user_id = $data->user_id;
+        $this->company_name = $data->company_name;
+        $this->company_email = $data->company_email;
+        $this->company_address = $data->company_address;
+        $this->company_number = $data->company_number;
+        $this->company_locality = $data->company_locality;
+        $this->tagline = $data->tagline;
+        $this->logo = $data->logo;
+        $this->yoe = $data->yoe;
+        $this->website_url = $data->website_url;
+        $this->description = $data->description;
+        $this->terms_conditions = $data->terms_conditions;
+        $this->contact_person_name = $data->contact_person_name;
+        $this->contact_person_email = $data->contact_person_email;
+        $this->contact_person_number = $data->contact_person_number;
     }
 
     protected $rules = [

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -22,13 +21,13 @@ class UserController extends Controller
     {
         auth()->user()->impersonate($user);
 
-        return redirect()->route('home.index');
+        return redirect()->route('admin.dashboard');
     }
 
     public function leaveImpersonate()
     {
         auth()->user()->leaveImpersonation();
 
-        return redirect()->route('home.index');
+        return redirect()->route('admin.dashboard');
     }
 }

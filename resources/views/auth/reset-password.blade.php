@@ -35,7 +35,7 @@
 
                             <div class="flex items-center justify-end mt-4">
                                 <button type="submit"
-                                    class="ml-4 text-white bg-indigo-600 border-indigo-600 rounded-md btn hover:bg-indigo-700 hover:border-indigo-700">
+                                    class="ml-4 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
                                     {{ __('Reset Password') }}</button>
                             </div>
                         </div>

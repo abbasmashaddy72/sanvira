@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Brand;
 use App\Models\Manufacturer;
 use App\Models\Supplier;
-use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

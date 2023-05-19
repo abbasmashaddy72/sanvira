@@ -2,8 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Models\Cart;
-use App\Models\Rfq;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -53,7 +51,8 @@ class GuestLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (isset($menu['sub_menu']) ?? $menu['sub_menu'] = []) {
+            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])){
+        continue;} 
 
                 foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
 
@@ -62,7 +61,8 @@ class GuestLayout extends Component
                         $secondLevelActiveIndex = $subMenuKey;
                     }
 
-                    if (isset($subMenu['sub_menu'])) {
+                    if (!isset($subMenu['sub_menu'])){
+                continue;} 
 
                         foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
 
@@ -72,9 +72,9 @@ class GuestLayout extends Component
                                 $thirdLevelActiveIndex = $lastSubMenuKey;
                             }
                         }
-                    }
+                    
                 }
-            }
+            
         }
 
         return [

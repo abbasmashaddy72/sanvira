@@ -29,7 +29,7 @@ class SupplierProductCategorySeeder extends Seeder
             [12, 'Conveying Equipment', '', 0],
             [13, 'Fire Suppression', '', 0],
             [14, 'Plumbing', '', 0],
-            [15, 'Heating, Ventilating, & Air Conditioning (HVAC)', '', 0],
+            [15, 'HVAC', '', 0],
             [16, 'Integrated Automation', '', 0],
             [17, 'Electrical', '', 0],
             [18, 'Communications', '', 0],
