@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('supplier_product_categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('supplier_id')->nullable()->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->string('image');
             $table->unsignedInteger('parent_id')->default(0)->nullable();

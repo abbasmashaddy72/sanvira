@@ -13,7 +13,7 @@ class ContractorsTable extends LivewireDatatable
 
     public function builder()
     {
-        return Contractor::query()->with('users');
+        return Contractor::query()->joinRelationship('users');
     }
 
     public function columns()

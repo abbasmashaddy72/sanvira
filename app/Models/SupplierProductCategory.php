@@ -10,16 +10,10 @@ class SupplierProductCategory extends Model
     use HasFactory;
 
     protected $fillable = [
-        'supplier_id',
         'name',
         'image',
         'parent_id',
     ];
-
-    public function suppliers()
-    {
-        return $this->belongsTo(Supplier::class, 'supplier_id');
-    }
 
     public function products()
     {

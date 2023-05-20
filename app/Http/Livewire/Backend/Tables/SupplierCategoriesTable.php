@@ -13,7 +13,7 @@ class SupplierCategoriesTable extends LivewireDatatable
 
     public function builder()
     {
-        return SupplierProductCategory::query()->with('suppliers', 'categories');
+        return SupplierProductCategory::query()->with('categories');
     }
 
     public function columns()
@@ -35,10 +35,6 @@ class SupplierCategoriesTable extends LivewireDatatable
 
             Column::name('categories.name')
                 ->label('Sub Category Name')
-                ->searchable()
-                ->filterable(),
-
-            Column::name('suppliers.company_name')
                 ->searchable()
                 ->filterable(),
 

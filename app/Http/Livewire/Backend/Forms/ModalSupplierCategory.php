@@ -12,7 +12,7 @@ class ModalSupplierCategory extends ModalComponent
     // Set Data
     public $supplier_category_id, $type;
     // Model Values
-    public $supplier_id, $name, $image, $parent_id;
+    public $name, $image, $parent_id;
 
     public function mount()
     {
@@ -20,14 +20,12 @@ class ModalSupplierCategory extends ModalComponent
             return;
         }
         $data = SupplierProductCategory::findOrFail($this->supplier_category_id);
-        $this->supplier_id = $data->supplier_id;
         $this->name = $data->name;
         $this->image = $data->image;
         $this->parent_id = $data->parent_id;
     }
 
     protected $rules = [
-        'supplier_id' => '',
         'name' => '',
         'image' => '',
         'parent_id' => '',

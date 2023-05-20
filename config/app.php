@@ -186,7 +186,6 @@ return [
          * Package Service Providers...
          */
         Lab404\Impersonate\ImpersonateServiceProvider::class,
-        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -212,8 +211,6 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([])->toArray(),
 
 ];

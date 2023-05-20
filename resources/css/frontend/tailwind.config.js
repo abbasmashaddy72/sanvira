@@ -15,6 +15,7 @@ module.exports = {
         "./resources/views/livewire/frontend/**/*.blade.php",
         "./resources/views/pages/frontend/**/*.blade.php",
         "./resources/views/vendor/wireui/**/*.blade.php",
+        "./resources/views/vendor/cookie-consent/**/*.blade.php",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/wire-elements/modal/resources/views/*.blade.php",
         "./vendor/wireui/wireui/resources/**/*.blade.php",
