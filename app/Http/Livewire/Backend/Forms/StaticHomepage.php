@@ -10,7 +10,7 @@ class StaticHomepage extends Component
 {
     use WithFileUploads, Actions;
 
-    public $footer_logo, $logo, $short_description,$privacy_policy,$terms_conditions, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link;
+    public $footer_logo, $logo, $short_description, $privacy_policy, $return_refund, $terms_of_use, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link;
 
     public $homeImageIsUploaded = false;
     public $logoIsUploaded = false;
@@ -21,7 +21,8 @@ class StaticHomepage extends Component
         $this->logo = get_static_option('logo');
         $this->short_description = get_static_option('short_description');
         $this->privacy_policy = get_static_option('privacy_policy');
-        $this->terms_conditions = get_static_option('terms_conditions');
+        $this->terms_of_use = get_static_option('terms_of_use');
+        $this->return_refund = get_static_option('return_refund');
         $this->twitter = get_static_option('twitter');
         $this->facebook = get_static_option('facebook');
         $this->instagram = get_static_option('instagram');
@@ -35,12 +36,12 @@ class StaticHomepage extends Component
         'footer_logo' => 'required',
         'logo' => 'required',
         'short_description' => 'required',
-        'twitter' => 'required',
-        'facebook' => 'required',
-        'instagram' => 'required',
-        'linkedin' => 'required',
-        'youtube' => 'required',
-        'google_business' => 'required',
+        'twitter' => '',
+        'facebook' => '',
+        'instagram' => '',
+        'linkedin' => '',
+        'youtube' => '',
+        'google_business' => '',
         'embed_map_link' => 'required',
     ];
 

@@ -88,8 +88,12 @@
                 wire:model.defer='privacy_policy' />
         </div>
         <div>
-            <x-backend.ckEditor id="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
-                wire:model.defer='terms_conditions' />
+            <x-backend.ckEditor id="body2en" lang="EN" name="terms_of_use" label="Terms of Use"
+                wire:model.defer='terms_of_use' />
+        </div>
+        <div>
+            <x-backend.ckEditor id="body2en" lang="EN" name="return_refund" label="Returns & Refunds"
+                wire:model.defer='return_refund' />
         </div>
 
         <button class="btn btn-primary" type="submit">Save</button>

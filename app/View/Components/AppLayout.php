@@ -51,15 +51,15 @@ class AppLayout extends Component
                 'title' => 'Manufacturers',
                 'route_name' => 'admin.manufacturer',
             ],
-            'supplier' => [
-                'icon' => 'fast-forward',
-                'title' => 'Suppliers',
-                'route_name' => 'admin.supplier',
-            ],
             'supplier-categories' => [
                 'icon' => 'chevrons-up',
                 'title' => 'Supplier Categories',
                 'route_name' => 'admin.supplier-categories',
+            ],
+            'supplier' => [
+                'icon' => 'fast-forward',
+                'title' => 'Suppliers',
+                'route_name' => 'admin.supplier',
             ],
             'contractor' => [
                 'icon' => 'bar-chart-2',
@@ -96,30 +96,30 @@ class AppLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])){
-        continue;} 
+            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
+                continue;
+            }
 
-                foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
+            foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
 
-                    if (isset($subMenu['route_name']) && $subMenu['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondPageName)) {
+                if (isset($subMenu['route_name']) && $subMenu['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondPageName)) {
+                    $firstLevelActiveIndex = $menuKey;
+                    $secondLevelActiveIndex = $subMenuKey;
+                }
+
+                if (!isset($subMenu['sub_menu'])) {
+                    continue;
+                }
+
+                foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
+
+                    if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
                         $firstLevelActiveIndex = $menuKey;
                         $secondLevelActiveIndex = $subMenuKey;
+                        $thirdLevelActiveIndex = $lastSubMenuKey;
                     }
-
-                    if (!isset($subMenu['sub_menu'])){
-                continue;} 
-
-                        foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
-
-                            if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
-                                $firstLevelActiveIndex = $menuKey;
-                                $secondLevelActiveIndex = $subMenuKey;
-                                $thirdLevelActiveIndex = $lastSubMenuKey;
-                            }
-                        }
-                    
                 }
-            
+            }
         }
 
         return [

@@ -18,6 +18,10 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('/', 'FrontendController@index')->name('homepage'); // Done
     Route::get('contact_us', 'FrontendController@contact_us')->name('contact_us');
     Route::get('about_us', 'FrontendController@about_us')->name('about_us');
+    Route::get('privacy_policy', 'FrontendController@privacy_policy')->name('privacy_policy');
+    Route::get('terms_of_use', 'FrontendController@terms_of_use')->name('terms_of_use');
+    Route::get('return_refund', 'FrontendController@return_refund')->name('return_refund');
+    Route::get('career', 'FrontendController@career')->name('career');
 
     Route::group(['middleware' => ['verified']], function () {
         Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales'); // Done

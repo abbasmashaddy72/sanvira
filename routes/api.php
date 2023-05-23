@@ -22,4 +22,5 @@ Route::group(['as' => 'api.admin.', 'namespace' => 'App\Http\Controllers\Backend
     Route::get('supplier_categories', 'ApiController@supplier_categories')->name('supplier_categories');
     Route::get('brands', 'ApiController@brands')->name('brands');
     Route::get('manufacturers', 'ApiController@manufacturers')->name('manufacturers');
+    Route::get('countries', 'ApiController@countries')->name('countries');
 });

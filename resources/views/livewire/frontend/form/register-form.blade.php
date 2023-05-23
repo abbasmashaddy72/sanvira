@@ -1,7 +1,7 @@
 <div class="w-full max-w-6xl p-6 m-auto bg-white rounded-md shadow-md dark:bg-slate-900 dark:shadow-gray-800">
 
     <a href="{{ route('homepage') }}">
-        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="mx-auto" />
+        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-20 mx-auto" />
     </a>
 
     <x-errors />

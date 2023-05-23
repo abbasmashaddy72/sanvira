@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\Cart;
-use App\Models\Rfq;
 use App\Models\Slider;
 use App\Models\Supplier;
 use App\Models\SupplierProduct;
@@ -14,12 +12,6 @@ use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function __construct()
-    {
-        view()->share('rfqProducts', Rfq::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray());
-        view()->share('cartProducts', Cart::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray());
-    }
-
     public function index()
     {
         $sliders = Slider::get();
@@ -127,7 +119,38 @@ class FrontendController extends Controller
     public function about_us()
     {
         view()->share('title', 'About Us');
+        $featured_suppliers = Supplier::whereHas('transactions', function ($query) {
+            $query->where('account_type', '=', 'Featured');
+        })->get()->take(14);
 
-        return view('pages.frontend.about_us');
+        return view('pages.frontend.about_us', compact('featured_suppliers'));
+    }
+
+    public function privacy_policy()
+    {
+        view()->share('title', 'Privacy Policy');
+
+        return view('pages.frontend.privacy_policy');
+    }
+
+    public function terms_of_use()
+    {
+        view()->share('title', 'Terms of Use');
+
+        return view('pages.frontend.terms_of_use');
+    }
+
+    public function return_refund()
+    {
+        view()->share('title', 'Returns & Refund');
+
+        return view('pages.frontend.return_refund');
+    }
+
+    public function career()
+    {
+        view()->share('title', 'Career');
+
+        return view('pages.frontend.career');
     }
 }

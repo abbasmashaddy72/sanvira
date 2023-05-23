@@ -12,6 +12,7 @@ class SupplierProduct extends Model
     protected $fillable = [
         'supplier_id',
         'supplier_product_category_id',
+        'country_id',
         'brand_id',
         'manufacturer_id',
         'name',
@@ -37,6 +38,11 @@ class SupplierProduct extends Model
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function brands()

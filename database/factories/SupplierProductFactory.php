@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
+use App\Models\Country;
 use App\Models\Manufacturer;
 use App\Models\Supplier;
 use App\Models\SupplierProductCategory;
@@ -47,6 +48,7 @@ class SupplierProductFactory extends Factory
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'supplier_product_category_id' => SupplierProductCategory::pluck('id')[$this->faker->numberBetween(1, SupplierProductCategory::count() - 1)],
+            'country_id' => Country::pluck('id')[$this->faker->numberBetween(1, Country::count() - 1)],
             'brand_id' => Brand::pluck('id')[$this->faker->numberBetween(1, Brand::count() - 1)],
             'manufacturer_id' => Manufacturer::pluck('id')[$this->faker->numberBetween(1, Manufacturer::count() - 1)],
             'name' => $this->faker->name(),

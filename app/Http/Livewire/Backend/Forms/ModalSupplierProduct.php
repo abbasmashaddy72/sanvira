@@ -14,7 +14,7 @@ class ModalSupplierProduct extends ModalComponent
     // Set Data
     public $supplier_product_id, $supplier_id;
     // SupplierProduct Model Values
-    public $supplier_product_category_id, $brand_id, $manufacturer_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $model, $item_type, $sku, $on_sale = false, $images = [], $price, $min_price, $max_price;
+    public $supplier_product_category_id, $country_id, $brand_id, $manufacturer_id, $name, $description, $min_oq, $max_oq, $edt, $avb_stock, $model, $item_type, $sku, $on_sale = false, $images = [], $price, $min_price, $max_price;
     // SupplierProductAttributes Model Values
     public $supplier_product_id_spa, $name_spa = [], $value_spa = [];
     // Model Custom Values
@@ -40,6 +40,7 @@ class ModalSupplierProduct extends ModalComponent
         $data = SupplierProduct::findOrFail($this->supplier_product_id);
         $this->supplier_id = $data->supplier_id;
         $this->supplier_product_category_id = $data->supplier_product_category_id;
+        $this->country_id = $data->country_id;
         $this->brand_id = $data->brand_id;
         $this->manufacturer_id = $data->manufacturer_id;
         $this->name = $data->name;
@@ -71,6 +72,7 @@ class ModalSupplierProduct extends ModalComponent
     protected $rules = [
         'supplier_id' => '',
         'supplier_product_category_id' => '',
+        'country_id' => '',
         'brand_id' => '',
         'manufacturer_id' => '',
         'name' => '',

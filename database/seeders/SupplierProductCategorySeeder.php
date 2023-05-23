@@ -147,10 +147,9 @@ class SupplierProductCategorySeeder extends Seeder
         foreach ($inputs as $data) {
             SupplierProductCategory::insert([
                 'id' => $data[0],
-                'supplier_id' => null,
                 'name' => $data[1],
                 'image' => 'supplier_product_category/' . $data[1] . '.jpg',
-                'parent_id' => $data[3],
+                'parent_id' => $data[2],
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

@@ -63,6 +63,9 @@
             <x-select label="Select Parent Category" wire:model.defer="supplier_product_category_id"
                 placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id" />
 
+            <x-select label="Select Origin Country" wire:model.defer="country_id" placeholder="Select Origin Country"
+                :async-data="route('api.admin.countries')" option-label="name" option-value="id" />
+
             <x-select label="Select Brand" wire:model.defer="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
                 option-label="name" option-value="id" />
 
@@ -74,7 +77,8 @@
             <div class="flex items-center">
                 <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
                     <x-input name="name_spa.0" label="Attribute Name" type="text" wire:model.defer='name_spa.0' />
-                    <x-input name="value_spa.0" label="Attribute Value" type="text" wire:model.defer='value_spa.0' />
+                    <x-input name="value_spa.0" label="Attribute Value" type="text"
+                        wire:model.defer='value_spa.0' />
                 </div>
                 <button class="inline-flex flex-shrink-0 ml-2 btn btn-primary"
                     wire:click.prevent="add({{ $i }})">Add</button>

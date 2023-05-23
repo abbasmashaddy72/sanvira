@@ -6,7 +6,7 @@
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
                         <div class="lg:col-span-3 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none flex justify-center">
-                                <img class="h-20" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
+                                <img class="h-28" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
                                     alt="" />
                             </a>
                             <ul class="flex justify-center mt-6 space-x-4">
@@ -70,9 +70,9 @@
                         <!--end col-->
 
                         <div class="lg:col-span-2 md:col-span-4">
-                            <ul class="mt-6 space-y-2 list-none footer-list">
+                            <ul class="space-y-2 list-none footer-list">
                                 <li>
-                                    <a href="{{ route('contact_us') }}"
+                                    <a href="{{ route('career') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Careers</a>
                                 </li>
@@ -99,19 +99,19 @@
                             </ul>
                         </div>
                         <div class="lg:col-span-2 md:col-span-4">
-                            <ul class="mt-6 space-y-2 list-none footer-list">
+                            <ul class="space-y-2 list-none footer-list">
                                 <li>
-                                    <a href="{{ route('homepage') }}"
+                                    <a href="{{ route('privacy_policy') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Privacy Policy</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('contact_us') }}"
+                                    <a href="{{ route('terms_of_use') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Terms of Use</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('contact_us') }}"
+                                    <a href="{{ route('return_refund') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Returns & Refunds</a>
                                 </li>

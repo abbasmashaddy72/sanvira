@@ -13,17 +13,18 @@
 
             <x-input name="company_number" label="Company Number" type="number" wire:model.defer='company_number' />
 
-            <x-input name="company_locality" label="Company Locality" type="text" wire:model.defer='company_locality' />
+            <x-input name="company_locality" label="Company Locality" type="text"
+                wire:model.defer='company_locality' />
 
             <x-input name="tagline" label="Tagline" type="text" wire:model.defer='tagline' />
 
             <x-input name="logo" label="Logo" type="file" wire:model.defer='logo' />
 
-            <x-input name="yoe" label="Year of Establishment" type="number" wire:model.defer='yoe' />
+            <x-input name="license" label="License" type="text" wire:model.defer='license' />
+
+            <x-input name="doe" label="Year of Establishment" type="date" wire:model.defer='doe' />
 
             <x-input name="website_url" label="Website Url" type="text" wire:model.defer='website_url' />
-
-            <x-input name="terms_conditions" label="Terms & Conditions" type="text" wire:model.defer='terms_conditions' />
 
             <x-input name="contact_person_name" label="Contact Person Name" type="text"
                 wire:model.defer='contact_person_name' />

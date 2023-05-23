@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Supplier;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
@@ -13,7 +15,7 @@ class ModalSupplier extends ModalComponent
     // Set Data
     public $supplier_id;
     // Model Values
-    public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $yoe, $website_url, $description, $terms_conditions, $contact_person_name, $contact_person_email, $contact_person_number;
+    public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $doe, $license, $website_url, $description, $terms_conditions, $contact_person_name, $contact_person_email, $contact_person_number;
 
     public function mount()
     {
@@ -29,7 +31,8 @@ class ModalSupplier extends ModalComponent
         $this->company_locality = $data->company_locality;
         $this->tagline = $data->tagline;
         $this->logo = $data->logo;
-        $this->yoe = $data->yoe;
+        $this->doe = $data->doe;
+        $this->license = $data->license;
         $this->website_url = $data->website_url;
         $this->description = $data->description;
         $this->terms_conditions = $data->terms_conditions;
@@ -46,7 +49,8 @@ class ModalSupplier extends ModalComponent
         'company_locality' => '',
         'tagline' => '',
         'logo' => '',
-        'yoe' => '',
+        'doe' => '',
+        'license' => '',
         'website_url' => '',
         'description' => '',
         'terms_conditions' => '',
@@ -72,9 +76,22 @@ class ModalSupplier extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Updated Successfully!');
         } else {
+            $user = User::create([
+                'name' => $validatedData['contact_person_name'],
+                'email' => $validatedData['contact_person_email'],
+                'password' => Hash::make(explode(" ", $validatedData['contact_person_name'])[0] . '@' . substr($validatedData['contact_person_number'], -3)),
+            ]);
+
             if (!empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
+            unset($validatedData['contact_person_name']);
+            unset($validatedData['contact_person_email']);
+            unset($validatedData['contact_person_number']);
+
+            $validatedData['user_id'] = $user->id;
+            $validatedData['type'] = "Supplier";
+
             Supplier::create($validatedData);
 
             $this->notification()->success($title = 'Supplier Saved Successfully!');

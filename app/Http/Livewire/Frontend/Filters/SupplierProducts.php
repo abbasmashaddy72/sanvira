@@ -23,7 +23,7 @@ class SupplierProducts extends Component
     // Custom Values
     public $cartProducts = [], $rfqProducts = [], $quantity = [], $type, $page_title, $applyFilter = false;
     // 1st Filter Options
-    public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
+    public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [], $country_id = [];
     // 2nd Filter Options
     public $setButton = 'relevance';
     // 3rd Filter Options
@@ -76,6 +76,7 @@ class SupplierProducts extends Component
         $this->brand_id = [];
         $this->manufacturer_id = [];
         $this->supplier_product_category_id = [];
+        $this->country_id = [];
         $this->setButton = 'relevance';
         $this->applyFilter = false;
     }
@@ -139,6 +140,9 @@ class SupplierProducts extends Component
             if (count($this->supplier_product_category_id) > 0) {
                 $supplier_products->{$this->type == 'All Products' ? 'orWhereIn' : 'whereIn'}('supplier_product_category_id', $this->supplier_product_category_id);
             }
+            if (count($this->country_id) > 0) {
+                $supplier_products->{$this->type == 'All Products' ? 'orWhereIn' : 'whereIn'}('country_id', $this->country_id);
+            }
             $supplier_products = $supplier_products->paginate(12);
         } else {
             if ($this->type == 'On Sale' && $this->applyFilter != true) {
@@ -146,7 +150,7 @@ class SupplierProducts extends Component
             }
 
             if ($this->type == 'All Products' && $this->applyFilter != true) {
-                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->paginate(12);
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->paginate(12);
             }
 
             if ($this->type == 'Profile Page' && $this->applyFilter != true) {

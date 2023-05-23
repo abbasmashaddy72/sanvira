@@ -14,6 +14,19 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->count(rand(100, 300))->create();
+        if (config('app.env') == 'production') {
+            $user = User::create([
+                'name' => 'Super Admin',
+                'email' => 'superadmin@kasperpro.com',
+                'password' => bcrypt('KasperPro@123'),
+                'email_verified_at' => now(),
+            ]);
+            $user->roles()->attach([1]);
+        } else {
+            $users = User::factory()->count(rand(100, 300))->create();
+            foreach ($users as $user) {
+                $user->roles()->attach([rand(1, 7)]);
+            }
+        }
     }
 }

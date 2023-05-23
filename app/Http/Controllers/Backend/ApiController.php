@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Country;
 use App\Models\Manufacturer;
 use App\Models\SupplierProductCategory;
 use Illuminate\Contracts\Database\Eloquent\Builder;
@@ -44,6 +45,21 @@ class ApiController extends Controller
     public function  manufacturers(Request $request)
     {
         $data = Manufacturer::query()->select('id', 'name')
+            ->orderBy('name')
+            ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
+            ->when(
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
+                fn (Builder $query) => $query->limit(10)
+            )
+            ->get();
+
+        return $data;
+    }
+
+    public function  countries(Request $request)
+    {
+        $data = Country::query()->select('id', 'name')
             ->orderBy('name')
             ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
             ->when(
