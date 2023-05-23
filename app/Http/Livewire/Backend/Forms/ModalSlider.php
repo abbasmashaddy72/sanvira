@@ -15,7 +15,9 @@ class ModalSlider extends ModalComponent
     public $isUploaded = false;
 
     protected $rules = [
-        'image' => 'required'
+        'name' => '',
+        'image' => 'required',
+        'url' => '',
     ];
 
     public function updated($propertyName)
@@ -27,7 +29,7 @@ class ModalSlider extends ModalComponent
         }
     }
 
-    public function save()
+    public function add()
     {
         $validatedData = $this->validate();
 

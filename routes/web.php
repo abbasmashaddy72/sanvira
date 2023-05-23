@@ -65,6 +65,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('contractor', 'ContractorController@index')->name('contractor');
     Route::get('sub-contractor', 'SubContractorController@index')->name('sub-contractor');
     Route::get('homepage', 'StaticController@homepage')->name('homepage');
+    Route::get('privacy_policy', 'StaticController@privacy_policy')->name('privacy_policy');
+    Route::get('terms_of_use', 'StaticController@terms_of_use')->name('terms_of_use');
+    Route::get('return_refund', 'StaticController@return_refund')->name('return_refund');
+    Route::get('career', 'StaticController@career')->name('career');
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });
 

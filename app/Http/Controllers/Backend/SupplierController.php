@@ -20,6 +20,7 @@ class SupplierController extends Controller
     public function supplier_profile(Supplier $supplier)
     {
         view()->share('title', $supplier->company_name);
+        $supplier->with('manager');
 
         return view('pages.backend.supplier.profile', compact('supplier'));
     }

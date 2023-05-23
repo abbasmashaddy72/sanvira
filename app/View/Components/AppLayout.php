@@ -73,8 +73,28 @@ class AppLayout extends Component
             ],
             'homepage' => [
                 'icon' => 'layout',
-                'title' => 'Home Page',
+                'title' => 'Homepage',
                 'route_name' => 'admin.homepage',
+            ],
+            'privacy_policy' => [
+                'icon' => 'lock',
+                'title' => 'Privacy Policy',
+                'route_name' => 'admin.privacy_policy',
+            ],
+            'terms_of_use' => [
+                'icon' => 'shield',
+                'title' => 'Terms of Use',
+                'route_name' => 'admin.terms_of_use',
+            ],
+            'return_refund' => [
+                'icon' => 'refresh-ccw',
+                'title' => 'Return Refund',
+                'route_name' => 'admin.return_refund',
+            ],
+            'career' => [
+                'icon' => 'briefcase',
+                'title' => 'Career',
+                'route_name' => 'admin.career',
             ],
         ];
     }

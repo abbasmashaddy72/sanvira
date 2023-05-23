@@ -33,7 +33,7 @@
                                 {{ $supplier->company_name }}</div>
                             <div class="text-slate-500">{{ Str::limit($supplier->tagline, 40) }}</div>
                             <div class="text-slate-500">
-                                <span class="font-semibold text-primary">YOE: </span>{{ $supplier->yoe }}
+                                <span class="font-semibold text-primary">DOE: </span>{{ $supplier->doe }}
                             </div>
                             <a href="{{ $supplier->website_url }}" class="text-primary">Website</a>
                         </div>
@@ -68,17 +68,17 @@
                         <div class="flex flex-col items-center justify-center mt-4 lg:items-start">
                             <div class="flex items-center truncate sm:whitespace-normal">
                                 <i data-feather="user" class="w-4 h-4 mr-2 text-slate-500"></i>
-                                {{ $supplier->contact_person_name }}
+                                {{ $supplier->manager->name }}
                             </div>
-                            <a href="{{ 'mailto:' . $supplier->contact_person_email }}"
+                            <a href="{{ 'mailto:' . $supplier->manager->email }}"
                                 class="flex items-center mt-3 truncate sm:whitespace-normal text-primary">
                                 <i data-feather="at-sign" class="w-4 h-4 mr-2 text-slate-500"></i>
-                                {{ $supplier->contact_person_email }}
+                                {{ $supplier->manager->email }}
                             </a>
-                            <a href='{{ 'tell:' . $supplier->contact_person_number }}'
+                            <a href='{{ 'tell:' . $supplier->manager->phone }}'
                                 class="flex items-center mt-3 truncate sm:whitespace-normal text-primary">
                                 <i data-feather="phone" class="w-4 h-4 mr-2 text-slate-500"></i>
-                                {{ $supplier->contact_person_number }}
+                                {{ $supplier->manager->phone }}
                             </a>
                         </div>
                     </div>
@@ -108,6 +108,18 @@
 
         <div class="col-span-12">
             @livewire('backend.tables.supplier-certificates-table', ['supplier_id' => $supplier->id])
+        </div>
+    </x-backend.grid>
+
+    <x-backend.grid title="Testimonials">
+        <x-slot name="rt_button">
+            <button
+                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-testimonial', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+        </x-slot>
+
+        <div class="col-span-12">
+            @livewire('backend.tables.supplier-testimonials-table', ['supplier_id' => $supplier->id])
         </div>
     </x-backend.grid>
 

@@ -62,7 +62,7 @@ class ModalSupplierProject extends ModalComponent
                 unset($validatedData['images']);
                 $multiImage = [];
                 foreach ($images as $key => $image) {
-                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                    $multiImage[$key] = $image->store('supplier_projects', 'public');
                 }
                 $validatedData['images'] = $multiImage;
             }
@@ -75,10 +75,11 @@ class ModalSupplierProject extends ModalComponent
                 unset($validatedData['images']);
                 $multiImage = [];
                 foreach ($images as $key => $image) {
-                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                    $multiImage[$key] = $image->store('supplier_projects', 'public');
                 }
                 $validatedData['images'] = $multiImage;
             }
+            $validatedData['supplier_id'] = $this->supplier_id;
             SupplierProject::create($validatedData);
 
             $this->notification()->success($title = 'Project Saved Successfully!');

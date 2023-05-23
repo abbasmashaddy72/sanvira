@@ -145,8 +145,7 @@
                         <div class="container">
                             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
                                 @foreach ($supplier_products as $item)
-                                    <x-frontend.supplier-product :item="$item" :rfqProducts="$rfqProducts"
-                                        :cartProducts="$cartProducts" />
+                                    @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
                                 @endforeach
                             </div>
                             @if ($supplier_products != [])

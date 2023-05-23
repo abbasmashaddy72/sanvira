@@ -10,19 +10,16 @@ class StaticHomepage extends Component
 {
     use WithFileUploads, Actions;
 
-    public $footer_logo, $logo, $short_description, $privacy_policy, $return_refund, $terms_of_use, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link;
-
-    public $homeImageIsUploaded = false;
+    public $footer_logo, $logo, $short_description, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link, $privacy_policy, $terms_of_use, $return_refund, $career;
+    public $type;
     public $logoIsUploaded = false;
+    public $footerLogoIsUploaded = false;
 
     public function mount()
     {
         $this->footer_logo = get_static_option('footer_logo');
         $this->logo = get_static_option('logo');
         $this->short_description = get_static_option('short_description');
-        $this->privacy_policy = get_static_option('privacy_policy');
-        $this->terms_of_use = get_static_option('terms_of_use');
-        $this->return_refund = get_static_option('return_refund');
         $this->twitter = get_static_option('twitter');
         $this->facebook = get_static_option('facebook');
         $this->instagram = get_static_option('instagram');
@@ -30,6 +27,10 @@ class StaticHomepage extends Component
         $this->youtube = get_static_option('youtube');
         $this->google_business = get_static_option('google_business');
         $this->embed_map_link = get_static_option('embed_map_link');
+        $this->privacy_policy = get_static_option('privacy_policy');
+        $this->terms_of_use = get_static_option('terms_of_use');
+        $this->return_refund = get_static_option('return_refund');
+        $this->career = get_static_option('career');
     }
 
     protected $rules = [
@@ -43,18 +44,21 @@ class StaticHomepage extends Component
         'youtube' => '',
         'google_business' => '',
         'embed_map_link' => 'required',
+        'privacy_policy' => '',
+        'terms_of_use' => '',
+        'return_refund' => '',
+        'career' => '',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
 
-        if (gettype($this->footer_logo) != 'string') {
-            $this->homeImageIsUploaded = true;
-        }
-
         if (gettype($this->logo) != 'string') {
             $this->logoIsUploaded = true;
+        }
+        if (gettype($this->footer_logo) != 'string') {
+            $this->footerLogoIsUploaded = true;
         }
     }
 
@@ -75,7 +79,7 @@ class StaticHomepage extends Component
                 set_static_option($key, $value);
             }
         }
-        $this->notification()->success($title = 'Data Saved Successfully!');
+        $this->notification()->success($title = 'Data Saved / Updated Successfully!');
     }
 
     public function render()

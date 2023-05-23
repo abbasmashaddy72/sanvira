@@ -16,7 +16,7 @@
                                 {{ $profile->company_name }}</div>
                             <div class="text-slate-500">{{ Str::limit($profile->tagline, 40) }}</div>
                             <div class="text-slate-500">
-                                <span class="font-semibold text-blue-600">YOE: </span>{{ $profile->yoe }}
+                                <span class="font-semibold text-blue-600">YOE: </span>{{ $profile->doe }}
                             </div>
                             <a href="{{ $profile->website_url }}" class="text-blue-600">Website</a>
                         </div>
@@ -83,9 +83,9 @@
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
-                                {{ $profile->contact_person_name }}
+                                {{ $profile->manager->name }}
                             </div>
-                            <a href="{{ 'mailto:' . $profile->contact_person_email }}"
+                            <a href="{{ 'mailto:' . $profile->manager->email }}"
                                 class="flex items-center mt-3 text-blue-600 truncate sm:whitespace-normal">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-blue-600"
                                     width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -94,9 +94,9 @@
                                     <circle cx="12" cy="12" r="4"></circle>
                                     <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                 </svg>
-                                {{ $profile->contact_person_email }}
+                                {{ $profile->manager->email }}
                             </a>
-                            <a href='{{ 'tell:' . $profile->contact_person_number }}'
+                            <a href='{{ 'tell:' . $profile->manager->phone }}'
                                 class="flex items-center mt-3 text-blue-600 truncate sm:whitespace-normal">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-blue-600"
                                     width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -106,7 +106,7 @@
                                         d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                     </path>
                                 </svg>
-                                {{ $profile->contact_person_number }}
+                                {{ $profile->manager->phone }}
                             </a>
                         </div>
                     </div>

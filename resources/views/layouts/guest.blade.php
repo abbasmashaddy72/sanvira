@@ -23,7 +23,7 @@
 </head>
 
 <body class="text-base text-black bg-gray-100 font-nunito dark:text-white dark:bg-slate-900">
-
+    <x-notifications />
     @include('layouts.fePartials.header')
 
     @if (!empty($topSection))

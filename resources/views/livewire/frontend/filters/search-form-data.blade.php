@@ -11,7 +11,7 @@
     <x-frontend.index-container class="bg-white py-14" containerTitle="Supplier Products List">
         <div class="grid grid-cols-4 gap-[30px]">
             @forelse ($supplierProductsList as $item)
-                <x-frontend.supplier-product :item="$item" />
+                @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
             @empty
                 <div class="text-left">No results!</div>
             @endforelse

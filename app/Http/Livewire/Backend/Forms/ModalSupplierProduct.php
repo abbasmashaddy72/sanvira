@@ -120,12 +120,12 @@ class ModalSupplierProduct extends ModalComponent
         }
 
         if (!empty($this->supplier_product_id)) {
-            if (!empty($this->images) && $this->images != $this->images) {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
                 foreach ($images as $key => $image) {
-                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                    $multiImage[$key] = $image->store('supplier_projects', 'public');
                 }
                 $validatedData['images'] = $multiImage;
             }
@@ -137,14 +137,14 @@ class ModalSupplierProduct extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Product Updated Successfully!');
         } else {
-            if (!empty($this->images) && $this->images != $this->images) {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
                 foreach ($images as $key => $image) {
                     $multiImage[$key] = $image->store('supplier_products', 'public');
                 }
-                $validatedData['image'] = $multiImage;
+                $validatedData['images'] = $multiImage;
             }
             $supplierProduct = SupplierProduct::create($validatedData);
             foreach ($this->name_spa as $key => $value) {

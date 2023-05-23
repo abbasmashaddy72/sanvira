@@ -35,6 +35,11 @@ class Supplier extends Model implements HasMedia
         return $this->hasMany(User::class);
     }
 
+    public function manager()
+    {
+        return $this->hasOne(SupplierTeam::class, 'user_id', 'user_id');
+    }
+
     public function products()
     {
         return $this->belongsTo(SupplierProduct::class, 'id', 'supplier_id');

@@ -72,3 +72,27 @@ Breadcrumbs::for('homepage.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('HomePage', route('admin.homepage'));
 });
+
+// Application > Privacy Policy
+Breadcrumbs::for('homepage.privacy_policy', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Privacy Policy', route('admin.privacy_policy'));
+});
+
+// Application > Terms of Use
+Breadcrumbs::for('homepage.terms_of_use', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Terms of Use', route('admin.terms_of_use'));
+});
+
+// Application > Return Refund
+Breadcrumbs::for('homepage.return_refund', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Return Refund', route('admin.return_refund'));
+});
+
+// Application > Career
+Breadcrumbs::for('homepage.career', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Career', route('admin.career'));
+});

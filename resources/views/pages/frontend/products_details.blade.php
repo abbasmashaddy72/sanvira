@@ -118,37 +118,7 @@
 
                         </ul>
                     </div>
-                    <div class="flex flex-col items-center px-6 py-2">
-                        <div class="inline-flex items-center mt-2">
-                            <x-label for="" name='Quantity' />
-                            <x-inputs.number min="{{ $data->min_oq }}"
-                                wire:model.defer="quantity.{{ $data->id }}" />
-                        </div>
-                        <div class="flex justify-between w-full mt-4">
-                            <div class="flex items-center text-gray-500">
-                                @if (!in_array($data->id, $cartProducts))
-                                    <button wire:click="addToCart({{ $data->id }})"
-                                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
-                                        Add to Cart</button>
-                                @else
-                                    <button wire:click="removeFromCart({{ $data->id }})"
-                                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700">Remove
-                                        Form Cart</button>
-                                @endif
-                            </div>
-                            <div>
-                                @if (!in_array($data->id, $rfqProducts))
-                                    <button wire:click="addToRfq({{ $data->id }})"
-                                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
-                                        Add to RFQ</button>
-                                @else
-                                    <button wire:click="removeFromRfq({{ $data->id }})"
-                                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700">Remove
-                                        Form RFQ</button>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
+                    @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page'])
                 </div>
             </div>
         </div>

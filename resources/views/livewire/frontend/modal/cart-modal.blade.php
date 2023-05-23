@@ -40,7 +40,7 @@
                                     </div>
 
                                     <div class="flex">
-                                        <button type="button"
+                                        <button wire:click.prevent="removeFromCart({{ $item->supplier_product_id }})"
                                             class="font-medium text-red-600 hover:text-red-700">Remove</button>
                                     </div>
                                 </div>
@@ -50,11 +50,5 @@
                 </ul>
             </div>
         </div>
-    </x-slot>
-
-    <x-slot name="buttons">
-        <button
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            type="submit">Save</button>
     </x-slot>
 </x-frontend.modal-form>

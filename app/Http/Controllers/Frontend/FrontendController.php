@@ -66,6 +66,7 @@ class FrontendController extends Controller
     public function supplier_profile(Supplier $profile)
     {
         view()->share('title', $profile->company_name);
+        $profile->with('manager');
 
         return view('pages.frontend.supplier', compact('profile'));
     }

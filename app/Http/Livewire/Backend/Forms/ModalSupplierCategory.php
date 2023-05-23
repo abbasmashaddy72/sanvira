@@ -23,6 +23,11 @@ class ModalSupplierCategory extends ModalComponent
         $this->name = $data->name;
         $this->image = $data->image;
         $this->parent_id = $data->parent_id;
+        if ($this->parent_id == 0) {
+            $this->type = "Main Category";
+        } else {
+            $this->type = "Sub Category";
+        }
     }
 
     protected $rules = [

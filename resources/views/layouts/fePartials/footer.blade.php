@@ -1,4 +1,4 @@
-<footer class="relative text-gray-200 bg-white footer dark:text-gray-200">
+<footer class="relative text-gray-200 bg-white border-t-2 border-blue-300 footer dark:text-gray-200">
     <div class="container">
         <div class="grid grid-cols-12">
             <div class="col-span-12">

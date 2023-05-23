@@ -15,6 +15,34 @@ class StaticController extends Controller
         return view('pages.backend.static.index');
     }
 
+    public function privacy_policy()
+    {
+        view()->share('title', 'Privacy Policy');
+
+        return view('pages.backend.static.privacy_policy');
+    }
+
+    public function terms_of_use()
+    {
+        view()->share('title', 'Terms of Use');
+
+        return view('pages.backend.static.terms_of_use');
+    }
+
+    public function return_refund()
+    {
+        view()->share('title', 'Returns & Refund');
+
+        return view('pages.backend.static.return_refund');
+    }
+
+    public function career()
+    {
+        view()->share('title', 'Career');
+
+        return view('pages.backend.static.career');
+    }
+
     public function image_upload(Request $request)
     {
         $blog = new Supplier();

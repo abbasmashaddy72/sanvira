@@ -201,7 +201,7 @@
             </div>
         </div>
     </x-frontend.index-container>
-    <x-frontend.index-container class="bg-white border-b-2 border-gray-200 shadow py-14">
+    <x-frontend.index-container class="bg-white py-14">
         <div class="grid grid-cols-1 pb-8 text-center">
             <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">
                 Some of our Clients

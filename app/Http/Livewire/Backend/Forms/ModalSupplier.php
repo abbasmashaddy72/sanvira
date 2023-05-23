@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Backend\Forms;
 
+use App\Models\Role;
 use App\Models\Supplier;
+use App\Models\SupplierTeam;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
@@ -15,14 +17,14 @@ class ModalSupplier extends ModalComponent
     // Set Data
     public $supplier_id;
     // Model Values
-    public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $doe, $license, $website_url, $description, $terms_conditions, $contact_person_name, $contact_person_email, $contact_person_number;
+    public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $doe, $license, $type, $website_url, $description, $terms_conditions, $agree, $contact_person_name, $contact_person_email, $contact_person_number, $contact_person_designation;
 
     public function mount()
     {
         if (empty($this->supplier_id)) {
             return;
         }
-        $data = Supplier::findOrFail($this->supplier_id);
+        $data = Supplier::with('manager')->findOrFail($this->supplier_id);
         $this->user_id = $data->user_id;
         $this->company_name = $data->company_name;
         $this->company_email = $data->company_email;
@@ -33,12 +35,15 @@ class ModalSupplier extends ModalComponent
         $this->logo = $data->logo;
         $this->doe = $data->doe;
         $this->license = $data->license;
+        $this->type = $data->type;
         $this->website_url = $data->website_url;
         $this->description = $data->description;
         $this->terms_conditions = $data->terms_conditions;
-        $this->contact_person_name = $data->contact_person_name;
-        $this->contact_person_email = $data->contact_person_email;
-        $this->contact_person_number = $data->contact_person_number;
+        $this->agree = $data->agree;
+        $this->contact_person_name = $data->manager->name;
+        $this->contact_person_email = $data->manager->email;
+        $this->contact_person_number = $data->manager->phone;
+        $this->contact_person_designation = $data->manager->designation;
     }
 
     protected $rules = [
@@ -57,6 +62,7 @@ class ModalSupplier extends ModalComponent
         'contact_person_name' => '',
         'contact_person_email' => '',
         'contact_person_number' => '',
+        'contact_person_designation' => '',
     ];
 
     public function updated($propertyName)
@@ -69,30 +75,77 @@ class ModalSupplier extends ModalComponent
         $validatedData = $this->validate();
 
         if (!empty($this->supplier_id)) {
-            if (!empty($this->logo) && gettype($this->logo) != 'string') {
-                $validatedData['logo'] = $this->logo->store('supplier', 'public');
-            }
-            Supplier::where('id', $this->supplier_id)->update($validatedData);
+            $contact_person_name = $validatedData['contact_person_name'];
+            $contact_person_email = $validatedData['contact_person_email'];
+            $contact_person_number = $validatedData['contact_person_number'];
+            $contact_person_designation = $validatedData['contact_person_designation'];
+            unset($validatedData['contact_person_name']);
+            unset($validatedData['contact_person_email']);
+            unset($validatedData['contact_person_number']);
+            unset($validatedData['contact_person_designation']);
 
-            $this->notification()->success($title = 'Supplier Updated Successfully!');
-        } else {
-            $user = User::create([
-                'name' => $validatedData['contact_person_name'],
-                'email' => $validatedData['contact_person_email'],
-                'password' => Hash::make(explode(" ", $validatedData['contact_person_name'])[0] . '@' . substr($validatedData['contact_person_number'], -3)),
+            $user = User::where('id', $this->user_id)->update([
+                'name' => $contact_person_name,
+                'email' => $contact_person_email,
             ]);
 
             if (!empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
+
+            $validatedData['user_id'] = $this->user_id;
+            $validatedData['type'] = $this->type ?? "Supplier";
+            $validatedData['agree'] = 1;
+
+            $supplier = Supplier::where('id', $this->supplier_id)->update($validatedData);
+
+            SupplierTeam::where('user_id', $this->user_id)->update([
+                'supplier_id' => $this->supplier_id,
+                'user_id' => $this->user_id,
+                'name' => $contact_person_name,
+                'email' => $contact_person_email,
+                'phone' => $contact_person_number,
+                'designation' => $contact_person_designation,
+            ]);
+
+            $this->notification()->success($title = 'Supplier Updated Successfully!');
+        } else {
+            $contact_person_name = $validatedData['contact_person_name'];
+            $contact_person_email = $validatedData['contact_person_email'];
+            $contact_person_number = $validatedData['contact_person_number'];
+            $contact_person_designation = $validatedData['contact_person_designation'];
             unset($validatedData['contact_person_name']);
             unset($validatedData['contact_person_email']);
             unset($validatedData['contact_person_number']);
+            unset($validatedData['contact_person_designation']);
+
+            $user = User::create([
+                'name' => $contact_person_name,
+                'email' => $contact_person_email,
+                'password' => Hash::make(explode(" ", $contact_person_name)[0] . '@' . substr($contact_person_number, -3)),
+            ]);
+
+            if (!empty($this->logo) && gettype($this->logo) != 'string') {
+                $validatedData['logo'] = $this->logo->store('supplier', 'public');
+            }
 
             $validatedData['user_id'] = $user->id;
             $validatedData['type'] = "Supplier";
+            $validatedData['agree'] = 1;
 
-            Supplier::create($validatedData);
+            $supplier = Supplier::create($validatedData);
+
+            SupplierTeam::create([
+                'supplier_id' => $supplier->id,
+                'user_id' => $user->id,
+                'name' => $contact_person_name,
+                'email' => $contact_person_email,
+                'phone' => $contact_person_number,
+                'designation' => $contact_person_designation,
+                'image' => null,
+            ]);
+
+            $user->roles()->attach(Role::where('name', 'Supplier')->pluck('id'));
 
             $this->notification()->success($title = 'Supplier Saved Successfully!');
         }
