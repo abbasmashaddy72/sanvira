@@ -22,6 +22,6 @@ class BrandTransaction extends Model
 
     public function brands()
     {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->hasOne(Brand::class, 'id', 'brand_id');
     }
 }

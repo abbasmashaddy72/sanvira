@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Country;
 use App\Models\Manufacturer;
+use App\Models\Supplier;
 use App\Models\SupplierProductCategory;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -32,6 +33,21 @@ class ApiController extends Controller
         $data = Brand::query()->select('id', 'name')
             ->orderBy('name')
             ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
+            ->when(
+                $request->exists('selected'),
+                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
+                fn (Builder $query) => $query->limit(10)
+            )
+            ->get();
+
+        return $data;
+    }
+
+    public function suppliers(Request $request)
+    {
+        $data = Supplier::query()->select('id', 'company_name')
+            ->orderBy('company_name')
+            ->when($request->search, fn (Builder $query) => $query->where('company_name', 'like', "%{$request->search}%"))
             ->when(
                 $request->exists('selected'),
                 fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),

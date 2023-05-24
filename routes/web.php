@@ -58,6 +58,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('brand', 'BrandController@index')->name('brand');
     Route::get('manufacturer', 'ManufacturerController@index')->name('manufacturer');
 
+    Route::get('brand-transaction', 'BrandTransactionController@index')->name('brand.transaction');
+    Route::get('supplier-transaction', 'SupplierTransactionController@index')->name('supplier.transaction');
 
     Route::get('supplier', 'SupplierController@index')->name('supplier');
     Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');

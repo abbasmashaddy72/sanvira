@@ -22,7 +22,7 @@ class FrontendController extends Controller
         $featured_brands = Brand::withCount('products')->whereHas('transactions', function ($query) {
             $query->where('account_type', '=', 'Featured');
         })->get()->take(14);
-        $on_sale_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory'])->where('on_sale', 1)->whereIn('supplier_id', $featured_suppliers->pluck('id'))->get()->take(8);
+        $on_sale_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->where('on_sale', 1)->whereIn('supplier_id', $featured_suppliers->pluck('id'))->get()->take(8);
         $suppliers = Supplier::get()->take(8);
 
         return view('pages.frontend.index', compact([

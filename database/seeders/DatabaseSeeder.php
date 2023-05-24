@@ -21,16 +21,16 @@ class DatabaseSeeder extends Seeder
             $this->call(SupplierProductCategorySeeder::class);
             $this->call(CountrySeeder::class);
         } else {
-            $this->call(RoleSeeder::class);
-            $this->call(UserSeeder::class);
-            $this->call(StaticOptionSeeder::class);
+            $this->call(RoleSeeder::class); //
+            $this->call(UserSeeder::class); //
+            $this->call(StaticOptionSeeder::class); //
             $this->call(BrandSeeder::class);
             $this->call(ManufacturerSeeder::class);
-            $this->call(CountrySeeder::class);
+            $this->call(CountrySeeder::class); //
             $this->call(SupplierSeeder::class);
             $this->call(SupplierTeamSeeder::class);
             $this->call(SupplierCertificateSeeder::class);
-            $this->call(SupplierProductCategorySeeder::class);
+            $this->call(SupplierProductCategorySeeder::class); //
             $this->call(SupplierProductSeeder::class);
             $this->call(SupplierProductAttributesSeeder::class);
             $this->call(SupplierProjectSeeder::class);

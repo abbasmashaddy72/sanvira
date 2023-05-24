@@ -22,6 +22,6 @@ class SupplierTransaction extends Model
 
     public function suppliers()
     {
-        return $this->belongsTo(Supplier::class, 'supplier_id');
+        return $this->hasOne(Supplier::class, 'id', 'supplier_id');
     }
 }

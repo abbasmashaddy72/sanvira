@@ -1,7 +1,23 @@
 <?php
 
 use App\Models\StaticOption;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
+
+// Gets ENUM values Data from DB in array format
+if (!function_exists('getEnum')) {
+    function getEnum($table_name, $colum_name)
+    {
+        $values = DB::select(DB::raw('SHOW COLUMNS FROM ' . $table_name . ' WHERE Field = "' . $colum_name . '"'));
+
+        preg_match('/^enum\((.*)\)$/', $values[0]->Type, $matches);
+        foreach (explode(',', $matches[1]) as $value) {
+            $enum[trim($value, "'")] = trim($value, "'");
+        }
+
+        return $enum;
+    }
+}
 
 // Gets Route Action Names
 if (!function_exists('getRouteAction')) {
@@ -56,13 +72,13 @@ if (!function_exists('set_static_option')) {
             ]);
             return true;
         }
-            StaticOption::where('option_name', $key)->update([
-                'option_name' => $key,
-                'option_value' => $value
-            ]);
-            cache()->forget($key);
-            return true;
-        
+        StaticOption::where('option_name', $key)->update([
+            'option_name' => $key,
+            'option_value' => $value
+        ]);
+        cache()->forget($key);
+        return true;
+
         return false;
     }
 }

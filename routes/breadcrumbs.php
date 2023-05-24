@@ -31,6 +31,12 @@ Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
     $trail->push('Brand', route('admin.brand'));
 });
 
+// Application > Brand Transaction
+Breadcrumbs::for('brand.transaction', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Brand Transactions', route('admin.brand.transaction'));
+});
+
 // Application > Manufacturer
 Breadcrumbs::for('manufacturer.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
@@ -41,6 +47,12 @@ Breadcrumbs::for('manufacturer.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('Supplier', route('admin.supplier'));
+});
+
+// Application > Transaction
+Breadcrumbs::for('supplier.transaction', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Supplier Transactions', route('admin.supplier.transaction'));
 });
 
 // Application > Supplier Category

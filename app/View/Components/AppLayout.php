@@ -46,6 +46,11 @@ class AppLayout extends Component
                 'title' => 'Brands',
                 'route_name' => 'admin.brand',
             ],
+            'brand-transaction' => [
+                'icon' => 'rss',
+                'title' => 'Brand Transactions',
+                'route_name' => 'admin.brand.transaction',
+            ],
             'manufacturer' => [
                 'icon' => 'bar-chart-2',
                 'title' => 'Manufacturers',
@@ -60,6 +65,11 @@ class AppLayout extends Component
                 'icon' => 'fast-forward',
                 'title' => 'Suppliers',
                 'route_name' => 'admin.supplier',
+            ],
+            'supplier-transaction' => [
+                'icon' => 'shopping-bag',
+                'title' => 'Supplier Transactions',
+                'route_name' => 'admin.supplier.transaction',
             ],
             'contractor' => [
                 'icon' => 'bar-chart-2',
