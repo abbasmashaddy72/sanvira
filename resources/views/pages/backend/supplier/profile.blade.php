@@ -87,63 +87,74 @@
         </div>
     </x-backend.grid>
 
-    <x-backend.grid title="Team Members">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-team-member', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
 
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-team-members-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
+    @can('supplier_team_member_list')
+        <x-backend.grid title="Team Members">
+            <x-slot name="rt_button">
+                <button
+                    onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-team-member', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                    class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+            </x-slot>
 
-    <x-backend.grid title="Certificates">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-certificate', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
+            <div class="col-span-12">
+                @livewire('backend.tables.supplier-team-members-table', ['supplier_id' => $supplier->id])
+            </div>
+        </x-backend.grid>
+    @endcan
 
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-certificates-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
+    @can('supplier_certificate_list')
+        <x-backend.grid title="Certificates">
+            <x-slot name="rt_button">
+                <button
+                    onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-certificate', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                    class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+            </x-slot>
 
-    <x-backend.grid title="Testimonials">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-testimonial', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
+            <div class="col-span-12">
+                @livewire('backend.tables.supplier-certificates-table', ['supplier_id' => $supplier->id])
+            </div>
+        </x-backend.grid>
+    @endcan
 
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-testimonials-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
+    @can('supplier_testimonial_list')
+        <x-backend.grid title="Testimonials">
+            <x-slot name="rt_button">
+                <button
+                    onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-testimonial', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                    class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+            </x-slot>
 
-    <x-backend.grid title="Projects">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-project', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
+            <div class="col-span-12">
+                @livewire('backend.tables.supplier-testimonials-table', ['supplier_id' => $supplier->id])
+            </div>
+        </x-backend.grid>
+    @endcan
 
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-projects-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
+    @can('supplier_project_list')
+        <x-backend.grid title="Projects">
+            <x-slot name="rt_button">
+                <button
+                    onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-project', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                    class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+            </x-slot>
 
-    <x-backend.grid title="Products">
-        <x-slot name="rt_button">
-            <button
-                onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-product', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
-        </x-slot>
+            <div class="col-span-12">
+                @livewire('backend.tables.supplier-projects-table', ['supplier_id' => $supplier->id])
+            </div>
+        </x-backend.grid>
+    @endcan
 
-        <div class="col-span-12">
-            @livewire('backend.tables.supplier-products-table', ['supplier_id' => $supplier->id])
-        </div>
-    </x-backend.grid>
+    @can('supplier_product_list')
+        <x-backend.grid title="Products">
+            <x-slot name="rt_button">
+                <button
+                    onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-product', {{ json_encode(['supplier_id' => $supplier->id]) }})"
+                    class="mr-2 shadow-md btn btn-primary">{{ 'Add' }}</button>
+            </x-slot>
+
+            <div class="col-span-12">
+                @livewire('backend.tables.supplier-products-table', ['supplier_id' => $supplier->id])
+            </div>
+        </x-backend.grid>
+    @endcan
 </x-app-layout>

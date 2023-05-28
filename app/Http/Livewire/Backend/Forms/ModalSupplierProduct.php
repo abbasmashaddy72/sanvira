@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Backend\Forms;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductAttributes;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -35,8 +36,10 @@ class ModalSupplierProduct extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_product_id)) {
+            abort_if(Gate::denies('supplier_product_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_product_edit'), 403);
         $data = SupplierProduct::findOrFail($this->supplier_product_id);
         $this->supplier_id = $data->supplier_id;
         $this->supplier_product_category_id = $data->supplier_product_category_id;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class BrandTransactionController extends Controller
 {
@@ -13,6 +14,8 @@ class BrandTransactionController extends Controller
 
     public function index()
     {
+        abort_if(Gate::denies('brand_transaction_list'), 403);
+
         return view('pages.backend.brand.transaction');
     }
 }

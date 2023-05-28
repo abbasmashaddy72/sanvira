@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Manufacturer;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -16,10 +17,13 @@ class ModalManufacturer extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->manufacturer_id)) {
-            $data = Manufacturer::findOrFail($this->manufacturer_id);
-            $this->name = $data->name;
+        if (empty($this->manufacturer_id)) {
+            abort_if(Gate::denies('manufacturer_add'), 403);
+            return;
         }
+        abort_if(Gate::denies('manufacturer_edit'), 403);
+        $data = Manufacturer::findOrFail($this->manufacturer_id);
+        $this->name = $data->name;
     }
 
     protected $rules = [

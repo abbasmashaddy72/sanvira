@@ -141,11 +141,11 @@ class FrontendController extends Controller
         return view('pages.frontend.terms_of_use');
     }
 
-    public function return_refund()
+    public function return_refunds()
     {
         view()->share('title', 'Returns & Refund');
 
-        return view('pages.frontend.return_refund');
+        return view('pages.frontend.return_refunds');
     }
 
     public function career()

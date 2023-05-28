@@ -25,7 +25,12 @@ class UserSeeder extends Seeder
         } else {
             $users = User::factory()->count(rand(100, 300))->create();
             foreach ($users as $user) {
-                $user->roles()->attach([rand(1, 7)]);
+                if ($user->id == 1) {
+                    $user->roles()->attach([1]);
+                }
+                if ($user->id != 1) {
+                    $user->roles()->attach([rand(1, 7)]);
+                }
             }
         }
     }

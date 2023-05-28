@@ -19,6 +19,14 @@ Breadcrumbs::for('user.index', function (BreadcrumbTrail $trail) {
     $trail->push('User', route('admin.user'));
 });
 
+
+// Application > Profile
+Breadcrumbs::for('profile.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Profile', route('admin.profile.edit'));
+});
+
+
 // Application > Role
 Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
@@ -98,9 +106,9 @@ Breadcrumbs::for('homepage.terms_of_use', function (BreadcrumbTrail $trail) {
 });
 
 // Application > Return Refund
-Breadcrumbs::for('homepage.return_refund', function (BreadcrumbTrail $trail) {
+Breadcrumbs::for('homepage.return_refunds', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Return Refund', route('admin.return_refund'));
+    $trail->push('Return Refund', route('admin.return_refunds'));
 });
 
 // Application > Career

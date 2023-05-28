@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -20,14 +21,14 @@ class ModalRole extends ModalComponent
     public function mount()
     {
         if (empty($this->role_id)) {
+            abort_if(Gate::denies('role_add'), 403);
             return;
         }
+        abort_if(Gate::denies('role_edit'), 403);
         $data = Role::findOrFail($this->role_id);
         $this->name = $data->name;
         $this->slug = $data->slug;
-        $this->permissions_array = Permission::whereHas('roles', function ($query) {
-            $query->where('id', $this->role_id);
-        })->get('id')->toArray();
+        $this->permissions_array = $this->permissions_array = $data->permissions->pluck('id')->toArray();
     }
 
     protected $rules = [
@@ -49,18 +50,14 @@ class ModalRole extends ModalComponent
 
             Role::where('id', $this->role_id)->update($validatedData);
 
-            foreach (array_filter($this->permissions_array) as $key => $item) {
-                $role->permissions()->syncWithoutDetaching($key);
-            }
+            $role->permissions()->sync($this->permissions_array);
 
             $this->notification()->success($title = 'Role Updated Successfully!');
         } else {
-            $validatedData['slug'] = str_replace(' ', '-', strtolower($validatedData['name']));
+            $validatedData['slug'] = str_replace(' ', '_', strtolower($validatedData['name']));
             $role = Role::create($validatedData);
 
-            foreach (array_filter($this->permissions_array) as $key => $item) {
-                $role->permissions()->attach($key);
-            }
+            $role->permissions()->sync($this->permissions_array);
 
             $this->notification()->success($title = 'Role Saved Successfully!');
         }
@@ -77,7 +74,7 @@ class ModalRole extends ModalComponent
 
     public function render()
     {
-        $permissions = Permission::get();
+        $permissions = Permission::all()->toArray();
 
         return view('livewire.backend.forms.modal-role', compact('permissions'));
     }

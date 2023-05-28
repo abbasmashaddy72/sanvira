@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="breadcrumb">{{ Breadcrumbs::render('homepage.return_refund') }}</x-slot>
+    <x-slot name="breadcrumb">{{ Breadcrumbs::render('homepage.return_refunds') }}</x-slot>
 
     <x-backend.grid>
         <div class="col-span-12">

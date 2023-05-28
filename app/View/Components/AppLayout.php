@@ -27,81 +27,97 @@ class AppLayout extends Component
     {
         return [
             'dashboard' => [
+                'can' => 'dashboard',
                 'icon' => 'home',
                 'title' => 'Dashboard',
                 'route_name' => 'admin.dashboard',
             ],
             'user' => [
+                'can' => 'user_list',
                 'icon' => 'user',
                 'title' => 'Users',
                 'route_name' => 'admin.user',
             ],
             'role' => [
+                'can' => 'role_list',
                 'icon' => 'settings',
                 'title' => 'Roles',
                 'route_name' => 'admin.role',
             ],
             'brand' => [
+                'can' => 'brand_list',
                 'icon' => 'globe',
                 'title' => 'Brands',
                 'route_name' => 'admin.brand',
             ],
-            'brand-transaction' => [
+            'brand-_transaction' => [
+                'can' => 'brand_transaction_list',
                 'icon' => 'rss',
                 'title' => 'Brand Transactions',
                 'route_name' => 'admin.brand.transaction',
             ],
             'manufacturer' => [
+                'can' => 'manufacturer_list',
                 'icon' => 'bar-chart-2',
                 'title' => 'Manufacturers',
                 'route_name' => 'admin.manufacturer',
             ],
-            'supplier-categories' => [
+            'supplier_categories' => [
+                'can' => 'supplier_categories_list',
                 'icon' => 'chevrons-up',
                 'title' => 'Supplier Categories',
                 'route_name' => 'admin.supplier-categories',
             ],
             'supplier' => [
+                'can' => 'supplier_list',
                 'icon' => 'fast-forward',
                 'title' => 'Suppliers',
                 'route_name' => 'admin.supplier',
             ],
-            'supplier-transaction' => [
+            'supplier_transaction' => [
+                'can' => 'supplier_transaction_list',
                 'icon' => 'shopping-bag',
                 'title' => 'Supplier Transactions',
                 'route_name' => 'admin.supplier.transaction',
             ],
             'contractor' => [
+                'can' => 'contractor_list',
                 'icon' => 'bar-chart-2',
                 'title' => 'Contractors',
                 'route_name' => 'admin.contractor',
             ],
-            'sub-contractor' => [
+            'sub_contractor' => [
+                'can' => 'sub_contractor_list',
                 'icon' => 'link',
                 'title' => 'Sub Contractors',
                 'route_name' => 'admin.sub-contractor',
             ],
             'homepage' => [
+                'can' => 'homepage',
                 'icon' => 'layout',
                 'title' => 'Homepage',
                 'route_name' => 'admin.homepage',
             ],
             'privacy_policy' => [
+                'can' => 'privacy_policy',
                 'icon' => 'lock',
                 'title' => 'Privacy Policy',
                 'route_name' => 'admin.privacy_policy',
             ],
             'terms_of_use' => [
+                'can' => 'terms_of_use',
                 'icon' => 'shield',
                 'title' => 'Terms of Use',
                 'route_name' => 'admin.terms_of_use',
             ],
-            'return_refund' => [
+            'return_refunds' => [
+                'can' => 'return_refunds',
                 'icon' => 'refresh-ccw',
                 'title' => 'Return Refund',
-                'route_name' => 'admin.return_refund',
+                'route_name' => 'admin.return_refunds',
             ],
             'career' => [
+                'can' => 'career',
                 'icon' => 'briefcase',
                 'title' => 'Career',
                 'route_name' => 'admin.career',

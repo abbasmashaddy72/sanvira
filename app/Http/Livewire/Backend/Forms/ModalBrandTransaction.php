@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\BrandTransaction;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -18,18 +19,21 @@ class ModalBrandTransaction extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->brand_transaction_id)) {
-            $data = BrandTransaction::with('brands')->findOrFail($this->brand_transaction_id);
-            $this->brand_id = $data->brand_id;
-            $this->account_type = $data->account_type;
-            $this->transaction_type = $data->transaction_type;
-            $this->amount = $data->amount;
-            $this->start_date = $data->start_date;
-            $this->end_days = $data->end_days;
-            $this->image = $data->image;
-            $this->status = $data->status;
-            $this->name = $data->brands->name;
+        if (empty($this->brand_transaction_id)) {
+            abort_if(Gate::denies('brand_transaction_add'), 403);
+            return;
         }
+        abort_if(Gate::denies('brand_transaction_edit'), 403);
+        $data = BrandTransaction::with('brands')->findOrFail($this->brand_transaction_id);
+        $this->brand_id = $data->brand_id;
+        $this->account_type = $data->account_type;
+        $this->transaction_type = $data->transaction_type;
+        $this->amount = $data->amount;
+        $this->start_date = $data->start_date;
+        $this->end_days = $data->end_days;
+        $this->image = $data->image;
+        $this->status = $data->status;
+        $this->name = $data->brands->name;
     }
 
     protected $rules = [

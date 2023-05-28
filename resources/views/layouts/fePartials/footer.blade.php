@@ -111,7 +111,7 @@
                                         <i class="uil uil-angle-right-b me-1"></i>Terms of Use</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('return_refund') }}"
+                                    <a href="{{ route('return_refunds') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>Returns & Refunds</a>
                                 </li>

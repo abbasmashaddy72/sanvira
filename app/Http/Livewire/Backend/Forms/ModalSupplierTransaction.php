@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierTransaction;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
 class ModalSupplierTransaction extends ModalComponent
@@ -14,18 +15,21 @@ class ModalSupplierTransaction extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->supplier_transaction_id)) {
-            $data = SupplierTransaction::with('suppliers')->findOrFail($this->supplier_transaction_id);
-            $this->supplier_id = $data->supplier_id;
-            $this->account_type = $data->account_type;
-            $this->transaction_type = $data->transaction_type;
-            $this->amount = $data->amount;
-            $this->start_date = $data->start_date;
-            $this->end_days = $data->end_days;
-            $this->image = $data->image;
-            $this->status = $data->status;
-            $this->name = $data->suppliers->company_name;
+        if (empty($this->supplier_transaction_id)) {
+            abort_if(Gate::denies('supplier_transaction_add'), 403);
+            return;
         }
+        abort_if(Gate::denies('supplier_transaction_edit'), 403);
+        $data = SupplierTransaction::with('suppliers')->findOrFail($this->supplier_transaction_id);
+        $this->supplier_id = $data->supplier_id;
+        $this->account_type = $data->account_type;
+        $this->transaction_type = $data->transaction_type;
+        $this->amount = $data->amount;
+        $this->start_date = $data->start_date;
+        $this->end_days = $data->end_days;
+        $this->image = $data->image;
+        $this->status = $data->status;
+        $this->name = $data->suppliers->company_name;
     }
 
     protected $rules = [

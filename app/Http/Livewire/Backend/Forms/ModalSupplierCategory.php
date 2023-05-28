@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierProductCategory;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -17,8 +18,10 @@ class ModalSupplierCategory extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_category_id)) {
+            abort_if(Gate::denies('supplier_category_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_category_edit'), 403);
         $data = SupplierProductCategory::findOrFail($this->supplier_category_id);
         $this->name = $data->name;
         $this->image = $data->image;

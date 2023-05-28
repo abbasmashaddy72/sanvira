@@ -20,7 +20,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('about_us', 'FrontendController@about_us')->name('about_us');
     Route::get('privacy_policy', 'FrontendController@privacy_policy')->name('privacy_policy');
     Route::get('terms_of_use', 'FrontendController@terms_of_use')->name('terms_of_use');
-    Route::get('return_refund', 'FrontendController@return_refund')->name('return_refund');
+    Route::get('return_refunds', 'FrontendController@return_refunds')->name('return_refunds');
     Route::get('career', 'FrontendController@career')->name('career');
 
     Route::group(['middleware' => ['verified']], function () {
@@ -69,7 +69,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('homepage', 'StaticController@homepage')->name('homepage');
     Route::get('privacy_policy', 'StaticController@privacy_policy')->name('privacy_policy');
     Route::get('terms_of_use', 'StaticController@terms_of_use')->name('terms_of_use');
-    Route::get('return_refund', 'StaticController@return_refund')->name('return_refund');
+    Route::get('return_refunds', 'StaticController@return_refunds')->name('return_refunds');
     Route::get('career', 'StaticController@career')->name('career');
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });

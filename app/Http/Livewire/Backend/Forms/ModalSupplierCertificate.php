@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierCertificate;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -18,8 +19,10 @@ class ModalSupplierCertificate extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_certificate_id)) {
+            abort_if(Gate::denies('supplier_certificate_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_certificate_edit'), 403);
         $data = SupplierCertificate::findOrFail($this->supplier_certificate_id);
         $this->supplier_id = $data->supplier_id;
         $this->title = $data->title;

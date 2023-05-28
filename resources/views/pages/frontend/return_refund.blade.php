@@ -91,7 +91,7 @@
             <blockquote
                 class="pl-4 border-l-4 border-blue-600 rounded-lg bg-blue-60 dark:border-blue-600 dark:bg-blue-800">
                 <div class="text-gray-900 dark:text-white ck-content">
-                    {!! get_static_option('return_refund') !!}
+                    {!! get_static_option('return_refunds') !!}
                 </div>
             </blockquote>
         </div>

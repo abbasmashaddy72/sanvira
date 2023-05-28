@@ -98,3 +98,27 @@ if (!function_exists('get_static_option')) {
         return !empty($value) ? $value->option_value : null;
     }
 }
+
+// Check if string contains word from array
+if (!function_exists('array_contains')) {
+    function array_contains($str, $arr)
+    {
+        foreach ($arr as $a) {
+            if (stripos($str, $a) !== false) return true;
+        }
+        return false;
+    }
+}
+
+// Console Log
+if (!function_exists('console_log')) {
+    function console_log($output, $with_script_tags = true)
+    {
+        $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
+            ');';
+        if ($with_script_tags) {
+            $js_code = '<script>' . $js_code . '</script>';
+        }
+        echo $js_code;
+    }
+}

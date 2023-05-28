@@ -22,7 +22,7 @@
 
         <div class="card">
             <div class="card-body">
-                @if (!is_null($images))
+                @if (!empty($images))
                     Photo Preview:
                     <div class="grid grid-cols-5 gap-1">
                         @foreach ($images as $key => $image)

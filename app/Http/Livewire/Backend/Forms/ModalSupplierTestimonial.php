@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierTestimonial;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -18,8 +19,10 @@ class ModalSupplierTestimonial extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_testimonial_id)) {
+            abort_if(Gate::denies('supplier_testimonial_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_testimonial_edit'), 403);
         $data = SupplierTestimonial::findOrFail($this->supplier_testimonial_id);
         $this->supplier_id = $data->supplier_id;
         $this->name = $data->name;

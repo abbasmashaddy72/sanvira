@@ -98,8 +98,8 @@
         @endif
         @if ($type == 'Return Refund')
             <div>
-                <x-backend.ckEditor id="body2en" lang="EN" name="return_refund" label="Returns & Refunds"
-                    wire:model.defer='return_refund' />
+                <x-backend.ckEditor id="body2en" lang="EN" name="return_refunds" label="Returns & Refunds"
+                    wire:model.defer='return_refunds' />
             </div>
         @endif
         @if ($type == 'Career')

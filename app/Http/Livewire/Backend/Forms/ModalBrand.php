@@ -3,9 +3,10 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Brand;
-use Livewire\WithFileUploads;
-use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
+use LivewireUI\Modal\ModalComponent;
 
 class ModalBrand extends ModalComponent
 {
@@ -17,11 +18,14 @@ class ModalBrand extends ModalComponent
 
     public function mount()
     {
-        if (!empty($this->brand_id)) {
-            $data = Brand::findOrFail($this->brand_id);
-            $this->name = $data->name;
-            $this->image = $data->image;
+        if (empty($this->brand_id)) {
+            abort_if(Gate::denies('brand_add'), 403);
+            return;
         }
+        abort_if(Gate::denies('brand_edit'), 403);
+        $data = Brand::findOrFail($this->brand_id);
+        $this->name = $data->name;
+        $this->image = $data->image;
     }
 
     protected $rules = [

@@ -15,12 +15,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         if (config('app.env') == 'production') {
+            $this->call(PermissionSeeder::class);
             $this->call(RoleSeeder::class);
             $this->call(UserSeeder::class);
             $this->call(StaticOptionSeeder::class);
             $this->call(SupplierProductCategorySeeder::class);
             $this->call(CountrySeeder::class);
         } else {
+            $this->call(PermissionSeeder::class);
             $this->call(RoleSeeder::class); //
             $this->call(UserSeeder::class); //
             $this->call(StaticOptionSeeder::class); //

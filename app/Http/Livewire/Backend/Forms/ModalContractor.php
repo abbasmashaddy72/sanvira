@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Backend\Forms;
 
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
 class ModalContractor extends ModalComponent

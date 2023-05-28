@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierProject;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -21,8 +22,10 @@ class ModalSupplierProject extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_project_id)) {
+            abort_if(Gate::denies('supplier_project_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_project_edit'), 403);
         $data = SupplierProject::findOrFail($this->supplier_project_id);
         $this->supplier_id = $data->supplier_id;
         $this->name = $data->name;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class ContractorController extends Controller
 {
@@ -13,6 +14,8 @@ class ContractorController extends Controller
 
     public function index()
     {
+        abort_if(Gate::denies('contractor_list'), 403);
+
         return view('pages.backend.contractor.index');
     }
 }

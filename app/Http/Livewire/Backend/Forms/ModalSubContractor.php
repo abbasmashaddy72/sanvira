@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SubContractor;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -17,8 +18,10 @@ class ModalSubContractor extends ModalComponent
     public function mount()
     {
         if (empty($this->sub_contractor_id)) {
+            abort_if(Gate::denies('sub_contractor_add'), 403);
             return;
         }
+        abort_if(Gate::denies('sub_contractor_edit'), 403);
         $data = SubContractor::findOrFail($this->sub_contractor_id);
         $this->user_id = $data->user_id;
         $this->name = $data->name;

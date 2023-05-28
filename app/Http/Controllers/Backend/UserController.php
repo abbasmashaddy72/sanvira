@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 use App\Models\User;
 
 class UserController extends Controller
@@ -14,6 +15,8 @@ class UserController extends Controller
 
     public function index()
     {
+        abort_if(Gate::denies('user_list'), 403);
+
         return view('pages.backend.users.index');
     }
 

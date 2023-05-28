@@ -8,6 +8,7 @@ use App\Models\SupplierTeam;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -22,8 +23,10 @@ class ModalSupplier extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_id)) {
+            abort_if(Gate::denies('supplier_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_edit'), 403);
         $data = Supplier::with('manager')->findOrFail($this->supplier_id);
         $this->user_id = $data->user_id;
         $this->company_name = $data->company_name;

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierTeam;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
@@ -18,8 +19,10 @@ class ModalSupplierTeamMember extends ModalComponent
     public function mount()
     {
         if (empty($this->supplier_team_member_id)) {
+            abort_if(Gate::denies('supplier_team_member_add'), 403);
             return;
         }
+        abort_if(Gate::denies('supplier_team_member_edit'), 403);
         $data = SupplierTeam::findOrFail($this->supplier_team_member_id);
         $this->supplier_id = $data->supplier_id;
         $this->name = $data->name;

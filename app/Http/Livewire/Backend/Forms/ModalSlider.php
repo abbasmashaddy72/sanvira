@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Slider;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
 class ModalSlider extends ModalComponent
@@ -46,6 +47,8 @@ class ModalSlider extends ModalComponent
 
     public function render()
     {
+        abort_if(Gate::denies('slider_add'), 403);
+
         return view('livewire.backend.forms.modal-slider');
     }
 }

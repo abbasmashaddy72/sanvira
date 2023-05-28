@@ -3,20 +3,22 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
 use WireUi\Traits\Actions;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Gate;
 
 class StaticHomepage extends Component
 {
     use WithFileUploads, Actions;
 
-    public $footer_logo, $logo, $short_description, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link, $privacy_policy, $terms_of_use, $return_refund, $career;
+    public $footer_logo, $logo, $short_description, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link, $privacy_policy, $terms_of_use, $return_refunds, $career;
     public $type;
     public $logoIsUploaded = false;
     public $footerLogoIsUploaded = false;
 
     public function mount()
     {
+        abort_if(Gate::denies('homepage'), 403);
         $this->footer_logo = get_static_option('footer_logo');
         $this->logo = get_static_option('logo');
         $this->short_description = get_static_option('short_description');
@@ -29,7 +31,7 @@ class StaticHomepage extends Component
         $this->embed_map_link = get_static_option('embed_map_link');
         $this->privacy_policy = get_static_option('privacy_policy');
         $this->terms_of_use = get_static_option('terms_of_use');
-        $this->return_refund = get_static_option('return_refund');
+        $this->return_refunds = get_static_option('return_refunds');
         $this->career = get_static_option('career');
     }
 
@@ -46,7 +48,7 @@ class StaticHomepage extends Component
         'embed_map_link' => 'required',
         'privacy_policy' => '',
         'terms_of_use' => '',
-        'return_refund' => '',
+        'return_refunds' => '',
         'career' => '',
     ];
 
