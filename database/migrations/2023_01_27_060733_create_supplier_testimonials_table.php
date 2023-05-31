@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->longText('logo');
+            $table->longText('logo')->nullable();
             $table->longText('message');
             $table->string('year');
             $table->integer('rating');

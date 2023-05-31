@@ -38,13 +38,13 @@ class ModalSupplierProject extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
-        'country' => '',
-        'city' => '',
+        'name' => 'required',
+        'country' => 'required',
+        'city' => 'required',
         'description' => '',
-        'year_range' => '',
+        'year_range' => 'required',
         'images' => '',
-        'feedback' => '',
+        'feedback' => 'required',
     ];
 
     public function updated($propertyName)
@@ -120,6 +120,9 @@ class ModalSupplierProject extends ModalComponent
             return in_array($value, $toRemoveImages);
         });
         SupplierProject::where('id', $params['supplier_project_id'])->update(['images' => $updatedImages]);
+
+        $this->emit('refreshLivewireDatatable');
+        $this->closeModal();
 
         $this->notification()->success($title = 'Supplier Product Image Deleted Successfully!');
     }

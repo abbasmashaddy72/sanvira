@@ -32,7 +32,7 @@ class BrandTransactionsTable extends LivewireDatatable
 
             Column::name('account_type')
                 ->searchable()
-                ->filterable(['Trail', 'Regular', 'Featured']),
+                ->filterable(['Trial', 'Regular', 'Featured']),
 
             Column::name('transaction_type')
                 ->searchable()

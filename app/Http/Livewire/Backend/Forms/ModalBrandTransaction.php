@@ -16,6 +16,7 @@ class ModalBrandTransaction extends ModalComponent
     public $brand_transaction_id, $name;
     // Model Values
     public $brand_id, $account_type, $transaction_type, $amount, $start_date, $end_days, $image, $status;
+    public $imageIsUploaded = false;
 
     public function mount()
     {
@@ -37,19 +38,22 @@ class ModalBrandTransaction extends ModalComponent
     }
 
     protected $rules = [
-        'brand_id' => '',
-        'account_type' => '',
+        'brand_id' => 'required',
+        'account_type' => 'required',
         'transaction_type' => '',
         'amount' => '',
         'start_date' => '',
         'end_days' => '',
         'image' => '',
-        'status' => '',
+        'status' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()
@@ -60,6 +64,7 @@ class ModalBrandTransaction extends ModalComponent
             if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brand_transactions', 'public');
             }
+            $validatedData['start_date'] = now()->format('Y-m-d');
             BrandTransaction::where('id', $this->brand_transaction_id)->update($validatedData);
 
             $this->notification()->success($name = 'Brand Transaction Updated Successfully!');
@@ -67,6 +72,7 @@ class ModalBrandTransaction extends ModalComponent
             if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brand_transactions', 'public');
             }
+            $validatedData['start_date'] = now()->format('Y-m-d');
             BrandTransaction::create($validatedData);
 
             $this->notification()->success($name = 'Brand Transaction Saved Successfully!');

@@ -1,6 +1,6 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
     <div class="grid gap-y-2">
-        <x-input name="name" label="Name" type="text" wire:model.defer='name' />
+        <x-input name="name" label="Name" type="text" wire:model.defer='name' required />
 
         @php
             $groupedPermissions = [];
@@ -48,45 +48,41 @@
             }
         @endphp
 
-        <table class="min-w-full mt-4 divide-y divide-gray-200 dark:bg-gray-800 dark:text-white">
-            <thead>
+        <table
+            class="min-w-full mt-4 divide-y divide-gray-200 dark:bg-gray-800 dark:text-white border-2 border-gray-200 shadow">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400 rounded-t-lg">
                 <tr>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
+                    <th scope="col" class="px-6 py-3">
                         Sl. No.
                     </th>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
+                    <th scope="col" class="px-6 py-3">
                         Permission
                     </th>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
+                    <th scope="col" class="px-6 py-3">
                         Read
                     </th>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
+                    <th scope="col" class="px-6 py-3">
                         Write
                     </th>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
+                    <th scope="col" class="px-6 py-3">
                         Delete
                     </th>
-                    <th
-                        class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase bg-gray-50 dark:bg-gray-700">
-                        Other
+                    <th scope="col" class="px-6 py-3">
+                        Others
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:text-white">
+            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:text-white rounded-b-lg">
                 @foreach ($groupedPermissions as $groupName => $group)
-                    <tr>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                    <tr
+                        class="border-b dark:border-gray-700 @if ($loop->index % 2) bg-gray-50 dark:bg-gray-800 @else dark:bg-gray-900 bg-white @endif">
+                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
                             {{ $loop->iteration }}
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="px-6 py-2.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {{ $groupName }}
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
                             @php
                                 $readPermissions = [];
                                 foreach ($group as $permission) {
@@ -95,16 +91,20 @@
                                         $readPermissions[] = $permission['id'] . ' (' . ucwords($lastWord) . ')';
                                     }
                                 }
-                                $hasListAndViewById = count($readPermissions) > 0;
-                                $hasReadPermissions = count($readPermissions) > 0;
                             @endphp
-                            @if ($hasListAndViewById)
-                                {{ implode(', ', $readPermissions) }}
-                            @elseif ($hasReadPermissions)
-                                {{ implode(', ', $readPermissions) }}
-                            @endif
+                            <div class="flex space-x-4">
+                                @foreach ($group as $permission)
+                                    @php
+                                        $lastWord = strtolower(collect(explode(' ', trim($permission['permission'])))->last());
+                                    @endphp
+                                    @if (strpos($lastWord, 'list') !== false || strpos($lastWord, 'view') !== false)
+                                        <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
+                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
                             @php
                                 $writePermissions = [];
                                 foreach ($group as $permission) {
@@ -113,16 +113,20 @@
                                         $writePermissions[] = $permission['id'] . ' (' . ucwords($lastWord) . ')';
                                     }
                                 }
-                                $hasAddAndEdit = count($writePermissions) > 0;
-                                $hasWritePermissions = count($writePermissions) > 0;
                             @endphp
-                            @if ($hasAddAndEdit)
-                                {{ implode(', ', $writePermissions) }}
-                            @elseif ($hasWritePermissions)
-                                {{ implode(', ', $writePermissions) }}
-                            @endif
+                            <div class="flex space-x-4">
+                                @foreach ($group as $permission)
+                                    @php
+                                        $lastWord = strtolower(collect(explode(' ', trim($permission['permission'])))->last());
+                                    @endphp
+                                    @if (strpos($lastWord, 'add') !== false || strpos($lastWord, 'edit') !== false)
+                                        <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
+                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
                             @php
                                 $deletePermissions = [];
                                 foreach ($group as $permission) {
@@ -131,42 +135,39 @@
                                         $deletePermissions[] = $permission['id'] . ' (' . ucwords($lastWord) . ')';
                                     }
                                 }
-                                $hasDeletePermissions = count($deletePermissions) > 0;
                             @endphp
-                            @if ($hasDeletePermissions)
-                                {{ implode(', ', $deletePermissions) }}
-                            @endif
+                            <div class="flex space-x-4">
+                                @foreach ($group as $permission)
+                                    @php
+                                        $lastWord = strtolower(collect(explode(' ', trim($permission['permission'])))->last());
+                                    @endphp
+                                    @if (strpos($lastWord, 'delete') !== false)
+                                        <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
+                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
-                        <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
-                            @php
-                                $otherPermissions = [];
-                                foreach ($group as $permission) {
-                                    $lastWord = strtolower(collect(explode(' ', trim($permission['permission'])))->last());
-                                    if (!in_array($lastWord, ['list', 'add', 'edit', 'view', 'delete']) && !in_array($permission['id'], $readPermissions) && !in_array($permission['id'], $writePermissions) && !in_array($permission['id'], $deletePermissions)) {
-                                        $otherPermissions[] = $permission['id'] . ' (' . ucwords($lastWord) . ')';
-                                    }
-                                }
-                                $hasOtherPermissions = count($otherPermissions) > 0;
-                            @endphp
-                            @if ($hasOtherPermissions)
-                                {{ implode(', ', $otherPermissions) }}
-                            @endif
+                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                            <div class="flex space-x-4">
+                                @foreach ($group as $permission)
+                                    @php
+                                        $lastWord = strtolower(collect(explode(' ', trim($permission['permission'])))->last());
+                                    @endphp
+                                    @if (
+                                        !in_array($lastWord, ['list', 'add', 'edit', 'view', 'delete']) &&
+                                            !in_array($permission['id'], $readPermissions) &&
+                                            !in_array($permission['id'], $writePermissions) &&
+                                            !in_array($permission['id'], $deletePermissions))
+                                        <x-checkbox id="{{ $permission['id'] }}" label="{{ $groupName }}"
+                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                    @endif
+                                @endforeach
+                            </div>
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
-
-        {{-- <div class="grid grid-cols-5 gap-2">
-            @foreach ($permissions as $permission)
-                @php
-                    echo collect(explode(' ', trim($permission->name)))->last();
-                @endphp
-
-                <x-checkbox id="{{ $permission->slug }}" label="{{ $permission->name }}"
-                    wire:model.defer='permissions_array' value="{{ $permission->id }}" />
-            @endforeach
-        </div> --}}
-
     </div>
 </x-backend.modal-form>

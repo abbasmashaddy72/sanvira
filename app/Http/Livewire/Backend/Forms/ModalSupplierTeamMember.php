@@ -15,6 +15,7 @@ class ModalSupplierTeamMember extends ModalComponent
     public $supplier_team_member_id, $supplier_id;
     // Model Values
     public $name, $image, $email, $phone, $designation;
+    public $imageIsUploaded = false;
 
     public function mount()
     {
@@ -33,16 +34,19 @@ class ModalSupplierTeamMember extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
-        'email' => '',
-        'phone' => '',
+        'name' => 'required',
+        'email' => 'required',
+        'phone' => 'required',
         'image' => '',
-        'designation' => '',
+        'designation' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()

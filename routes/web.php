@@ -62,6 +62,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('supplier-transaction', 'SupplierTransactionController@index')->name('supplier.transaction');
 
     Route::get('supplier', 'SupplierController@index')->name('supplier');
+    Route::get('supplier_team_member/{supplier}', 'SupplierController@team_member_index')->name('supplier_team_member');
+    Route::get('supplier_certificate/{supplier}', 'SupplierController@certificate_index')->name('supplier_certificate');
+    Route::get('supplier_testimonial/{supplier}', 'SupplierController@testimonial_index')->name('supplier_testimonial');
+    Route::get('supplier_project/{supplier}', 'SupplierController@project_index')->name('supplier_project');
+    Route::get('supplier_product/{supplier}', 'SupplierController@product_index')->name('supplier_product');
     Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');
     Route::get('supplier_profile/{supplier}', 'SupplierController@supplier_profile')->name('supplier_profile');
     Route::get('contractor', 'ContractorController@index')->name('contractor');

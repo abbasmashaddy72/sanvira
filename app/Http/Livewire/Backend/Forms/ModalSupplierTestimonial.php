@@ -15,6 +15,7 @@ class ModalSupplierTestimonial extends ModalComponent
     public $supplier_testimonial_id, $supplier_id;
     // Model Values
     public $name, $logo, $message, $year, $rating;
+    public $logoIsUploaded = false;
 
     public function mount()
     {
@@ -33,16 +34,19 @@ class ModalSupplierTestimonial extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
+        'name' => 'required',
         'logo' => '',
-        'message' => '',
-        'year' => '',
-        'rating' => '',
+        'message' => 'required',
+        'year' => 'required',
+        'rating' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->logo) != 'string') {
+            $this->logoIsUploaded = true;
+        }
     }
 
     public function add()

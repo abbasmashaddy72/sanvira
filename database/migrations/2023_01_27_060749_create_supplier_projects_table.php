@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('country');
             $table->string('city');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->string('year_range');
             $table->json('images')->nullable();
             $table->longText('feedback');

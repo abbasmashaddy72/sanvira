@@ -12,6 +12,7 @@ class ModalSupplierTransaction extends ModalComponent
     public $supplier_transaction_id, $name;
     // Model Values
     public $supplier_id, $account_type, $transaction_type, $amount, $start_date, $end_days, $image, $status;
+    public $imageIsUploaded = false;
 
     public function mount()
     {
@@ -33,19 +34,22 @@ class ModalSupplierTransaction extends ModalComponent
     }
 
     protected $rules = [
-        'supplier_id' => '',
-        'account_type' => '',
+        'supplier_id' => 'required',
+        'account_type' => 'required',
         'transaction_type' => '',
         'amount' => '',
         'start_date' => '',
         'end_days' => '',
         'image' => '',
-        'status' => '',
+        'status' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()
@@ -56,6 +60,7 @@ class ModalSupplierTransaction extends ModalComponent
             if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_transactions', 'public');
             }
+            $validatedData['start_date'] = now()->format('Y-m-d');
             SupplierTransaction::where('id', $this->supplier_transaction_id)->update($validatedData);
 
             $this->notification()->success($name = 'Supplier Transaction Updated Successfully!');
@@ -63,6 +68,7 @@ class ModalSupplierTransaction extends ModalComponent
             if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_transactions', 'public');
             }
+            $validatedData['start_date'] = now()->format('Y-m-d');
             SupplierTransaction::create($validatedData);
 
             $this->notification()->success($name = 'Supplier Transaction Saved Successfully!');

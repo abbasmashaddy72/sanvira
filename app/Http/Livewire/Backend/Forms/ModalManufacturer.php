@@ -27,7 +27,7 @@ class ModalManufacturer extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
+        'name' => 'required',
     ];
 
     public function updated($propertyName)

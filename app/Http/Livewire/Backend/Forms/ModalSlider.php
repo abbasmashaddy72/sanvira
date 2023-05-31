@@ -13,12 +13,12 @@ class ModalSlider extends ModalComponent
     // Model Values
     public $name, $image, $url;
     // Set Values
-    public $isUploaded = false;
+    public $imageIsUploaded = false;
 
     protected $rules = [
-        'name' => '',
+        'name' => 'required',
         'image' => 'required',
-        'url' => '',
+        'url' => 'required',
     ];
 
     public function updated($propertyName)
@@ -26,7 +26,7 @@ class ModalSlider extends ModalComponent
         $this->validateOnly($propertyName);
 
         if (gettype($this->image) != 'string') {
-            $this->isUploaded = true;
+            $this->imageIsUploaded = true;
         }
     }
 

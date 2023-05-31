@@ -16,54 +16,60 @@
                 <li class="my-6 menu__devider"></li>
             @else
                 <li>
-                    @can($menu['can'])
-                        <a href="{{ isset($menu['route_name']) ? route($menu['route_name']) : 'javascript:;' }}"
-                            class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}">
-                            <div class="menu__icon">
-                                <i data-feather="{{ $menu['icon'] }}"></i>
-                            </div>
-                            <div class="menu__title">
-                                {{ $menu['title'] }}
-                                @if (isset($menu['sub_menu']))
-                                    <i data-feather="chevron-down"
-                                        class="menu__sub-icon {{ $first_level_active_index == $menuKey ? 'transform rotate-180' : '' }}"></i>
-                                @endif
-                            </div>
-                        </a>
-                    @endcan
+                    @role($menu['role'])
+                        @can($menu['can'])
+                            <a href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}"
+                                class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}">
+                                <div class="menu__icon">
+                                    <i data-feather="{{ $menu['icon'] }}"></i>
+                                </div>
+                                <div class="menu__title">
+                                    {{ $menu['title'] }}{{ $menu['role'] }}
+                                    @if (isset($menu['sub_menu']))
+                                        <i data-feather="chevron-down"
+                                            class="menu__sub-icon {{ $first_level_active_index == $menuKey ? 'transform rotate-180' : '' }}"></i>
+                                    @endif
+                                </div>
+                            </a>
+                        @endcan
+                    @endrole
                     @if (isset($menu['sub_menu']))
                         <ul class="{{ $first_level_active_index == $menuKey ? 'menu__sub-open' : '' }}">
                             @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
                                 <li>
-                                    @can($menu['can'])
-                                        <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name']) : 'javascript:;' }}"
-                                            class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
-                                            <div class="menu__icon">
-                                                <i data-feather="activity"></i>
-                                            </div>
-                                            <div class="menu__title">
-                                                {{ $subMenu['title'] }}
-                                                @if (isset($subMenu['sub_menu']))
-                                                    <i data-feather="chevron-down"
-                                                        class="menu__sub-icon {{ $second_level_active_index == $subMenuKey ? 'transform rotate-180' : '' }}"></i>
-                                                @endif
-                                            </div>
-                                        </a>
-                                    @endcan
+                                    @role($submenu['role'])
+                                        @can($submenu['can'])
+                                            <a href="{{ isset($subMenu['route_name']) ? route($submenu['route_name'], $submenu['params']) : 'javascript:;' }}"
+                                                class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
+                                                <div class="menu__icon">
+                                                    <i data-feather="activity"></i>
+                                                </div>
+                                                <div class="menu__title">
+                                                    {{ $subMenu['title'] }}
+                                                    @if (isset($subMenu['sub_menu']))
+                                                        <i data-feather="chevron-down"
+                                                            class="menu__sub-icon {{ $second_level_active_index == $subMenuKey ? 'transform rotate-180' : '' }}"></i>
+                                                    @endif
+                                                </div>
+                                            </a>
+                                        @endcan
+                                    @endrole
                                     @if (isset($subMenu['sub_menu']))
                                         <ul
                                             class="{{ $second_level_active_index == $subMenuKey ? 'menu__sub-open' : '' }}">
                                             @foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu)
                                                 <li>
-                                                    @can($menu['can'])
-                                                        <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name']) : 'javascript:;' }}"
-                                                            class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
-                                                            <div class="menu__icon">
-                                                                <i data-feather="zap"></i>
-                                                            </div>
-                                                            <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
-                                                        </a>
-                                                    @endcan
+                                                    @role($lastSubmenu['role'])
+                                                        @can($lastSubmenu['can'])
+                                                            <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubmenu['route_name'], $lastSubmenu['params']) : 'javascript:;' }}"
+                                                                class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
+                                                                <div class="menu__icon">
+                                                                    <i data-feather="zap"></i>
+                                                                </div>
+                                                                <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
+                                                            </a>
+                                                        @endcan
+                                                    @endrole
                                                 </li>
                                             @endforeach
                                         </ul>

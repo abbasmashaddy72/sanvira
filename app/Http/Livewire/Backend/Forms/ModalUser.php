@@ -36,10 +36,10 @@ class ModalUser extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
-        'email' => '',
-        'password' => '',
-        'role' => ''
+        'name' => 'required',
+        'email' => 'required',
+        'password' => 'required',
+        'role' => 'required',
     ];
 
     public function updated($propertyName)

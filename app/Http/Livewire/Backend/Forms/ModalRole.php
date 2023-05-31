@@ -32,7 +32,7 @@ class ModalRole extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
+        'name' => 'required',
         'slug' => '',
     ];
 

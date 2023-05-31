@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('supplier_transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('supplier_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('account_type', ['Trail', 'Regular', 'Featured']);
-            $table->enum('transaction_type', ['Paid', 'Unpaid', 'Pending']);
-            $table->string('amount');
+            $table->enum('account_type', ['Trial', 'Regular', 'Featured'])->default('Trial');
+            $table->enum('transaction_type', ['Paid', 'Unpaid', 'Pending'])->default('Unpaid');
+            $table->string('amount')->default(0);
             $table->date('start_date');
-            $table->bigInteger('end_days');
-            $table->string('image');
+            $table->bigInteger('end_days')->default(30);
+            $table->string('image')->nullable();
             $table->enum('status', ['Active', 'InActive', 'Expired']);
             $table->timestamps();
         });

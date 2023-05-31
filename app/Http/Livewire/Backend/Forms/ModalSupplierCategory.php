@@ -4,16 +4,18 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierProductCategory;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplierCategory extends ModalComponent
 {
-    use Actions;
+    use Actions, WithFileUploads;
     // Set Data
     public $supplier_category_id, $type;
     // Model Values
     public $name, $image, $parent_id;
+    public $imageIsUploaded = false;
 
     public function mount()
     {
@@ -34,14 +36,17 @@ class ModalSupplierCategory extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
-        'image' => '',
+        'name' => 'required',
+        'image' => 'required',
         'parent_id' => '',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()

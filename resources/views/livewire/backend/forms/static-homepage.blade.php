@@ -2,61 +2,17 @@
     <form wire:submit.prevent="add">
         @if ($type == 'Homepage')
             <div class="grid grid-cols-3 gap-2">
-                <div>
-                    @if ($this->logo)
-                        <div class="my-4">
-                            <div class="mb-2">
-                                <label class="block">
-                                    <x-label label="Uploaded Logo Preview" />
-                                    <img src="{{ $this->logoIsUploaded ? $this->logo->temporaryUrl() : url('storage/' . $this->logo) }}"
-                                        class="h-20 mt-2">
-                                </label>
-                            </div>
-                        </div>
-                    @endif
+                <x-backend.image-upload :images="$this->logo" :isUploaded="$this->logoIsUploaded" label="Upload Logo" name="logo"
+                    model="logo" />
 
-                    <div class="my-4">
-                        <div class="mb-2">
-                            <label class="block">
-                                <x-label label="Logo" />
-                                <input type="file" accept="image/*" wire:model.defer="logo"
-                                    class="block w-full mt-2 text-xl font-normal text-gray-500 border rounded outline-none focus:border-blue-400 focus:shadow">
-                            </label>
-                        </div>
-                        <x-errors name="logo" />
-                    </div>
-                </div>
-                <div>
-                    @if ($this->footer_logo)
-                        <div class="my-4">
-                            <div class="mb-2">
-                                <label class="block">
-                                    <x-label label="Uploaded Footer Logo Preview" />
-                                    <img src="{{ $this->footerLogoIsUploaded ? $this->footer_logo->temporaryUrl() : url('storage/' . $this->footer_logo) }}"
-                                        class="h-20 mt-2">
-                                </label>
-                            </div>
-                        </div>
-                    @endif
-
-                    <div class="my-4">
-                        <div class="mb-2">
-                            <label class="block">
-                                <x-label label="Footer Logo" />
-                                <input type="file" accept="image/*" wire:model.defer="footer_logo"
-                                    class="block w-full mt-2 text-xl font-normal text-gray-500 border rounded outline-none focus:border-blue-400 focus:shadow">
-                            </label>
-                        </div>
-                        <x-errors name="footer_logo" />
-                    </div>
-                </div>
+                <x-backend.image-upload :images="$this->footer_logo" :isUploaded="$this->footerLogoIsUploaded" label="Upload Footer Logo" name="footer_logo"
+                    model="footer_logo" />
 
                 <x-textarea name="short_description" label="Short Description" wire:model.defer='short_description' />
                 <div>
                     <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
                         {{ __('Social Media Links') }}
                     </h4>
-
                     <x-input name="twitter" label="Twitter" type="text" wire:model.defer='twitter' />
 
                     <x-input name="facebook" label="Facebook" type="text" wire:model.defer='facebook' />
@@ -78,7 +34,7 @@
 
                     <x-input name="embed_map_link"
                         label="Embed Map Link(Directly from Google Maps Search, Share, Embed copy src link & paste)"
-                        type="text" wire:model.defer='embed_map_link' />
+                        type="text" wire:model.defer='embed_map_link' required />
 
                 </div>
             </div>
@@ -86,13 +42,13 @@
 
         @if ($type == 'Privacy Policy')
             <div>
-                <x-backend.ckEditor id="body1en" lang="EN" name="privacy_policy" label="Privacy Policy"
+                <x-backend.ckEditor idPrefix="body1en" lang="EN" name="privacy_policy" label="Privacy Policy"
                     wire:model.defer='privacy_policy' />
             </div>
         @endif
         @if ($type == 'Terms of Use')
             <div>
-                <x-backend.ckEditor id="body2en" lang="EN" name="terms_of_use" label="Terms of Use"
+                <x-backend.ckEditor idPrefix="body2en" lang="EN" name="terms_of_use" label="Terms of Use"
                     wire:model.defer='terms_of_use' />
             </div>
         @endif

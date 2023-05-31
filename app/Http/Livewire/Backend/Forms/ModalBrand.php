@@ -15,6 +15,7 @@ class ModalBrand extends ModalComponent
     public $brand_id;
     // Model Values
     public $name, $image;
+    public $imageIsUploaded = false;
 
     public function mount()
     {
@@ -29,13 +30,16 @@ class ModalBrand extends ModalComponent
     }
 
     protected $rules = [
-        'name' => '',
-        'image' => '',
+        'name' => 'required',
+        'image' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()

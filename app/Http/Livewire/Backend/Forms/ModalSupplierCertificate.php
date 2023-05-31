@@ -31,9 +31,9 @@ class ModalSupplierCertificate extends ModalComponent
     }
 
     protected $rules = [
-        'title' => '',
-        'attachment' => '',
-        'type' => '',
+        'title' => 'required',
+        'attachment' => 'required',
+        'type' => 'required',
     ];
 
     public function updated($propertyName)

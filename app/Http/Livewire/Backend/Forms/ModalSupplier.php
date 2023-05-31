@@ -19,6 +19,7 @@ class ModalSupplier extends ModalComponent
     public $supplier_id;
     // Model Values
     public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $doe, $license, $type, $website_url, $description, $terms_conditions, $agree, $contact_person_name, $contact_person_email, $contact_person_number, $contact_person_designation;
+    public $logoIsUploaded = false;
 
     public function mount()
     {
@@ -50,27 +51,31 @@ class ModalSupplier extends ModalComponent
     }
 
     protected $rules = [
-        'company_name' => '',
+        'company_name' => 'required',
         'company_email' => '',
-        'company_address' => '',
+        'company_address' => 'required',
         'company_number' => '',
-        'company_locality' => '',
+        'company_locality' => 'required',
         'tagline' => '',
         'logo' => '',
-        'doe' => '',
-        'license' => '',
+        'doe' => 'required',
+        'license' => 'required',
+        'type' => 'required',
         'website_url' => '',
         'description' => '',
         'terms_conditions' => '',
-        'contact_person_name' => '',
-        'contact_person_email' => '',
-        'contact_person_number' => '',
-        'contact_person_designation' => '',
+        'contact_person_name' => 'required',
+        'contact_person_email' => 'required',
+        'contact_person_number' => 'required',
+        'contact_person_designation' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->logo) != 'string') {
+            $this->logoIsUploaded = true;
+        }
     }
 
     public function add()

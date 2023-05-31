@@ -21,6 +21,8 @@ class ModalSupplierProduct extends ModalComponent
     // Model Custom Values
     public $min_max_oq, $inputs = [], $i = 1, $isUploaded = false;
 
+    protected $temporaryUploadDirectory = 'storage/livewire-tmp';
+
     public function add($i)
     {
         $i = $i + 1;
@@ -73,22 +75,21 @@ class ModalSupplierProduct extends ModalComponent
     }
 
     protected $rules = [
-        'supplier_id' => '',
-        'supplier_product_category_id' => '',
-        'country_id' => '',
-        'brand_id' => '',
-        'manufacturer_id' => '',
-        'name' => '',
+        'supplier_product_category_id' => 'required',
+        'country_id' => 'required',
+        'brand_id' => 'required',
+        'manufacturer_id' => 'required',
+        'name' => 'required',
         'description' => '',
-        'min_max_oq' => '',
-        'edt' => '',
-        'avb_stock' => '',
-        'model' => '',
-        'item_type' => '',
+        'min_max_oq' => 'required',
+        'edt' => 'required',
+        'avb_stock' => 'required',
+        'model' => 'required',
+        'item_type' => 'required',
         'sku' => '',
-        'on_sale' => '',
-        'images' => '',
-        'price' => '',
+        'on_sale' => 'required',
+        'images' => 'required',
+        'price' => 'required',
         'min_price' => '',
         'max_price' => '',
     ];
@@ -189,6 +190,9 @@ class ModalSupplierProduct extends ModalComponent
             return in_array($value, $toRemoveImages);
         });
         SupplierProduct::where('id', $params['supplier_product_id'])->update(['images' => $updatedImages]);
+
+        $this->emit('refreshLivewireDatatable');
+        $this->closeModal();
 
         $this->notification()->success($title = 'Supplier Product Image Deleted Successfully!');
     }
