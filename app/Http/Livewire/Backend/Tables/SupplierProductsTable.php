@@ -12,11 +12,12 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 class SupplierProductsTable extends LivewireDatatable
 {
     public $supplier_id;
+
     public $exportable = true;
 
     public function builder()
     {
-        return SupplierProduct::query()->with('manufacturers', 'brands')->where('supplier_id', $this->supplier_id);
+        return SupplierProduct::query()->joinRelationship('manufacturers')->joinRelationship('brands')->where('supplier_id', $this->supplier_id);
     }
 
     public function columns()
@@ -78,9 +79,9 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            BooleanColumn::name('images')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['images', 'name'], function ($images, $name) {
+                return view('components.backend.dt-image', ['images' => $images, 'name' => $name]);
+            })->excludeFromExport()->unsortable()->label('Images'),
 
             DateColumn::name('created_at')
                 ->filterable(),

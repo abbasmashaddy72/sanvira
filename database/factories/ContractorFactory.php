@@ -18,7 +18,7 @@ class ContractorFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)]
+            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
         ];
     }
 }

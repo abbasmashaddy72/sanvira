@@ -11,7 +11,15 @@ class SupplierProductView extends Component
 {
     use Actions;
 
-    public $type, $item, $cartProducts = [], $rfqProducts = [], $quantity = [];
+    public $type;
+
+    public $item;
+
+    public $cartProducts = [];
+
+    public $rfqProducts = [];
+
+    public $quantity = [];
 
     public function mount()
     {
@@ -24,7 +32,7 @@ class SupplierProductView extends Component
         Cart::create([
             'supplier_product_id' => $productId,
             'user_id' => auth()->id(),
-            'quantity' => $this->quantity[$productId]
+            'quantity' => $this->quantity[$productId],
         ]);
         $this->cartProducts[] = $productId;
 
@@ -48,7 +56,7 @@ class SupplierProductView extends Component
         Rfq::create([
             'supplier_product_id' => $productId,
             'user_id' => auth()->id(),
-            'quantity' => $this->quantity[$productId]
+            'quantity' => $this->quantity[$productId],
         ]);
         $this->rfqProducts[] = $productId;
 

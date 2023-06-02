@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kirschbaum\PowerJoins\PowerJoins;
 
 class BrandTransaction extends Model
 {
     use HasFactory;
+    use PowerJoins;
 
     protected $fillable = [
         'brand_id',

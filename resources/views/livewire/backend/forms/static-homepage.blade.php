@@ -54,13 +54,13 @@
         @endif
         @if ($type == 'Return Refund')
             <div>
-                <x-backend.ckEditor id="body2en" lang="EN" name="return_refunds" label="Returns & Refunds"
+                <x-backend.ckEditor idPrefix="body2en" lang="EN" name="return_refunds" label="Returns & Refunds"
                     wire:model.defer='return_refunds' />
             </div>
         @endif
         @if ($type == 'Career')
             <div>
-                <x-backend.ckEditor id="body2en" lang="EN" name="career" label="Career"
+                <x-backend.ckEditor idPrefix="body2en" lang="EN" name="career" label="Career"
                     wire:model.defer='career' />
             </div>
         @endif

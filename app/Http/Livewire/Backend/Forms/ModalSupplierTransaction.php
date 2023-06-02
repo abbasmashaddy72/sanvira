@@ -9,15 +9,34 @@ use LivewireUI\Modal\ModalComponent;
 class ModalSupplierTransaction extends ModalComponent
 {
     // Set Data
-    public $supplier_transaction_id, $name;
+    public $supplier_transaction_id;
+
+    public $name;
+
     // Model Values
-    public $supplier_id, $account_type, $transaction_type, $amount, $start_date, $end_days, $image, $status;
+    public $supplier_id;
+
+    public $account_type;
+
+    public $transaction_type;
+
+    public $amount;
+
+    public $start_date;
+
+    public $end_days;
+
+    public $image;
+
+    public $status;
+
     public $imageIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->supplier_transaction_id)) {
             abort_if(Gate::denies('supplier_transaction_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_transaction_edit'), 403);
@@ -56,8 +75,8 @@ class ModalSupplierTransaction extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->supplier_transaction_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+        if (! empty($this->supplier_transaction_id)) {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_transactions', 'public');
             }
             $validatedData['start_date'] = now()->format('Y-m-d');
@@ -65,7 +84,7 @@ class ModalSupplierTransaction extends ModalComponent
 
             $this->notification()->success($name = 'Supplier Transaction Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_transactions', 'public');
             }
             $validatedData['start_date'] = now()->format('Y-m-d');

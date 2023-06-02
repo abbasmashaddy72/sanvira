@@ -11,6 +11,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class SupplierCertificatesTable extends LivewireDatatable
 {
     public $supplier_id;
+
     public $exportable = true;
 
     public function builder()

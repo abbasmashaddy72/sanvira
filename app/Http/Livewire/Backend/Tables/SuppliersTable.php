@@ -25,6 +25,10 @@ class SuppliersTable extends LivewireDatatable
             Column::index($this)
                 ->unsortable(),
 
+            Column::callback(['logo'], function ($logo) {
+                return view('components.backend.dt-image', ['image' => $logo]);
+            })->excludeFromExport()->unsortable()->label('Logo'),
+
             Column::name('company_name')
                 ->searchable()
                 ->filterable(),

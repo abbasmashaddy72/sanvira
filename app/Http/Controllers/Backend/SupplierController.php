@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Supplier;
+use Illuminate\Support\Facades\Gate;
 
 class SupplierController extends Controller
 {
@@ -44,6 +44,7 @@ class SupplierController extends Controller
             $project_index = true;
             $product_index = true;
         }
+
         return view('pages.backend.supplier.profile', compact([
             'supplier',
             'supplier_profile',

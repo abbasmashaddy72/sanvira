@@ -10,6 +10,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class SlidersTable extends LivewireDatatable
 {
     public $model = Slider::class;
+
     public $exportable = true;
 
     public function builder()
@@ -30,9 +31,9 @@ class SlidersTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('image')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['image'], function ($image) {
+                return view('components.backend.dt-image', ['image' => $image]);
+            })->excludeFromExport()->unsortable()->label('Image'),
 
             Column::name('url')
                 ->searchable()

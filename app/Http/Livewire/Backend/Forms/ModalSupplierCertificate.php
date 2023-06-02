@@ -3,23 +3,33 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierCertificate;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplierCertificate extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
+
     // Set Data
-    public $supplier_certificate_id, $supplier_id;
+    public $supplier_certificate_id;
+
+    public $supplier_id;
+
     // Model Values
-    public $title, $attachment, $type;
+    public $title;
+
+    public $attachment;
+
+    public $type;
 
     public function mount()
     {
         if (empty($this->supplier_certificate_id)) {
             abort_if(Gate::denies('supplier_certificate_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_certificate_edit'), 403);
@@ -46,15 +56,15 @@ class ModalSupplierCertificate extends ModalComponent
         $validatedData = $this->validate();
         $validatedData['supplier_id'] = $this->supplier_id;
 
-        if (!empty($this->supplier_certificate_id)) {
-            if (!empty($this->attachment) && gettype($this->attachment) != 'string') {
+        if (! empty($this->supplier_certificate_id)) {
+            if (! empty($this->attachment) && gettype($this->attachment) != 'string') {
                 $validatedData['attachment'] = $this->attachment->store('supplier_certificates', 'public');
             }
             SupplierCertificate::where('id', $this->supplier_certificate_id)->update($validatedData);
 
             $this->notification()->success($title = 'Supplier Certificate Updated Successfully!');
         } else {
-            if (!empty($this->attachment) && gettype($this->attachment) != 'string') {
+            if (! empty($this->attachment) && gettype($this->attachment) != 'string') {
                 $validatedData['attachment'] = $this->attachment->store('supplier_certificates', 'public');
             }
             SupplierCertificate::create($validatedData);

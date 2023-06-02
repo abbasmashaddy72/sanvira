@@ -8,6 +8,7 @@ use Livewire\Component;
 class CartCounter extends Component
 {
     public $cartProducts;
+
     protected $listeners = ['updateCart' => 'render'];
 
     public function mount()

@@ -3,15 +3,21 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Slider;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class ModalSlider extends ModalComponent
 {
     use WithFileUploads;
+
     // Model Values
-    public $name, $image, $url;
+    public $name;
+
+    public $image;
+
+    public $url;
+
     // Set Values
     public $imageIsUploaded = false;
 

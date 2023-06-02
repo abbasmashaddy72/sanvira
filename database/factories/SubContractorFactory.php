@@ -31,7 +31,7 @@ class SubContractorFactory extends Factory
             'address' => $this->faker->address(),
             'number' => rand(7000000000, 9000000000),
             'locality' => $this->faker->country(),
-            'description' =>  $description,
+            'description' => $description,
             'terms_conditions' => $description,
         ];
     }

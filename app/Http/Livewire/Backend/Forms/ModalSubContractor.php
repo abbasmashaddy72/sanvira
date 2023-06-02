@@ -10,15 +10,32 @@ use WireUi\Traits\Actions;
 class ModalSubContractor extends ModalComponent
 {
     use Actions;
+
     // Set Data
     public $sub_contractor_id;
+
     // Model Values
-    public $user_id, $name, $email, $address, $number, $locality, $description, $terms_conditions;
+    public $user_id;
+
+    public $name;
+
+    public $email;
+
+    public $address;
+
+    public $number;
+
+    public $locality;
+
+    public $description;
+
+    public $terms_conditions;
 
     public function mount()
     {
         if (empty($this->sub_contractor_id)) {
             abort_if(Gate::denies('sub_contractor_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('sub_contractor_edit'), 403);
@@ -52,7 +69,7 @@ class ModalSubContractor extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->sub_contractor_id)) {
+        if (! empty($this->sub_contractor_id)) {
             SubContractor::where('id', $this->sub_contractor_id)->update($validatedData);
 
             $this->notification()->success($title = 'SubContractor Updated Successfully!');

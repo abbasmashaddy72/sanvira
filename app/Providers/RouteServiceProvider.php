@@ -26,7 +26,7 @@ class RouteServiceProvider extends ServiceProvider
                 return 'admin/dashboard';
                 break;
             case 'Supplier':
-                return 'admin/supplier_profile/' . Supplier::where('user_id', auth()->user()->id)->first()->id;
+                return 'admin/supplier_profile/'.Supplier::where('user_id', auth()->user()->id)->first()->id;
                 break;
             case 'Contractor':
                 return '/';

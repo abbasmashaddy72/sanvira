@@ -10,7 +10,9 @@ class CartModal extends ModalComponent
 {
     use Actions;
 
-    public $cartProductLists, $cartProducts = [];
+    public $cartProductLists;
+
+    public $cartProducts = [];
 
     public function mount()
     {
@@ -33,7 +35,7 @@ class CartModal extends ModalComponent
     public function updateCart($productId, $quantity)
     {
         Cart::where('supplier_product_id', $productId)->where('user_id', auth()->id())->update([
-            'quantity' => $quantity
+            'quantity' => $quantity,
         ]);
 
         $this->notification()->success($title = 'Product Quantity Updated in Cart');

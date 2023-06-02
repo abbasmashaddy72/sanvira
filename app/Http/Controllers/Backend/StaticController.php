@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class StaticController extends Controller
 {
@@ -51,13 +51,13 @@ class StaticController extends Controller
 
     public function image_upload(Request $request)
     {
-        $blog = new Supplier();
+        $blog = new Supplier;
         $blog->id = 0;
         $blog->exists = true;
         $image = $blog->addMediaFromRequest('upload')->toMediaCollection('images');
 
         return response()->json([
-            'url' => $image->getUrl('thumb')
+            'url' => $image->getUrl('thumb'),
         ]);
     }
 }

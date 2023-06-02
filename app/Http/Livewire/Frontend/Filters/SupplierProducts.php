@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire\Frontend\Filters;
 
-use App\Models\Cart;
-use App\Models\Rfq;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
 use Livewire\Component;
@@ -12,22 +10,53 @@ use WireUi\Traits\Actions;
 
 class SupplierProducts extends Component
 {
-    use Actions, WithPagination;
+    use Actions;
+    use WithPagination;
 
     // Sales Page Values
     public $sales_id;
+
     // Category Based Product Page Values
     public $product_category;
+
     // Profile Page Values
     public $profile_id;
+
     // Custom Values
-    public $type, $page_title, $applyFilter = false;
+    public $type;
+
+    public $page_title;
+
+    public $applyFilter = false;
+
     // 1st Filter Options
-    public $min_oq, $max_oq, $min_price, $max_price, $min_edt, $max_edt, $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [], $country_id = [];
+    public $min_oq;
+
+    public $max_oq;
+
+    public $min_price;
+
+    public $max_price;
+
+    public $min_edt;
+
+    public $max_edt;
+
+    public $brand_id = [];
+
+    public $manufacturer_id = [];
+
+    public $supplier_product_category_id = [];
+
+    public $country_id = [];
+
     // 2nd Filter Options
     public $setButton = 'relevance';
+
     // 3rd Filter Options
-    public $availableLetters, $alphabet = 'A';
+    public $availableLetters;
+
+    public $alphabet = 'A';
 
     public function mount()
     {
@@ -36,7 +65,7 @@ class SupplierProducts extends Component
         } else {
             $this->page_title = $this->page_title ?? $this->type;
         }
-        if (!empty($this->product_category)) {
+        if (! empty($this->product_category)) {
             $this->supplier_product_category_id = $this->product_category->id;
         }
         if ($this->type == 'All Category Page') {
@@ -81,8 +110,8 @@ class SupplierProducts extends Component
 
     public function render()
     {
-        if (!empty($this->alphabet) && $this->applyFilter == true) {
-            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . "%")->get();
+        if (! empty($this->alphabet) && $this->applyFilter == true) {
+            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet.'%')->get();
         } else {
             $sub_product_category = [];
         }

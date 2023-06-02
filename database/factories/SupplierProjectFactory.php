@@ -37,7 +37,7 @@ class SupplierProjectFactory extends Factory
             'country' => $this->faker->country(),
             'city' => $this->faker->city(),
             'description' => $description,
-            'year_range' => rand(1994, 2023) . '-' . rand(1994, 2023),
+            'year_range' => rand(1994, 2023).'-'.rand(1994, 2023),
             'images' => $random_array,
             'feedback' => $this->faker->realText(),
         ];

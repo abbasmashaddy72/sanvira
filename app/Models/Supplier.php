@@ -10,7 +10,8 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Supplier extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'user_id',

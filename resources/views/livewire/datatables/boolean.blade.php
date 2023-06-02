@@ -1,7 +1,7 @@
 <div>
-@if($value)
-    <x-icons.check-circle class="text-green-600 mx-auto" />
-@else
-    <x-icons.x-circle class="text-red-300 mx-auto" />
-@endif
+    @if ($value)
+        <x-icons.check-circle class="mx-auto text-green-600" />
+    @else
+        <x-icons.x-circle class="mx-auto text-red-300" />
+    @endif
 </div>

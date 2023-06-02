@@ -4,18 +4,25 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalUser extends ModalComponent
 {
     use Actions;
+
     // Set Data
     public $user_id;
+
     // Model Values
-    public $name, $email, $password;
+    public $name;
+
+    public $email;
+
+    public $password;
+
     // Custom Values
     public $role;
 
@@ -23,6 +30,7 @@ class ModalUser extends ModalComponent
     {
         if (empty($this->user_id)) {
             abort_if(Gate::denies('user_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('user_edit'), 403);
@@ -30,7 +38,7 @@ class ModalUser extends ModalComponent
         $this->name = $data->name;
         $this->email = $data->email;
         $this->password = $data->password;
-        if (!empty($data->roles->first()->name)) {
+        if (! empty($data->roles->first()->name)) {
             $this->role = Role::where('name', $data->roles->first()->name)->pluck('id');
         }
     }
@@ -51,7 +59,7 @@ class ModalUser extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->user_id)) {
+        if (! empty($this->user_id)) {
             if ($this->password != $validatedData['password']) {
                 $validatedData['password'] = Hash::make($validatedData['password']);
             }
@@ -82,10 +90,10 @@ class ModalUser extends ModalComponent
         $this->closeModal();
     }
 
-
     public function render()
     {
         $roles = Role::get();
+
         return view('livewire.backend.forms.modal-user', compact('roles'));
     }
 }

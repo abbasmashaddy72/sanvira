@@ -11,6 +11,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class SupplierProjectsTable extends LivewireDatatable
 {
     public $supplier_id;
+
     public $exportable = true;
 
     public function builder()
@@ -47,9 +48,9 @@ class SupplierProjectsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            BooleanColumn::name('images')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['images', 'name'], function ($images, $name) {
+                return view('components.backend.dt-image', ['images' => $images, 'name' => $name]);
+            })->excludeFromExport()->unsortable()->label('Images'),
 
             Column::name('feedback')
                 ->searchable()

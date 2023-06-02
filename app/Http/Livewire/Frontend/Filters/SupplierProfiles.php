@@ -12,8 +12,13 @@ class SupplierProfiles extends Component
 
     // Custom Values
     public $applyFilter = false;
+
     // Custom Filter Values
-    public $brand_id = [], $manufacturer_id = [], $supplier_product_category_id = [];
+    public $brand_id = [];
+
+    public $manufacturer_id = [];
+
+    public $supplier_product_category_id = [];
 
     public function apply()
     {

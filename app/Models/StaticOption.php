@@ -11,6 +11,6 @@ class StaticOption extends Model
 
     protected $fillable = [
         'option_name',
-        'option_value'
+        'option_value',
     ];
 }

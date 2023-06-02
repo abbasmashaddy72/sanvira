@@ -11,11 +11,11 @@
         <x-input name="locality" label="Locality" type="text" wire:model.defer='locality' />
     </div>
     <div>
-        <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
+        <x-backend.ckEditor idPrefix="body1en" lang="EN" name="description" label="Description"
             wire:model.defer='description' />
     </div>
     <div>
-        <x-backend.ckEditor id="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
+        <x-backend.ckEditor idPrefix="body2en" lang="EN" name="terms_conditions" label="Terms & Conditions"
             wire:model.defer='terms_conditions' />
     </div>
 </x-backend.modal-form>

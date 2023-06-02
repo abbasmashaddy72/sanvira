@@ -26,7 +26,7 @@ class ConfirmablePasswordController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (!auth()->guard('web')->validate([
+        if (! auth()->guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {

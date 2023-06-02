@@ -26,7 +26,7 @@ class AppLayout extends Component
 
     public function sideMenu()
     {
-        $supplier_id =  Supplier::where('user_id', auth()->user()->id)->value('id');
+        $supplier_id = Supplier::where('user_id', auth()->user()->id)->value('id');
 
         return [
             'dashboard' => [
@@ -226,7 +226,7 @@ class AppLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
+            if (! (isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
                 continue;
             }
 
@@ -237,7 +237,7 @@ class AppLayout extends Component
                     $secondLevelActiveIndex = $subMenuKey;
                 }
 
-                if (!isset($subMenu['sub_menu'])) {
+                if (! isset($subMenu['sub_menu'])) {
                     continue;
                 }
 
@@ -255,7 +255,7 @@ class AppLayout extends Component
         return [
             'first_level_active_index' => $firstLevelActiveIndex,
             'second_level_active_index' => $secondLevelActiveIndex,
-            'third_level_active_index' => $thirdLevelActiveIndex
+            'third_level_active_index' => $thirdLevelActiveIndex,
         ];
     }
 }

@@ -17,10 +17,38 @@ use Monarobase\CountryList\CountryListFacade;
 class RegisterForm extends Component
 {
     // User Model Values
-    public $name, $email;
+    public $name;
+
+    public $email;
+
     // Supplier Model Values
-    public $supplier_name, $supplier_address, $city, $state, $country, $tln, $doe, $toc, $tob, $contact_no, $job_title, $agree;
-    private $validatedData, $user;
+    public $supplier_name;
+
+    public $supplier_address;
+
+    public $city;
+
+    public $state;
+
+    public $country;
+
+    public $tln;
+
+    public $doe;
+
+    public $toc;
+
+    public $tob;
+
+    public $contact_no;
+
+    public $job_title;
+
+    public $agree;
+
+    private $validatedData;
+
+    private $user;
 
     protected $rules = [
         'supplier_name' => '',
@@ -34,7 +62,7 @@ class RegisterForm extends Component
         'tob' => '',
         'name' => ['required', 'string', 'max:255'],
         'contact_no' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
         'job_title' => '',
         'agree' => 'required',
     ];
@@ -52,7 +80,7 @@ class RegisterForm extends Component
             'company_email' => null,
             'company_address' => $this->validatedData['supplier_address'],
             'company_number' => null,
-            'company_locality' => $this->validatedData['city'] . ', ' . $this->validatedData['state'] . ', ' . $this->validatedData['country'],
+            'company_locality' => $this->validatedData['city'].', '.$this->validatedData['state'].', '.$this->validatedData['country'],
             'tagline' => null,
             'logo' => null,
             'doe' => $this->validatedData['doe'],
@@ -84,12 +112,12 @@ class RegisterForm extends Component
         $this->user = User::create([
             'name' => $this->validatedData['name'],
             'email' => $this->validatedData['email'],
-            'password' => Hash::make(explode(" ", $this->validatedData['name'])[0] . '@' . substr($this->validatedData['contact_no'], -3)),
+            'password' => Hash::make(explode(' ', $this->validatedData['name'])[0].'@'.substr($this->validatedData['contact_no'], -3)),
         ]);
 
-        if ($this->tob == 'Manufacturer' || $this->tob == 'Supplier')
+        if ($this->tob == 'Manufacturer' || $this->tob == 'Supplier') {
             $this->supplierRegister();
-        elseif ($this->tob == 'Contractor') {
+        } elseif ($this->tob == 'Contractor') {
             //
         } else {
             //

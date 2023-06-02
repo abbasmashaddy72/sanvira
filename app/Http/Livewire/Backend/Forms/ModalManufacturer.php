@@ -10,8 +10,10 @@ use WireUi\Traits\Actions;
 class ModalManufacturer extends ModalComponent
 {
     use Actions;
+
     // Set Data
     public $manufacturer_id;
+
     // Model Values
     public $name;
 
@@ -19,6 +21,7 @@ class ModalManufacturer extends ModalComponent
     {
         if (empty($this->manufacturer_id)) {
             abort_if(Gate::denies('manufacturer_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('manufacturer_edit'), 403);
@@ -39,7 +42,7 @@ class ModalManufacturer extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->manufacturer_id)) {
+        if (! empty($this->manufacturer_id)) {
             Manufacturer::where('id', $this->manufacturer_id)->update($validatedData);
 
             $this->notification()->success($name = 'Manufacturer Updated Successfully!');

@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Backend\Tables;
 
 use App\Models\SupplierTeam;
-use Mediconesystems\LivewireDatatables\BooleanColumn;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\DateColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -11,6 +10,7 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 class SupplierTeamMembersTable extends LivewireDatatable
 {
     public $supplier_id;
+
     public $exportable = true;
 
     public function builder()
@@ -31,11 +31,11 @@ class SupplierTeamMembersTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('designation')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['image'], function ($image) {
+                return view('components.backend.dt-image', ['image' => $image]);
+            })->excludeFromExport()->unsortable()->label('Image'),
 
-            BooleanColumn::name('image')
+            Column::name('designation')
                 ->searchable()
                 ->filterable(),
 

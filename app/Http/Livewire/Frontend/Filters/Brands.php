@@ -8,7 +8,9 @@ use Livewire\Component;
 class Brands extends Component
 {
     // Filter Values
-    public $availableLetters, $alphabet = 'A';
+    public $availableLetters;
+
+    public $alphabet = 'A';
 
     public function apply($item)
     {
@@ -24,7 +26,7 @@ class Brands extends Component
 
     public function render()
     {
-        $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet . "%")->get();
+        $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet.'%')->get();
         $featured_brands = Brand::withCount('products')->whereHas('transactions', function ($query) {
             $query->where('account_type', '=', 'Featured');
         })->get()->take(9);

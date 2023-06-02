@@ -8,6 +8,7 @@ use Livewire\Component;
 class RfqCounter extends Component
 {
     public $rfqProducts;
+
     protected $listeners = ['updateRfq' => 'render'];
 
     public function mount()

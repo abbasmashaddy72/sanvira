@@ -23,7 +23,6 @@ class GuestLayout extends Component
         return view('layouts.guest');
     }
 
-
     public function mainMenu()
     {
         return [
@@ -51,36 +50,38 @@ class GuestLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])){
-        continue;} 
+            if (! (isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
+                continue;
+            }
 
-                foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
+            foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
 
-                    if (isset($subMenu['route_name']) && $subMenu['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondPageName)) {
+                if (isset($subMenu['route_name']) && $subMenu['route_name'] == $pageName && $menuKey != 'menu-layout' && empty($secondPageName)) {
+                    $firstLevelActiveIndex = $menuKey;
+                    $secondLevelActiveIndex = $subMenuKey;
+                }
+
+                if (! isset($subMenu['sub_menu'])) {
+                    continue;
+                }
+
+                foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
+
+                    if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
                         $firstLevelActiveIndex = $menuKey;
                         $secondLevelActiveIndex = $subMenuKey;
+                        $thirdLevelActiveIndex = $lastSubMenuKey;
                     }
-
-                    if (!isset($subMenu['sub_menu'])){
-                continue;} 
-
-                        foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
-
-                            if (isset($lastSubMenu['route_name']) && $lastSubMenu['route_name'] == $pageName) {
-                                $firstLevelActiveIndex = $menuKey;
-                                $secondLevelActiveIndex = $subMenuKey;
-                                $thirdLevelActiveIndex = $lastSubMenuKey;
-                            }
-                        }
-                    
                 }
-            
+
+            }
+
         }
 
         return [
             'first_level_active_index' => $firstLevelActiveIndex,
             'second_level_active_index' => $secondLevelActiveIndex,
-            'third_level_active_index' => $thirdLevelActiveIndex
+            'third_level_active_index' => $thirdLevelActiveIndex,
         ];
     }
 }

@@ -11,10 +11,15 @@ use WireUi\Traits\Actions;
 class ModalRole extends ModalComponent
 {
     use Actions;
+
     // Set Data
     public $role_id;
+
     // Model Values
-    public $name, $slug;
+    public $name;
+
+    public $slug;
+
     // Custom
     public $permissions_array = [];
 
@@ -22,6 +27,7 @@ class ModalRole extends ModalComponent
     {
         if (empty($this->role_id)) {
             abort_if(Gate::denies('role_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('role_edit'), 403);
@@ -45,7 +51,7 @@ class ModalRole extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->role_id)) {
+        if (! empty($this->role_id)) {
             $role = Role::where('id', $this->role_id)->first();
 
             Role::where('id', $this->role_id)->update($validatedData);

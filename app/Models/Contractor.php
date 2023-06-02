@@ -8,7 +8,8 @@ use Kirschbaum\PowerJoins\PowerJoins;
 
 class Contractor extends Model
 {
-    use HasFactory, PowerJoins;
+    use HasFactory;
+    use PowerJoins;
 
     protected $fillable = [
         'user_id',

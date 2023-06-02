@@ -3,24 +3,31 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Brand;
-use WireUi\Traits\Actions;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use WireUi\Traits\Actions;
 
 class ModalBrand extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
+
     // Set Data
     public $brand_id;
+
     // Model Values
-    public $name, $image;
+    public $name;
+
+    public $image;
+
     public $imageIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->brand_id)) {
             abort_if(Gate::denies('brand_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('brand_edit'), 403);
@@ -46,15 +53,15 @@ class ModalBrand extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->brand_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+        if (! empty($this->brand_id)) {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brands', 'public');
             }
             Brand::where('id', $this->brand_id)->update($validatedData);
 
             $this->notification()->success($name = 'Brand Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brands', 'public');
             }
             Brand::create($validatedData);

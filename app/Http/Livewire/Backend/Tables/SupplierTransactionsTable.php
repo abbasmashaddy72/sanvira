@@ -48,6 +48,10 @@ class SupplierTransactionsTable extends LivewireDatatable
             NumberColumn::name('end_days')
                 ->filterable(),
 
+            Column::callback(['image'], function ($image) {
+                return view('components.backend.dt-image', ['image' => $image]);
+            })->excludeFromExport()->unsortable()->label('Image'),
+
             Column::name('status')
                 ->searchable()
                 ->filterable(['Active', 'InActive', 'Expired']),

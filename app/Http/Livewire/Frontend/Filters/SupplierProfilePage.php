@@ -16,14 +16,21 @@ class SupplierProfilePage extends Component
 
     // Custom Value Set
     public $profile;
+
     // Dynamic Value Set
     // Values for Data Set
     public $profileShow = true;
+
     public $certificatesAwardsShow = false;
+
     public $projectsShow = false;
+
     public $teamsShow = false;
+
     public $testimonialsShow = false;
+
     public $termsConditionsShow = false;
+
     public $productsShow = false;
 
     public function showProfile()

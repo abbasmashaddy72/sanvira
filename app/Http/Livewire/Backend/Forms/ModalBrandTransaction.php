@@ -3,25 +3,45 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\BrandTransaction;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalBrandTransaction extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
 
     // Set Data
-    public $brand_transaction_id, $name;
+    public $brand_transaction_id;
+
+    public $name;
+
     // Model Values
-    public $brand_id, $account_type, $transaction_type, $amount, $start_date, $end_days, $image, $status;
+    public $brand_id;
+
+    public $account_type;
+
+    public $transaction_type;
+
+    public $amount;
+
+    public $start_date;
+
+    public $end_days;
+
+    public $image;
+
+    public $status;
+
     public $imageIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->brand_transaction_id)) {
             abort_if(Gate::denies('brand_transaction_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('brand_transaction_edit'), 403);
@@ -60,8 +80,8 @@ class ModalBrandTransaction extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->brand_transaction_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+        if (! empty($this->brand_transaction_id)) {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brand_transactions', 'public');
             }
             $validatedData['start_date'] = now()->format('Y-m-d');
@@ -69,7 +89,7 @@ class ModalBrandTransaction extends ModalComponent
 
             $this->notification()->success($name = 'Brand Transaction Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('brand_transactions', 'public');
             }
             $validatedData['start_date'] = now()->format('Y-m-d');

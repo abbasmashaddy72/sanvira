@@ -6,25 +6,66 @@ use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\SupplierTeam;
 use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplier extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
+
     // Set Data
     public $supplier_id;
+
     // Model Values
-    public $user_id, $company_name, $company_email, $company_address, $company_number, $company_locality, $tagline, $logo, $doe, $license, $type, $website_url, $description, $terms_conditions, $agree, $contact_person_name, $contact_person_email, $contact_person_number, $contact_person_designation;
+    public $user_id;
+
+    public $company_name;
+
+    public $company_email;
+
+    public $company_address;
+
+    public $company_number;
+
+    public $company_locality;
+
+    public $tagline;
+
+    public $logo;
+
+    public $doe;
+
+    public $license;
+
+    public $type;
+
+    public $website_url;
+
+    public $description;
+
+    public $terms_conditions;
+
+    public $agree;
+
+    public $contact_person_name;
+
+    public $contact_person_email;
+
+    public $contact_person_number;
+
+    public $contact_person_designation;
+
     public $logoIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->supplier_id)) {
             abort_if(Gate::denies('supplier_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_edit'), 403);
@@ -82,7 +123,7 @@ class ModalSupplier extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->supplier_id)) {
+        if (! empty($this->supplier_id)) {
             $contact_person_name = $validatedData['contact_person_name'];
             $contact_person_email = $validatedData['contact_person_email'];
             $contact_person_number = $validatedData['contact_person_number'];
@@ -97,12 +138,12 @@ class ModalSupplier extends ModalComponent
                 'email' => $contact_person_email,
             ]);
 
-            if (!empty($this->logo) && gettype($this->logo) != 'string') {
+            if (! empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
 
             $validatedData['user_id'] = $this->user_id;
-            $validatedData['type'] = $this->type ?? "Supplier";
+            $validatedData['type'] = $this->type ?? 'Supplier';
             $validatedData['agree'] = 1;
 
             $supplier = Supplier::where('id', $this->supplier_id)->update($validatedData);
@@ -130,15 +171,15 @@ class ModalSupplier extends ModalComponent
             $user = User::create([
                 'name' => $contact_person_name,
                 'email' => $contact_person_email,
-                'password' => Hash::make(explode(" ", $contact_person_name)[0] . '@' . substr($contact_person_number, -3)),
+                'password' => Hash::make(explode(' ', $contact_person_name)[0].'@'.substr($contact_person_number, -3)),
             ]);
 
-            if (!empty($this->logo) && gettype($this->logo) != 'string') {
+            if (! empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
 
             $validatedData['user_id'] = $user->id;
-            $validatedData['type'] = "Supplier";
+            $validatedData['type'] = 'Supplier';
             $validatedData['agree'] = 1;
 
             $supplier = Supplier::create($validatedData);

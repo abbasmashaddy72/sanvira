@@ -66,7 +66,7 @@
     </div>
 
     <div>
-        <x-backend.ckEditor id="body1en" lang="EN" name="description" label="Description"
+        <x-backend.ckEditor idPrefix="body1en" lang="EN" name="description" label="Description"
             wire:model.defer='description' />
     </div>
 </x-backend.modal-form>

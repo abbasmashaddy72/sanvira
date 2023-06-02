@@ -10,7 +10,9 @@ class RfqModal extends ModalComponent
 {
     use Actions;
 
-    public $rfqProductLists, $rfqProducts = [];
+    public $rfqProductLists;
+
+    public $rfqProducts = [];
 
     public function mount()
     {
@@ -33,7 +35,7 @@ class RfqModal extends ModalComponent
     public function updateRfq($productId, $quantity)
     {
         Rfq::where('supplier_product_id', $productId)->where('user_id', auth()->id())->update([
-            'quantity' => $quantity
+            'quantity' => $quantity,
         ]);
 
         $this->notification()->success($title = 'Product Quantity Updated in Rfq');

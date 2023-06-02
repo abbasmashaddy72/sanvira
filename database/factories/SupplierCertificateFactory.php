@@ -24,7 +24,7 @@ class SupplierCertificateFactory extends Factory
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'title' => $this->faker->title(),
             'attachment' => $images[array_rand($images)],
-            'type' => $types[array_rand($types)]
+            'type' => $types[array_rand($types)],
         ];
     }
 }

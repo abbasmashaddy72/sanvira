@@ -3,19 +3,36 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierProject;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplierProject extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
 
     // Set Data
     public $supplier_project_id;
+
     // Model Values
-    public $supplier_id, $name, $country, $city, $description, $year_range, $images = [], $feedback;
+    public $supplier_id;
+
+    public $name;
+
+    public $country;
+
+    public $city;
+
+    public $description;
+
+    public $year_range;
+
+    public $images = [];
+
+    public $feedback;
+
     // Model Custom Values
     public $isUploaded = false;
 
@@ -23,6 +40,7 @@ class ModalSupplierProject extends ModalComponent
     {
         if (empty($this->supplier_project_id)) {
             abort_if(Gate::denies('supplier_project_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_project_edit'), 403);
@@ -59,8 +77,8 @@ class ModalSupplierProject extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->supplier_project_id)) {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+        if (! empty($this->supplier_project_id)) {
+            if (! empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -73,7 +91,7 @@ class ModalSupplierProject extends ModalComponent
 
             $this->notification()->success($title = 'Project Updated Successfully!');
         } else {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+            if (! empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -96,16 +114,16 @@ class ModalSupplierProject extends ModalComponent
     public function deleteImage($supplier_project_id, $key)
     {
         $this->dialog()->confirm([
-            'title'       => 'Are you Sure?',
+            'title' => 'Are you Sure?',
             'description' => 'To delete the Image?',
-            'icon'        => 'error',
-            'accept'      => [
-                'label'  => 'Yes, delete it',
+            'icon' => 'error',
+            'accept' => [
+                'label' => 'Yes, delete it',
                 'method' => 'delete',
                 'params' => ['supplier_project_id' => $supplier_project_id, 'key' => $key],
             ],
             'reject' => [
-                'label'  => 'No, cancel',
+                'label' => 'No, cancel',
                 'method' => 'cancel',
             ],
         ]);

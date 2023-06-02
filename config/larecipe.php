@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'docs'        => [
-        'route'   => '/docs',
-        'path'    => '/resources/docs',
+    'docs' => [
+        'route' => '/docs',
+        'path' => '/resources/docs',
         'landing' => 'overview',
         'middleware' => ['web'],
     ],
@@ -32,11 +32,11 @@ return [
     |
     */
 
-    'versions'      => [
-        'default'   => '2.0',
+    'versions' => [
+        'default' => '2.0',
         'published' => [
-            '2.0'
-        ]
+            '2.0',
+        ],
     ],
 
     /*
@@ -55,8 +55,8 @@ return [
     */
 
     'settings' => [
-        'auth'  => false,
-        'ga_id' => ''
+        'auth' => false,
+        'ga_id' => '',
     ],
 
     /*
@@ -72,9 +72,9 @@ return [
     |
     */
 
-    'cache'       => [
+    'cache' => [
         'enabled' => false,
-        'period'  => 5
+        'period' => 5,
     ],
 
     /*
@@ -90,18 +90,18 @@ return [
     |
     */
 
-    'search'            => [
-        'enabled'       => false,
-        'default'       => 'algolia',
-        'engines'       => [
-            'internal'  => [
-                'index' => ['h2', 'h3']
+    'search' => [
+        'enabled' => false,
+        'default' => 'algolia',
+        'engines' => [
+            'internal' => [
+                'index' => ['h2', 'h3'],
             ],
-            'algolia'   => [
-                'key'   => '',
-                'index' => ''
-            ]
-        ]
+            'algolia' => [
+                'key' => '',
+                'index' => '',
+            ],
+        ],
     ],
 
     /*
@@ -116,12 +116,12 @@ return [
     |
     */
 
-    'ui'                 => [
-        'code_theme'     => 'dark', // or: light
-        'fav'            => '',     // eg: fav.png
-        'colors'         => [
-            'primary'    => '#787AF6',
-            'secondary'  => '#2b9cf2'
+    'ui' => [
+        'code_theme' => 'dark', // or: light
+        'fav' => '',     // eg: fav.png
+        'colors' => [
+            'primary' => '#787AF6',
+            'secondary' => '#2b9cf2',
         ],
     ],
 
@@ -137,17 +137,17 @@ return [
     |
     */
 
-    'seo'                 => [
-        'author'          => '',
-        'description'     => '',
-        'keywords'        => '',
-        'og'              => [
-            'title'       => '',
-            'type'        => 'article',
-            'url'         => '',
-            'image'       => '',
+    'seo' => [
+        'author' => '',
+        'description' => '',
+        'keywords' => '',
+        'og' => [
+            'title' => '',
+            'type' => 'article',
+            'url' => '',
+            'image' => '',
             'description' => '',
-        ]
+        ],
     ],
 
     /*
@@ -163,14 +163,14 @@ return [
    |
    */
 
-    'forum'                   => [
-        'enabled'           => false,
-        'default'           => 'disqus',
-        'services'          => [
-            'disqus'        => [
+    'forum' => [
+        'enabled' => false,
+        'default' => 'disqus',
+        'services' => [
+            'disqus' => [
                 'site_name' => '', // yoursite.disqus.com
-            ]
-        ]
+            ],
+        ],
     ],
 
     /*
@@ -194,7 +194,7 @@ return [
             'code-blocks' => [
                 'match' => '/\<pre\>(.|\n)*?<\/pre\>/',
                 'replacement' => '<code-block>',
-            ]
-        ]
-    ]
+            ],
+        ],
+    ],
 ];

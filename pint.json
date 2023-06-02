@@ -1,0 +1,21 @@
+{
+    "preset": "psr12",
+    "exclude": [
+        "tests"
+    ],
+    "notName": [
+        "*Test.php"
+    ],
+    "[php]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "open-southeners.laravel-pint"
+    },
+    "rules": {
+        "simplified_null_return": true,
+        "braces": false,
+        "new_with_braces": {
+            "anonymous_class": false,
+            "named_class": false
+        }
+    }
+}

@@ -91,7 +91,7 @@ class FrontendController extends Controller
         $data->with(['brands', 'manufactures', 'productAttributes']);
 
         return view('pages.frontend.products_details', compact([
-            'data'
+            'data',
         ]));
     }
 

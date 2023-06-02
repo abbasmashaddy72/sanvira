@@ -11,6 +11,7 @@ use Mediconesystems\LivewireDatatables\NumberColumn;
 class SupplierTestimonialsTable extends LivewireDatatable
 {
     public $supplier_id;
+
     public $exportable = true;
 
     public function builder()
@@ -31,9 +32,9 @@ class SupplierTestimonialsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('logo')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['logo'], function ($logo) {
+                return view('components.backend.dt-image', ['image' => $logo]);
+            })->excludeFromExport()->unsortable()->label('Logo'),
 
             Column::name('message')
                 ->searchable()

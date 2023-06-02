@@ -7,7 +7,6 @@ use App\Models\Role;
 
 trait HasPermissionsTrait
 {
-
     public function givePermissionsTo(...$permissions)
     {
 
@@ -17,6 +16,7 @@ trait HasPermissionsTrait
         }
 
         $this->permissions()->saveMany($permissions);
+
         return $this;
     }
 
@@ -25,6 +25,7 @@ trait HasPermissionsTrait
 
         $permissions = $this->getAllPermissions($permissions);
         $this->permissions()->detach($permissions);
+
         return $this;
     }
 
@@ -32,6 +33,7 @@ trait HasPermissionsTrait
     {
 
         $this->permissions()->detach();
+
         return $this->givePermissionsTo($permissions);
     }
 
@@ -49,6 +51,7 @@ trait HasPermissionsTrait
                 return true;
             }
         }
+
         return false;
     }
 
@@ -60,6 +63,7 @@ trait HasPermissionsTrait
                 return true;
             }
         }
+
         return false;
     }
 
@@ -68,11 +72,13 @@ trait HasPermissionsTrait
 
         return $this->belongsToMany(Role::class, 'users_roles');
     }
+
     public function permissions()
     {
 
         return $this->belongsToMany(Permission::class, 'users_permissions');
     }
+
     protected function hasPermission($permission)
     {
 

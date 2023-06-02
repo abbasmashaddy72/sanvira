@@ -3,24 +3,39 @@
 namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\SupplierTeam;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use WireUi\Traits\Actions;
 
 class ModalSupplierTeamMember extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
+
     // Set Data
-    public $supplier_team_member_id, $supplier_id;
+    public $supplier_team_member_id;
+
+    public $supplier_id;
+
     // Model Values
-    public $name, $image, $email, $phone, $designation;
+    public $name;
+
+    public $image;
+
+    public $email;
+
+    public $phone;
+
+    public $designation;
+
     public $imageIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->supplier_team_member_id)) {
             abort_if(Gate::denies('supplier_team_member_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_team_member_edit'), 403);
@@ -54,15 +69,15 @@ class ModalSupplierTeamMember extends ModalComponent
         $validatedData = $this->validate();
         $validatedData['supplier_id'] = $this->supplier_id;
 
-        if (!empty($this->supplier_team_member_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+        if (! empty($this->supplier_team_member_id)) {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_team_member', 'public');
             }
             SupplierTeam::where('id', $this->supplier_team_member_id)->update($validatedData);
 
             $this->notification()->success($title = 'Supplier Team Member Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_team_member', 'public');
             }
             SupplierTeam::create($validatedData);

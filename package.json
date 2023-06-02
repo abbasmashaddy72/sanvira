@@ -17,6 +17,7 @@
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.2",
         "axios": "^1.1.2",
+        "blade-formatter": "^1.32.12",
         "dayjs": "^1.11.6",
         "feather-icons": "^4.29.0",
         "filepond": "^4.30.4",

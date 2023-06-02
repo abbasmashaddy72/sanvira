@@ -34,6 +34,7 @@ class PermissionsServiceProvider extends ServiceProvider
             });
         } catch (\Exception $e) {
             report($e);
+
             return false;
         }
 
@@ -43,7 +44,7 @@ class PermissionsServiceProvider extends ServiceProvider
         });
 
         Blade::directive('endrole', function ($role) {
-            return "<?php endif; ?>"; //return this endif statement inside php tag
+            return '<?php endif; ?>'; //return this endif statement inside php tag
         });
     }
 }

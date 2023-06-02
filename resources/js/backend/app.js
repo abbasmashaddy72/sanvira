@@ -62,3 +62,5 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 window.ClassicEditor = ClassicEditor;
 
+import lightbox from "lightbox2";
+window.lightbox = lightbox;

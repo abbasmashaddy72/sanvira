@@ -2,18 +2,48 @@
 
 namespace App\Http\Livewire\Backend\Forms;
 
-use Livewire\Component;
-use WireUi\Traits\Actions;
-use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
+use Livewire\Component;
+use Livewire\WithFileUploads;
+use WireUi\Traits\Actions;
 
 class StaticHomepage extends Component
 {
-    use WithFileUploads, Actions;
+    use WithFileUploads;
+    use Actions;
 
-    public $footer_logo, $logo, $short_description, $twitter, $facebook, $instagram, $linkedin, $youtube, $google_business, $embed_map_link, $privacy_policy, $terms_of_use, $return_refunds, $career;
+    public $footer_logo;
+
+    public $logo;
+
+    public $short_description;
+
+    public $twitter;
+
+    public $facebook;
+
+    public $instagram;
+
+    public $linkedin;
+
+    public $youtube;
+
+    public $google_business;
+
+    public $embed_map_link;
+
+    public $privacy_policy;
+
+    public $terms_of_use;
+
+    public $return_refunds;
+
+    public $career;
+
     public $type;
+
     public $logoIsUploaded = false;
+
     public $footerLogoIsUploaded = false;
 
     public function mount()
@@ -69,11 +99,11 @@ class StaticHomepage extends Component
         $validatedData = $this->validate();
 
         foreach ($validatedData as $key => $value) {
-            if ($key == 'footer_logo' && !empty($validatedData['footer_logo']) && gettype($validatedData['footer_logo']) != 'string') {
+            if ($key == 'footer_logo' && ! empty($validatedData['footer_logo']) && gettype($validatedData['footer_logo']) != 'string') {
                 $footer_logo = $validatedData['footer_logo']->store('frontend', 'public');
                 set_static_option($key, $footer_logo);
                 unset($validatedData['footer_logo']);
-            } elseif ($key == 'logo' && !empty($validatedData['logo']) && gettype($validatedData['logo']) != 'string') {
+            } elseif ($key == 'logo' && ! empty($validatedData['logo']) && gettype($validatedData['logo']) != 'string') {
                 $logo = $validatedData['logo']->store('frontend', 'public');
                 set_static_option($key, $logo);
                 unset($validatedData['logo']);

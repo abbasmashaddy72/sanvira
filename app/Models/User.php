@@ -14,7 +14,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable, HasPermissionsTrait, Impersonate;
+    use HasApiTokens;
+    use HasFactory;
+    use Notifiable;
+    use HasPermissionsTrait;
+    use Impersonate;
 
     /**
      * The attributes that are mass assignable.
@@ -55,6 +59,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $firstWord = $name_array[0];
         $lastWord = $name_array[count($name_array) - 1];
 
-        return $firstWord[0] . $lastWord[0];
+        return $firstWord[0].$lastWord[0];
     }
 }

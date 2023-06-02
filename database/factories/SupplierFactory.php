@@ -40,7 +40,7 @@ class SupplierFactory extends Factory
             'website_url' => $this->faker->url(),
             'description' => $description,
             'terms_conditions' => $description,
-            'agree' => rand(0, 1)
+            'agree' => rand(0, 1),
         ];
     }
 }

@@ -29,9 +29,9 @@ class SupplierCategoriesTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('image')
-                ->searchable()
-                ->filterable(),
+            Column::callback(['image'], function ($image) {
+                return view('components.backend.dt-image', ['image' => $image]);
+            })->excludeFromExport()->unsortable()->label('Image'),
 
             Column::name('categories.name')
                 ->label('Sub Category Name')

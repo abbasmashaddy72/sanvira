@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kirschbaum\PowerJoins\PowerJoins;
 
 class SupplierProduct extends Model
 {
     use HasFactory;
+    use PowerJoins;
 
     protected $fillable = [
         'supplier_id',
@@ -32,7 +34,7 @@ class SupplierProduct extends Model
     ];
 
     protected $casts = [
-        'images' => 'array'
+        'images' => 'array',
     ];
 
     public function suppliers()

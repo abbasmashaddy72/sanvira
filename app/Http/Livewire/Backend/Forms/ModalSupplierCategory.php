@@ -10,17 +10,28 @@ use WireUi\Traits\Actions;
 
 class ModalSupplierCategory extends ModalComponent
 {
-    use Actions, WithFileUploads;
+    use Actions;
+    use WithFileUploads;
+
     // Set Data
-    public $supplier_category_id, $type;
+    public $supplier_category_id;
+
+    public $type;
+
     // Model Values
-    public $name, $image, $parent_id;
+    public $name;
+
+    public $image;
+
+    public $parent_id;
+
     public $imageIsUploaded = false;
 
     public function mount()
     {
         if (empty($this->supplier_category_id)) {
             abort_if(Gate::denies('supplier_category_add'), 403);
+
             return;
         }
         abort_if(Gate::denies('supplier_category_edit'), 403);
@@ -29,9 +40,9 @@ class ModalSupplierCategory extends ModalComponent
         $this->image = $data->image;
         $this->parent_id = $data->parent_id;
         if ($this->parent_id == 0) {
-            $this->type = "Main Category";
+            $this->type = 'Main Category';
         } else {
-            $this->type = "Sub Category";
+            $this->type = 'Sub Category';
         }
     }
 
@@ -53,15 +64,15 @@ class ModalSupplierCategory extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (!empty($this->supplier_category_id)) {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+        if (! empty($this->supplier_category_id)) {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_product_category', 'public');
             }
             SupplierProductCategory::where('id', $this->supplier_category_id)->update($validatedData);
 
             $this->notification()->success($title = 'SupplierProductCategory Updated Successfully!');
         } else {
-            if (!empty($this->image) && gettype($this->image) != 'string') {
+            if (! empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_product_category', 'public');
             }
             SupplierProductCategory::create($validatedData);

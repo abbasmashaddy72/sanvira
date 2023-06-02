@@ -8,7 +8,22 @@ use Livewire\Component;
 class ContactUs extends Component
 {
     // Model Values
-    public $name, $email, $company_name, $job_title, $tob, $contact_no, $message, $agree;
+    public $name;
+
+    public $email;
+
+    public $company_name;
+
+    public $job_title;
+
+    public $tob;
+
+    public $contact_no;
+
+    public $message;
+
+    public $agree;
+
     // Custom Values
     public $successMessage = false;
 

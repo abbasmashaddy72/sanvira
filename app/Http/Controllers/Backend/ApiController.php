@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Gate;
 use App\Models\Brand;
 use App\Models\Country;
 use App\Models\Manufacturer;
@@ -59,7 +58,7 @@ class ApiController extends Controller
         return $data;
     }
 
-    public function  manufacturers(Request $request)
+    public function manufacturers(Request $request)
     {
         $data = Manufacturer::query()->select('id', 'name')
             ->orderBy('name')
@@ -74,7 +73,7 @@ class ApiController extends Controller
         return $data;
     }
 
-    public function  countries(Request $request)
+    public function countries(Request $request)
     {
         $data = Country::query()->select('id', 'name')
             ->orderBy('name')

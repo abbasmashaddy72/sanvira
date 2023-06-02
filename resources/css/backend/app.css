@@ -123,7 +123,7 @@ Form Component
 /* @import "../../../vendor/rawilk/laravel-form-components/resources/css/index.css"; */
 @import "filepond/dist/filepond.min.css";
 @import "flatpickr/dist/flatpickr.min.css";
-
+@import "lightbox2/src/css/lightbox.css";
 [x-cloak] {
     display: none;
 }

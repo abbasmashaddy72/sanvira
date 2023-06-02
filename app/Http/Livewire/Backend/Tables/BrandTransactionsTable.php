@@ -14,7 +14,7 @@ class BrandTransactionsTable extends LivewireDatatable
 
     public function builder()
     {
-        return BrandTransaction::query()->with('brands');
+        return BrandTransaction::query()->joinRelationship('brands');
     }
 
     public function columns()
@@ -47,6 +47,10 @@ class BrandTransactionsTable extends LivewireDatatable
 
             NumberColumn::name('end_days')
                 ->filterable(),
+
+            Column::callback(['image'], function ($image) {
+                return view('components.backend.dt-image', ['image' => $image]);
+            })->excludeFromExport()->unsortable()->label('Image'),
 
             Column::name('status')
                 ->searchable()
