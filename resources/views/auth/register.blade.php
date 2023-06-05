@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-slot name='topSection'></x-slot>
-    <x-frontend.index-container class="py-16 mt-16">
+    <x-frontend.index-container class="mt-16 py-16">
         <div class="flex justify-center">
             @livewire('frontend.form.register-form')
         </div>

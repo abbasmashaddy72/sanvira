@@ -13,7 +13,7 @@
 
                 <x-slot name="rt_button">
                     <button onclick="Livewire.emit('openModal', 'backend.forms.modal-slider')"
-                        class="mr-2 shadow-md btn btn-primary">{{ __('Add') }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="py-12">

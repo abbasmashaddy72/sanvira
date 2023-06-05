@@ -1,5 +1,5 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
-    <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
+    <div class="row-gap-0 grid-cols-1 gap-2 sm:grid">
         <x-native-select label="Select Role" placeholder="Select one Role" :options="$roles" option-label="name"
             option-value="id" wire:model.defer="role" required />
 

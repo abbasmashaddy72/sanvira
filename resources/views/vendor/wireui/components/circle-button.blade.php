@@ -21,7 +21,7 @@
     </div>
 
     @if ($spinner)
-        <svg class="animate-spin {{ $iconSize }} shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none"
+        <svg class="{{ $iconSize }} shrink-0 animate-spin" xmlns="http://www.w3.org/2000/svg" fill="none"
             viewBox="0 0 24 24" @if (preg_replace('/[^a-zA-Z]+/', '', $spinner)) wire:target="{{ $spinner }}" @endif
             wire:loading.delay{{ $loadingDelay ? ".{$loadingDelay}" : '' }}>
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">

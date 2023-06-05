@@ -8,7 +8,7 @@
         }
     }
 }" class="">
-    <div class="flex justify-between my-4 text-xl font-medium leading-none tracking-wide uppercase">
+    <div class="my-4 flex justify-between text-xl font-medium uppercase leading-none tracking-wide">
         <span>Query Builder</span>
         <span>
             @if ($errors->any())
@@ -19,7 +19,7 @@
 
     @if (count($this->rules[0]['content']))
         <div
-            class="my-4 px-4 py-2 bg-gray-500 whitespace-pre-wrap @if ($errors->any()) text-red-200 @else text-green-100 @endif rounded">
+            class="@if ($errors->any()) text-red-200 @else text-green-100 @endif my-4 whitespace-pre-wrap rounded bg-gray-500 px-4 py-2">
             {{ $this->rulesString }}@if ($errors->any()) Invalid rules
             @endif
         </div>
@@ -29,7 +29,7 @@
 
     @if (count($this->rules[0]['content']))
         @unless ($errors->any())
-            <div class="justify-between w-full pt-2 sm:flex">
+            <div class="w-full justify-between pt-2 sm:flex">
                 <div>
                     {{-- <button class="px-3 py-2 text-white bg-blue-500 rounded" wire:click="runQuery">Apply Query</button> --}}
                 </div>
@@ -44,9 +44,9 @@
                         }">
                             <input x-model="name" wire:loading.attr="disabled" x-on:keydown.enter="saveQuery"
                                 placeholder="save as..."
-                                class="flex-grow block px-3 py-3 text-sm leading-4 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                class="block flex-grow rounded-md border border-gray-300 px-3 py-3 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             <button x-bind:disabled="!name" x-show="rules" x-on:click="saveQuery"
-                                class="flex items-center space-x-2 px-3 py-0.5 border border-green-400 disabled:border-gray-300 rounded-md bg-white text-green-500 disabled:text-gray-300 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-green-200 disabled:hover:bg-white focus:outline-none disabled:pointer-events-none">
+                                class="flex items-center space-x-2 rounded-md border border-green-400 bg-white px-3 py-0.5 text-xs font-medium uppercase leading-4 tracking-wider text-green-500 hover:bg-green-200 focus:outline-none disabled:pointer-events-none disabled:border-gray-300 disabled:text-gray-300 disabled:hover:bg-white">
                                 <span>{{ __('Save') }}</span>
                                 <span wire:loading.remove>
                                     <x-icons.check-circle class="m-2" />
@@ -58,7 +58,7 @@
                         </div>
                     @endisset
                     <button x-show="rules" wire:click="resetQuery"
-                        class="flex items-center px-3 space-x-2 text-xs font-medium leading-4 tracking-wider text-red-500 uppercase bg-white border border-red-400 rounded-md hover:bg-red-200 focus:outline-none">
+                        class="flex items-center space-x-2 rounded-md border border-red-400 bg-white px-3 text-xs font-medium uppercase leading-4 tracking-wider text-red-500 hover:bg-red-200 focus:outline-none">
                         <span>{{ __('Reset') }}</span>
                         <x-icons.x-circle class="m-2" />
                     </button>
@@ -69,16 +69,16 @@
         @endif
         @if (count($savedQueries ?? []))
             <div>
-                <div class="my-4 mt-8 text-xl font-medium leading-none tracking-wide uppercase">Saved Queries</div>
+                <div class="my-4 mt-8 text-xl font-medium uppercase leading-none tracking-wide">Saved Queries</div>
                 <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
                     @foreach ($savedQueries as $saved)
                         <div class="flex" wire:key="{{ $saved['id'] }}">
                             <button wire:click="loadRules({{ json_encode($saved['rules']) }})" wire:loading.attr="disabled"
-                                class="flex items-center flex-grow p-2 px-3 space-x-2 text-xs font-medium leading-4 tracking-wider text-blue-500 uppercase bg-white border border-r-0 border-blue-400 rounded-md rounded-r-none hover:bg-blue-200 focus:outline-none">{{ $saved['name'] }}</button>
+                                class="flex flex-grow items-center space-x-2 rounded-md rounded-r-none border border-r-0 border-blue-400 bg-white p-2 px-3 text-xs font-medium uppercase leading-4 tracking-wider text-blue-500 hover:bg-blue-200 focus:outline-none">{{ $saved['name'] }}</button>
                             <button wire:click="deleteRules({{ $saved['id'] }})" wire:loading.attr="disabled"
-                                class="flex items-center p-2 px-3 space-x-2 text-xs font-medium leading-4 tracking-wider text-red-500 uppercase bg-white border border-red-400 rounded-md rounded-l-none hover:bg-red-200 focus:outline-none">
+                                class="flex items-center space-x-2 rounded-md rounded-l-none border border-red-400 bg-white p-2 px-3 text-xs font-medium uppercase leading-4 tracking-wider text-red-500 hover:bg-red-200 focus:outline-none">
                                 <x-icons.x-circle wire:loading.remove />
-                                <x-icons.cog wire:loading class="w-6 h-6 animate-spin" />
+                                <x-icons.cog wire:loading class="h-6 w-6 animate-spin" />
                             </button>
                         </div>
                     @endforeach

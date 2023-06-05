@@ -1,14 +1,14 @@
 <nav class="side-nav">
-    <x-logo class="items-center pt-4 pl-5">
-        <span class="hidden ml-3 text-lg text-white xl:block">
+    <x-logo class="items-center pl-5 pt-4">
+        <span class="ml-3 hidden text-lg text-white xl:block">
             {{ config('app.name', 'Laravel') }}
         </span>
     </x-logo>
-    <div class="my-6 side-nav__devider"></div>
+    <div class="side-nav__devider my-6"></div>
     <ul>
         @foreach ($side_menu as $menuKey => $menu)
             @if ($menu == 'devider')
-                <li class="my-6 side-nav__devider"></li>
+                <li class="side-nav__devider my-6"></li>
             @else
                 <li>
                     @role($menu['role'])

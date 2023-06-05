@@ -22,7 +22,7 @@
     @livewireStyles
 </head>
 
-<body class="text-base text-black bg-gray-100 font-nunito dark:text-white dark:bg-slate-900">
+<body class="font-nunito bg-gray-100 text-base text-black dark:bg-slate-900 dark:text-white">
     <x-notifications />
     @include('layouts.fePartials.header')
 
@@ -34,7 +34,9 @@
         @else
             @livewire('frontend.form.search')
         @endif
-        @if (\Route::currentRouteName() != 'contact_us')
+        @if (
+            (\Route::currentRouteName() != 'contact_us' && $agent->isMobile() != 1) ||
+                (\Route::currentRouteName() != 'contact_us' && $agent->isTablet() == 1))
             @include('layouts.fePartials.sub-nav')
         @endif
     @endif

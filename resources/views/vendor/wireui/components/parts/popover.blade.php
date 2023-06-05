@@ -1,9 +1,9 @@
 @props(['margin' => false, 'rootClass' => null])
 
-<div class="fixed inset-0 z-20 flex items-end sm:z-10 sm:absolute sm:inset-auto transition-all ease-linear duration-150 {{ $rootClass }}"
+<div class="{{ $rootClass }} fixed inset-0 z-20 flex items-end transition-all duration-150 ease-linear sm:absolute sm:inset-auto sm:z-10"
     style="display: none" x-cloak x-show="popover" x-ref="popover" x-on:click.outside="close"
     x-on:keydown.escape.window="handleEscape">
-    <div class="fixed inset-0 bg-secondary-400 bg-opacity-60 transition-opacity sm:hidden dark:bg-secondary-700 dark:bg-opacity-60"
+    <div class="bg-secondary-400 dark:bg-secondary-700 fixed inset-0 bg-opacity-60 transition-opacity dark:bg-opacity-60 sm:hidden"
         x-show="popover" x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100" x-transition:leave="ease-in duration-200"
         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" x-on:click="close" aria-hidden="true">

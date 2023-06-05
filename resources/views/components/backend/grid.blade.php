@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between mt-8">
+<div class="mt-8 flex items-center justify-between">
     <h2 class="inline-flex text-lg font-medium">
         @if (getRouteAction() == 'create')
             {{ __('Create') }} {{ $title }}
@@ -14,12 +14,12 @@
         @endif
     </h2>
     @if (Route::currentRouteName() != 'admin.dashboard' && !empty($rt_button))
-        <div class="flex w-full mt-4 sm:w-auto sm:mt-0">
+        <div class="mt-4 flex w-full sm:mt-0 sm:w-auto">
             {{ $rt_button }}
         </div>
     @endif
 </div>
 
-<div class="grid grid-cols-12 gap-5 mt-5">
+<div class="mt-5 grid grid-cols-12 gap-5">
     {{ $slot }}
 </div>

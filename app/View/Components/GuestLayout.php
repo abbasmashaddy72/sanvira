@@ -2,8 +2,9 @@
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\View\View;
+use Jenssegers\Agent\Agent;
+use Illuminate\View\Component;
 
 class GuestLayout extends Component
 {
@@ -12,6 +13,7 @@ class GuestLayout extends Component
      */
     public function render(): View
     {
+        view()->share('agent', new Agent);
         view()->share('dark_mode', session()->has('dark_mode') ? filter_var(session('dark_mode'), FILTER_VALIDATE_BOOLEAN) : false);
         view()->share('main_menu', $this->mainMenu());
         $pageName = request()->route()->getName();
@@ -50,7 +52,7 @@ class GuestLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (! (isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
+            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
                 continue;
             }
 
@@ -61,7 +63,7 @@ class GuestLayout extends Component
                     $secondLevelActiveIndex = $subMenuKey;
                 }
 
-                if (! isset($subMenu['sub_menu'])) {
+                if (!isset($subMenu['sub_menu'])) {
                     continue;
                 }
 
@@ -73,9 +75,7 @@ class GuestLayout extends Component
                         $thirdLevelActiveIndex = $lastSubMenuKey;
                     }
                 }
-
             }
-
         }
 
         return [

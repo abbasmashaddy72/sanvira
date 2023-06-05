@@ -3,10 +3,10 @@
         <div class="container">
             <div class="flex justify-center">
                 <div
-                    class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
+                    class="m-auto w-full max-w-[400px] rounded-md bg-white p-6 shadow-md dark:bg-slate-900 dark:shadow-gray-800">
 
                     <a href="{{ route('homepage') }}">
-                        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-20 mx-auto" />
+                        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="mx-auto h-20" />
                     </a>
 
                     <x-errors />
@@ -27,7 +27,7 @@
                                     autocomplete="current-password" required />
                             </div>
 
-                            <div class="flex justify-between mb-4">
+                            <div class="mb-4 flex justify-between">
                                 <x-checkbox id="remember_me" label="{{ __('Remember me') }}" name="remember" />
 
                                 <p class="mb-0 text-slate-400">
@@ -39,12 +39,12 @@
 
                             <div class="mb-4">
                                 <button type="submit"
-                                    class="w-full text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                                    class="btn w-full rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                                     {{ __('Log In / Sign In') }}</button>
                             </div>
 
                             <div class="text-center">
-                                <span class="text-slate-400 me-2">{{ __("Don't have an account ?") }}</span> <a
+                                <span class="me-2 text-slate-400">{{ __("Don't have an account ?") }}</span> <a
                                     href="{{ route('register') }}"
                                     class="font-bold text-black dark:text-white">{{ __('Sign Up') }}</a>
                             </div>

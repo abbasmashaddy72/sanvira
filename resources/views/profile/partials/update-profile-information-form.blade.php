@@ -18,12 +18,12 @@
         @method('patch')
 
         <div>
-            <x-input id="name" name="name" label="{{ __('Name') }}" type="text" class="block w-full mt-1"
+            <x-input id="name" name="name" label="{{ __('Name') }}" type="text" class="mt-1 block w-full"
                 :value="old('name', $user->name)" required autofocus autocomplete="name" />
         </div>
 
         <div>
-            <x-input id="email" name="email" label="{{ __('Email') }}" type="email" class="block w-full mt-1"
+            <x-input id="email" name="email" label="{{ __('Email') }}" type="email" class="mt-1 block w-full"
                 :value="old('email', $user->email)" required autocomplete="username" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && !$user->hasVerifiedEmail())
@@ -32,7 +32,7 @@
                         {{ __('Your email address is unverified.') }}
 
                         <button form="send-verification"
-                            class="text-sm text-gray-600 underline rounded-md dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
+                            class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:text-gray-400 dark:hover:text-gray-100 dark:focus:ring-offset-gray-800">
                             {{ __('Click here to re-send the verification email.') }}
                         </button>
                     </p>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="mr-2 shadow-md btn btn-primary">{{ 'Save' }}</button>
+            <button class="btn btn-primary mr-2 shadow-md">{{ 'Save' }}</button>
 
             @if (session('status') === 'admin.profile-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

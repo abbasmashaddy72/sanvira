@@ -1,6 +1,6 @@
 import "../../css/frontend/app.scss";
-
 import "./bootstrap";
+import "./custom";
 
 import Alpine from "alpinejs";
 
@@ -10,7 +10,6 @@ Alpine.start();
 
 import "./components/plugins.init";
 import "./components/feather.js";
-import "./custom";
 
 import { tns } from "tiny-slider";
 window.tns = tns;

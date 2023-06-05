@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Frontend\Filters;
 
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
+use Jenssegers\Agent\Agent;
 use Livewire\Component;
 use Livewire\WithPagination;
 use WireUi\Traits\Actions;
@@ -65,7 +66,7 @@ class SupplierProducts extends Component
         } else {
             $this->page_title = $this->page_title ?? $this->type;
         }
-        if (! empty($this->product_category)) {
+        if (!empty($this->product_category)) {
             $this->supplier_product_category_id = $this->product_category->id;
         }
         if ($this->type == 'All Category Page') {
@@ -110,14 +111,14 @@ class SupplierProducts extends Component
 
     public function render()
     {
-        if (! empty($this->alphabet) && $this->applyFilter == true) {
-            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet.'%')->get();
+        if (!empty($this->alphabet) && $this->applyFilter == true) {
+            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
         } else {
             $sub_product_category = [];
         }
 
         if ($this->applyFilter == true) {
-            $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory']);
+            $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country']);
 
             if ($this->type == 'On Sale' || $this->setButton == 'onSale') {
                 $supplier_products->where('on_sale', 1);
@@ -195,9 +196,12 @@ class SupplierProducts extends Component
             }
         }
 
+        $agent = new Agent;
+
         return view('livewire.frontend.filters.supplier-products', compact([
             'supplier_products',
             'sub_product_category',
+            'agent',
         ]));
     }
 }

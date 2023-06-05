@@ -7,11 +7,11 @@
             <div class="grid grid-cols-5 gap-1">
                 @foreach ($images as $image)
                     <div class="relative">
-                        <img class="object-cover w-10 h-10 rounded-md"
+                        <img class="h-10 w-10 rounded-md object-cover"
                             src="{{ $isUploaded ? $image->temporaryUrl() : asset('storage/' . $image) }}">
                         <button type="button" wire:click='deleteImage({{ $deletId }}, {{ $loop->index }})'>
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="absolute text-red-500 bg-white rounded-xl hover:text-red-600 -top-2 right-2"
+                                class="absolute -top-2 right-2 rounded-xl bg-white text-red-500 hover:text-red-600"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="feather feather-x-circle">
@@ -28,7 +28,7 @@
         @else
             <div class="relative">
                 Uploaded Image Preview:
-                <img class="object-cover w-10 h-10 rounded-md"
+                <img class="h-10 w-10 rounded-md object-cover"
                     src="{{ $isUploaded ? $images->temporaryUrl() : asset('storage/' . $images) }}">
             </div>
         @endif

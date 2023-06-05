@@ -1,36 +1,39 @@
-<x-frontend.index-container class="py-4 mt-16">
+<x-frontend.index-container class="mt-16 py-4">
     <div
-        class="grid items-center justify-center text-center @if ($type == 'common-top') grid-cols-2 h-32 @else grid-cols-1 h-80 @endif">
+        class="@if ($type == 'common-top') grid-cols-1 lg:grid-cols-2 h-32 @else grid-cols-1 h-80 @endif m-auto grid items-center justify-center text-center">
         <div class="">
             <h1
-                class="text-4xl font-bold leading-normal lg:leading-normal @if ($type == 'common-top') lg:text-3xl @else lg:text-5xl @endif">
+                class="@if ($type == 'common-top') text-lg md:text-3xl @else lg:text-5xl @endif text-3xl font-bold leading-normal lg:leading-normal">
                 Your
                 <span class="text-blue-600">SuperCharged</span>
                 Construction Marketplace!
             </h1>
             @if ($type == 'common-top')
             @else
-                <p class="max-w-3xl mx-auto mt-5 text-lg">{{ get_static_option('short_description') }}</p>
+                <p class="sm:text-md mx-auto mt-5 max-w-3xl text-sm md:text-lg">
+                    {{ get_static_option('short_description') }}</p>
             @endif
         </div>
         <div class="">
-            <form class="relative max-w-4xl mx-auto" action="{{ url('searchForm') }}">
-                <input type="text" name="search" min="3"
-                    class="pt-4 pr-40 pb-4 pl-6 w-full h-[50px] outline-none text-black dark:text-white rounded-full bg-white/60 dark:bg-slate-900/60 shadow-md dark:shadow-gray-800"
-                    placeholder="Search" wire:model="query" wire:keydown.escape="resetData"
-                    wire:keydown.tab="resetData" />
-                <button type="submit"
-                    class="btn absolute top-[2px] right-[3px] h-[46px] bg-blue-600 hover:bg-blue-700 border-blue-600 hover:border-blue-700 text-white rounded-full z-20">Search</button>
+            <form class="relative mx-auto max-w-4xl" action="{{ url('searchForm') }}">
+                <div class="relative">
+                    <input type="text" name="search" min="3"
+                        class="h-12 w-full rounded-full bg-white/60 py-2 pl-4 pr-12 text-black shadow-md outline-none dark:bg-slate-900/60 dark:text-white dark:shadow-gray-800 md:h-14 md:py-4 md:pl-6"
+                        placeholder="Search" wire:model="query" wire:keydown.escape="resetData"
+                        wire:keydown.tab="resetData" />
+                    <button type="submit"
+                        class="absolute right-0 top-0 h-full rounded-full border-blue-600 bg-blue-600 px-4 text-white hover:border-blue-700 hover:bg-blue-700 md:px-6">Search</button>
+                </div>
 
                 @if (!empty($query))
-                    <div class="fixed top-0 bottom-0 left-0 right-0" wire:click="resetData"></div>
+                    <div class="fixed bottom-0 left-0 right-0 top-0" wire:click="resetData"></div>
 
-                    <div class="absolute z-10 w-full p-4 bg-white rounded-lg shadow-lg">
+                    <div class="absolute z-10 w-full rounded-lg bg-white p-4 shadow-lg">
                         <div wire:loading>
                             <div class="p-4 text-left text-blue-600">Searching...</div>
                         </div>
 
-                        <p class="text-lg font-semibold text-center text-gray-900">Supplier Product List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">Supplier Product List</p>
                         @forelse ($supplierProductsList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
@@ -38,7 +41,7 @@
                             <div class="p-4 text-left text-blue-600">No results!</div>
                         @endforelse
 
-                        <p class="text-lg font-semibold text-center text-gray-900">Supplier List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">Supplier List</p>
                         @forelse ($supplierList as $item)
                             <a href="{{ route('supplier_profile', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->company_name }}</a>
@@ -46,7 +49,7 @@
                             <div class="p-4 text-left text-blue-600">No results!</div>
                         @endforelse
 
-                        <p class="text-lg font-semibold text-center text-gray-900">Categories List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">Categories List</p>
                         @forelse ($categoriesList as $item)
                             <a href="{{ route('products_category', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
@@ -54,7 +57,7 @@
                             <div class="p-4 text-left text-blue-600">No results!</div>
                         @endforelse
 
-                        <p class="text-lg font-semibold text-center text-gray-900">Brand List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">Brand List</p>
                         @forelse ($brandList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>

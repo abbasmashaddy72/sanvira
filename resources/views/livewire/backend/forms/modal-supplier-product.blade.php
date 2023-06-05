@@ -46,7 +46,7 @@
                 <x-input name="name_spa.0" label="Attribute Name" type="text" wire:model.defer='name_spa.0' />
                 <x-input name="value_spa.0" label="Attribute Value" type="text" wire:model.defer='value_spa.0' />
             </div>
-            <button class="inline-flex flex-shrink-0 ml-2 btn btn-primary"
+            <button class="btn btn-primary ml-2 inline-flex flex-shrink-0"
                 wire:click.prevent="add({{ $i }})">Add</button>
         </div>
 
@@ -58,7 +58,7 @@
                     <x-input name="value_spa.{{ $input_value }}" label="Attribute Value" type="text"
                         wire:model.defer='value_spa.{{ $input_value }}' />
                 </div>
-                <button class="inline-flex flex-shrink-0 ml-2 btn btn-danger"
+                <button class="btn btn-danger ml-2 inline-flex flex-shrink-0"
                     wire:click.prevent="remove({{ $key }})">Remove</button>
 
             </div>

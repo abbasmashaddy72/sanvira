@@ -17,19 +17,19 @@
             :prepend="$prepend" x-model="input" x-on:input.debounce.150ms="onInput($event.target.value)"
             x-on:blur="emitInput">
             <x-slot name="append">
-                <div class="absolute inset-y-0 right-3 z-5 flex items-center justify-center">
+                <div class="z-5 absolute inset-y-0 right-3 flex items-center justify-center">
                     <div @class([
                         'flex items-center gap-x-2 my-auto',
                         'text-negative-400 dark:text-negative-600' => $name && $errors->has($name),
                         'text-secondary-400' => $name && $errors->has($name),
                     ])>
                         <x-dynamic-component :component="WireUi::component('icon')"
-                            class="cursor-pointer w-4 h-4 hover:text-negative-500 transition-colors ease-in-out duration-150"
+                            class="hover:text-negative-500 h-4 w-4 cursor-pointer transition-colors duration-150 ease-in-out"
                             x-cloak name="x" x-show="!config.readonly && !config.disabled && input"
                             x-on:click="clearInput" />
 
                         <x-dynamic-component :component="WireUi::component('icon')"
-                            class="cursor-pointer w-5 h-5 text-gray-400 dark:text-gray-600" name="clock"
+                            class="h-5 w-5 cursor-pointer text-gray-400 dark:text-gray-600" name="clock"
                             x-show="!config.readonly && !config.disabled" x-on:click="toggle" />
                     </div>
                 </div>
@@ -46,22 +46,17 @@
             x-bind:placeholder="input ? input : '12:00'" x-ref="search"
             x-on:input.debounce.150ms="onSearch($event.target.value)" />
 
-        <ul class="mt-1 w-full h-64 sm:h-32 pb-1 pt-2 overflow-y-auto soft-scrollbar">
+        <ul class="soft-scrollbar mt-1 h-64 w-full overflow-y-auto pb-1 pt-2 sm:h-32">
             <template x-for="time in filteredTimes">
-                <li class="group rounded-md focus:outline-none focus:bg-primary-100 hover:text-white
-                            hover:bg-primary-600 cursor-pointer select-none relative py-2 pl-2 pr-9
-                            dark:hover:bg-secondary-700"
+                <li class="focus:bg-primary-100 hover:bg-primary-600 dark:hover:bg-secondary-700 group relative cursor-pointer select-none rounded-md py-2 pl-2 pr-9 hover:text-white focus:outline-none"
                     :class="{
                         'text-primary-600 dark:text-secondary-400': input === time.value,
                         'text-secondary-700 dark:text-secondary-400': input !== time.value,
                     }"
                     tabindex="0" x-on:keydown.enter="selectTime(time)" x-on:click="selectTime(time)">
-                    <span x-text="time.label" class="font-normal block truncate"></span>
+                    <span x-text="time.label" class="block truncate font-normal"></span>
                     <span
-                        class="
-                            absolute text-primary-600 group-hover:text-white inset-y-0
-                            right-0 flex items-center pr-4 dark:text-secondary-400
-                        "
+                        class="text-primary-600 dark:text-secondary-400 absolute inset-y-0 right-0 flex items-center pr-4 group-hover:text-white"
                         x-show="input === time.value">
                         <x-dynamic-component :component="WireUi::component('icon')" name="check" class="h-5 w-5" />
                     </span>

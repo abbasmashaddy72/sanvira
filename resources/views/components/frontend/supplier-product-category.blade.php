@@ -1,8 +1,8 @@
 <a href="{{ route('products_category', ['product_category' => $item->id]) }}"
-    class="flex items-center p-3 bg-white border-2 border-gray-200 rounded-md shadow-md dark:bg-slate-900 dark:shadow-gray-800 hover:border-blue-600 hover:border-2">
-    <img class="w-16 h-16 rounded-lg" src="{{ asset('storage/' . $item->image) }}" />
-    <div class="flex-1 ml-2">
-        <h4 class="text-lg font-medium line-clamp-1">{{ $item->name }}
+    class="flex items-center rounded-md border-2 border-gray-200 bg-white p-3 shadow-md hover:border-2 hover:border-blue-600 dark:bg-slate-900 dark:shadow-gray-800">
+    <img class="h-16 w-16 rounded-lg" src="{{ asset('storage/' . $item->image) }}" />
+    <div class="ml-2 flex-1">
+        <h4 class="line-clamp-1 text-lg font-medium">{{ $item->name }}
         </h4>
         <span class="text-sm font-medium text-gray-600 transition-all duration-500 ease-in-out">
             {{ $item->products_count }} Products

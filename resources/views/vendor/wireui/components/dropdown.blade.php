@@ -5,8 +5,7 @@
             {{ $trigger }}
         @else
             <x-dynamic-component :component="WireUi::component('icon')"
-                class="w-4 h-4 text-secondary-500 hover:text-secondary-700
-                     dark:hover:text-secondary-600 transition duration-150 ease-in-out"
+                class="text-secondary-500 hover:text-secondary-700 dark:hover:text-secondary-600 h-4 w-4 transition duration-150 ease-in-out"
                 name="dots-vertical" />
         @endif
     </div>
@@ -18,8 +17,7 @@
         {{ $attributes->except('wire:key')->class([$getAlign(), $width, 'z-30 absolute mt-2 whitespace-nowrap']) }}
         style="display: none;" @unless ($persistent) x-on:click="close" @endunless>
         <div
-            class="relative {{ $height }} soft-scrollbar overflow-auto border border-secondary-200
-                    rounded-lg shadow-lg p-1 bg-white dark:bg-secondary-800 dark:border-secondary-600">
+            class="{{ $height }} soft-scrollbar border-secondary-200 dark:bg-secondary-800 dark:border-secondary-600 relative overflow-auto rounded-lg border bg-white p-1 shadow-lg">
             {{ $slot }}
         </div>
     </div>

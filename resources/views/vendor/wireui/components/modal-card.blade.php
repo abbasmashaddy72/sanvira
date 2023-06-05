@@ -9,9 +9,9 @@
         @elseif(!$hideClose)
             <x-slot name="action">
                 <button
-                    class="focus:outline-none p-1 focus:ring-2 focus:ring-secondary-200 rounded-full text-secondary-300"
+                    class="focus:ring-secondary-200 text-secondary-300 rounded-full p-1 focus:outline-none focus:ring-2"
                     x-on:click="close" tabindex="-1">
-                    <x-dynamic-component :component="WireUi::component('icon')" name="x" class="w-5 h-5" />
+                    <x-dynamic-component :component="WireUi::component('icon')" name="x" class="h-5 w-5" />
                 </button>
             </x-slot>
         @endif

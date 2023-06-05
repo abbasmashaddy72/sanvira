@@ -3,10 +3,10 @@
         <div class="container">
             <div class="flex justify-center">
                 <div
-                    class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-800 rounded-md">
+                    class="m-auto w-full max-w-[400px] rounded-md bg-white p-6 shadow-md dark:bg-slate-900 dark:shadow-gray-800">
 
                     <a href="{{ route('homepage') }}">
-                        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-20 mx-auto" />
+                        <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="mx-auto h-20" />
                     </a>
 
                     <x-errors />
@@ -33,9 +33,9 @@
                                     required />
                             </div>
 
-                            <div class="flex items-center justify-end mt-4">
+                            <div class="mt-4 flex items-center justify-end">
                                 <button type="submit"
-                                    class="ml-4 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                                    class="btn ml-4 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                                     {{ __('Reset Password') }}</button>
                             </div>
                         </div>

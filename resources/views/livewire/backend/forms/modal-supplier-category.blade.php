@@ -1,5 +1,5 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
-    <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
+    <div class="row-gap-0 grid-cols-1 gap-2 sm:grid">
         <div class="flex space-x-6">
             <x-radio id="main-category" label="Main Category" wire:model="type" value='Main Category' required />
             <x-radio id="sub-category" label="Sub Category" wire:model="type" value='Sub Category' required />

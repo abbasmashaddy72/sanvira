@@ -1,15 +1,15 @@
 <div x-data="{ show: false }" class="flex flex-col items-center">
-    <div class="flex flex-col items-center relative">
+    <div class="relative flex flex-col items-center">
         <button x-on:click="show = !show"
-            class="px-3 py-2 border border-blue-400 rounded-md bg-white text-blue-500 text-xs leading-4 font-medium uppercase tracking-wider hover:bg-blue-200 focus:outline-none">
-            <div class="flex items-center h-5">
+            class="rounded-md border border-blue-400 bg-white px-3 py-2 text-xs font-medium uppercase leading-4 tracking-wider text-blue-500 hover:bg-blue-200 focus:outline-none">
+            <div class="flex h-5 items-center">
                 {{ __('Show / Hide Columns') }}
             </div>
         </button>
         <div x-show="show" x-on:click.away="show = false"
-            class="z-50 absolute mt-16 -mr-4 shadow-2xl top-100 bg-white w-96 right-0 rounded max-h-select overflow-y-auto"
+            class="top-100 max-h-select absolute right-0 z-50 -mr-4 mt-16 w-96 overflow-y-auto rounded bg-white shadow-2xl"
             x-cloak>
-            <div class="flex flex-col w-full">
+            <div class="flex w-full flex-col">
                 @foreach ($this->columns as $index => $column)
                     @if ($column['hideable'] !== false)
                         <div>

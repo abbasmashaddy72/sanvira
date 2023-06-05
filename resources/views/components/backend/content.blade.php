@@ -1,5 +1,5 @@
 <div>
-    <div class="flex items-center mt-8">
+    <div class="mt-8 flex items-center">
         <h2 class="mr-auto text-lg font-medium">
             @if (getRouteAction() == 'create')
                 {{ __('Create') }} {{ $title }}
@@ -13,7 +13,7 @@
         </h2>
 
         @if (Route::currentRouteName() != 'admin.dashboard' && isset($top_right_button))
-            <div class="flex w-full mt-4 sm:w-auto sm:mt-0">
+            <div class="mt-4 flex w-full sm:mt-0 sm:w-auto">
                 {{ $top_right_button }}
             </div>
         @endif

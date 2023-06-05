@@ -5,9 +5,11 @@
                 @foreach ($sliders as $slider)
                     <div class="tiny-slide">
                         <a href="{{ $slider->url }}">
-                            <img src="{{ asset('storage/' . $slider->image) }}"
-                                class="object-cover w-full align-middle border-none rounded shadow h-96"
-                                alt="{{ $slider->name }}">
+                            <div class="relative h-48 lg:h-96">
+                                <img src="{{ asset('storage/' . $slider->image) }}"
+                                    class="absolute inset-0 h-full w-full rounded border-none object-cover shadow"
+                                    alt="{{ $slider->name }}">
+                            </div>
                         </a>
                     </div>
                 @endforeach
@@ -29,16 +31,16 @@
     </x-frontend.index-container>
 
     <x-frontend.index-container containerTitle='Categories' class="bg-white py-14">
-        <div class="grid grid-cols-5 gap-[30px]">
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             @foreach ($product_categories as $item)
                 <x-frontend.supplier-product-category :item="$item" />
             @endforeach
         </div>
 
-        <div class="grid justify-center grid-cols-1">
+        <div class="grid grid-cols-1 justify-center">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products_category') }}"
-                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                    class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                     View All Categories
                 </a>
             </div>
@@ -46,20 +48,20 @@
     </x-frontend.index-container>
 
     <x-frontend.index-container containerTitle='Featured Brands' class="py-14">
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($featured_brands as $item)
                 <x-frontend.brands :item="$item" />
                 @if ($loop->iteration == 4)
         </div>
-        <div class="grid grid-cols-5 gap-4 mt-4">
+        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
             @endif
             @endforeach
         </div>
 
-        <div class="grid justify-center grid-cols-1">
+        <div class="grid grid-cols-1 justify-center">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_brands') }}"
-                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                    class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                     View All Brands
                 </a>
             </div>
@@ -67,20 +69,20 @@
     </x-frontend.index-container>
 
     <x-frontend.index-container containerTitle='Featured Suppliers' class="bg-white py-14">
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($featured_suppliers as $item)
                 <x-frontend.supplier-profile :item="$item" />
                 @if ($loop->iteration == 4)
         </div>
-        <div class="grid grid-cols-5 gap-4 mt-4">
+        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
             @endif
             @endforeach
         </div>
 
-        <div class="grid justify-center grid-cols-1">
+        <div class="grid grid-cols-1 justify-center">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_supplier_profile') }}"
-                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                    class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                     View All Suppliers
                 </a>
             </div>
@@ -88,16 +90,16 @@
     </x-frontend.index-container>
 
     <x-frontend.index-container containerTitle='On Sale Products' class="py-14">
-        <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-[30px]">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($on_sale_products as $item)
                 @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
             @endforeach
         </div>
 
-        <div class="grid justify-center grid-cols-1">
+        <div class="grid grid-cols-1 justify-center">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products') }}"
-                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:bg-blue-700 hover:border-blue-700">
+                    class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
                     View All Products
                 </a>
             </div>

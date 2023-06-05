@@ -1,12 +1,12 @@
-<div class="fixed pin-t pin-x z-40">
-    <div class="bg-gradient-primary text-white h-1"></div>
+<div class="pin-t pin-x fixed z-40">
+    <div class="bg-gradient-primary h-1 text-white"></div>
 
-    <nav class="flex items-center justify-between text-black bg-navbar shadow-xs h-16">
-        <div class="flex items-center flex-no-shrink">
-            <a href="{{ url('/') }}" class="flex items-center flex-no-shrink text-black mx-4">
+    <nav class="bg-navbar shadow-xs flex h-16 items-center justify-between text-black">
+        <div class="flex-no-shrink flex items-center">
+            <a href="{{ url('/') }}" class="flex-no-shrink mx-4 flex items-center text-black">
                 @include('larecipe::partials.logo')
 
-                <p class="inline-block font-semibold mx-1 text-grey-dark">
+                <p class="text-grey-dark mx-1 inline-block font-semibold">
                     {{ config('app.name') }}
                 </p>
             </a>
@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <div class="block mx-4 flex items-center">
+        <div class="mx-4 block flex items-center">
             @if (config('larecipe.search.enabled'))
                 <larecipe-button id="search-button" :type="searchBox ? 'primary' : 'link'"
                     @click="searchBox = ! searchBox" class="px-4">
@@ -33,14 +33,14 @@
             {{-- versions dropdown --}}
             <larecipe-dropdown>
                 <larecipe-button type="primary" class="flex">
-                    {{ $currentVersion }} <i class="mx-1 fa fa-angle-down"></i>
+                    {{ $currentVersion }} <i class="fa fa-angle-down mx-1"></i>
                 </larecipe-button>
 
                 <template slot="list">
                     <ul class="list-reset">
                         @foreach ($versions as $version)
-                            <li class="py-2 hover:bg-grey-lightest">
-                                <a class="px-6 text-grey-darkest"
+                            <li class="hover:bg-grey-lightest py-2">
+                                <a class="text-grey-darkest px-6"
                                     href="{{ route('larecipe.show', ['version' => $version, 'page' => $currentSection]) }}">{{ $version }}</a>
                             </li>
                         @endforeach
@@ -60,7 +60,7 @@
                         <form action="/logout" method="POST">
                             {{ csrf_field() }}
 
-                            <button type="submit" class="py-2 px-4 text-white bg-danger inline-flex"><i
+                            <button type="submit" class="bg-danger inline-flex px-4 py-2 text-white"><i
                                     class="fa fa-power-off mr-2"></i> Logout</button>
                         </form>
                     </template>

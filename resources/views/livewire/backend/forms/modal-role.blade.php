@@ -49,8 +49,8 @@
         @endphp
 
         <table
-            class="min-w-full mt-4 divide-y divide-gray-200 dark:bg-gray-800 dark:text-white border-2 border-gray-200 shadow">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400 rounded-t-lg">
+            class="mt-4 min-w-full divide-y divide-gray-200 border-2 border-gray-200 shadow dark:bg-gray-800 dark:text-white">
+            <thead class="rounded-t-lg bg-gray-200 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
                         Sl. No.
@@ -72,17 +72,17 @@
                     </th>
                 </tr>
             </thead>
-            <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-900 dark:text-white rounded-b-lg">
+            <tbody class="divide-y divide-gray-200 rounded-b-lg bg-white dark:bg-gray-900 dark:text-white">
                 @foreach ($groupedPermissions as $groupName => $group)
                     <tr
-                        class="border-b dark:border-gray-700 @if ($loop->index % 2) bg-gray-50 dark:bg-gray-800 @else dark:bg-gray-900 bg-white @endif">
-                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                        class="@if ($loop->index % 2) bg-gray-50 dark:bg-gray-800 @else dark:bg-gray-900 bg-white @endif border-b dark:border-gray-700">
+                        <td class="whitespace-nowrap px-6 py-2.5 text-sm text-gray-500">
                             {{ $loop->iteration }}
                         </td>
-                        <td class="px-6 py-2.5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <td class="whitespace-nowrap px-6 py-2.5 font-medium text-gray-900 dark:text-white">
                             {{ $groupName }}
                         </td>
-                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="whitespace-nowrap px-6 py-2.5 text-sm text-gray-500">
                             @php
                                 $readPermissions = [];
                                 foreach ($group as $permission) {
@@ -104,7 +104,7 @@
                                 @endforeach
                             </div>
                         </td>
-                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="whitespace-nowrap px-6 py-2.5 text-sm text-gray-500">
                             @php
                                 $writePermissions = [];
                                 foreach ($group as $permission) {
@@ -126,7 +126,7 @@
                                 @endforeach
                             </div>
                         </td>
-                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="whitespace-nowrap px-6 py-2.5 text-sm text-gray-500">
                             @php
                                 $deletePermissions = [];
                                 foreach ($group as $permission) {
@@ -148,7 +148,7 @@
                                 @endforeach
                             </div>
                         </td>
-                        <td class="px-6 py-2.5 text-sm text-gray-500 whitespace-nowrap">
+                        <td class="whitespace-nowrap px-6 py-2.5 text-sm text-gray-500">
                             <div class="flex space-x-4">
                                 @foreach ($group as $permission)
                                     @php

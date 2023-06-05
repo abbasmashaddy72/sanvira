@@ -1,5 +1,5 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
-    <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
+    <div class="row-gap-0 grid-cols-2 gap-2 sm:grid">
         <x-input name="name" label="Name" type="text" wire:model.defer='name' />
 
         <x-input name="email" label="Email" type="email" wire:model.defer='email' />

@@ -1,6 +1,6 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
     <x-dialog z-index="z-50" blur="md" align="center" />
-    <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
+    <div class="row-gap-0 grid-cols-2 gap-2 sm:grid">
         <x-input name="name" label="Name" type="text" wire:model.defer='name' required />
 
         <x-input name="country" label="Country" type="text" wire:model.defer='country' required />

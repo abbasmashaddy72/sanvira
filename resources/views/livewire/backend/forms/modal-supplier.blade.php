@@ -1,5 +1,5 @@
 <x-backend.modal-form form-action="add" title='{{ $company_name }}'>
-    <p class="p-2 mb-2 text-gray-700 bg-orange-200 rounded-lg text-md">Note: The Contact Person First Name & Last 3
+    <p class="text-md mb-2 rounded-lg bg-orange-200 p-2 text-gray-700">Note: The Contact Person First Name & Last 3
         Digits of Contact Person Number will be used as Password with '@' in Between both text, Example: Name@123 where
         Name is the First Name of Contact Person Name & 123 is the Last 3 Digits of the Contact Person Number</p>
     <div class="grid grid-cols-3 gap-2">

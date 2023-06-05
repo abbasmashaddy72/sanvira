@@ -15,21 +15,21 @@
 
         <div>
             <x-input id="current_password" label="{{ __('Current Password') }}" name="current_password" type="password"
-                class="block w-full mt-1" autocomplete="current-password" />
+                class="mt-1 block w-full" autocomplete="current-password" />
         </div>
 
         <div>
             <x-input id="password" label="{{ __('New Password') }}" name="password" type="password"
-                class="block w-full mt-1" autocomplete="new-password" />
+                class="mt-1 block w-full" autocomplete="new-password" />
         </div>
 
         <div>
             <x-input id="password_confirmation" label="{{ __('Confirm Password') }}" name="password_confirmation"
-                type="password" class="block w-full mt-1" autocomplete="new-password" />
+                type="password" class="mt-1 block w-full" autocomplete="new-password" />
         </div>
 
         <div class="flex items-center gap-4">
-            <button class="mr-2 shadow-md btn btn-primary">{{ 'Save' }}</button>
+            <button class="btn btn-primary mr-2 shadow-md">{{ 'Save' }}</button>
 
             @if (session('status') === 'password-updated')
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"

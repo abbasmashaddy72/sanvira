@@ -39,6 +39,13 @@ module.exports = {
         },
         container: {
             center: true,
+            padding: {
+                DEFAULT: "12px",
+                sm: "1rem",
+                lg: "45px",
+                xl: "2rem",
+                "2xl": "5rem",
+            },
         },
         extend: {
             colors: {
@@ -75,5 +82,5 @@ module.exports = {
             },
         },
     },
-    plugins: [require("flowbite/plugin")],
+    plugins: [require("flowbite/plugin"), require("tailwind-scrollbar-hide")],
 };

@@ -1,27 +1,27 @@
 <section {{ $attributes->merge(['class' => 'relative']) }}>
     @if (!empty($type))
-        <div class="relative container-fluid">
+        <div class="container-fluid relative">
         @else
             <div class="container">
     @endif
 
     @if (!empty($containerTitle))
-        <div class="grid grid-cols-1 @if (empty($containerSlot)) text-left @endif">
+        <div class="@if (empty($containerSlot)) text-left @endif grid grid-cols-1">
             <h3 class="mb-6 text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">
                 {{ $containerTitle }}</h3>
         </div>
 
         @if (!empty($containerSlot))
-            @if (!empty($containerSlotData))
-                <div class="flex justify-between">
-            @endif
-            <p class="text-xl font-medium leading-5 text-gray-600 dark:text-gray-400">
-                {{ $containerSlot }}
-            </p>
-            @if (!empty($containerSlotData))
-                {{ $containerSlotData }}
-                </div>
-            @endif
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <p class="text-xl font-medium leading-5 text-gray-600 dark:text-gray-400">
+                    {{ $containerSlot }}
+                </p>
+                @if (!empty($containerSlotData))
+                    <div class="mt-4 md:mt-0">
+                        {{ $containerSlotData }}
+                    </div>
+                @endif
+            </div>
         @endif
     @endif
 

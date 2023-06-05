@@ -27,25 +27,25 @@
                     },
                 }" drag-target x-on:dragenter.prevent="dragenter" x-on:dragleave.prevent
                     x-on:dragover.prevent x-on:drop="drop"
-                    class="p-4 space-y-4 bg-blue-500 bg-opacity-10 rounded-lg text-gray-{{ strlen($parentIndex) > 6 ? 1 : 9 }}00 border border-blue-400">
+                    class="text-gray-{{ strlen($parentIndex) > 6 ? 1 : 9 }}00 space-y-4 rounded-lg border border-blue-400 bg-blue-500 bg-opacity-10 p-4">
                     <span class="flex justify-center space-x-4">
                         <button wire:click="addRule('{{ collect(explode('.', $key))->join('.content.') . '.content' }}')"
-                            class="flex items-center px-3 py-2 space-x-2 text-xs font-medium leading-4 tracking-wider text-blue-500 uppercase bg-white border border-blue-400 rounded-md hover:bg-blue-200 focus:outline-none">ADD
+                            class="flex items-center space-x-2 rounded-md border border-blue-400 bg-white px-3 py-2 text-xs font-medium uppercase leading-4 tracking-wider text-blue-500 hover:bg-blue-200 focus:outline-none">ADD
                             RULE</button>
                         <button
                             wire:click="addGroup('{{ collect(explode('.', $key))->join('.content.') . '.content' }}')"
-                            class="flex items-center px-3 py-2 space-x-2 text-xs font-medium leading-4 tracking-wider text-blue-500 uppercase bg-white border border-blue-400 rounded-md hover:bg-blue-200 focus:outline-none">ADD
+                            class="flex items-center space-x-2 rounded-md border border-blue-400 bg-white px-3 py-2 text-xs font-medium uppercase leading-4 tracking-wider text-blue-500 hover:bg-blue-200 focus:outline-none">ADD
                             GROUP</button>
                     </span>
-                    <div class="items-center block sm:flex">
+                    <div class="block items-center sm:flex">
                         <div class="flex justify-center sm:block">
                             @if (count($rule['content']) > 1)
                                 <div class="mr-8">
                                     <label
-                                        class="flex justify-between block py-1 text-xs font-bold tracking-wide uppercase rounded">Logic</label>
+                                        class="block flex justify-between rounded py-1 text-xs font-bold uppercase tracking-wide">Logic</label>
                                     <select
                                         wire:model="rules.{{ collect(explode('.', $key))->join('.content.') }}.logic"
-                                        class="block w-24 text-sm leading-4 border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                        class="block w-24 rounded-md border-gray-300 text-sm leading-4 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                         <option value="and">AND</option>
                                         <option value="or">OR</option>
                                     </select>
@@ -68,7 +68,7 @@
                         @unless ($key === 0)
                             <button
                                 wire:click="removeRule('{{ collect(explode('.', $key))->join('.content.') . '.content' }}')"
-                                class="px-3 py-2 text-white bg-red-600 rounded">
+                                class="rounded bg-red-600 px-3 py-2 text-white">
                                 <x-icons.trash />
                             </button>
                         @endunless

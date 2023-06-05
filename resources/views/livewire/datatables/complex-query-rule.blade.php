@@ -2,14 +2,14 @@
     @php $key = collect(explode('.', $parentIndex))->join(".content.") . ".content" @endphp
     <div draggable="true" x-on:dragstart="dragstart($event, '{{ $key }}')" x-on:dragend="dragend"
         key="{{ $key }}"
-        class="items-end px-3 py-2 -my-1 space-x-4 sm:flex hover:bg-opacity-20 hover:bg-white hover:shadow-xl">
+        class="-my-1 items-end space-x-4 px-3 py-2 hover:bg-white hover:bg-opacity-20 hover:shadow-xl sm:flex">
         <div class="flex-grow sm:flex sm:space-x-4">
             <div class="sm:w-1/3">
                 <label
-                    class="flex justify-between block py-1 text-xs font-bold tracking-wide uppercase rounded">Column</label>
+                    class="block flex justify-between rounded py-1 text-xs font-bold uppercase tracking-wide">Column</label>
                 <div class="relative">
                     <select wire:model="rules.{{ $key }}.column" name="selectedColumn"
-                        class="block w-full my-1 text-sm leading-4 text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                        class="my-1 block w-full rounded-md border-gray-300 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                         <option value=""></option>
                         @foreach ($columns as $i => $column)
                             <option value="{{ $i }}">{{ Str::ucfirst($column['label']) }}</option>
@@ -21,10 +21,10 @@
             @if ($options = $this->getOperands($key))
                 <div class="sm:w-1/3">
                     <label
-                        class="flex justify-between block py-1 text-xs font-bold tracking-wide uppercase rounded">Operand</label>
+                        class="block flex justify-between rounded py-1 text-xs font-bold uppercase tracking-wide">Operand</label>
                     <div class="relative">
                         <select name="operand" wire:model="rules.{{ $key }}.operand"
-                            class="block w-full my-1 text-sm leading-4 text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                            class="my-1 block w-full rounded-md border-gray-300 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                             <option selected></option>
                             @foreach ($options as $operand)
                                 <option value="{{ $operand }}">{{ $operand }}</option>
@@ -38,11 +38,11 @@
                 <div class="sm:w-1/3">
                     @if ($column = $this->getRuleColumn($key))
                         <label
-                            class="flex justify-between block py-1 text-xs font-bold tracking-wide uppercase rounded">Value</label>
+                            class="block flex justify-between rounded py-1 text-xs font-bold uppercase tracking-wide">Value</label>
                         <div class="relative">
                             @if (is_array($column['filterable']))
                                 <select name="value" wire:model="rules.{{ $key }}.value"
-                                    class="block w-full my-1 text-sm leading-4 text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                    class="my-1 block w-full rounded-md border-gray-300 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option selected></option>
                                     @foreach ($column['filterable'] as $value => $label)
                                         @if (is_object($label))
@@ -58,20 +58,20 @@
                                 </select>
                             @elseif($column['type'] === 'boolean')
                                 <select name="value" wire:model="rules.{{ $key }}.value"
-                                    class="block w-full my-1 text-sm leading-4 text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+                                    class="my-1 block w-full rounded-md border-gray-300 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
                                     <option selected></option>
                                     <option value="true">True</option>
                                     <option value="false">False</option>
                                 </select>
                             @elseif($column['type'] === 'date')
                                 <input type="date" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="block w-full px-3 py-2 my-1 text-sm leading-4 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="my-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @elseif($column['type'] === 'time')
                                 <input type="time" name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="block w-full px-3 py-2 my-1 text-sm leading-4 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="my-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @else
                                 <input name="value" wire:model.lazy="rules.{{ $key }}.value"
-                                    class="block w-full px-3 py-2 my-1 text-sm leading-4 text-gray-900 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
+                                    class="my-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-sm leading-4 text-gray-900 shadow-sm focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-200 focus:ring-opacity-50" />
                             @endif
                         </div>
                     @endif
@@ -80,11 +80,11 @@
         </div>
         <div class="flex justify-center sm:justify-end">
             <button wire:click="duplicateRule('{{ $key }}')"
-                class="flex items-center justify-center mb-px text-green-600 rounded w-9 h-9 hover:text-green-400">
+                class="mb-px flex h-9 w-9 items-center justify-center rounded text-green-600 hover:text-green-400">
                 <x-icons.copy />
             </button>
             <button wire:click="removeRule('{{ $key }}')"
-                class="flex items-center justify-center mb-px text-red-600 rounded w-9 h-9 hover:text-red-400">
+                class="mb-px flex h-9 w-9 items-center justify-center rounded text-red-600 hover:text-red-400">
                 <x-icons.trash />
             </button>
         </div>

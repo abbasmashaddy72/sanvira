@@ -36,6 +36,7 @@
         "postcss-multiple-tailwind": "^1.0.1",
         "sass": "^1.56.1",
         "swiper": "^8.4.5",
+        "tailwind-scrollbar-hide": "^1.1.7",
         "tailwindcss": "^3.1.0",
         "tiny-slider": "^2.9.4",
         "tippy.js": "^6.3.7",

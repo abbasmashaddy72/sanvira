@@ -7,13 +7,13 @@
             </span>
         </x-logo>
         <a href="javascript:;" id="mobile-menu-toggler">
-            <i data-feather="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i>
+            <i data-feather="bar-chart-2" class="h-8 w-8 -rotate-90 transform text-white"></i>
         </a>
     </div>
-    <ul class="border-t border-white/[0.08] py-5 hidden">
+    <ul class="hidden border-t border-white/[0.08] py-5">
         @foreach ($side_menu as $menuKey => $menu)
             @if ($menu == 'devider')
-                <li class="my-6 menu__devider"></li>
+                <li class="menu__devider my-6"></li>
             @else
                 <li>
                     @role($menu['role'])

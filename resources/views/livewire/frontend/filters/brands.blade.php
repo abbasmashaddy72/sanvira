@@ -1,30 +1,35 @@
 <div>
     <x-frontend.index-container class="pt-14">
-        <div class="grid grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($featured_brands as $item)
                 <x-frontend.brands :item="$item" />
                 @if ($loop->iteration == 4)
         </div>
-        <div class="grid grid-cols-5 gap-4 mt-4">
+        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
             @endif
             @endforeach
         </div>
     </x-frontend.index-container>
 
     <x-frontend.index-container class="py-14">
-        <div class="flex space-x-4 bg-white w-full items-center justify-center rounded mb-4 p-1">
+        <div class="mb-4 flex flex-wrap justify-center bg-white p-1">
+            @php
+                $disabled = !in_array('#', $availableLetters);
+            @endphp
+            <button wire:click='apply("#")' {{ $disabled ? 'disabled' : '' }}
+                class="@if ($alphabet == '#') text-blue-600 bg-gray-200 @elseif(!in_array('#', $availableLetters)) text-gray-400 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ '#' }}</button>
             @foreach (range('A', 'Z') as $item)
                 @php
                     $disabled = !in_array($item, $availableLetters);
                 @endphp
                 <button wire:click='apply("{{ $item }}")' {{ $disabled ? 'disabled' : '' }}
-                    class="py-2 px-4 font-medium rounded @if ($alphabet == $item) text-blue-600 bg-gray-200 @elseif(!in_array($item, $availableLetters)) text-gray-400 @else  text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif">{{ $item }}</button>
+                    class="@if ($alphabet == $item) text-blue-600 bg-gray-200 @elseif(!in_array($item, $availableLetters)) text-gray-400 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ $item }}</button>
             @endforeach
         </div>
 
         <div wire:loading wire:target="apply">
             <div class="flex justify-center">
-                <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                <svg aria-hidden="true" class="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
                     viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
                         d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -37,7 +42,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
             @foreach ($brands as $item)
                 <x-frontend.brands :item="$item" />
             @endforeach

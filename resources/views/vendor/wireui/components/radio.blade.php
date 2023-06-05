@@ -1,8 +1,8 @@
 <div>
-    <label for="{{ $id }}" class="flex items-center {{ $errors->has($name) ? 'text-negative-600' : '' }}">
+    <label for="{{ $id }}" class="{{ $errors->has($name) ? 'text-negative-600' : '' }} flex items-center">
         <div class="relative flex items-start">
             @if ($leftLabel)
-                <div class="mr-2 text-sm text-right">
+                <div class="mr-2 text-right text-sm">
                     <x-dynamic-component :component="WireUi::component('label')" class="" :for="$id" :label="$leftLabel"
                         :has-error="$errors->has($name)" />
                     @if ($description)
@@ -12,7 +12,7 @@
                 </div>
             @endif
 
-            <div class="flex items-center h-5">
+            <div class="flex h-5 items-center">
                 <input
                     {{ $attributes->class([$getClasses($errors->has($name))])->merge([
                         'type' => 'radio',

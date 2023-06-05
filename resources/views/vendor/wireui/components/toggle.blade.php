@@ -5,7 +5,7 @@
                 :has-error="$errors->has($name)" />
         @endif
 
-        <label for="{{ $id }}" tabindex="-1" class="group relative flex items-center select-none">
+        <label for="{{ $id }}" tabindex="-1" class="group relative flex select-none items-center">
             <input
                 {{ $attributes->merge([
                     'name' => $name,

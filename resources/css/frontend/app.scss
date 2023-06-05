@@ -32,3 +32,8 @@
 @import "tiny-slider/dist/tiny-slider.css";
 
 @import "lightbox2/src/css/lightbox.css";
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}

@@ -18,6 +18,7 @@
         "dietercoopman/smart": "^1.6.5",
         "diglactic/laravel-breadcrumbs": "^8.0.1",
         "guzzlehttp/guzzle": "^7.5",
+        "jenssegers/agent": "^2.6",
         "jorenvanhocht/laravel-share": "^4.2",
         "kirschbaum-development/eloquent-power-joins": "^3.0",
         "lab404/laravel-impersonate": "^1.7.3",
