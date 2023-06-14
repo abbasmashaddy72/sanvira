@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,16 +22,16 @@ class DatabaseSeeder extends Seeder
             $this->call(CountrySeeder::class);
         } else {
             $this->call(PermissionSeeder::class);
-            $this->call(RoleSeeder::class); //
-            $this->call(UserSeeder::class); //
-            $this->call(StaticOptionSeeder::class); //
+            $this->call(RoleSeeder::class);
+            $this->call(UserSeeder::class);
+            $this->call(StaticOptionSeeder::class);
             $this->call(BrandSeeder::class);
             $this->call(ManufacturerSeeder::class);
-            $this->call(CountrySeeder::class); //
+            $this->call(CountrySeeder::class);
             $this->call(SupplierSeeder::class);
             $this->call(SupplierTeamSeeder::class);
             $this->call(SupplierCertificateSeeder::class);
-            $this->call(SupplierProductCategorySeeder::class); //
+            $this->call(SupplierProductCategorySeeder::class);
             $this->call(SupplierProductSeeder::class);
             $this->call(SupplierProductAttributesSeeder::class);
             $this->call(SupplierProjectSeeder::class);
@@ -44,6 +43,11 @@ class DatabaseSeeder extends Seeder
             $this->call(SubContractorProjectSeeder::class);
             $this->call(SubContractorServiceSeeder::class);
             $this->call(SliderSeeder::class);
+            $this->call(SupplierViewSeeder::class);
+            $this->call(SupplierProductViewSeeder::class);
+            $this->call(SupplierProductCategoryViewSeeder::class);
+            $this->call(SupplierBrandViewSeeder::class);
+            $this->call(SupplierManufacturerViewSeeder::class);
         }
     }
 }

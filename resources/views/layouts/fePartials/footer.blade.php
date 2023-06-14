@@ -5,10 +5,13 @@
                 <div class="px-0 py-[60px]">
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-12">
                         <div class="md:col-span-12 lg:col-span-3">
-                            <a href="#" class="flex justify-center text-[22px] focus:outline-none">
-                                <img class="h-28" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
-                                    alt="" />
-                            </a>
+                            <div class="text-center">
+                                <a href="#" class="flex justify-center text-[22px] focus:outline-none">
+                                    <img class="h-28" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
+                                        alt="" />
+                                </a>
+                                <p class="font-semibold text-gray-600">An in5 incubated company!</p>
+                            </div>
                             <ul class="mt-6 flex justify-center space-x-4">
                                 @if (!empty(get_static_option('facebook')))
                                     <li class="inline">

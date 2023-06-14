@@ -57,7 +57,7 @@
                                     <i data-feather="at-sign" class="mr-2 h-4 w-4 text-slate-500"></i>
                                     {{ $supplier->company_email }}
                                 </a>
-                                <a href='{{ 'tell:' . $supplier->company_number }}'
+                                <a href='{{ 'tel:' . $supplier->company_number }}'
                                     class="text-primary mt-3 flex items-center truncate sm:whitespace-normal">
                                     <i data-feather="phone" class="mr-2 h-4 w-4 text-slate-500"></i>
                                     {{ $supplier->company_number }}
@@ -77,7 +77,7 @@
                                     <i data-feather="at-sign" class="mr-2 h-4 w-4 text-slate-500"></i>
                                     {{ $supplier->manager->email }}
                                 </a>
-                                <a href='{{ 'tell:' . $supplier->manager->phone }}'
+                                <a href='{{ 'tel:' . $supplier->manager->phone }}'
                                     class="text-primary mt-3 flex items-center truncate sm:whitespace-normal">
                                     <i data-feather="phone" class="mr-2 h-4 w-4 text-slate-500"></i>
                                     {{ $supplier->manager->phone }}

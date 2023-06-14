@@ -5,11 +5,12 @@ namespace App\Http\Livewire\Backend\Forms;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\SupplierTeam;
+use App\Models\SupplierTransaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
-use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use Livewire\WithFileUploads;
 use WireUi\Traits\Actions;
 
 class ModalSupplier extends ModalComponent
@@ -123,7 +124,7 @@ class ModalSupplier extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (! empty($this->supplier_id)) {
+        if (!empty($this->supplier_id)) {
             $contact_person_name = $validatedData['contact_person_name'];
             $contact_person_email = $validatedData['contact_person_email'];
             $contact_person_number = $validatedData['contact_person_number'];
@@ -138,7 +139,7 @@ class ModalSupplier extends ModalComponent
                 'email' => $contact_person_email,
             ]);
 
-            if (! empty($this->logo) && gettype($this->logo) != 'string') {
+            if (!empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
 
@@ -157,6 +158,17 @@ class ModalSupplier extends ModalComponent
                 'designation' => $contact_person_designation,
             ]);
 
+            SupplierTransaction::create([
+                'supplier_id' => $this->supplier->id,
+                'account_type' => 'Trail',
+                'transaction_type' => 'Pending',
+                'amount' => '0',
+                'start_date' => now()->format('Y-m-d'),
+                'end_days' => 30,
+                'image' => null,
+                'status' => 'Active',
+            ]);
+
             $this->notification()->success($title = 'Supplier Updated Successfully!');
         } else {
             $contact_person_name = $validatedData['contact_person_name'];
@@ -171,10 +183,10 @@ class ModalSupplier extends ModalComponent
             $user = User::create([
                 'name' => $contact_person_name,
                 'email' => $contact_person_email,
-                'password' => Hash::make(explode(' ', $contact_person_name)[0].'@'.substr($contact_person_number, -3)),
+                'password' => Hash::make(explode(' ', $contact_person_name)[0] . '@' . substr($contact_person_number, -3)),
             ]);
 
-            if (! empty($this->logo) && gettype($this->logo) != 'string') {
+            if (!empty($this->logo) && gettype($this->logo) != 'string') {
                 $validatedData['logo'] = $this->logo->store('supplier', 'public');
             }
 

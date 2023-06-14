@@ -93,7 +93,6 @@ class AppLayout extends Component
                 'route_name' => 'admin.supplier',
                 'params' => null,
             ],
-            // Changes
             'supplier_profile' => [
                 'can' => 'supplier_profile_view',
                 'role' => 'supplier',
@@ -226,7 +225,7 @@ class AppLayout extends Component
                 $firstLevelActiveIndex = $menuKey;
             }
 
-            if (! (isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
+            if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
                 continue;
             }
 
@@ -237,7 +236,7 @@ class AppLayout extends Component
                     $secondLevelActiveIndex = $subMenuKey;
                 }
 
-                if (! isset($subMenu['sub_menu'])) {
+                if (!isset($subMenu['sub_menu'])) {
                     continue;
                 }
 

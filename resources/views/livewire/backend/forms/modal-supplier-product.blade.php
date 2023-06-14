@@ -27,6 +27,11 @@
                 deletId="{{ $supplier_product_id }}" model="images" required />
         </div>
 
+        <div class="card">
+            <x-backend.file-upload :files="$this->data_sheets" :isUploaded="$this->isDataSheetsUploaded" label="Upload Datasheets" name="data_sheets"
+                deletId="{{ $supplier_product_id }}" model="data_sheets" />
+        </div>
+
         <x-select label="Select Category" wire:model.defer="supplier_product_category_id" placeholder="Select Category"
             :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id" required />
 

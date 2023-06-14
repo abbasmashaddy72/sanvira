@@ -63,7 +63,7 @@
                                     </svg>
                                     {{ $profile->company_email }}
                                 </a>
-                                <a href='{{ 'tell:' . $profile->company_number }}'
+                                <a href='{{ 'tel:' . $profile->company_number }}'
                                     class="mt-3 flex items-center truncate text-blue-600 sm:whitespace-normal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 text-blue-600"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -101,7 +101,7 @@
                                     </svg>
                                     {{ $profile->manager->email }}
                                 </a>
-                                <a href='{{ 'tell:' . $profile->manager->phone }}'
+                                <a href='{{ 'tel:' . $profile->manager->phone }}'
                                     class="mt-3 flex items-center truncate text-blue-600 sm:whitespace-normal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 text-blue-600"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -308,13 +308,18 @@
                             </span>
                             <div class="flex justify-between text-blue-600">
                                 <div class="text-sm font-medium text-gray-600 transition-all duration-500 ease-in-out">
-                                    {{ $item->designation }} Products
+                                    {{ $item->designation }}
                                 </div>
+                            </div>
+                            <div class="flex justify-between text-blue-600">
+                                <a class="text-sm font-medium text-gray-600 transition-all duration-500 ease-in-out hover:text-blue-600"
+                                    href="{{ 'tel:' . $item->phone }}">
+                                    {{ $item->phone }}
+                                </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
             </div>
         @endif
 

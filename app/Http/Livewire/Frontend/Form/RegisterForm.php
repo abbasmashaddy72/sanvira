@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Frontend\Form;
 use App\Models\Role;
 use App\Models\Supplier;
 use App\Models\SupplierTeam;
+use App\Models\SupplierTransaction;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -62,7 +63,7 @@ class RegisterForm extends Component
         'tob' => '',
         'name' => ['required', 'string', 'max:255'],
         'contact_no' => 'required',
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
         'job_title' => '',
         'agree' => 'required',
     ];
@@ -80,7 +81,7 @@ class RegisterForm extends Component
             'company_email' => null,
             'company_address' => $this->validatedData['supplier_address'],
             'company_number' => null,
-            'company_locality' => $this->validatedData['city'].', '.$this->validatedData['state'].', '.$this->validatedData['country'],
+            'company_locality' => $this->validatedData['city'] . ', ' . $this->validatedData['state'] . ', ' . $this->validatedData['country'],
             'tagline' => null,
             'logo' => null,
             'doe' => $this->validatedData['doe'],
@@ -102,17 +103,28 @@ class RegisterForm extends Component
             'image' => null,
         ]);
 
+        SupplierTransaction::create([
+            'supplier_id' => $supplier->id,
+            'account_type' => 'Trail',
+            'transaction_type' => 'Pending',
+            'amount' => '0',
+            'start_date' => now()->format('Y-m-d'),
+            'end_days' => 30,
+            'image' => null,
+            'status' => 'Active',
+        ]);
+
         $this->user->roles()->attach(Role::where('name', 'Supplier')->pluck('id'));
     }
 
-    public function submit(): RedirectResponse|Redirector
+    public function submit(): RedirectResponse | Redirector
     {
         $this->validatedData = $this->validate();
 
         $this->user = User::create([
             'name' => $this->validatedData['name'],
             'email' => $this->validatedData['email'],
-            'password' => Hash::make(explode(' ', $this->validatedData['name'])[0].'@'.substr($this->validatedData['contact_no'], -3)),
+            'password' => Hash::make(explode(' ', $this->validatedData['name'])[0] . '@' . substr($this->validatedData['contact_no'], -3)),
         ]);
 
         if ($this->tob == 'Manufacturer' || $this->tob == 'Supplier') {

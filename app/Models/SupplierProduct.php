@@ -28,6 +28,7 @@ class SupplierProduct extends Model
         'sku',
         'on_sale',
         'images',
+        'data_sheets',
         'price',
         'min_price',
         'max_price',
@@ -35,11 +36,12 @@ class SupplierProduct extends Model
 
     protected $casts = [
         'images' => 'array',
+        'data_sheets' => 'array',
     ];
 
     public function suppliers()
     {
-        return $this->belongsTo(Supplier::class, 'supplier_id');
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
     public function country()

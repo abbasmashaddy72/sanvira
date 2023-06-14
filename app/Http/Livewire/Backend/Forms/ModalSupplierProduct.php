@@ -5,8 +5,8 @@ namespace App\Http\Livewire\Backend\Forms;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductAttributes;
 use Illuminate\Support\Facades\Gate;
-use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
+use Livewire\WithFileUploads;
 use WireUi\Traits\Actions;
 
 class ModalSupplierProduct extends ModalComponent
@@ -50,6 +50,8 @@ class ModalSupplierProduct extends ModalComponent
 
     public $images = [];
 
+    public $data_sheets = [];
+
     public $price;
 
     public $min_price;
@@ -71,6 +73,8 @@ class ModalSupplierProduct extends ModalComponent
     public $i = 1;
 
     public $isUploaded = false;
+
+    public $isDataSheetsUploaded = false;
 
     protected $temporaryUploadDirectory = 'storage/livewire-tmp';
 
@@ -102,7 +106,7 @@ class ModalSupplierProduct extends ModalComponent
         $this->manufacturer_id = $data->manufacturer_id;
         $this->name = $data->name;
         $this->description = $data->description;
-        $this->min_max_oq = $data->min_oq.'-'.$data->max_oq;
+        $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
         $this->edt = $data->edt;
         $this->avb_stock = $data->avb_stock;
         $this->model = $data->model;
@@ -110,10 +114,11 @@ class ModalSupplierProduct extends ModalComponent
         $this->sku = $data->sku;
         $this->on_sale = $data->on_sale;
         $this->images = $data->images;
-        if (! is_null($data->price)) {
+        $this->data_sheets = $data->data_sheets;
+        if (!is_null($data->price)) {
             $this->price = $data->price;
         } else {
-            $this->price = $data->min_price.'-'.$data->max_price;
+            $this->price = $data->min_price . '-' . $data->max_price;
         }
         $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
         foreach ($data_spa as $key => $value) {
@@ -141,6 +146,7 @@ class ModalSupplierProduct extends ModalComponent
         'sku' => '',
         'on_sale' => 'required',
         'images' => 'required',
+        'data_sheets' => '',
         'price' => 'required',
         'min_price' => '',
         'max_price' => '',
@@ -151,6 +157,9 @@ class ModalSupplierProduct extends ModalComponent
         $this->validateOnly($propertyName);
         if (gettype($this->images) != 'array') {
             $this->isUploaded = true;
+        }
+        if (gettype($this->data_sheets) != 'array') {
+            $this->isDataSheetsUploaded = true;
         }
     }
 
@@ -175,8 +184,8 @@ class ModalSupplierProduct extends ModalComponent
             $validatedData['price'] = $price_data[0];
         }
 
-        if (! empty($this->supplier_product_id)) {
-            if (! empty($this->images) && gettype($this->images) != 'string') {
+        if (!empty($this->supplier_product_id)) {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -184,6 +193,15 @@ class ModalSupplierProduct extends ModalComponent
                     $multiImage[$key] = $image->store('supplier_projects', 'public');
                 }
                 $validatedData['images'] = $multiImage;
+            }
+            if (!empty($this->data_sheets) && gettype($this->data_sheets) != 'string') {
+                $data_sheets = $validatedData['data_sheets'];
+                unset($validatedData['data_sheets']);
+                $multiDataSheets = [];
+                foreach ($data_sheets as $key => $data_sheet) {
+                    $multiDataSheets[$key] = $data_sheet->store('supplier_projects', 'public');
+                }
+                $validatedData['data_sheets'] = $multiDataSheets;
             }
             SupplierProduct::where('id', $this->supplier_product_id)->update($validatedData);
             SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->delete();
@@ -193,7 +211,7 @@ class ModalSupplierProduct extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Product Updated Successfully!');
         } else {
-            if (! empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -201,6 +219,15 @@ class ModalSupplierProduct extends ModalComponent
                     $multiImage[$key] = $image->store('supplier_products', 'public');
                 }
                 $validatedData['images'] = $multiImage;
+            }
+            if (!empty($this->data_sheets) && gettype($this->data_sheets) != 'string') {
+                $data_sheets = $validatedData['data_sheets'];
+                unset($validatedData['data_sheets']);
+                $multiDataSheets = [];
+                foreach ($data_sheets as $key => $data_sheet) {
+                    $multiDataSheets[$key] = $data_sheet->store('supplier_projects', 'public');
+                }
+                $validatedData['data_sheets'] = $multiDataSheets;
             }
             $supplierProduct = SupplierProduct::create($validatedData);
             foreach ($this->name_spa as $key => $value) {

@@ -89,7 +89,7 @@
                         <div class="relative mt-2">
                             <select wire:model.defer='tob' name="tob" class="form-input text-sm font-normal">
                                 <option hidden selected>Please Select</option>
-                                @foreach (['Manufacturer', 'Supplier', 'Contractor', 'Service Provider'] as $item)
+                                @foreach (['Manufacturer', 'Supplier', 'Service Provider'] as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>

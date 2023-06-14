@@ -92,7 +92,9 @@
 
                             <li class="flex items-center justify-between">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Brand Name:') }}</span>
-                                <span class="ml-2">{{ $data->brands->name }}</span>
+                                <a href="{{ route('brand_products', ['brand' => $data->brands->id]) }}">
+                                    <span class="ml-2">{{ $data->brands->name }}</span>
+                                </a>
                             </li>
 
                             <li class="flex items-center justify-between">
@@ -105,6 +107,16 @@
                                 <span class="ml-2">{{ $data->model }}</span>
                             </li>
 
+                            <ul class="list-none">
+                                <li class="flex items-center justify-between">
+                                    <span class="mr-2 font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
+                                    <a
+                                        href="{{ route('products_category', ['product_category' => $data->supplier_product_category_id]) }}">
+                                        <span class="ml-2">{{ $data->supplierProductCategory->name }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+
                             @foreach ($data->productAttributes as $item)
                                 <li class="flex items-center justify-between">
                                     <span class="mr-2 font-medium text-blue-600">{{ $item->name . ':' }}</span>
@@ -113,8 +125,20 @@
                             @endforeach
 
                         </ul>
+                        <div class="mt-4 flex flex-1 items-center justify-center px-5 lg:justify-start">
+                            <div class="block">
+                                <a href="{{ route('supplier_profile', ['profile' => $data->suppliers->id]) }}">
+                                    <img alt="{{ $data->suppliers->company_name }}"
+                                        class="h-24 w-52 rounded-md object-cover"
+                                        src="{{ asset('storage/' . $data->suppliers->logo) }}">
+                                </a>
+                            </div>
+                            <div class="block">
+
+                            </div>
+                        </div>
                     </div>
-                    @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page'])
+                    {{-- @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page']) --}}
                 </div>
             </div>
         </div>

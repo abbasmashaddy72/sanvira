@@ -26,37 +26,26 @@
             </div>
         </div>
 
-        <ul class="buy-button m-auto flex list-none items-center">
+        <div class="@auth pt-5 lg:pt-4 @else pt-4 lg:pt-3 @endauth float-right flex items-center space-x-3">
             @auth
-                <li class="mb-0 inline">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="text-md rounded-lg bg-red-600 p-2 font-semibold text-white">
-                            Logout
-                        </a>
-                    </form>
-                </li>
-                <li class="mb-0 inline">
-                    @livewire('frontend.counter.rfq-counter')
-                </li>
-                <li class="mb-0 inline ps-1">
-                    @livewire('frontend.counter.cart-counter')
-                </li>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
+                        class="text-md rounded-lg bg-red-600 p-2 font-semibold text-white">
+                        Logout
+                    </a>
+                </form>
+                {{-- @livewire('frontend.counter.rfq-counter')
+                @livewire('frontend.counter.cart-counter') --}}
             @else
-                <li class="mb-0 inline">
-                    <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">Register</a>
-                </li>
-                <li class="mb-0 inline ps-1">
-                    <a href="{{ route('login') }}"
-                        class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">Log
-                        in</a>
-                </li>
+                <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">Register</a>
+                <a href="{{ route('login') }}" class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">Log
+                    in</a>
             @endauth
-        </ul>
+        </div>
 
         <div id="navigation" class="lg:block">
-            <ul class="navigation-menu nav-light float-left flex flex-wrap">
+            <ul class="navigation-menu float-left flex flex-wrap">
                 <li class="has-submenu parent-menu-item">
                     <a href="javascript:void(0)">Resources</a><span class="menu-arrow"></span>
                     <ul class="submenu">

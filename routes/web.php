@@ -40,12 +40,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
-    Route::get('dashboard', function () {
-        view()->share('title', 'Dashboard');
-
-        return view('dashboard');
-    })->name('dashboard');
-
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('role', 'RoleController@index')->name('role');
     Route::get('user', 'UserController@index')->name('user');
 
@@ -80,4 +75,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

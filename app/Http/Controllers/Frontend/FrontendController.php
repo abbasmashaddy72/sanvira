@@ -6,9 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Supplier;
+use App\Models\SupplierBrandView;
+use App\Models\SupplierManufacturerView;
 use App\Models\SupplierProduct;
 use App\Models\SupplierProductCategory;
+use App\Models\SupplierProductCategoryView;
+use App\Models\SupplierProductView;
+use App\Models\SupplierView;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
 {
@@ -52,7 +58,18 @@ class FrontendController extends Controller
     public function products_category(SupplierProductCategory $product_category)
     {
         view()->share('title', $product_category->name);
-
+        foreach (Supplier::all() as $supplier) {
+            SupplierProductCategoryView::updateOrCreate(
+                [
+                    'user_id' => auth()->user()->id,
+                    'supplier_id' => $supplier->id,
+                    'supplier_product_category_id' => $product_category->id,
+                ],
+                [
+                    'clicks' => DB::raw('clicks + 1'),
+                ]
+            );
+        }
         return view('pages.frontend.product_category', compact('product_category'));
     }
 
@@ -67,6 +84,16 @@ class FrontendController extends Controller
     {
         view()->share('title', $profile->company_name);
         $profile->with('manager');
+
+        SupplierView::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+                'supplier_id' => $profile->id,
+            ],
+            [
+                'clicks' => DB::raw('clicks + 1'),
+            ]
+        );
 
         return view('pages.frontend.supplier', compact('profile'));
     }
@@ -88,8 +115,37 @@ class FrontendController extends Controller
     public function products_details(SupplierProduct $data)
     {
         view()->share('title', $data->name);
-        $data->with(['brands', 'manufactures', 'productAttributes']);
-
+        $data->with(['brands', 'manufactures', 'productAttributes', 'suppliers', 'supplierProductCategory']);
+        SupplierProductView::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+                'supplier_id' => $data->suppliers->id,
+                'supplier_product_id' => $data->id,
+            ],
+            [
+                'clicks' => DB::raw('clicks + 1'),
+            ]
+        );
+        SupplierBrandView::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+                'supplier_id' => $data->suppliers->id,
+                'brand_id' => $data->brand_id,
+            ],
+            [
+                'clicks' => DB::raw('clicks + 1'),
+            ]
+        );
+        SupplierManufacturerView::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+                'supplier_id' => $data->suppliers->id,
+                'manufacturer_id' => $data->manufacturer_id,
+            ],
+            [
+                'clicks' => DB::raw('clicks + 1'),
+            ]
+        );
         return view('pages.frontend.products_details', compact([
             'data',
         ]));

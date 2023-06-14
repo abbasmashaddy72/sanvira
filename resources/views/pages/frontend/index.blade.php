@@ -90,7 +90,7 @@
     </x-frontend.index-container>
 
     <x-frontend.index-container containerTitle='On Sale Products' class="py-14">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($on_sale_products as $item)
                 @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
             @endforeach

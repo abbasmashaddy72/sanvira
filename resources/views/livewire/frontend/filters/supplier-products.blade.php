@@ -118,8 +118,8 @@
                             <x-select wire:model.defer="country_id" placeholder="Select Origin Country"
                                 :async-data="route('api.admin.countries')" option-label="name" option-value="id" multiselect />
                         </div>
-                        <div class="mt-4">
-                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
+                        {{-- <div class="mt-4">
+                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
                                 Min Max Order Quantity</h5>
                             <div class="flex justify-between space-x-5">
                                 <x-input placeholder="Min." type='number' wire:model.defer='min_oq' />
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
                                 Min Max Price</h5>
                             <div class="flex justify-between space-x-5">
                                 <x-input placeholder="Min." type='number' wire:model.defer='min_price' />
@@ -135,13 +135,13 @@
                             </div>
                         </div>
                         <div class="mt-4">
-                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
                                 Estimate Delivery Time in Days</h5>
                             <div class="flex justify-between space-x-5">
                                 <x-input placeholder="Min." type='number' wire:model.defer='min_edt' />
                                 <x-input placeholder="Max." type='number' wire:model.defer='max_edt' />
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
