@@ -20,4 +20,9 @@ class SupplierManufacturerView extends Model
     {
         return $this->belongsTo(Manufacturer::class, 'manufacturer_id');
     }
+
+    public function userData()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

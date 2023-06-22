@@ -1,10 +1,10 @@
 import "../../css/backend/app.css";
 
-import Alpine from "alpinejs";
 import focus from "@alpinejs/focus";
-import flatpickr from "flatpickr";
-import * as FilePond from "filepond";
 import { createPopper } from "@popperjs/core";
+import Alpine from "alpinejs";
+import * as FilePond from "filepond";
+import flatpickr from "flatpickr";
 
 window.flatpickr = flatpickr;
 window.FilePond = FilePond;
@@ -22,13 +22,8 @@ Alpine.plugin(focus);
  | Import Midone built-in components.
  |
  */
-import "./bootstrap";
-import "@left4code/tw-starter/dist/js/svg-loader";
-import "@left4code/tw-starter/dist/js/accordion";
-import "@left4code/tw-starter/dist/js/alert";
 import "@left4code/tw-starter/dist/js/dropdown";
-import "@left4code/tw-starter/dist/js/modal";
-import "@left4code/tw-starter/dist/js/tab";
+import "./bootstrap";
 
 /*
  |--------------------------------------------------------------------------
@@ -38,8 +33,8 @@ import "@left4code/tw-starter/dist/js/tab";
  | Import 3rd party library JS files.
  |
  */
-import "./components/feather";
 import "./components/datepicker";
+import "./components/feather";
 
 /*
  |--------------------------------------------------------------------------
@@ -49,17 +44,12 @@ import "./components/datepicker";
  | Import JS custom components.
  |
  */
-import "./components/show-modal";
-import "./components/show-slide-over";
-import "./components/show-dropdown";
-import "./components/side-menu";
 import "./components/mobile-menu";
-import "./components/side-menu-tooltip";
 import "./components/new-dark-mode-switcher";
+import "./components/side-menu";
+import "./components/side-menu-tooltip";
 
-// import "../../../vendor/wire-elements/modal/resources/js/modal";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
 window.ClassicEditor = ClassicEditor;
 
 import lightbox from "lightbox2";

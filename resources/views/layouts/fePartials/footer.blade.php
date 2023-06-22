@@ -10,7 +10,7 @@
                                     <img class="h-28" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
                                         alt="" />
                                 </a>
-                                <p class="font-semibold text-gray-600">An in5 incubated company!</p>
+                                <p class="font-semibold text-gray-600">{{ __('An in5 incubated company!') }}</p>
                             </div>
                             <ul class="mt-6 flex justify-center space-x-4">
                                 @if (!empty(get_static_option('facebook')))
@@ -77,27 +77,27 @@
                                 <li>
                                     <a href="{{ route('career') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Careers</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Careers') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('about_us') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>About Us</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('About Us') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('contact_us') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Contact Us</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Contact Us') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('register') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Register</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Register') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('homepage') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Resource</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Resource') }}</a>
                                 </li>
                             </ul>
                         </div>
@@ -106,17 +106,17 @@
                                 <li>
                                     <a href="{{ route('privacy_policy') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Privacy Policy</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Privacy Policy') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('terms_of_use') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Terms of Use</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Terms of Use') }}</a>
                                 </li>
                                 <li>
                                     <a href="{{ route('return_refunds') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>Returns & Refunds</a>
+                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Returns & Refunds') }}</a>
                                 </li>
                             </ul>
                         </div>

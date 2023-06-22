@@ -60,16 +60,16 @@
                         @endforeach
                     </div>
                     <h3 class="mb-6 text-3xl font-medium leading-normal text-white md:text-4xl md:leading-normal">Scale
-                        Your Business though Marketplace!</h3>
+                        {{ __('Your Business though Marketplace!') }}</h3>
                 </div>
                 <div class="mx-auto flex justify-center space-x-10">
                     <a href="{{ route('register') }}"
                         class="mt-4 flex justify-center rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
-                        Get Started</a>
+                        {{ __('Get Started') }}</a>
 
                     <a href="{{ route('contact_us') }}"
                         class="mt-4 flex justify-center rounded bg-gray-600 px-4 py-2 font-medium text-white hover:bg-gray-700">
-                        Contact Us</a>
+                        {{ __('Contact Us') }}</a>
                 </div>
             </div>
         </section>
@@ -84,7 +84,8 @@
     </x-slot>
     <x-frontend.index-container class="bg-white py-14">
         <div class="grid grid-cols-1 pb-8 text-center">
-            <h3 class="mb-6 text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">Career</h3>
+            <h3 class="mb-6 text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">{{ __('Career') }}
+            </h3>
         </div>
 
         <div class="px-3">

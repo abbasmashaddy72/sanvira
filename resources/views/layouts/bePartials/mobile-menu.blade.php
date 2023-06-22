@@ -1,6 +1,5 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
-        {{-- <x-logo class="mr-auto" /> --}}
         <x-logo class="mr-auto">
             <span class="ml-3 text-lg text-white">
                 {{ config('app.name', 'Laravel') }}
@@ -37,9 +36,9 @@
                         <ul class="{{ $first_level_active_index == $menuKey ? 'menu__sub-open' : '' }}">
                             @foreach ($menu['sub_menu'] as $subMenuKey => $subMenu)
                                 <li>
-                                    @role($submenu['role'])
-                                        @can($submenu['can'])
-                                            <a href="{{ isset($subMenu['route_name']) ? route($submenu['route_name'], $submenu['params']) : 'javascript:;' }}"
+                                    @role($subMenu['role'])
+                                        @can($subMenu['can'])
+                                            <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}"
                                                 class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
                                                 <div class="menu__icon">
                                                     <i data-feather="activity"></i>
@@ -59,9 +58,9 @@
                                             class="{{ $second_level_active_index == $subMenuKey ? 'menu__sub-open' : '' }}">
                                             @foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu)
                                                 <li>
-                                                    @role($lastSubmenu['role'])
-                                                        @can($lastSubmenu['can'])
-                                                            <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubmenu['route_name'], $lastSubmenu['params']) : 'javascript:;' }}"
+                                                    @role($lastSubMenu['role'])
+                                                        @can($lastSubMenu['can'])
+                                                            <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}"
                                                                 class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
                                                                 <div class="menu__icon">
                                                                     <i data-feather="zap"></i>

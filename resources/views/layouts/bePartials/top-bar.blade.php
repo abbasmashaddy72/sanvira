@@ -1,8 +1,6 @@
 <div class="top-bar float-right sm:float-none">
-    <!-- BEGIN: Breadcrumb -->
     {{ $breadcrumb }}
-    <!-- END: Breadcrumb -->
-    <!-- BEGIN: Dark Mode Switcher-->
+
     <div class="mr-4">
         <button id="theme-toggle" type="button"
             class="rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-700">
@@ -18,8 +16,7 @@
             </svg>
         </button>
     </div>
-    <!-- END: Dark Mode Switcher-->
-    <!-- BEGIN: Account Menu -->
+
     <div class="dropdown h-10 w-10">
         <div class="bg-primary dropdown-toggle relative flex h-10 w-10 items-center justify-center rounded-full text-xl uppercase text-white shadow-lg"
             role="button" aria-expanded="false" data-tw-toggle="dropdown">
@@ -35,13 +32,13 @@
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
                 <li>
-                    <a href="{{ route('admin.profile.update') }}" class="dropdown-item hover:bg-white/5"><i
-                            data-feather="user" class="mr-2 h-4 w-4"></i>Profile</a>
+                    <a href="{{ route('admin.profile.update') }}" class="dropdown-item hover:bg-white/5">
+                        <i data-feather="user" class="mr-2 h-4 w-4"></i>{{ __('Profile') }}</a>
                 </li>
                 <li>
                     <a href="" class="dropdown-item hover:bg-white/5">
                         <i data-feather="help-circle" class="mr-2 h-4 w-4"></i>
-                        Help
+                        {{ __('Help') }}
                     </a>
                 </li>
                 <li>
@@ -53,12 +50,11 @@
                         <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
                             class="dropdown-item hover:bg-white/5">
                             <i data-feather="toggle-right"class="w-4 h-4 mr-2"></i>
-                            Logout
+                            {{ __('Logout') }}
                         </a>
                     </form>
                 </li>
             </ul>
         </div>
     </div>
-    <!-- END: Account Menu -->
 </div>

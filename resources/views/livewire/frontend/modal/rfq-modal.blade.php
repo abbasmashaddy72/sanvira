@@ -1,6 +1,6 @@
 <x-frontend.modal-form form-action="add">
     <x-slot name="title">
-        RFQ List
+        {{ __('RFQ List') }}
     </x-slot>
 
     <x-slot name="content">
@@ -41,7 +41,7 @@
 
                                     <div class="flex">
                                         <button wire:click.prevent="removeFromRfq({{ $item->supplier_product_id }})"
-                                            class="font-medium text-red-600 hover:text-red-700">Remove</button>
+                                            class="font-medium text-red-600 hover:text-red-700">{{ __('Remove') }}</button>
                                     </div>
                                 </div>
                             </div>

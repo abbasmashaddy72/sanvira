@@ -18,7 +18,7 @@
             <x-slot name="rt_button">
                 <button
                     onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                    class="btn btn-primary mr-2 shadow-md">{{ 'Edit' }}</button>
+                    class="btn btn-primary mr-2 shadow-md">{{ __('Edit') }}</button>
             </x-slot>
 
             <div class="col-span-12">
@@ -35,14 +35,15 @@
                                     {{ $supplier->company_name }}</div>
                                 <div class="text-slate-500">{{ Str::limit($supplier->tagline, 40) }}</div>
                                 <div class="text-slate-500">
-                                    <span class="text-primary font-semibold">DOE: </span>{{ $supplier->doe }}
+                                    <span class="text-primary font-semibold">{{ __('YOE:') }}
+                                    </span>{{ $supplier->doe }}
                                 </div>
-                                <a href="{{ $supplier->website_url }}" class="text-primary">Website</a>
+                                <a href="{{ $supplier->website_url }}" class="text-primary">{{ __('Website') }}</a>
                             </div>
                         </div>
                         <div
                             class="dark:border-darkmode-400 mt-6 flex-1 border-l border-r border-t border-slate-200/60 px-5 pt-5 lg:mt-0 lg:border-t-0 lg:pt-0">
-                            <div class="text-center font-medium lg:mt-3 lg:text-left">Contact Details</div>
+                            <div class="text-center font-medium lg:mt-3 lg:text-left">{{ __('Contact Details') }}</div>
                             <div class="mt-4 flex flex-col items-center justify-center lg:items-start">
                                 <div class="flex items-center truncate sm:whitespace-normal">
                                     <i data-feather="map-pin" class="mr-2 h-4 w-4 text-slate-500"></i>
@@ -66,7 +67,7 @@
                         </div>
                         <div
                             class="dark:border-darkmode-400 mt-6 flex-1 border-l border-r border-t border-slate-200/60 px-5 pt-5 lg:mt-0 lg:border-t-0 lg:pt-0">
-                            <div class="text-center font-medium lg:mt-3 lg:text-left">Manager Details</div>
+                            <div class="text-center font-medium lg:mt-3 lg:text-left">{{ __('Manager Details') }}</div>
                             <div class="mt-4 flex flex-col items-center justify-center lg:items-start">
                                 <div class="flex items-center truncate sm:whitespace-normal">
                                     <i data-feather="user" class="mr-2 h-4 w-4 text-slate-500"></i>
@@ -96,7 +97,7 @@
                 <x-slot name="rt_button">
                     <button
                         onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-team-member', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                        class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="col-span-12">
@@ -112,7 +113,7 @@
                 <x-slot name="rt_button">
                     <button
                         onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-certificate', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                        class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="col-span-12">
@@ -128,7 +129,7 @@
                 <x-slot name="rt_button">
                     <button
                         onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-testimonial', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                        class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="col-span-12">
@@ -144,7 +145,7 @@
                 <x-slot name="rt_button">
                     <button
                         onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-project', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                        class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="col-span-12">
@@ -160,7 +161,7 @@
                 <x-slot name="rt_button">
                     <button
                         onclick="Livewire.emit('openModal', 'backend.forms.modal-supplier-product', {{ json_encode(['supplier_id' => $supplier->id]) }})"
-                        class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                        class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="col-span-12">

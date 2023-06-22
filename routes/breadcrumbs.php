@@ -11,7 +11,7 @@ use Diglactic\Breadcrumbs\Generator as BreadcrumbTrail;
 
 // Application
 Breadcrumbs::for('#', function (BreadcrumbTrail $trail) {
-    $trail->push('Application', '/');
+    $trail->push('Dashboard', route('admin.dashboard'));
 });
 
 // Application > User
@@ -72,6 +72,18 @@ Breadcrumbs::for('supplier-category.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('supplier.profile', function (BreadcrumbTrail $trail, $supplier) {
     $trail->parent('supplier.index');
     $trail->push($supplier->company_name, route('admin.supplier_profile', $supplier));
+});
+
+// Application > Supplier Report Regular
+Breadcrumbs::for('supplier.report.regular', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Supplier Report Regular', route('admin.supplier_report_regular'));
+});
+
+// Application > Supplier Report Clicks
+Breadcrumbs::for('supplier.report.clicks', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Supplier Report Clicks', route('admin.supplier_report_clicks'));
 });
 
 // Application > Contractor

@@ -4,9 +4,9 @@
         <div class="">
             <h1
                 class="@if ($type == 'common-top') text-lg md:text-3xl @else lg:text-5xl @endif text-3xl font-bold leading-normal lg:leading-normal">
-                Your
-                <span class="text-blue-600">SuperCharged</span>
-                Construction Marketplace!
+                {{ __('Your') }}
+                <span class="text-blue-600">{{ __('SuperCharged') }}</span>
+                {{ __('Construction Marketplace!') }}
             </h1>
             @if ($type == 'common-top')
             @else
@@ -30,39 +30,39 @@
 
                     <div class="absolute z-10 w-full rounded-lg bg-white p-4 shadow-lg">
                         <div wire:loading>
-                            <div class="p-4 text-left text-blue-600">Searching...</div>
+                            <div class="p-4 text-left text-blue-600">{{ __('Searching...') }}</div>
                         </div>
 
-                        <p class="text-center text-lg font-semibold text-gray-900">Supplier Product List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Supplier Product List') }}</p>
                         @forelse ($supplierProductsList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
                         @empty
-                            <div class="p-4 text-left text-blue-600">No results!</div>
+                            <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">Supplier List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Supplier List') }}</p>
                         @forelse ($supplierList as $item)
                             <a href="{{ route('supplier_profile', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->company_name }}</a>
                         @empty
-                            <div class="p-4 text-left text-blue-600">No results!</div>
+                            <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">Categories List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Categories List') }}</p>
                         @forelse ($categoriesList as $item)
                             <a href="{{ route('products_category', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
                         @empty
-                            <div class="p-4 text-left text-blue-600">No results!</div>
+                            <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">Brand List</p>
+                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Brand List') }}</p>
                         @forelse ($brandList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
                         @empty
-                            <div class="p-4 text-left text-blue-600">No results!</div>
+                            <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
                     </div>
                 @endif

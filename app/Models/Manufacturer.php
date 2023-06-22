@@ -12,4 +12,14 @@ class Manufacturer extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(SupplierProduct::class, 'manufacturer_id');
+    }
+
+    public function manufacturerViews()
+    {
+        return $this->hasMany(SupplierManufacturerView::class, 'manufacturer_id');
+    }
 }

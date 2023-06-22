@@ -18,6 +18,16 @@ class SupplierProductCategoryView extends Model
 
     public function supplierProductCategory()
     {
-        return $this->belongsTo(SupplierProductCategory::class, 'supplier_product_category_id');
+        return $this->belongsTo(SupplierProductCategory::class, 'supplier_product_category_id')->select('id', 'name');
+    }
+
+    public function supplierProduct()
+    {
+        return $this->belongsTo(SupplierProduct::class, 'supplier_product_category_id')->select('id', 'name');
+    }
+
+    public function userData()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

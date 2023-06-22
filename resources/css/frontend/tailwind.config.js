@@ -36,6 +36,7 @@ module.exports = {
         },
         fontFamily: {
             nunito: ['"Nunito", sans-serif'],
+            inter: ["Inter"],
         },
         container: {
             center: true,

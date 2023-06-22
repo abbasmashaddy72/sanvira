@@ -1,6 +1,6 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
     <div class="grid gap-y-2">
-        <x-input name="name" label="Name" type="text" wire:model.defer='name' required />
+        <x-input name="name" label="{{ __('Name') }}" type="text" wire:model.defer='name' required />
 
         @php
             $groupedPermissions = [];
@@ -53,22 +53,22 @@
             <thead class="rounded-t-lg bg-gray-200 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3">
-                        Sl. No.
+                        {{ __('Sl. No.') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Permission
+                        {{ __('Permission') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Read
+                        {{ __('Read') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Write
+                        {{ __('Write') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Delete
+                        {{ __('Delete') }}
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Others
+                        {{ __('Others') }}
                     </th>
                 </tr>
             </thead>

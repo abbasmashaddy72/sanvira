@@ -68,4 +68,9 @@ class SupplierProduct extends Model
     {
         return $this->hasMany(SupplierProductAttributes::class, 'supplier_product_id', 'id');
     }
+
+    public function productViews()
+    {
+        return $this->hasMany(SupplierProductView::class, 'supplier_product_id');
+    }
 }

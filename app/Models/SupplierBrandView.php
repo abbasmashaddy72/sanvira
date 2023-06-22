@@ -20,4 +20,9 @@ class SupplierBrandView extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    public function userData()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -3,7 +3,7 @@
 <div class="card-body">
     @if ($images)
         @if (is_array($images))
-            Uploaded Images Preview:
+            {{ __('Uploaded Images Preview:') }}
             <div class="grid grid-cols-5 gap-1">
                 @foreach ($images as $image)
                     <div class="relative">
@@ -27,7 +27,7 @@
             </div>
         @else
             <div class="relative">
-                Uploaded Image Preview:
+                {{ __('Uploaded Image Preview:') }}
                 <img class="h-10 w-10 rounded-md object-cover"
                     src="{{ $isUploaded ? $images->temporaryUrl() : asset('storage/' . $images) }}">
             </div>
@@ -35,6 +35,6 @@
     @endif
     <div class="mb-3">
         <x-input :name="$name" :label="$label" type="file" :wire:model.defer="$model" :multiple="is_array($images)" />
-        <div wire:loading wire:target="{{ $model }}">Uploading...</div>
+        <div wire:loading wire:target="{{ $model }}">{{ __('Uploading...') }}</div>
     </div>
 </div>

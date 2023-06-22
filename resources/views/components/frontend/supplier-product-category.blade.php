@@ -11,7 +11,7 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
         <span class="text-sm font-medium text-gray-600 transition-all duration-500 ease-in-out">
-            {{ $item->products_count }} Products
+            {{ $item->products_count }} {{ __(' Products') }}
         </span>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"

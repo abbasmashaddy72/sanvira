@@ -41,19 +41,19 @@
             class="hidden flex-grow flex-col pb-4 md:flex md:flex-row md:justify-start md:pb-0">
             <a class="{{ Route::currentRouteNamed('all_products_category') ? 'text-blue-600' : '' }} px-4 py-2 text-sm font-semibold hover:text-blue-600"
                 href="{{ route('all_products_category') }}">
-                View All Categories
+                {{ __('View All Categories') }}
             </a>
             <a class="{{ Route::currentRouteNamed('all_supplier_profile') ? 'text-blue-600' : '' }} px-4 py-2 text-sm font-semibold hover:text-blue-600"
                 href="{{ route('all_supplier_profile') }}">
-                View All Suppliers
+                {{ __('View All Suppliers') }}
             </a>
             <a class="{{ Route::currentRouteNamed('all_products') ? 'text-blue-600' : '' }} px-4 py-2 text-sm font-semibold hover:text-blue-600"
                 href="{{ route('all_products') }}">
-                View All Products
+                {{ __('View All Products') }}
             </a>
             <a class="{{ Route::currentRouteNamed('all_brands') ? 'text-blue-600' : '' }} px-4 py-2 text-sm font-semibold hover:text-blue-600"
                 href="{{ route('all_brands') }}">
-                View All Brands
+                {{ __('View All Brands') }}
             </a>
         </nav>
     </div>

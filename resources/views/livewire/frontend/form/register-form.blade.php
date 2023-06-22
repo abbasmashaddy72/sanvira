@@ -13,9 +13,9 @@
         <div class="mb-2 grid grid-cols-3 gap-2">
             <div
                 class="col-span-2 grid grid-flow-col auto-rows-auto grid-rows-5 gap-2 border-r-2 border-r-gray-200 pr-4">
-                <h1 class="text-lg font-semibold">Company Details</h1>
+                <h1 class="text-lg font-semibold">{{ __('Company Details') }}</h1>
                 <div>
-                    <label class="font-semibold">Supplier Name:
+                    <label class="font-semibold">{{ __('Supplier Name:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='supplier_name' name="supplier_name" type="text" autofocus
                                 class="form-input text-sm font-normal" placeholder="Name :">
@@ -23,7 +23,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Supplier Address:
+                    <label class="font-semibold">{{ __('Supplier Address:') }}
                         <div class="relative mt-2">
                             <textarea wire:model.defer='supplier_address' name="supplier_address" id="comments"
                                 class="form-input text-sm font-normal" placeholder="Address :"></textarea>
@@ -31,7 +31,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">City:
+                    <label class="font-semibold">{{ __('City:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='city' name="city" type="text"
                                 class="form-input text-sm font-normal" placeholder="City :">
@@ -39,7 +39,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">State:
+                    <label class="font-semibold">{{ __('State:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='state' name="state" type="text"
                                 class="form-input text-sm font-normal" placeholder="State/Region/Province :">
@@ -47,11 +47,11 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Country:
+                    <label class="font-semibold">{{ __('Country:') }}
                         <div class="relative mt-2">
                             <select wire:model.defer='country' name="country" class="form-input text-sm font-normal"
                                 placeholder="Name :">
-                                <option hidden selected>Please Select</option>
+                                <option hidden selected>{{ __('Please Select') }}</option>
                                 @foreach ($countries as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
@@ -61,7 +61,7 @@
                 </div>
 
                 <div>
-                    <label class="font-semibold">Trade Licence Number:
+                    <label class="font-semibold">{{ __('Trade Licence Number:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='tln' name="tln" type="text"
                                 class="form-input text-sm font-normal" placeholder="Trade Licence Number :">
@@ -69,7 +69,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Date of Establishment:
+                    <label class="font-semibold">{{ __('Date of Establishment:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='doe' name="doe" type="date"
                                 class="form-input text-sm font-normal">
@@ -77,7 +77,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Type of Company:
+                    <label class="font-semibold">{{ __('Type of Company:') }}
                         <div class="relative mt-2">
                             <input wire:model.defer='toc' name="toc" type="text"
                                 class="form-input text-sm font-normal" placeholder="Type of Company :">
@@ -85,7 +85,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Type of Business:
+                    <label class="font-semibold">{{ __('Type of Business:') }}
                         <div class="relative mt-2">
                             <select wire:model.defer='tob' name="tob" class="form-input text-sm font-normal">
                                 <option hidden selected>Please Select</option>
@@ -99,9 +99,9 @@
             </div>
 
             <div class="ml-2 grid grid-cols-1 gap-2">
-                <h1 class="text-lg font-semibold">Authorized Contact Details</h1>
+                <h1 class="text-lg font-semibold">{{ __('Authorized Contact Details') }}</h1>
                 <div>
-                    <label class="font-semibold">Name:
+                    <label class="font-semibold">{{ __('Name:') }}
                         <div class="form-icon relative mt-2">
                             <i data-feather="user" class="absolute left-4 top-3 h-4 w-4"></i>
                             <input wire:model.defer='name' name="name" type="text"
@@ -110,7 +110,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Contact Number:
+                    <label class="font-semibold">{{ __('Contact Number:') }}
                         <div class="form-icon relative mt-2">
                             <i data-feather="phone" class="absolute left-4 top-3 h-4 w-4"></i>
                             <input wire:model.defer='contact_no' name="contact_no" type="number"
@@ -119,7 +119,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Business Mail:
+                    <label class="font-semibold">{{ __('Business Mail:') }}
                         <div class="form-icon relative mt-2">
                             <i data-feather="mail" class="absolute left-4 top-3 h-4 w-4"></i>
                             <input wire:model.defer='email' name="email" type="mail"
@@ -128,7 +128,7 @@
                     </label>
                 </div>
                 <div>
-                    <label class="font-semibold">Job Title:
+                    <label class="font-semibold">{{ __('Job Title:') }}
                         <div class="form-icon relative mt-2">
                             <i data-feather="award" class="absolute left-4 top-3 h-4 w-4"></i>
                             <input wire:model.defer='job_title' name="job_title" type="text"

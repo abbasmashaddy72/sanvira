@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Kirschbaum\PowerJoins\PowerJoins;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SupplierProductView extends Model
 {
     use HasFactory;
+    use PowerJoins;
 
     protected $fillable = [
         'user_id',
@@ -18,6 +20,11 @@ class SupplierProductView extends Model
 
     public function supplierProduct()
     {
-        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id');
+        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id')->select('id', 'name');
+    }
+
+    public function userData()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

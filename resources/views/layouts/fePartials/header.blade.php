@@ -32,52 +32,50 @@
                     @csrf
                     <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
                         class="text-md rounded-lg bg-red-600 p-2 font-semibold text-white">
-                        Logout
+                        {{ __('Logout') }}
                     </a>
                 </form>
-                {{-- @livewire('frontend.counter.rfq-counter')
-                @livewire('frontend.counter.cart-counter') --}}
             @else
-                <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">Register</a>
-                <a href="{{ route('login') }}" class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">Log
-                    in</a>
+                <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">{{ __('Register') }}</a>
+                <a href="{{ route('login') }}" class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">
+                    {{ __('Log in') }}</a>
             @endauth
         </div>
 
         <div id="navigation" class="lg:block">
             <ul class="navigation-menu float-left flex flex-wrap">
                 <li class="has-submenu parent-menu-item">
-                    <a href="javascript:void(0)">Resources</a><span class="menu-arrow"></span>
+                    <a href="javascript:void(0)">{{ __('Resources') }}</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                         <li>
                             <a class="sub-menu-item" href="{{ route('all_products_category') }}">
-                                View All Categories
+                                {{ __('View All Categories') }}
                             </a>
                         </li>
                         <li>
                             <a class="sub-menu-item" href="{{ route('all_supplier_profile') }}">
-                                View All Suppliers
+                                {{ __('View All Suppliers') }}
                             </a>
                         </li>
                         <li>
                             <a class="sub-menu-item" href="{{ route('all_products') }}">
-                                View All Products
+                                {{ __('View All Products') }}
                             </a>
                         </li>
                         <li>
                             <a class="sub-menu-item" href="{{ route('all_brands') }}">
-                                View All Brands
+                                {{ __('View All Brands') }}
                             </a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="{{ route('about_us') }}" class="sub-menu-item">About Us</a>
+                    <a href="{{ route('about_us') }}" class="sub-menu-item">{{ __('About Us') }}</a>
                 </li>
 
                 <li>
-                    <a href="{{ route('contact_us') }}" class="sub-menu-item">Contact Us</a>
+                    <a href="{{ route('contact_us') }}" class="sub-menu-item">{{ __('Contact Us') }}</a>
                 </li>
             </ul>
         </div>

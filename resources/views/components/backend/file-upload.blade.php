@@ -3,7 +3,7 @@
 <div class="card-body">
     @if ($files)
         @if (is_array($files))
-            Uploaded Files Preview:
+            {{ __('Uploaded Files Preview:') }}
             <div class="grid grid-cols-5 gap-1">
                 @foreach ($files as $file)
                     <div class="col-span-5 flex justify-between">
@@ -25,13 +25,13 @@
             </div>
         @else
             <div class="relative">
-                Uploaded File Preview:
+                {{ __('Uploaded File Preview:') }}
                 <p class="text-sm text-gray-800">{{ $file }}</p>
             </div>
         @endif
     @endif
     <div class="mb-3">
         <x-input :name="$name" :label="$label" type="file" :wire:model.defer="$model" :multiple="is_array($files)" />
-        <div wire:loading wire:target="{{ $model }}">Uploading...</div>
+        <div wire:loading wire:target="{{ $model }}">{{ __('Uploading...') }}</div>
     </div>
 </div>

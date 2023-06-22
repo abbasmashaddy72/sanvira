@@ -4,7 +4,7 @@
     <x-backend.grid>
         <x-slot name="rt_button">
             <button onclick="Livewire.emit('openModal', 'backend.forms.modal-contractor')"
-                class="btn btn-primary mr-2 shadow-md">{{ 'Add' }}</button>
+                class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
         </x-slot>
 
         <div class="col-span-12">

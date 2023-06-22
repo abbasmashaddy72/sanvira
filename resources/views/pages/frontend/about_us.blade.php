@@ -15,17 +15,17 @@
                             </svg>
                         @endforeach
                     </div>
-                    <h3 class="mb-6 text-3xl font-medium leading-normal text-white md:text-4xl md:leading-normal">Scale
-                        Your Business though Marketplace!</h3>
+                    <h3 class="mb-6 text-3xl font-medium leading-normal text-white md:text-4xl md:leading-normal">
+                        {{ __('Scale Your Business though Marketplace!') }}</h3>
                 </div>
                 <div class="mx-auto flex justify-center space-x-10">
                     <a href="{{ route('register') }}"
                         class="mt-4 flex justify-center rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
-                        Get Started</a>
+                        {{ __('Get Started') }}</a>
 
                     <a href="{{ route('contact_us') }}"
                         class="mt-4 flex justify-center rounded bg-gray-600 px-4 py-2 font-medium text-white hover:bg-gray-700">
-                        Contact Us</a>
+                        {{ __('Contact Us') }}</a>
                 </div>
             </div>
         </section>
@@ -40,7 +40,8 @@
     </x-slot>
     <x-frontend.index-container class="bg-white py-14">
         <div class="grid grid-cols-1 pb-8 text-center">
-            <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">How it works?</h3>
+            <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">{{ __('How it works?') }}
+            </h3>
         </div>
 
         <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
@@ -131,7 +132,8 @@
     <x-frontend.index-container class="py-14">
 
         <div class="grid grid-cols-1 pb-8 text-center">
-            <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">Who is it for?</h3>
+            <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">{{ __('Who is it for?') }}
+            </h3>
         </div>
         <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             <div
@@ -204,7 +206,7 @@
     <x-frontend.index-container class="bg-white py-14">
         <div class="grid grid-cols-1 pb-8 text-center">
             <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">
-                Some of our Clients
+                {{ __('Some of our Clients') }}
             </h3>
         </div>
         <div class="relative mt-8 transition-all duration-500 ease-in-out">

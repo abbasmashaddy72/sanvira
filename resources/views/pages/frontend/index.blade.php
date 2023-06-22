@@ -30,7 +30,7 @@
         </div>
     </x-frontend.index-container>
 
-    <x-frontend.index-container containerTitle='Categories' class="bg-white py-14">
+    <x-frontend.index-container containerTitle='{{ __('Categories') }}' class="bg-white py-14">
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             @foreach ($product_categories as $item)
                 <x-frontend.supplier-product-category :item="$item" />
@@ -41,13 +41,13 @@
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products_category') }}"
                     class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
-                    View All Categories
+                    {{ __('View All Categories') }}
                 </a>
             </div>
         </div>
     </x-frontend.index-container>
 
-    <x-frontend.index-container containerTitle='Featured Brands' class="py-14">
+    <x-frontend.index-container containerTitle='{{ __('Featured Brands') }}' class="py-14">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($featured_brands as $item)
                 <x-frontend.brands :item="$item" />
@@ -62,13 +62,13 @@
             <div class="mt-6 text-center">
                 <a href="{{ route('all_brands') }}"
                     class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
-                    View All Brands
+                    {{ __('View All Brands') }}
                 </a>
             </div>
         </div>
     </x-frontend.index-container>
 
-    <x-frontend.index-container containerTitle='Featured Suppliers' class="bg-white py-14">
+    <x-frontend.index-container containerTitle='{{ __('Featured Suppliers') }}' class="bg-white py-14">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($featured_suppliers as $item)
                 <x-frontend.supplier-profile :item="$item" />
@@ -83,13 +83,13 @@
             <div class="mt-6 text-center">
                 <a href="{{ route('all_supplier_profile') }}"
                     class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
-                    View All Suppliers
+                    {{ __('View All Suppliers') }}
                 </a>
             </div>
         </div>
     </x-frontend.index-container>
 
-    <x-frontend.index-container containerTitle='On Sale Products' class="py-14">
+    <x-frontend.index-container containerTitle='{{ __('On Sale Products') }}' class="py-14">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($on_sale_products as $item)
                 @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
@@ -100,7 +100,7 @@
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products') }}"
                     class="btn mr-2 mt-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
-                    View All Products
+                    {{ __('View All Products') }}
                 </a>
             </div>
         </div>

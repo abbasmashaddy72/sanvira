@@ -22,7 +22,7 @@
     @livewireStyles
 </head>
 
-<body class="font-nunito bg-gray-100 text-base text-black dark:bg-slate-900 dark:text-white">
+<body class="font-inter bg-gray-100 text-base text-black dark:bg-slate-900 dark:text-white">
     <x-notifications />
     @include('layouts.fePartials.header')
 

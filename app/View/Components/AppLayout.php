@@ -37,6 +37,30 @@ class AppLayout extends Component
                 'route_name' => 'admin.dashboard',
                 'params' => null,
             ],
+            'reports' => [
+                'can' => ['supplier_report_regular', 'supplier_report_clicks'],
+                'role' => 'supplier',
+                'icon' => 'zap',
+                'title' => 'Reports',
+                'sub_menu' => [
+                    'regular' => [
+                        'can' => 'supplier_report_regular',
+                        'role' => 'supplier',
+                        'icon' => 'activity',
+                        'route_name' => 'admin.supplier_report_regular',
+                        'title' => 'Regular',
+                        'params' => null,
+                    ],
+                    'byViews' => [
+                        'can' => 'supplier_report_clicks',
+                        'role' => 'supplier',
+                        'icon' => 'activity',
+                        'route_name' => 'admin.supplier_report_clicks',
+                        'title' => 'By View',
+                        'params' => null,
+                    ],
+                ],
+            ],
             'user' => [
                 'can' => 'user_list',
                 'role' => auth()->user()->roles->first()->slug,
@@ -96,7 +120,7 @@ class AppLayout extends Component
             'supplier_profile' => [
                 'can' => 'supplier_profile_view',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'user',
                 'title' => 'Profile',
                 'route_name' => 'admin.supplier_profile',
                 'params' => ['supplier' => $supplier_id],
@@ -104,7 +128,7 @@ class AppLayout extends Component
             'supplier_team_member' => [
                 'can' => 'supplier_team_member_list',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'users',
                 'title' => 'Team Members',
                 'route_name' => 'admin.supplier_team_member',
                 'params' => ['supplier' => $supplier_id],
@@ -112,7 +136,7 @@ class AppLayout extends Component
             'supplier_certificate' => [
                 'can' => 'supplier_certificate_list',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'credit-card',
                 'title' => 'Certificates',
                 'route_name' => 'admin.supplier_certificate',
                 'params' => ['supplier' => $supplier_id],
@@ -120,7 +144,7 @@ class AppLayout extends Component
             'supplier_testimonial' => [
                 'can' => 'supplier_testimonial_list',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'user-plus',
                 'title' => 'Testimonials',
                 'route_name' => 'admin.supplier_testimonial',
                 'params' => ['supplier' => $supplier_id],
@@ -128,7 +152,7 @@ class AppLayout extends Component
             'supplier_project' => [
                 'can' => 'supplier_project_list',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'file-text',
                 'title' => 'Projects',
                 'route_name' => 'admin.supplier_project',
                 'params' => ['supplier' => $supplier_id],
@@ -136,7 +160,7 @@ class AppLayout extends Component
             'supplier_product' => [
                 'can' => 'supplier_product_list',
                 'role' => 'supplier',
-                'icon' => 'fast-forward',
+                'icon' => 'package',
                 'title' => 'Products',
                 'route_name' => 'admin.supplier_product',
                 'params' => ['supplier' => $supplier_id],

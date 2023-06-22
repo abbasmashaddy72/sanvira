@@ -7,7 +7,7 @@
                 @if ($item->on_sale)
                     <span
                         class="absolute left-0 top-0 ml-3 mt-3 inline-flex rounded-lg bg-green-500 px-3 py-2 text-sm font-medium text-white">
-                        On Sale
+                        {{ __('On Sale') }}
                     </span>
                 @endif
             </div>
@@ -25,7 +25,7 @@
                     </svg>
                     <div id="price" role="tooltip"
                         class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                        United Arab Emirates Dirham(AED)
+                        {{ __('United Arab Emirates Dirham(AED)') }}
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                 </svg>
                 <div id="brand_name" role="tooltip"
                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                    Brand Name
+                    {{ __('Brand Name') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <span class="truncate">{{ $item->brands->name }}</span>
@@ -103,7 +103,7 @@
                 </svg>
                 <div id="manufactureer_name" role="tooltip"
                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                    Manufacturers Name
+                    {{ __('Manufacturers Name') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <span class="truncate">{{ $item->manufacturers->name }}</span>
@@ -136,7 +136,7 @@
                 </svg>
                 <div id="country_of_origin" role="tooltip"
                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                    Country of Origin
+                    {{ __('Country of Origin') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 {{ $item->country->name }}

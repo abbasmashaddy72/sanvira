@@ -24,7 +24,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_profile_view'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         view()->share('title', $supplier->company_name);
         $supplier->with('manager');
@@ -60,7 +60,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_team_member_list'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         if (auth()->check() && auth()->user()->hasRole('supplier')) {
             $supplier_profile = false;
@@ -93,7 +93,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_certificate_list'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         if (auth()->check() && auth()->user()->hasRole('supplier')) {
             $supplier_profile = false;
@@ -126,7 +126,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_testimonial_list'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         if (auth()->check() && auth()->user()->hasRole('supplier')) {
             $supplier_profile = false;
@@ -159,7 +159,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_project_list'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         if (auth()->check() && auth()->user()->hasRole('supplier')) {
             $supplier_profile = false;
@@ -192,7 +192,7 @@ class SupplierController extends Controller
     {
         abort_if(Gate::denies('supplier_product_list'), 403);
         if ($supplier->user_id != auth()->user()->id && auth()->user()->roles->first()->slug == 'supplier') {
-            abort(404);
+            abort(403);
         }
         if (auth()->check() && auth()->user()->hasRole('supplier')) {
             $supplier_profile = false;

@@ -21,15 +21,16 @@
                             </div>
                             <div class="text-slate-500">{{ Str::limit($profile->tagline, 40) }}</div>
                             <div class="text-slate-500">
-                                <span class="font-semibold text-blue-600">YOE: </span>{{ $profile->doe }}
+                                <span class="font-semibold text-blue-600">{{ __('YOE: ') }} </span>{{ $profile->doe }}
                             </div>
-                            <a href="{{ $profile->website_url }}" class="text-blue-600">Website</a>
+                            <a href="{{ $profile->website_url }}" class="text-blue-600">{{ __('Website') }}</a>
                         </div>
                     </div>
                     <div class="grid md:grid-cols-2">
                         <div
                             class="dark:border-darkmode-400 mt-6 flex-1 border-b border-l-0 border-slate-200/60 px-5 pt-5 md:border-b-0 md:border-l md:border-r lg:mt-0 lg:pt-0">
-                            <div class="text-center font-semibold lg:mt-3 lg:text-left">Contact Details</div>
+                            <div class="text-center font-semibold lg:mt-3 lg:text-left">{{ __('Contact Details') }}
+                            </div>
                             <div class="mt-4 flex flex-col items-center justify-center lg:items-start">
                                 <div class="flex items-center truncate sm:whitespace-normal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 text-blue-600"
@@ -78,7 +79,8 @@
                             </div>
                         </div>
                         <div class="mt-6 flex-1 px-5 pt-5 lg:mt-0 lg:pt-0">
-                            <div class="text-center font-semibold lg:mt-3 lg:text-left">Manager Details</div>
+                            <div class="text-center font-semibold lg:mt-3 lg:text-left">{{ __('Manager Details') }}
+                            </div>
                             <div class="mt-4 flex flex-col items-center justify-center lg:items-start">
                                 <div class="flex items-center truncate sm:whitespace-normal">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4 text-blue-600"
@@ -124,40 +126,41 @@
             <ul class="flex flex-wrap items-center justify-center space-x-2 p-2 text-center lg:justify-start">
                 <li class="w-full sm:w-auto">
                     <button wire:click='showProfile'
-                        class="@if ($profileShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Profile</button>
+                        class="@if ($profileShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">
+                        {{ __('Profile') }}
+                    </button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showCertificatesAwards'
-                        class="@if ($certificatesAwardsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Certificate
-                        / Award</button>
+                        class="@if ($certificatesAwardsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">
+                        {{ __('Certificate / Award') }}
+                    </button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showProjects'
-                        class="@if ($projectsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Projects</button>
+                        class="@if ($projectsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ __('Projects') }}</button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showTeams'
-                        class="@if ($teamsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Team
-                        Members</button>
+                        class="@if ($teamsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ __('Team Members') }}</button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showTestimonials'
-                        class="@if ($testimonialsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Testimonials</button>
+                        class="@if ($testimonialsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ __('Testimonials') }}</button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showTermsConditions'
-                        class="@if ($termsConditionsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Terms
-                        & Conditions</button>
+                        class="@if ($termsConditionsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ __('Terms & Conditions') }}</button>
                 </li>
 
                 <li class="w-full sm:w-auto">
                     <button wire:click='showProducts'
-                        class="@if ($productsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">Products</button>
+                        class="@if ($productsShow) text-blue-600 bg-gray-200 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ __('Products') }}</button>
                 </li>
             </ul>
         </div>
@@ -176,7 +179,7 @@
                         d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
                         fill="currentFill" />
                 </svg>
-                <span class="sr-only">Loading...</span>
+                <span class="sr-only">{{ __('Loading...') }}</span>
             </div>
         </div>
 
@@ -202,7 +205,7 @@
         @endif
 
         @if ($certificatesAwardsShow)
-            <h5 class="text-lg font-semibold md:text-xl">Certificates & Awards :</h5>
+            <h5 class="text-lg font-semibold md:text-xl">{{ __('Certificates & Awards :') }}</h5>
 
             <div class="grid grid-cols-1 gap-4 pt-4 md:grid-cols-2">
                 <div class="mt-6 md:mt-0">
@@ -230,7 +233,7 @@
                             <div class="content ml-4 flex-1">
                                 <h4 class="text-medium text-lg">{{ $item->title }}, {{ $item->type }}</h4>
                                 <a href="{{ asset('storage/' . $item->attachment) }}" target="_blank"
-                                    class="mb-0 text-blue-600">Attachment</a>
+                                    class="mb-0 text-blue-600">{{ __('Attachment') }}</a>
                             </div>
                         </div>
                     @endforeach
@@ -240,7 +243,7 @@
 
         @if ($projectsShow)
             <div class="rounded border-2 border-gray-200 bg-white p-4 shadow md:p-8">
-                <h5 class="text-lg font-semibold md:text-xl">Projects:</h5>
+                <h5 class="text-lg font-semibold md:text-xl">{{ __('Projects:') }}</h5>
 
                 <div class="mt-3">
                     <ol class="relative border-l border-gray-200 dark:border-gray-700">
@@ -293,7 +296,7 @@
         @endif
 
         @if ($teamsShow)
-            <h5 class="mt-[30px] text-xl font-semibold">Team Members :</h5>
+            <h5 class="mt-[30px] text-xl font-semibold">{{ __('Team Members :') }}</h5>
 
             <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
                 @foreach ($supplier_teams as $item)
@@ -325,7 +328,7 @@
 
         @if ($testimonialsShow)
             <div class="rounded border-2 border-gray-200 bg-white p-8 shadow">
-                <h5 class="text-lg font-semibold md:text-xl" style="font-family: Arial, sans-serif;">Testimonials :
+                <h5 class="text-lg font-semibold md:text-xl">{{ __('Testimonials :') }}
                 </h5>
 
                 <div class="mt-3">
@@ -386,7 +389,7 @@
 
         @if ($termsConditionsShow)
             <div class="rounded border-2 border-gray-200 bg-white p-4 shadow md:p-8">
-                <h5 class="text-lg font-semibold md:text-xl">Terms & Conditions:</h5>
+                <h5 class="text-lg font-semibold md:text-xl">{{ __('Terms & Conditions:') }}</h5>
 
                 <blockquote
                     class="bg-blue-60 my-3 rounded-lg border-l-4 border-blue-600 p-3 dark:border-blue-600 dark:bg-blue-800 md:my-4 md:p-4">

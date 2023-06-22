@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="content mt-7">
-                    <h5 class="title h5 text-xl font-medium">Phone</h5>
+                    <h5 class="title h5 text-xl font-medium">{{ __('Phone') }}</h5>
                     <p class="mt-3 text-slate-400"></p>
 
                     <div class="mt-5">
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="content mt-7">
-                    <h5 class="title h5 text-xl font-medium">Email</h5>
+                    <h5 class="title h5 text-xl font-medium">{{ __('Email') }}</h5>
                     <p class="mt-3 text-slate-400"></p>
 
                     <div class="mt-5">
@@ -42,14 +42,13 @@
                 </div>
 
                 <div class="content mt-7">
-                    <h5 class="title h5 text-xl font-medium">Location</h5>
+                    <h5 class="title h5 text-xl font-medium">{{ __('Location') }}</h5>
                     <p class="mt-3 text-slate-400">in5 Tech, King Salman Bin Abdulaziz<br>Al Saud St - Al Sufouh 2 -
                         Dubai</p>
 
                     <div class="mt-5">
                         <a href="https://goo.gl/maps/AnbPNS5NL1X4uhBK6" target="_blank" data-type="iframe"
-                            class="video-play-icon read-more lightbox btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">View
-                            on Google map</a>
+                            class="video-play-icon read-more lightbox btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">{{ __('View on Google map') }}</a>
                     </div>
                 </div>
             </div>

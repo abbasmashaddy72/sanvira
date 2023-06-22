@@ -16,11 +16,16 @@ class Brand extends Model
 
     public function products()
     {
-        return $this->belongsTo(SupplierProduct::class, 'id', 'brand_id');
+        return $this->hasMany(SupplierProduct::class, 'brand_id');
     }
 
     public function transactions()
     {
         return $this->belongsTo(BrandTransaction::class, 'id', 'brand_id');
+    }
+
+    public function brandViews()
+    {
+        return $this->hasMany(SupplierBrandView::class, 'brand_id');
     }
 }

@@ -7,11 +7,11 @@
     <div class="border-gray-150 border-b bg-white p-4 sm:px-6 sm:py-4">
         @if (!empty($title))
             <h3 class="text-lg font-medium leading-6 text-gray-900">
-                Update {{ $title }}
+                {{ __('Update') }} {{ $title }}
             </h3>
         @else
             <h3 class="text-lg font-medium leading-6 text-gray-900">
-                Add
+                {{ __('Add') }}
             </h3>
         @endif
     </div>
@@ -23,9 +23,9 @@
         <button wire:click="$emit('closeModal')" type="button" class="btn btn-danger">Close</button>
         <button class="btn btn-primary" type="submit">
             @if (!empty($title))
-                Update
+                {{ __('Update') }}
             @else
-                Save
+                {{ __('Save') }}
             @endif
         </button>
     </div>

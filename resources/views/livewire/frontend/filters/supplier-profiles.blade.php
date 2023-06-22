@@ -6,25 +6,25 @@
                 <div class="sticky top-20 mt-8 rounded-md border-2 border-gray-200 bg-white p-4 shadow">
                     <div class="flex justify-between">
                         <button wire:click="clearFilters"
-                            class="rounded-lg bg-red-600 px-2 py-2 font-bold text-white hover:bg-red-700">Clear</button>
+                            class="rounded-lg bg-red-600 px-2 py-2 font-bold text-white hover:bg-red-700">{{ __('Clear') }}</button>
                         <button wire:click="apply"
-                            class="rounded-lg bg-blue-600 px-2 py-2 font-bold text-white hover:bg-blue-700">Apply</button>
+                            class="rounded-lg bg-blue-600 px-2 py-2 font-bold text-white hover:bg-blue-700">{{ __('Apply') }}</button>
                     </div>
                     <div class="mt-4">
                         <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
-                            Brand</h5>
+                            {{ __('Brand') }}</h5>
                         <x-select wire:model.defer="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
                             option-label="name" option-value="id" multiselect />
                     </div>
                     <div class="mt-4">
                         <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
-                            Manufacturer</h5>
+                            {{ __('Manufacturer') }}</h5>
                         <x-select wire:model.defer="manufacturer_id" placeholder="Select Manufacturer" :async-data="route('api.admin.manufacturers')"
                             option-label="name" option-value="id" multiselect />
                     </div>
                     <div class="mt-4">
                         <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
-                            Category</h5>
+                            {{ __('Category') }}</h5>
                         <x-select wire:model.defer="supplier_product_category_id" placeholder="Select Parent Category"
                             :async-data="route('api.admin.supplier_categories')" option-label="name" option-value="id" multiselect />
                     </div>

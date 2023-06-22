@@ -30,17 +30,16 @@
 
 <body class="py-5">
     <x-notifications />
-    <!-- BEGIN: Mobile Menu -->
+
     @include('layouts.bePartials.mobile-menu')
-    <!-- END: Mobile Menu -->
+
     <div class="flex">
-        <!-- BEGIN: Side Menu -->
+
         @include('layouts.bePartials.side-menu')
-        <!-- END: Side Menu -->
+
         <div class="content">
-            <!-- BEGIN: Top Bar -->
             @include('layouts.bePartials.top-bar')
-            <!-- END: Top Bar -->
+
             {{ $slot }}
         </div>
 

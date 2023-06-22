@@ -64,6 +64,7 @@ class DashboardController extends Controller
     private function supplierDashboard()
     {
         $supplier = Supplier::where('user_id', auth()->user()->id)->first();
+
         $supplierTransaction = SupplierTransaction::where('supplier_id', $supplier->id)->first();
         $supplierProductsCount = SupplierProduct::where('supplier_id', $supplier->id)->count();
         $supplierProductCategoryCount = SupplierProduct::where('supplier_id', $supplier->id)->distinct('supplier_product_category_id')->count();
@@ -73,6 +74,7 @@ class DashboardController extends Controller
         $supplierRatingSum = SupplierTestimonial::where('supplier_id', $supplier->id)->sum('rating');
         $supplierRatingCount = SupplierTestimonial::where('supplier_id', $supplier->id)->count();
         $supplierRating = $supplierRatingCount > 0 ? round($supplierRatingSum / $supplierRatingCount, 2) : 0;
+
         $categoryViews = SupplierProductCategoryView::where('supplier_id', $supplier->id)->groupBy('supplier_product_category_id')
             ->select('supplier_product_category_id', DB::raw('SUM(clicks) as total_clicks'))->with('supplierProductCategory')->get();
         $categoryViewsChart = $categoryViews->reduce(
@@ -92,6 +94,7 @@ class DashboardController extends Controller
                 ->setColumnWidth(50)
                 ->withGrid()
         );
+
         $productViews = SupplierProductView::where('supplier_id', $supplier->id)->groupBy('supplier_product_id')
             ->select('supplier_product_id', DB::raw('SUM(clicks) as total_clicks'))->with('supplierProduct')->get();
         $productViewsChart = $productViews->reduce(
@@ -111,6 +114,7 @@ class DashboardController extends Controller
                 ->setColumnWidth(50)
                 ->withGrid()
         );
+
         $profileViews = SupplierView::select(
             'supplier_id',
             DB::raw('SUM(clicks) as total_clicks'),
@@ -122,22 +126,22 @@ class DashboardController extends Controller
             ->where('supplier_id', $supplier->id)
             ->groupBy('supplier_id', DB::raw('Year(created_at)'), DB::raw('MONTH(created_at)'), DB::raw('MONTHNAME(created_at)'), DB::raw('WEEK(created_at) - WEEK(DATE_SUB(created_at, INTERVAL DAYOFMONTH(created_at) - 1 DAY)) + 1'))
             ->get();
-        // $profileViewsChart = $profileViews->reduce(
-        //     function ($columnChartModel, $data) {
-        //         $type = $data->month_name . ', Week: ' . $data->week;
-        //         $value = $data->total_clicks;
-        //         $color = RandomColor::one(['luminosity' => 'dark', 'format' => 'hex']);
+        $profileViewsChart = $profileViews->reduce(
+            function ($columnChartModel, $data) {
+                $type = $data->month_name . ', Week: ' . $data->week;
+                $value = $data->total_clicks;
 
-        //         return $columnChartModel->addColumn($type, $value, $color);
-        //     },
-        //     LivewireCharts::columnChartModel()
-        //         ->setAnimated(true)
-        //         ->setLegendVisibility(false)
-        //         ->setDataLabelsEnabled(true)
-        //         ->setOpacity(0.75)
-        //         ->setColumnWidth(50)
-        //         ->withGrid()
-        // );
+                return $columnChartModel->addPoint($type, $value);
+            },
+            LivewireCharts::lineChartModel()
+                ->setAnimated(true)
+                ->setLegendVisibility(false)
+                ->setDataLabelsEnabled(true)
+                ->setSmoothCurve()
+                ->setXAxisVisible(true)
+                ->withGrid()
+        );
+
         $brandViews = SupplierBrandView::where('supplier_id', $supplier->id)->groupBy('brand_id')
             ->select('brand_id', DB::raw('SUM(clicks) as total_clicks'))->with('brand')->get();
         $brandViewsChart = $brandViews->reduce(
@@ -157,6 +161,7 @@ class DashboardController extends Controller
                 ->setColumnWidth(50)
                 ->withGrid()
         );
+
         $manufacturerViews = SupplierManufacturerView::where('supplier_id', $supplier->id)->groupBy('manufacturer_id')
             ->select('manufacturer_id', DB::raw('SUM(clicks) as total_clicks'))->with('manufacturer')->get();
         $manufacturerViewsChart = $manufacturerViews->reduce(
@@ -176,27 +181,6 @@ class DashboardController extends Controller
                 ->setColumnWidth(50)
                 ->withGrid()
         );
-        $profileViewsChart = $profileViews->reduce(
-            function ($columnChartModel, $data) {
-                $type = $data->month_name . ', Week: ' . $data->week;
-                $value = $data->total_clicks;
-
-                return $columnChartModel->addPoint($type, $value);
-            },
-            LivewireCharts::lineChartModel()
-                ->setAnimated(true)
-                ->setLegendVisibility(false)
-                ->setDataLabelsEnabled(true)
-                ->setSmoothCurve()
-                ->setXAxisVisible(true)
-            // ->setOpacity(0.75)
-            // ->setColumnWidth(50)
-                ->withGrid()
-        );
-        // echo '<pre>';
-        // print_r($categoryViewsChart);
-        // echo '</pre>';
-        // exit;
 
         return view('pages.backend.supplier.dashboard', compact([
             'supplierTransaction',
