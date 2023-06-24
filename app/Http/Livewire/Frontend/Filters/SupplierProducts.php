@@ -72,7 +72,13 @@ class SupplierProducts extends Component
         if ($this->type == 'All Category Page') {
             $this->availableLetters = SupplierProductCategory::where('parent_id', 0)->pluck('name')->map(function ($name) {
                 return substr($name, 0, 1);
-            })->unique()->toArray();
+            })->unique()->sort()->toArray();
+
+            if (is_numeric(reset($this->availableLetters))) {
+                $this->alphabet = '#';
+            } else {
+                $this->alphabet = reset($this->availableLetters);
+            }
         }
     }
 
@@ -112,7 +118,11 @@ class SupplierProducts extends Component
     public function render()
     {
         if (!empty($this->alphabet) && $this->applyFilter == true) {
-            $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
+            if ($this->alphabet == '#') {
+                $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'REGEXP', '^[0-9]')->get();
+            } else {
+                $sub_product_category = SupplierProductCategory::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
+            }
         } else {
             $sub_product_category = [];
         }

@@ -44,16 +44,24 @@
                 <li>
                     <hr class="dropdown-divider border-white/[0.08]">
                 </li>
-                <li>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                            class="dropdown-item hover:bg-white/5">
-                            <i data-feather="toggle-right"class="w-4 h-4 mr-2"></i>
-                            {{ __('Logout') }}
+                @impersonating($guard = null)
+                    <li>
+                        <a href="{{ route('admin.users.leave-impersonate') }}" class="dropdown-item hover:bg-white/5">
+                            <i data-feather="toggle-left"class="w-4 h-4 mr-2"></i>
+                            {{ __('Leave impersonation') }}
                         </a>
-                    </form>
-                </li>
+                    @else
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}"
+                                onclick="event.preventDefault(); this.closest('form').submit();"
+                                class="dropdown-item hover:bg-white/5">
+                                <i data-feather="toggle-right"class="w-4 h-4 mr-2"></i>
+                                {{ __('Logout') }}
+                            </a>
+                        </form>
+                    </li>
+                @endImpersonating
             </ul>
         </div>
     </div>

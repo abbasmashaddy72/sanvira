@@ -28,7 +28,7 @@
     @livewireStyles
 </head>
 
-<body class="py-5">
+<body class="@if (app('impersonate')->isImpersonating()) border-4 border-warning @endif py-5">
     <x-notifications />
 
     @include('layouts.bePartials.mobile-menu')
@@ -39,7 +39,6 @@
 
         <div class="content">
             @include('layouts.bePartials.top-bar')
-
             {{ $slot }}
         </div>
 

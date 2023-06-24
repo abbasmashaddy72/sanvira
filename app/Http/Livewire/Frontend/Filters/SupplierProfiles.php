@@ -2,8 +2,9 @@
 
 namespace App\Http\Livewire\Frontend\Filters;
 
-use App\Models\Supplier;
 use Livewire\Component;
+use App\Models\Supplier;
+use Jenssegers\Agent\Agent;
 use Livewire\WithPagination;
 
 class SupplierProfiles extends Component
@@ -48,9 +49,11 @@ class SupplierProfiles extends Component
         } else {
             $suppliers = Supplier::withCount('products')->paginate(16);
         }
+        $agent = new Agent;
 
         return view('livewire.frontend.filters.supplier-profiles', compact([
             'suppliers',
+            'agent',
         ]));
     }
 }

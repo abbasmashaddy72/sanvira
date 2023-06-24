@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -14,7 +15,7 @@ return new class extends Migration {
     {
         Schema::create('brand_transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('brand_id')->constrained('suppliers')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('account_type', ['Trial', 'Regular', 'Featured'])->default('Trial');
             $table->enum('transaction_type', ['Paid', 'Unpaid', 'Pending'])->default('Unpaid');
             $table->string('amount')->default(0);

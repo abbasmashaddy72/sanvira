@@ -14,10 +14,10 @@
     <x-frontend.index-container class="py-14">
         <div class="mb-4 flex flex-wrap justify-center bg-white p-1">
             @php
-                $disabled = !in_array('#', $availableLetters);
+                $disabled = !in_array('#', $availableLetters) && !preg_grep('/^\d$/', $availableLetters);
             @endphp
             <button wire:click='apply("#")' {{ $disabled ? 'disabled' : '' }}
-                class="@if ($alphabet == '#') text-blue-600 bg-gray-200 @elseif(!in_array('#', $availableLetters)) text-gray-400 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ '#' }}</button>
+                class="@if ($alphabet == '#') text-blue-600 bg-gray-200 @elseif(!in_array('#', $availableLetters) && !preg_grep('/^\d$/', $availableLetters)) text-gray-400 @else text-gray-600 hover:bg-gray-200 hover:text-blue-600 @endif rounded px-4 py-2 font-medium">{{ '#' }}</button>
             @foreach (range('A', 'Z') as $item)
                 @php
                     $disabled = !in_array($item, $availableLetters);

@@ -22,6 +22,7 @@ class UserController extends Controller
 
     public function impersonate(User $user)
     {
+        abort_if(Gate::denies('user_impersonate'), 403);
         auth()->user()->impersonate($user);
 
         return redirect()->route('admin.dashboard');

@@ -21,12 +21,22 @@ class Brands extends Component
     {
         $this->availableLetters = Brand::pluck('name')->map(function ($name) {
             return substr($name, 0, 1);
-        })->unique()->toArray();
+        })->unique()->sort()->toArray();
+
+        if (is_numeric(reset($this->availableLetters))) {
+            $this->alphabet = '#';
+        } else {
+            $this->alphabet = reset($this->availableLetters);
+        }
     }
 
     public function render()
     {
-        $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet.'%')->get();
+        if ($this->alphabet == '#') {
+            $brands = Brand::withCount('products')->where('name', 'REGEXP', '^[0-9]')->get();
+        } else {
+            $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
+        }
         $featured_brands = Brand::withCount('products')->whereHas('transactions', function ($query) {
             $query->where('account_type', '=', 'Featured');
         })->get()->take(9);

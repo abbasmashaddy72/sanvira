@@ -101,7 +101,6 @@ class PermissionSeeder extends Seeder
             ['Supplier Profile View'],
             ['User Impersonate'],
             ['Dashboard'],
-            ['Supplier Report View'],
             ['Supplier Report Regular'],
             ['Supplier Report Clicks'],
         ];
