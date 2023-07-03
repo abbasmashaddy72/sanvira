@@ -103,6 +103,7 @@ class PermissionSeeder extends Seeder
             ['Dashboard'],
             ['Supplier Report Regular'],
             ['Supplier Report Clicks'],
+            ['Contact Us'],
         ];
 
         foreach ($inputs as $data) {

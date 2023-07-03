@@ -49,6 +49,14 @@ class StaticController extends Controller
         return view('pages.backend.static.career');
     }
 
+    public function contact_us()
+    {
+        view()->share('title', 'Contact Us');
+        abort_if(Gate::denies('contact_us'), 403);
+
+        return view('pages.backend.static.contact_us');
+    }
+
     public function image_upload(Request $request)
     {
         $blog = new Supplier;

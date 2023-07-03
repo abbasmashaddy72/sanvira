@@ -1,4 +1,4 @@
-<footer class="footer relative border-t-2 border-blue-300 bg-white text-gray-200 dark:text-gray-200">
+<footer class="footer relative -z-10 border-t-2 border-blue-300 bg-white text-gray-200 dark:text-gray-200">
     <div class="container">
         <div class="grid grid-cols-12">
             <div class="col-span-12">
@@ -10,7 +10,7 @@
                                     <img class="h-28" src="{{ asset('storage/' . get_static_option('footer_logo')) }}"
                                         alt="" />
                                 </a>
-                                <p class="font-semibold text-gray-600">{{ __('An in5 incubated company!') }}</p>
+                                <p class="mt-2 font-semibold text-gray-600">{{ __('An in5 incubated company!') }}</p>
                             </div>
                             <ul class="mt-6 flex justify-center space-x-4">
                                 @if (!empty(get_static_option('facebook')))
@@ -113,11 +113,11 @@
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>{{ __('Terms of Use') }}</a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{ route('return_refunds') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>{{ __('Returns & Refunds') }}</a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                         <!--end col-->

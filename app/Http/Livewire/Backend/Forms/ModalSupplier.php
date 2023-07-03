@@ -158,17 +158,6 @@ class ModalSupplier extends ModalComponent
                 'designation' => $contact_person_designation,
             ]);
 
-            SupplierTransaction::create([
-                'supplier_id' => $this->supplier->id,
-                'account_type' => 'Trail',
-                'transaction_type' => 'Pending',
-                'amount' => '0',
-                'start_date' => now()->format('Y-m-d'),
-                'end_days' => 30,
-                'image' => null,
-                'status' => 'Active',
-            ]);
-
             $this->notification()->success($title = 'Supplier Updated Successfully!');
         } else {
             $contact_person_name = $validatedData['contact_person_name'];

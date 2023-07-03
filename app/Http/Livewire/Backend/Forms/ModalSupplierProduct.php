@@ -185,23 +185,33 @@ class ModalSupplierProduct extends ModalComponent
         }
 
         if (!empty($this->supplier_product_id)) {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && gettype($this->images) == 'array') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
-                $multiImage = [];
+                $multiImages = [];
+
                 foreach ($images as $key => $image) {
-                    $multiImage[$key] = $image->store('supplier_projects', 'public');
+                    if (is_object($image)) {
+                        $multiImages[$key] = $image->store('supplier_product_images', 'public');
+                    }
                 }
-                $validatedData['images'] = $multiImage;
+                if ($this->images != $images) {
+                    $validatedData['images'] = $multiImages;
+                }
             }
-            if (!empty($this->data_sheets) && gettype($this->data_sheets) != 'string') {
+            if (!empty($this->data_sheets) && gettype($this->data_sheets) == 'array') {
                 $data_sheets = $validatedData['data_sheets'];
                 unset($validatedData['data_sheets']);
                 $multiDataSheets = [];
+
                 foreach ($data_sheets as $key => $data_sheet) {
-                    $multiDataSheets[$key] = $data_sheet->store('supplier_projects', 'public');
+                    if (is_object($data_sheet)) {
+                        $multiDataSheets[$key] = $data_sheet->store('supplier_product_data_sheets', 'public');
+                    }
                 }
-                $validatedData['data_sheets'] = $multiDataSheets;
+                if ($this->data_sheets != $data_sheets) {
+                    $validatedData['data_sheets'] = $multiDataSheets;
+                }
             }
             SupplierProduct::where('id', $this->supplier_product_id)->update($validatedData);
             SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->delete();
@@ -211,23 +221,33 @@ class ModalSupplierProduct extends ModalComponent
 
             $this->notification()->success($title = 'Supplier Product Updated Successfully!');
         } else {
-            if (!empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && gettype($this->images) == 'array') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
-                $multiImage = [];
+                $multiImages = [];
+
                 foreach ($images as $key => $image) {
-                    $multiImage[$key] = $image->store('supplier_products', 'public');
+                    if (is_object($image)) {
+                        $multiImages[$key] = $image->store('supplier_product_images', 'public');
+                    }
                 }
-                $validatedData['images'] = $multiImage;
+                if ($this->images != $images) {
+                    $validatedData['images'] = $multiImages;
+                }
             }
-            if (!empty($this->data_sheets) && gettype($this->data_sheets) != 'string') {
+            if (!empty($this->data_sheets) && gettype($this->data_sheets) == 'array') {
                 $data_sheets = $validatedData['data_sheets'];
                 unset($validatedData['data_sheets']);
                 $multiDataSheets = [];
+
                 foreach ($data_sheets as $key => $data_sheet) {
-                    $multiDataSheets[$key] = $data_sheet->store('supplier_projects', 'public');
+                    if (is_object($data_sheet)) {
+                        $multiDataSheets[$key] = $data_sheet->store('supplier_product_data_sheets', 'public');
+                    }
                 }
-                $validatedData['data_sheets'] = $multiDataSheets;
+                if ($this->data_sheets != $data_sheets) {
+                    $validatedData['data_sheets'] = $multiDataSheets;
+                }
             }
             $supplierProduct = SupplierProduct::create($validatedData);
             foreach ($this->name_spa as $key => $value) {

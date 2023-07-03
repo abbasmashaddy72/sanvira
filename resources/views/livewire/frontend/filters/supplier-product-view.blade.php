@@ -6,7 +6,7 @@
                 <img class="h-40 w-full object-cover" src="{{ asset('storage/' . $item->images[0]) }}" alt="">
                 @if ($item->on_sale)
                     <span
-                        class="absolute left-0 top-0 ml-3 mt-3 inline-flex rounded-lg bg-green-500 px-3 py-2 text-sm font-medium text-white">
+                        class="absolute top-0 left-0 mt-3 ml-3 inline-flex rounded-lg bg-green-500 px-3 py-2 text-sm font-medium text-white">
                         {{ __('On Sale') }}
                     </span>
                 @endif
@@ -15,20 +15,35 @@
             <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
                 <div class="truncate text-lg font-semibold duration-500 ease-in-out hover:text-blue-600">
                     {{ $item->name }}</div>
-                <div class="ml-2 flex text-base font-semibold">
-                    {{ $item->price ? $item->price : $item->min_price . ' - ' . $item->max_price }}
-                    <svg data-tooltip-target="price" id="Layer_1" data-name="Layer 1"
-                        xmlns="http://www.w3.org/2000/svg" class="ml-1 h-5 w-5 fill-blue-600"
-                        viewBox="0 0 117.77 122.88">
-                        <path
-                            d="M19.81,113.35a7.89,7.89,0,0,1-1.74,3.45,5.87,5.87,0,0,1-2.46,1.31L0,122.88a16.13,16.13,0,0,1,2.51-3.75,11.83,11.83,0,0,1,3.72-2,12.16,12.16,0,0,1-2.93-2.41,3.47,3.47,0,0,1-.92-2.21A5.19,5.19,0,0,1,3,110.37,13.08,13.08,0,0,1,4.47,108c3.15-4.2,6.25-6.28,9.33-6.28a2.91,2.91,0,0,1,2.21.89,3.39,3.39,0,0,1,.82,2.36,5.39,5.39,0,0,1-.32,2,18.35,18.35,0,0,1-1.34,2.5q-3.59-1.78-4.89-1.78a5.82,5.82,0,0,0-2.58.64,6.66,6.66,0,0,0-1.59,1.17c0,.65,1.16,1.61,3.47,2.93s4,2,5,2a34.37,34.37,0,0,0,5.24-1ZM20,67.17A43.15,43.15,0,0,1,18.42,79a95.91,95.91,0,0,1-6,14.37L8,91.6A83,83,0,0,0,9.83,76.46c0-3-.25-7.3-.72-13S8,52.06,7.27,46.45s-1.91-12.29-3.57-20a33.76,33.76,0,0,1-.87-5.61c0-1.49.75-4,2.26-7.67S8.69,5.14,11.4,0l4.41,25.77q2.46,14.7,3.4,25.47c.5,5.53.75,10.85.75,15.93Zm15.91,42.45V89.22H56.28v20.4Zm81.9-21.3h-33c-3.21,0-5.66-.67-7.38-2-2.08-1.66-3.13-4.37-3.13-8.09,0-2.16.13-4.47.35-6.93s.55-5,1-7.52l3-.15a5.6,5.6,0,0,0,2.59,3.75A9.39,9.39,0,0,0,86,68.51h24.93q-1.68-10.71-5.81-17.1a30.44,30.44,0,0,0-9.54-9.18l5.29-22.72a38.18,38.18,0,0,1,13.31,18.2q3.61,10.27,3.6,27.23V88.32Z" />
-                    </svg>
-                    <div id="price" role="tooltip"
-                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                        {{ __('United Arab Emirates Dirham(AED)') }}
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
+            </div>
+            <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
+                <svg data-tooltip-target="price" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+                    class="mr-2 h-6 w-6 fill-blue-600" viewBox="0 0 117.77 122.88">
+                    <path
+                        d="M19.81,113.35a7.89,7.89,0,0,1-1.74,3.45,5.87,5.87,0,0,1-2.46,1.31L0,122.88a16.13,16.13,0,0,1,2.51-3.75,11.83,11.83,0,0,1,3.72-2,12.16,12.16,0,0,1-2.93-2.41,3.47,3.47,0,0,1-.92-2.21A5.19,5.19,0,0,1,3,110.37,13.08,13.08,0,0,1,4.47,108c3.15-4.2,6.25-6.28,9.33-6.28a2.91,2.91,0,0,1,2.21.89,3.39,3.39,0,0,1,.82,2.36,5.39,5.39,0,0,1-.32,2,18.35,18.35,0,0,1-1.34,2.5q-3.59-1.78-4.89-1.78a5.82,5.82,0,0,0-2.58.64,6.66,6.66,0,0,0-1.59,1.17c0,.65,1.16,1.61,3.47,2.93s4,2,5,2a34.37,34.37,0,0,0,5.24-1ZM20,67.17A43.15,43.15,0,0,1,18.42,79a95.91,95.91,0,0,1-6,14.37L8,91.6A83,83,0,0,0,9.83,76.46c0-3-.25-7.3-.72-13S8,52.06,7.27,46.45s-1.91-12.29-3.57-20a33.76,33.76,0,0,1-.87-5.61c0-1.49.75-4,2.26-7.67S8.69,5.14,11.4,0l4.41,25.77q2.46,14.7,3.4,25.47c.5,5.53.75,10.85.75,15.93Zm15.91,42.45V89.22H56.28v20.4Zm81.9-21.3h-33c-3.21,0-5.66-.67-7.38-2-2.08-1.66-3.13-4.37-3.13-8.09,0-2.16.13-4.47.35-6.93s.55-5,1-7.52l3-.15a5.6,5.6,0,0,0,2.59,3.75A9.39,9.39,0,0,0,86,68.51h24.93q-1.68-10.71-5.81-17.1a30.44,30.44,0,0,0-9.54-9.18l5.29-22.72a38.18,38.18,0,0,1,13.31,18.2q3.61,10.27,3.6,27.23V88.32Z" />
+                </svg>
+                <div id="price" role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                    {{ __('AED') }}
+                    <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
+                <span
+                    class="truncate">{{ $item->price ? $item->price : $item->min_price . ' - ' . $item->max_price }}</span>
+            </div>
+
+            <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
+                <svg data-tooltip-target="sku" class="mr-2 h-6 w-6 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
+                    height="48" viewBox="0 -960 960 960" width="48">
+                    <path
+                        d="M620-159 460-319l43-43 117 117 239-239 43 43-282 282Zm220-414h-60v-207h-60v90H240v-90h-60v600h251v60H180q-26 0-43-17t-17-43v-600q0-26 17-43t43-17h202q7-35 34.5-57.5T480-920q36 0 63.5 22.5T578-840h202q26 0 43 17t17 43v207ZM480-780q17 0 28.5-11.5T520-820q0-17-11.5-28.5T480-860q-17 0-28.5 11.5T440-820q0 17 11.5 28.5T480-780Z" />
+                </svg>
+
+                <div id="sku" role="tooltip"
+                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                    {{ __('Stock Keeping Unit') }}
+                    <div class="tooltip-arrow" data-popper-arrow></div>
+                </div>
+                <span class="truncate">{{ $item->sku }}</span>
             </div>
             {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
                 <div class="flex">
@@ -87,8 +102,8 @@
                 </div>
                 <span class="truncate">{{ $item->brands->name }}</span>
             </div>
-            <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
-                <svg data-tooltip-target="manufactureer_name" class="mr-2 h-6 w-6 fill-blue-600" id="Layer_1"
+            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
+                <svg data-tooltip-target="manufactureer_name" class="w-6 h-6 mr-2 fill-blue-600" id="Layer_1"
                     data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98.06 122.88">
                     <defs>
                         <style>
@@ -102,12 +117,12 @@
                         d="M15,36.34l-1.75,13.9h19l-1.75-13.9ZM29.2,32a1.63,1.63,0,0,1-3,1.3,6,6,0,0,1-.5-3,7.09,7.09,0,0,1,.86-2.63,1.62,1.62,0,0,1,2.62-.34,8.3,8.3,0,0,0,3.7,2,3.11,3.11,0,0,0,1.89-.11A2.28,2.28,0,0,0,35.92,28a6.54,6.54,0,0,0,.38-3.36,1.63,1.63,0,0,1,3.12-.79,6.73,6.73,0,0,0,5.22,3.36,7.73,7.73,0,0,0,3.08-.18A5.07,5.07,0,0,0,50,25.74c1-1,1.47-2.7,1-5a1.63,1.63,0,0,1,1.28-1.92,1.77,1.77,0,0,1,.51,0,6.17,6.17,0,0,0,6-3.11,5.69,5.69,0,0,0,.64-2.54,4.47,4.47,0,0,0-.6-2.29c-.81-1.35-2.56-2.25-5.36-2a1.63,1.63,0,0,1-1.73-1.13,6.34,6.34,0,0,0-3.08-4.1,4.08,4.08,0,0,0-2.27-.35,4.7,4.7,0,0,0-2.21.91A5.85,5.85,0,0,0,42,8.5a1.63,1.63,0,0,1-3.21.27,7.13,7.13,0,0,0-2.24-3.61,4.33,4.33,0,0,0-2.77-.93,6,6,0,0,0-3,.94A6.88,6.88,0,0,0,28,8.4a1.63,1.63,0,0,1-2.12.91A1.68,1.68,0,0,1,25.35,9a6.85,6.85,0,0,0-4.44-2.15,3.83,3.83,0,0,0-2.14.56,3.71,3.71,0,0,0-1.41,1.71l0,.06a7.56,7.56,0,0,0,.18,5.26,1.64,1.64,0,0,1-1,2.07l-.13,0a4.7,4.7,0,0,0-3.58,3.42V20a4.72,4.72,0,0,0,0,2,4.3,4.3,0,0,0,.81,1.81c1,1.25,2.75,2,5.38,1.63a1.63,1.63,0,0,1,1.61,2.49,12.93,12.93,0,0,0-1.17,2.49,8.43,8.43,0,0,0-.44,2.44,1.63,1.63,0,1,1-3.25-.06,11.32,11.32,0,0,1,.61-3.39l.23-.66A7.77,7.77,0,0,1,11,25.76a7.41,7.41,0,0,1-1.44-3.18,7.89,7.89,0,0,1,.06-3.35l0-.08A7.72,7.72,0,0,1,14,13.9a10,10,0,0,1,.34-6l0-.09A6.9,6.9,0,0,1,17,4.62,7,7,0,0,1,21,3.56,9.33,9.33,0,0,1,26,5.3a10.39,10.39,0,0,1,3.11-2.91A9.3,9.3,0,0,1,33.78,1,7.57,7.57,0,0,1,38.6,2.59,9.23,9.23,0,0,1,40.08,4.1a8.67,8.67,0,0,1,2.23-2.5A8,8,0,0,1,46.06.06,7.31,7.31,0,0,1,50.13.7a9,9,0,0,1,4.36,4.85C58,5.51,60.43,7,61.7,9.15a7.65,7.65,0,0,1,1.06,4,8.88,8.88,0,0,1-1,4A9,9,0,0,1,54.47,22a7.94,7.94,0,0,1-2.08,6,8.26,8.26,0,0,1-3.8,2.21,11.24,11.24,0,0,1-9.37-1.7,8.35,8.35,0,0,1-.35.92,5.44,5.44,0,0,1-2.78,2.77,6.39,6.39,0,0,1-3.85.32A10.28,10.28,0,0,1,29,31.15a3,3,0,0,0,.24.85ZM0,117.06H98.06v5.82H0v-5.82ZM2.47,71l8.41,1L11.75,65h22L35,75.1l60.55,7.6v32.21H2.47V71ZM12.94,53.46l-.86,8.3H33.46l-.86-8.3Zm7.24,33.76H32.8A1.77,1.77,0,0,1,34.57,89v15.88a1.77,1.77,0,0,1-1.77,1.76H20.18a1.76,1.76,0,0,1-1.76-1.76V89a1.76,1.76,0,0,1,1.76-1.76Zm39.48,3H72.29A1.77,1.77,0,0,1,74.05,92v12.88a1.77,1.77,0,0,1-1.76,1.76H59.66a1.77,1.77,0,0,1-1.76-1.76V92a1.78,1.78,0,0,1,1.76-1.76Z" />
                 </svg>
                 <div id="manufactureer_name" role="tooltip"
-                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                     {{ __('Manufacturers Name') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <span class="truncate">{{ $item->manufacturers->name }}</span>
-            </div>
+            </div> --}}
 
             {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
                 <svg data-tooltip-target="model" class="w-6 h-6 mr-2 fill-blue-600" version="1.1" id="Layer_1"

@@ -64,17 +64,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('supplier_testimonial/{supplier}', 'SupplierController@testimonial_index')->name('supplier_testimonial');
     Route::get('supplier_project/{supplier}', 'SupplierController@project_index')->name('supplier_project');
     Route::get('supplier_product/{supplier}', 'SupplierController@product_index')->name('supplier_product');
-    Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');
     Route::get('supplier_profile/{supplier}', 'SupplierController@supplier_profile')->name('supplier_profile');
+
+    Route::get('supplier-categories', 'SupplierCategoryController@index')->name('supplier-categories');
+
     Route::get('supplier_report_regular', 'SupplierReportController@supplier_report_regular')->name('supplier_report_regular');
     Route::get('supplier_report_clicks', 'SupplierReportController@supplier_report_clicks')->name('supplier_report_clicks');
+
     Route::get('contractor', 'ContractorController@index')->name('contractor');
+
     Route::get('sub-contractor', 'SubContractorController@index')->name('sub-contractor');
+
     Route::get('homepage', 'StaticController@homepage')->name('homepage');
     Route::get('privacy_policy', 'StaticController@privacy_policy')->name('privacy_policy');
     Route::get('terms_of_use', 'StaticController@terms_of_use')->name('terms_of_use');
     Route::get('return_refunds', 'StaticController@return_refunds')->name('return_refunds');
     Route::get('career', 'StaticController@career')->name('career');
+    Route::get('contact_us', 'StaticController@contact_us')->name('contact_us');
+
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });
 

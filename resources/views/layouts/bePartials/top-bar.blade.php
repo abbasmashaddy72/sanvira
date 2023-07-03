@@ -17,6 +17,30 @@
         </button>
     </div>
 
+    <div class="mr-4">
+        @if (Auth::user()->roles->first()->name == 'Supplier')
+            <a href="{{ route('supplier_profile', ['profile' => $supplier_id]) }}" target="__blank">
+                <svg class="h-5 w-5 text-gray-500 hover:bg-gray-100" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+        @else
+            <a href="{{ route('homepage') }}" target="__blank">
+                <svg class="h-5 w-5 text-gray-500 hover:bg-gray-100" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+        @endif
+    </div>
+
     <div class="dropdown h-10 w-10">
         <div class="bg-primary dropdown-toggle relative flex h-10 w-10 items-center justify-center rounded-full text-xl uppercase text-white shadow-lg"
             role="button" aria-expanded="false" data-tw-toggle="dropdown">

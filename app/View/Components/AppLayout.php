@@ -20,6 +20,7 @@ class AppLayout extends Component
         view()->share('first_level_active_index', $activeMenu['first_level_active_index']);
         view()->share('second_level_active_index', $activeMenu['second_level_active_index']);
         view()->share('third_level_active_index', $activeMenu['third_level_active_index']);
+        view()->share('supplier_id', Supplier::where('user_id', auth()->user()->id)->value('id'));
 
         return view('layouts.app');
     }
@@ -227,6 +228,14 @@ class AppLayout extends Component
                 'icon' => 'briefcase',
                 'title' => 'Career',
                 'route_name' => 'admin.career',
+                'params' => null,
+            ],
+            'contact_us' => [
+                'can' => 'contact_us',
+                'role' => auth()->user()->roles->first()->slug,
+                'icon' => 'phone-forwarded',
+                'title' => 'Contact Us',
+                'route_name' => 'admin.contact_us',
                 'params' => null,
             ],
         ];

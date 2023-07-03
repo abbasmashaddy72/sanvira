@@ -1,5 +1,5 @@
 @if (!empty($images))
-    <div class="flex space-x-2">
+    <div class="flex w-max space-x-2">
         @foreach (json_decode($images) as $item)
             <a href="{{ asset('storage/' . $item) }}" data-lightbox="{{ strtolower(str_replace(' ', '_', $name)) }}">
                 <img class="h-12 w-12 rounded-lg shadow-md" src='{{ asset('storage/' . $item) }}' />

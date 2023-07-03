@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'password_changed',
     ];
 
     /**
@@ -59,6 +60,6 @@ class User extends Authenticatable implements MustVerifyEmail
         $firstWord = $name_array[0];
         $lastWord = $name_array[count($name_array) - 1];
 
-        return $firstWord[0].$lastWord[0];
+        return $firstWord[0] . $lastWord[0];
     }
 }

@@ -28,13 +28,31 @@
 
         <div class="@auth pt-5 lg:pt-4 @else pt-4 lg:pt-3 @endauth float-right flex items-center space-x-3">
             @auth
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                        class="text-md rounded-lg bg-red-600 p-2 font-semibold text-white">
-                        {{ __('Logout') }}
-                    </a>
-                </form>
+                <div x-data="{ dropdownMenu: false }" class="relative">
+                    <div class="dropdown-toggle relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-xl font-medium uppercase text-white shadow-lg"
+                        role="button" @click="dropdownMenu = !dropdownMenu">
+                        {{ Auth::user()->initials }}
+                    </div>
+                    <ul class="absolute right-0 mt-2 w-44 rounded-md bg-white bg-gray-100 py-2 shadow" x-show="dropdownMenu"
+                        @click.away="dropdownMenu = false">
+                        <li class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white">
+                            {{ Auth::user()->name }}
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.dashboard') }}"
+                                class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white">
+                                {{ __('Dashboard') }}
+                            </a>
+                        </li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
+                                class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-red-600 hover:text-white">
+                                {{ __('Logout') }}
+                            </a>
+                        </form>
+                    </ul>
+                </div>
             @else
                 <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">{{ __('Register') }}</a>
                 <a href="{{ route('login') }}" class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">

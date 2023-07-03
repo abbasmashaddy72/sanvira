@@ -65,6 +65,16 @@
                         {!! $data->description !!}
                     </div>
                 </blockquote>
+                <div class="rounded border-2 border-blue-600 p-2 shadow">
+                    <h2 class="text-lg font-semibold">{{ __('Data Sheets') }}</h2>
+                    <ul class="ml-6 list-disc">
+                        @foreach ($data->data_sheets as $item)
+                            <a href="{{ asset($item) }}" target="__blank">
+                                <li>Data Sheet {{ $loop->iteration }}</li>
+                            </a>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
             <div class="col-span-12 rounded border-2 border-gray-200 bg-white shadow lg:col-span-4">
                 <div class="sticky top-20">
@@ -92,12 +102,18 @@
 
                             <li class="flex items-center justify-between">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Brand Name:') }}</span>
-                                <a href="{{ route('brand_products', ['brand' => $data->brands->id]) }}">
+                                <a class="text-blue-600"
+                                    href="{{ route('brand_products', ['brand' => $data->brands->id]) }}">
                                     <span class="ml-2">{{ $data->brands->name }}</span>
                                 </a>
                             </li>
 
                             <li class="flex items-center justify-between">
+                                <span class="mr-2 font-medium text-blue-600">{{ __('Stock Keeping Unit:') }}</span>
+                                <span class="ml-2">{{ $data->sku }}</span>
+                            </li>
+
+                            {{-- <li class="flex items-center justify-between">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Manufacturer Name:') }}</span>
                                 <span class="ml-2">{{ $data->manufacturers->name }}</span>
                             </li>
@@ -105,17 +121,16 @@
                             <li class="flex items-center justify-between">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Model Name:') }}</span>
                                 <span class="ml-2">{{ $data->model }}</span>
-                            </li>
+                            </li> --}}
 
-                            <ul class="list-none">
-                                <li class="flex items-center justify-between">
-                                    <span class="mr-2 font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
-                                    <a
-                                        href="{{ route('products_category', ['product_category' => $data->supplier_product_category_id]) }}">
-                                        <span class="ml-2">{{ $data->supplierProductCategory->name }}</span>
-                                    </a>
-                                </li>
-                            </ul>
+                            <li class="line-clamp-1 flex items-center justify-between">
+                                <span
+                                    class="mr-2 truncate font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
+                                <a class="truncate text-blue-600"
+                                    href="{{ route('products_category', ['product_category' => $data->supplier_product_category_id]) }}">
+                                    <span class="ml-2">{{ $data->supplierProductCategory->name }}</span>
+                                </a>
+                            </li>
 
                             @foreach ($data->productAttributes as $item)
                                 <li class="flex items-center justify-between">
@@ -125,11 +140,11 @@
                             @endforeach
 
                         </ul>
-                        <div class="mt-4 flex flex-1 items-center justify-center px-5 lg:justify-start">
+                        <div class="mt-4 flex flex-1 items-center justify-center px-5">
                             <div class="block">
                                 <a href="{{ route('supplier_profile', ['profile' => $data->suppliers->id]) }}">
                                     <img alt="{{ $data->suppliers->company_name }}"
-                                        class="h-24 w-52 rounded-md object-cover"
+                                        class="h-24 w-52 rounded-md border-2 border-gray-200 object-cover shadow"
                                         src="{{ asset('storage/' . $data->suppliers->logo) }}">
                                 </a>
                             </div>
@@ -138,7 +153,8 @@
                             </div>
                         </div>
                     </div>
-                    {{-- @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page']) --}}
+                    {{-- @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' =>
+                    'Product Details Page']) --}}
                 </div>
             </div>
         </div>

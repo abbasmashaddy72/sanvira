@@ -89,20 +89,20 @@
         </div>
     </x-frontend.index-container>
 
-    <x-frontend.index-container containerTitle="{{ __('On Sale Products') }}" class="py-14">
+    {{-- <x-frontend.index-container containerTitle="{{ __('On Sale Products') }}" class="py-14">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
             @foreach ($on_sale_products as $item)
                 @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
             @endforeach
         </div>
 
-        <div class="grid grid-cols-1 justify-center">
+        <div class="grid justify-center grid-cols-1">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products') }}"
-                    class="btn mt-2 mr-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
+                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:border-blue-700 hover:bg-blue-700">
                     {{ __('View All Products') }}
                 </a>
             </div>
         </div>
-    </x-frontend.index-container>
+    </x-frontend.index-container> --}}
 </x-guest-layout>
