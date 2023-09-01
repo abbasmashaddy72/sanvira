@@ -4,8 +4,9 @@ namespace Database\Factories;
 
 use App\Models\Brand;
 use App\Models\Country;
-use App\Models\Manufacturer;
 use App\Models\Supplier;
+use Illuminate\Support\Str;
+use App\Models\Manufacturer;
 use App\Models\SupplierProductCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -44,6 +45,7 @@ class SupplierProductFactory extends Factory
         foreach ($random_keys as $key) {
             $random_array[] = $images[$key];
         }
+        $title = $this->faker->name();
 
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
@@ -51,12 +53,23 @@ class SupplierProductFactory extends Factory
             'country_id' => Country::pluck('id')[$this->faker->numberBetween(1, Country::count() - 1)],
             'brand_id' => Brand::pluck('id')[$this->faker->numberBetween(1, Brand::count() - 1)],
             'manufacturer_id' => Manufacturer::pluck('id')[$this->faker->numberBetween(1, Manufacturer::count() - 1)],
-            'name' => $this->faker->name(),
+            'title' => $title,
+            'slug' => Str::slug($title),
             'description' => $description,
             'min_oq' => rand(0, 50),
             'max_oq' => rand(50, 100),
             'edt' => rand(0, 100),
             'avb_stock' => $this->faker->regexify('[A-Za-z0-9]{20}'),
+            'barcode' => $this->faker->randomNumber(),
+            'own_sku' => $this->faker->randomNumber(),
+            'length' => rand(1, 50),
+            'length_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
+            'breadth' => rand(1, 50),
+            'breadth_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
+            'width' => rand(1, 50),
+            'width_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
+            'weight' => rand(1, 50),
+            'weight_units' => $this->faker->randomElement(['kg', 'g', 't', 'oz']),
             'model' => $this->faker->streetSuffix(),
             'item_type' => $this->faker->mimeType(),
             'sku' => $this->faker->regexify('[A-Za-z0-9]{20}'),
@@ -65,6 +78,7 @@ class SupplierProductFactory extends Factory
             'price' => $price,
             'min_price' => $min_price,
             'max_price' => $max_price,
+            'verification' => rand(0, 1),
         ];
     }
 }

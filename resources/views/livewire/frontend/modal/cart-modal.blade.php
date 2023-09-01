@@ -11,7 +11,7 @@
                         <li class="flex py-6">
                             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                 <img src="{{ asset('storage/' . $item->supplierProducts->images[0]) }}"
-                                    alt="{{ $item->supplierProducts->name }}"
+                                    alt="{{ $item->supplierProducts->title }}"
                                     class="h-full w-full object-cover object-center">
                             </div>
 
@@ -19,7 +19,7 @@
                                 <div>
                                     <div class="flex justify-between text-base font-medium text-gray-900">
                                         <h3>
-                                            <p>{{ $item->supplierProducts->name }}</p>
+                                            <p>{{ $item->supplierProducts->title }}</p>
                                         </h3>
                                         <div class="flex">
                                             {{ $item->supplierProducts->price ? $item->supplierProducts->price : $item->supplierProducts->min_price . ' - ' . $item->supplierProducts->max_price }}

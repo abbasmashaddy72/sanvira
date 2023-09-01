@@ -50,10 +50,10 @@ Breadcrumbs::for('manufacturer.index', function (BreadcrumbTrail $trail) {
     $trail->push('Manufacturer', route('admin.manufacturer'));
 });
 
-// Application > Supplier
+// Application > Suppliers
 Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Supplier', route('admin.supplier'));
+    $trail->push('Suppliers', route('admin.supplier'));
 });
 
 // Application > Transaction
@@ -68,7 +68,7 @@ Breadcrumbs::for('supplier-category.index', function (BreadcrumbTrail $trail) {
     $trail->push('Supplier Category', route('admin.supplier-categories'));
 });
 
-// Application > Supplier > [Supplier Profile]
+// Application > Suppliers > [Supplier Profile]
 Breadcrumbs::for('supplier.profile', function (BreadcrumbTrail $trail, $supplier) {
     $trail->parent('supplier.index');
     $trail->push($supplier->company_name, route('admin.supplier_profile', $supplier));

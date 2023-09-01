@@ -22,20 +22,12 @@ class PasswordController extends Controller
             'password' => ['required', Password::defaults(), 'confirmed'],
         ]);
 
-        if (Session::get('password_change')) {
-            $request->user()->update([
-                'password' => Hash::make($validated['password']),
-                'password_changed' => 1,
-            ]);
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+            'last_password_change' => time()
+        ]);
 
-            return redirect()->intended(RouteServiceProvider::HOME());
-        } else {
-            $request->user()->update([
-                'password' => Hash::make($validated['password']),
-            ]);
-
-            return back()->with('status', 'password-updated');
-        }
+        return back()->with('status', 'password-updated');
     }
 
     public function change()

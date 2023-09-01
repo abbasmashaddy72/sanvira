@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SupplierProduct extends Model
 {
@@ -17,7 +18,8 @@ class SupplierProduct extends Model
         'country_id',
         'brand_id',
         'manufacturer_id',
-        'name',
+        'title',
+        'slug',
         'description',
         'min_oq',
         'max_oq',
@@ -26,12 +28,23 @@ class SupplierProduct extends Model
         'model',
         'item_type',
         'sku',
+        'barcode',
+        'own_sku',
+        'length',
+        'length_units',
+        'breadth',
+        'breadth_units',
+        'width',
+        'width_units',
+        'weight',
+        'weight_units',
         'on_sale',
         'images',
         'data_sheets',
         'price',
         'min_price',
         'max_price',
+        'verification',
     ];
 
     protected $casts = [
@@ -72,5 +85,11 @@ class SupplierProduct extends Model
     public function productViews()
     {
         return $this->hasMany(SupplierProductView::class, 'supplier_product_id');
+    }
+
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 }

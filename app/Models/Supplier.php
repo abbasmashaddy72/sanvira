@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Supplier extends Model implements HasMedia
@@ -16,6 +17,7 @@ class Supplier extends Model implements HasMedia
     protected $fillable = [
         'user_id',
         'company_name',
+        'slug',
         'company_email',
         'company_address',
         'company_number',
@@ -29,6 +31,7 @@ class Supplier extends Model implements HasMedia
         'description',
         'terms_conditions',
         'agree',
+        'verification',
     ];
 
     public function users()
@@ -55,5 +58,11 @@ class Supplier extends Model implements HasMedia
     {
         $this->addMediaConversion('thumb')
             ->width(600);
+    }
+
+    public function setCompanyNameAttribute($value)
+    {
+        $this->attributes['company_name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 }

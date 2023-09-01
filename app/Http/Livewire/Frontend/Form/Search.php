@@ -36,10 +36,10 @@ class Search extends Component
 
     public function updatedQuery()
     {
-        $this->supplierProductsList = SupplierProduct::where('name', 'like', $this->query.'%')->get();
-        $this->supplierList = Supplier::where('company_name', 'like', $this->query.'%')->get();
-        $this->categoriesList = SupplierProductCategory::where('name', 'like', $this->query.'%')->get();
-        $this->brandList = Brand::where('name', 'like', $this->query.'%')->get();
+        $this->supplierProductsList = SupplierProduct::where('title', 'like', $this->query . '%')->get();
+        $this->supplierList = Supplier::where('company_name', 'like', $this->query . '%')->get();
+        $this->categoriesList = SupplierProductCategory::where('name', 'like', $this->query . '%')->get();
+        $this->brandList = Brand::where('name', 'like', $this->query . '%')->get();
     }
 
     public function render()

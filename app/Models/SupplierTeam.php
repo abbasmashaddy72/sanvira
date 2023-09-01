@@ -15,7 +15,7 @@ class SupplierTeam extends Model
         'name',
         'email',
         'phone',
-        'designation',
+        'poc',
         'image',
     ];
 

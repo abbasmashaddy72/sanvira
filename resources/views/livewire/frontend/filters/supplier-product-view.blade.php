@@ -1,27 +1,38 @@
 @if ($type != 'Product Details Page')
     <div
         class="group overflow-hidden rounded-md border-2 border-gray-200 bg-white shadow duration-500 ease-in-out hover:border-2 hover:border-blue-600 hover:shadow-xl dark:bg-slate-900 dark:shadow-gray-800 dark:hover:shadow-xl dark:hover:shadow-gray-700">
-        <a href="{{ route('products_details', ['data' => $item->id]) }}">
+        <a href="{{ route('products_details', ['slug' => $item->slug]) }}">
             <div class="relative">
-                <img class="h-40 w-full object-cover" src="{{ asset('storage/' . $item->images[0]) }}" alt="">
+                <img class="h-40 w-full object-cover" src="{{ asset('storage/' . $item->images[0]) }}" alt=""
+                    onerror="this.onerror=null; this.src='https://placehold.co/1280x625';">
                 @if ($item->on_sale)
                     <span
-                        class="absolute top-0 left-0 mt-3 ml-3 inline-flex rounded-lg bg-green-500 px-3 py-2 text-sm font-medium text-white">
+                        class="text-md absolute -right-14 top-4 w-40 rotate-45 bg-yellow-400 text-center font-semibold text-white">
                         {{ __('On Sale') }}
+                    </span>
+                @endif
+
+                @if ($item->avb_stock > 0)
+                    <span
+                        class="absolute left-0 top-0 ml-2 mt-2 inline-flex rounded-lg bg-green-500 px-3 py-2 text-sm font-medium text-white">
+                        {{ __('In Stock') }}
+                    </span>
+                @endif
+
+                @if ($item->productViews->count() > 0)
+                    <span
+                        class="absolute bottom-0 left-0 mb-2 ml-2 inline-flex rounded-lg bg-blue-600 p-2 text-sm font-medium text-white">
+                        {{ $item->productViews->count() }}+
                     </span>
                 @endif
             </div>
 
             <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
                 <div class="truncate text-lg font-semibold duration-500 ease-in-out hover:text-blue-600">
-                    {{ $item->name }}</div>
+                    {{ $item->title }}</div>
             </div>
             <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
-                <svg data-tooltip-target="price" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
-                    class="mr-2 h-6 w-6 fill-blue-600" viewBox="0 0 117.77 122.88">
-                    <path
-                        d="M19.81,113.35a7.89,7.89,0,0,1-1.74,3.45,5.87,5.87,0,0,1-2.46,1.31L0,122.88a16.13,16.13,0,0,1,2.51-3.75,11.83,11.83,0,0,1,3.72-2,12.16,12.16,0,0,1-2.93-2.41,3.47,3.47,0,0,1-.92-2.21A5.19,5.19,0,0,1,3,110.37,13.08,13.08,0,0,1,4.47,108c3.15-4.2,6.25-6.28,9.33-6.28a2.91,2.91,0,0,1,2.21.89,3.39,3.39,0,0,1,.82,2.36,5.39,5.39,0,0,1-.32,2,18.35,18.35,0,0,1-1.34,2.5q-3.59-1.78-4.89-1.78a5.82,5.82,0,0,0-2.58.64,6.66,6.66,0,0,0-1.59,1.17c0,.65,1.16,1.61,3.47,2.93s4,2,5,2a34.37,34.37,0,0,0,5.24-1ZM20,67.17A43.15,43.15,0,0,1,18.42,79a95.91,95.91,0,0,1-6,14.37L8,91.6A83,83,0,0,0,9.83,76.46c0-3-.25-7.3-.72-13S8,52.06,7.27,46.45s-1.91-12.29-3.57-20a33.76,33.76,0,0,1-.87-5.61c0-1.49.75-4,2.26-7.67S8.69,5.14,11.4,0l4.41,25.77q2.46,14.7,3.4,25.47c.5,5.53.75,10.85.75,15.93Zm15.91,42.45V89.22H56.28v20.4Zm81.9-21.3h-33c-3.21,0-5.66-.67-7.38-2-2.08-1.66-3.13-4.37-3.13-8.09,0-2.16.13-4.47.35-6.93s.55-5,1-7.52l3-.15a5.6,5.6,0,0,0,2.59,3.75A9.39,9.39,0,0,0,86,68.51h24.93q-1.68-10.71-5.81-17.1a30.44,30.44,0,0,0-9.54-9.18l5.29-22.72a38.18,38.18,0,0,1,13.31,18.2q3.61,10.27,3.6,27.23V88.32Z" />
-                </svg>
+                <span class="mr-2 h-6 w-6 font-semibold text-blue-600">AED</span>
                 <div id="price" role="tooltip"
                     class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
                     {{ __('AED') }}
@@ -31,20 +42,20 @@
                     class="truncate">{{ $item->price ? $item->price : $item->min_price . ' - ' . $item->max_price }}</span>
             </div>
 
-            <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
-                <svg data-tooltip-target="sku" class="mr-2 h-6 w-6 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
+            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
+                <svg data-tooltip-target="sku" class="w-6 h-6 mr-2 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
                     height="48" viewBox="0 -960 960 960" width="48">
                     <path
                         d="M620-159 460-319l43-43 117 117 239-239 43 43-282 282Zm220-414h-60v-207h-60v90H240v-90h-60v600h251v60H180q-26 0-43-17t-17-43v-600q0-26 17-43t43-17h202q7-35 34.5-57.5T480-920q36 0 63.5 22.5T578-840h202q26 0 43 17t17 43v207ZM480-780q17 0 28.5-11.5T520-820q0-17-11.5-28.5T480-860q-17 0-28.5 11.5T440-820q0 17 11.5 28.5T480-780Z" />
                 </svg>
 
                 <div id="sku" role="tooltip"
-                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
+                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
                     {{ __('Stock Keeping Unit') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <span class="truncate">{{ $item->sku }}</span>
-            </div>
+            </div> --}}
             {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
                 <div class="flex">
                     <svg data-tooltip-target="min_max_oq" class="w-6 h-6 mr-2 fill-blue-600" version="1.1"
@@ -154,7 +165,7 @@
                     {{ __('Country of Origin') }}
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                {{ $item->country->name }}
+                <span class="truncate">{{ $item->country->name }}</span>
             </div>
         </a>
 

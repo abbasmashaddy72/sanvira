@@ -99,7 +99,7 @@ class DashboardController extends Controller
             ->select('supplier_product_id', DB::raw('SUM(clicks) as total_clicks'))->with('supplierProduct')->get();
         $productViewsChart = $productViews->reduce(
             function ($columnChartModel, $data) {
-                $type = $data->supplierProduct->name;
+                $type = $data->supplierProduct->title;
                 $value = $data->total_clicks;
                 $color = RandomColor::one(['luminosity' => 'dark', 'format' => 'hex']);
 

@@ -33,7 +33,7 @@
                         role="button" @click="dropdownMenu = !dropdownMenu">
                         {{ Auth::user()->initials }}
                     </div>
-                    <ul class="absolute right-0 mt-2 w-44 rounded-md bg-white bg-gray-100 py-2 shadow" x-show="dropdownMenu"
+                    <ul class="absolute right-0 mt-2 w-44 rounded-md bg-gray-100 bg-white py-2 shadow" x-show="dropdownMenu"
                         @click.away="dropdownMenu = false">
                         <li class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white">
                             {{ Auth::user()->name }}
@@ -90,6 +90,10 @@
 
                 <li>
                     <a href="{{ route('about_us') }}" class="sub-menu-item">{{ __('About Us') }}</a>
+                </li>
+
+                <li>
+                    <a href="{{ route('career') }}" class="sub-menu-item">{{ __('Career') }}</a>
                 </li>
 
                 <li>

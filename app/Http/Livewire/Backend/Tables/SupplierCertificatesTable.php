@@ -40,6 +40,9 @@ class SupplierCertificatesTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(['Award', 'Certificate']),
 
+            BooleanColumn::name('verification')
+                ->filterable(),
+
             DateColumn::name('created_at')
                 ->filterable(),
 

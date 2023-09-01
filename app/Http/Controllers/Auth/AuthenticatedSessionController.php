@@ -30,13 +30,13 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
 
-        $request->session()->regenerate();
+        // $request->session()->regenerate();
 
-        if (!Auth::user()->password_changed) {
-            Session::put('password_change', true);
+        // if (!Auth::user()->last_password_change && env('production')) {
+        //     Session::put('password_change', true);
 
-            return redirect()->route('password.change');
-        }
+        //     return redirect()->route('password.change');
+        // }
 
         return redirect()->intended(RouteServiceProvider::HOME());
     }

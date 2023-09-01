@@ -28,7 +28,7 @@ class ModalSupplierProduct extends ModalComponent
 
     public $manufacturer_id;
 
-    public $name;
+    public $title;
 
     public $description;
 
@@ -46,6 +46,26 @@ class ModalSupplierProduct extends ModalComponent
 
     public $sku;
 
+    public $barcode;
+
+    public $own_sku;
+
+    public $length;
+
+    public $length_units = 'mm';
+
+    public $breadth;
+
+    public $breadth_units = 'mm';
+
+    public $width;
+
+    public $width_units = 'mm';
+
+    public $weight;
+
+    public $weight_units = 'kg';
+
     public $on_sale = false;
 
     public $images = [];
@@ -57,6 +77,8 @@ class ModalSupplierProduct extends ModalComponent
     public $min_price;
 
     public $max_price;
+
+    public $verification;
 
     // SupplierProductAttributes Model Values
     public $supplier_product_id_spa;
@@ -78,6 +100,12 @@ class ModalSupplierProduct extends ModalComponent
 
     protected $temporaryUploadDirectory = 'storage/livewire-tmp';
 
+    public $sub_category;
+
+    public $main_category_id;
+
+    protected $listeners = ['setUnits'];
+
     public function add($i)
     {
         $i = $i + 1;
@@ -90,6 +118,18 @@ class ModalSupplierProduct extends ModalComponent
         unset($this->inputs[$i]);
     }
 
+    public function UpdatedMainCategoryId()
+    {
+        $this->sub_category = true;
+    }
+
+    public function setUnits($value)
+    {
+        $this->length_units = $value;
+        $this->breadth_units = $value;
+        $this->width_units = $value;
+    }
+
     public function mount()
     {
         if (empty($this->supplier_product_id)) {
@@ -98,13 +138,13 @@ class ModalSupplierProduct extends ModalComponent
             return;
         }
         abort_if(Gate::denies('supplier_product_edit'), 403);
-        $data = SupplierProduct::findOrFail($this->supplier_product_id);
+        $data = SupplierProduct::with('supplierProductCategory')->findOrFail($this->supplier_product_id);
         $this->supplier_id = $data->supplier_id;
         $this->supplier_product_category_id = $data->supplier_product_category_id;
         $this->country_id = $data->country_id;
         $this->brand_id = $data->brand_id;
         $this->manufacturer_id = $data->manufacturer_id;
-        $this->name = $data->name;
+        $this->title = $data->title;
         $this->description = $data->description;
         $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
         $this->edt = $data->edt;
@@ -112,14 +152,27 @@ class ModalSupplierProduct extends ModalComponent
         $this->model = $data->model;
         $this->item_type = $data->item_type;
         $this->sku = $data->sku;
+        $this->barcode = $data->barcode;
+        $this->own_sku = $data->own_sku;
+        $this->length = $data->length;
+        $this->length_units = $data->length_units;
+        $this->breadth = $data->breadth;
+        $this->breadth_units = $data->breadth_units;
+        $this->width = $data->width;
+        $this->width_units = $data->width_units;
+        $this->weight = $data->weight;
+        $this->weight_units = $data->weight_units;
         $this->on_sale = $data->on_sale;
         $this->images = $data->images;
         $this->data_sheets = $data->data_sheets;
+        $this->verification = $data->verification;
         if (!is_null($data->price)) {
             $this->price = $data->price;
         } else {
             $this->price = $data->min_price . '-' . $data->max_price;
         }
+        $this->main_category_id = $data->supplierProductCategory->parent_id;
+        $this->sub_category = true;
         $data_spa = SupplierProductAttributes::where('supplier_product_id', $this->supplier_product_id)->get();
         foreach ($data_spa as $key => $value) {
             $this->name_spa[] = $value->name;
@@ -136,7 +189,7 @@ class ModalSupplierProduct extends ModalComponent
         'country_id' => 'required',
         'brand_id' => 'required',
         'manufacturer_id' => 'required',
-        'name' => 'required',
+        'title' => 'required',
         'description' => '',
         'min_max_oq' => 'required',
         'edt' => 'required',
@@ -144,10 +197,20 @@ class ModalSupplierProduct extends ModalComponent
         'model' => 'required',
         'item_type' => 'required',
         'sku' => '',
+        'barcode' => '',
+        'own_sku' => '',
+        'length' => '',
+        'length_units' => '',
+        'breadth' => '',
+        'breadth_units' => '',
+        'width' => '',
+        'width_units' => '',
+        'weight' => '',
+        'weight_units' => '',
         'on_sale' => 'required',
-        'images' => 'required',
+        'images' => 'required|array|min:4',
         'data_sheets' => '',
-        'price' => 'required',
+        'price' => '',
         'min_price' => '',
         'max_price' => '',
     ];

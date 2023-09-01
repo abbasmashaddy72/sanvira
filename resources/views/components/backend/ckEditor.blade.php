@@ -4,10 +4,10 @@
     $componentId = $idPrefix . '_' . uniqid();
 @endphp
 
-<div wire:ignore class="form-group row mt-4">
+<div wire:ignore class="mt-4 form-group row">
     <label class="block">
         <x-label :label="$label" />
-        <div class="col-md-9 mt-2">
+        <div class="mt-2 col-md-9">
             <textarea id="{{ $componentId }}" wire:model.debounce.2000msDOMContentLoaded="{{ $name }}"></textarea>
         </div>
     </label>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use App\Models\Supplier;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -34,10 +35,10 @@ class SupplierProjectFactory extends Factory
         return [
             'supplier_id' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'name' => $this->faker->name(),
-            'country' => $this->faker->country(),
+            'country_id' => Country::pluck('id')[$this->faker->numberBetween(1, Country::count() - 1)],
             'city' => $this->faker->city(),
             'description' => $description,
-            'year_range' => rand(1994, 2023).'-'.rand(1994, 2023),
+            'year_range' => rand(1994, 2023) . '-' . rand(1994, 2023),
             'images' => $random_array,
             'feedback' => $this->faker->realText(),
         ];

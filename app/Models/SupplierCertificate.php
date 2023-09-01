@@ -14,6 +14,7 @@ class SupplierCertificate extends Model
         'title',
         'attachment',
         'type',
+        'verification',
     ];
 
     public function suppliers()

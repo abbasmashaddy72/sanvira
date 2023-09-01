@@ -13,17 +13,22 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function supplier_categories(Request $request)
+    public function supplier_categories(Request $request, $parent_id = null)
     {
-        $data = SupplierProductCategory::query()->select('id', 'name')
+        $query = SupplierProductCategory::query()->select('id', 'name')
             ->orderBy('name')
-            ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
-            ->when(
-                $request->exists('selected'),
-                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
-                fn (Builder $query) => $query->limit(10)
-            )
-            ->get();
+            ->when($request->search, function (Builder $query) use ($request) {
+                $query->where('name', 'like', "%{$request->search}%");
+            })
+            ->when($parent_id !== null, function (Builder $query) use ($parent_id) {
+                $query->where('parent_id', $parent_id);
+            });
+
+        if ($request->exists('selected')) {
+            $query->whereIn('id', $request->input('selected', []));
+        }
+
+        $data = $query->limit(10)->get();
 
         return $data;
     }

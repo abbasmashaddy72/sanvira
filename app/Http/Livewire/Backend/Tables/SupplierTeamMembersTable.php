@@ -35,7 +35,16 @@ class SupplierTeamMembersTable extends LivewireDatatable
                 return view('components.backend.dt-image', ['image' => $image]);
             })->excludeFromExport()->unsortable()->label('Image'),
 
-            Column::name('designation')
+            Column::name('email')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('phone')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('poc')
+                ->label('Point of Contact')
                 ->searchable()
                 ->filterable(),
 

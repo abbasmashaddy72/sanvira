@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('password_changed')->default(false);
+            $table->timestamp('last_password_change')->nullable()->after('remember_token');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('password_changed');
+            $table->dropColumn('last_password_change');
         });
     }
 };

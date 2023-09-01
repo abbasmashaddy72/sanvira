@@ -145,13 +145,11 @@ class SupplierProductCategorySeeder extends Seeder
         ];
 
         foreach ($inputs as $data) {
-            SupplierProductCategory::insert([
+            SupplierProductCategory::create([
                 'id' => $data[0],
                 'name' => $data[1],
-                'image' => 'supplier_product_category/'.$data[1].'.jpg',
+                'image' => 'supplier_product_category/' . $data[1] . '.jpg',
                 'parent_id' => $data[2],
-                'created_at' => now(),
-                'updated_at' => now(),
             ]);
         }
     }

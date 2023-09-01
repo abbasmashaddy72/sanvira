@@ -55,8 +55,14 @@ class FrontendController extends Controller
         return view('pages.frontend.sales_page', compact('sales_id'));
     }
 
-    public function products_category(SupplierProductCategory $product_category)
+    public function products_category($slug)
     {
+        $product_category = SupplierProductCategory::where('slug', $slug)->first();
+
+        if (!$product_category) {
+            abort(404);
+        }
+
         view()->share('title', $product_category->name);
         foreach (Supplier::all() as $supplier) {
             SupplierProductCategoryView::updateOrCreate(
@@ -80,8 +86,14 @@ class FrontendController extends Controller
         return view('pages.frontend.product_category');
     }
 
-    public function supplier_profile(Supplier $profile)
+    public function supplier_profile($slug)
     {
+        $profile = Supplier::where('slug', $slug)->first();
+
+        if (!$profile) {
+            abort(404);
+        }
+
         view()->share('title', $profile->company_name);
         $profile->with('manager');
 
@@ -112,9 +124,15 @@ class FrontendController extends Controller
         return view('pages.frontend.products');
     }
 
-    public function products_details(SupplierProduct $data)
+    public function products_details($slug)
     {
-        view()->share('title', $data->name);
+        $data = SupplierProduct::where('slug', $slug)->first();
+
+        if (!$data) {
+            abort(404);
+        }
+
+        view()->share('title', $data->title);
         $data->with(['brands', 'manufactures', 'productAttributes', 'suppliers', 'supplierProductCategory']);
         SupplierProductView::updateOrCreate(
             [
@@ -166,8 +184,14 @@ class FrontendController extends Controller
         return view('pages.frontend.brands');
     }
 
-    public function brand_products(Brand $brand)
+    public function brand_products($slug)
     {
+        $brand = Brand::where('slug', $slug)->first();
+
+        if (!$brand) {
+            abort(404);
+        }
+
         view()->share('title', $brand->name);
 
         return view('pages.frontend.brands_details', compact('brand'));

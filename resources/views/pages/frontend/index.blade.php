@@ -7,7 +7,8 @@
                         <a href="{{ $slider->url }}">
                             <div class="relative h-48 lg:h-96">
                                 <img src="{{ asset('storage/' . $slider->image) }}"
-                                    class="absolute inset-0 h-full w-full rounded border-none object-cover shadow"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/1280x320';"
+                                    class="absolute inset-0 object-cover w-full h-full border-none rounded shadow"
                                     alt="{{ $slider->name }}">
                             </div>
                         </a>
@@ -37,10 +38,10 @@
             @endforeach
         </div>
 
-        <div class="grid grid-cols-1 justify-center">
+        <div class="grid justify-center grid-cols-1">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_products_category') }}"
-                    class="btn mt-2 mr-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
+                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:border-blue-700 hover:bg-blue-700">
                     {{ __('View All Categories') }}
                 </a>
             </div>
@@ -53,15 +54,15 @@
                 <x-frontend.brands :item="$item" />
                 @if ($loop->iteration == 4)
         </div>
-        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3 lg:grid-cols-5">
             @endif
             @endforeach
         </div>
 
-        <div class="grid grid-cols-1 justify-center">
+        <div class="grid justify-center grid-cols-1">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_brands') }}"
-                    class="btn mt-2 mr-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
+                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:border-blue-700 hover:bg-blue-700">
                     {{ __('View All Brands') }}
                 </a>
             </div>
@@ -74,15 +75,15 @@
                 <x-frontend.supplier-profile :item="$item" />
                 @if ($loop->iteration == 4)
         </div>
-        <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
+        <div class="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3 lg:grid-cols-5">
             @endif
             @endforeach
         </div>
 
-        <div class="grid grid-cols-1 justify-center">
+        <div class="grid justify-center grid-cols-1">
             <div class="mt-6 text-center">
                 <a href="{{ route('all_supplier_profile') }}"
-                    class="btn mt-2 mr-2 rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">
+                    class="mt-2 mr-2 text-white bg-blue-600 border-blue-600 rounded-md btn hover:border-blue-700 hover:bg-blue-700">
                     {{ __('View All Suppliers') }}
                 </a>
             </div>

@@ -113,7 +113,7 @@ class SupplierProfilePage extends Component
     public function render()
     {
         $supplier_certificates = SupplierCertificate::where('supplier_id', $this->profile->id)->get();
-        $supplier_projects = SupplierProject::where('supplier_id', $this->profile->id)->orderBy('year_range', 'DESC')->get();
+        $supplier_projects = SupplierProject::where('supplier_id', $this->profile->id)->with('country')->orderBy('year_range', 'DESC')->get();
         $supplier_teams = SupplierTeam::where('supplier_id', $this->profile->id)->get();
         $supplier_testimonials = SupplierTestimonial::where('supplier_id', $this->profile->id)->orderBy('year', 'DESC')->get();
 

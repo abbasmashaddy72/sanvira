@@ -25,6 +25,7 @@ class SupplierCertificateFactory extends Factory
             'title' => $this->faker->title(),
             'attachment' => $images[array_rand($images)],
             'type' => $types[array_rand($types)],
+            'verification' => rand(0, 1),
         ];
     }
 }

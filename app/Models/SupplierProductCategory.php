@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Kirschbaum\PowerJoins\PowerJoins;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class SupplierProductCategory extends Model
 {
@@ -14,6 +15,7 @@ class SupplierProductCategory extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'image',
         'parent_id',
     ];
@@ -31,5 +33,11 @@ class SupplierProductCategory extends Model
     public function categoryViews()
     {
         return $this->hasMany(SupplierProductCategoryView::class, 'supplier_product_category_id');
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
     }
 }

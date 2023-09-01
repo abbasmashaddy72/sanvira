@@ -1,4 +1,4 @@
-<x-frontend.index-container class="mt-16 py-4">
+<x-frontend.index-container class="py-4 mt-16">
     <div
         class="@if ($type == 'common-top') grid-cols-1 lg:grid-cols-2 h-32 @else grid-cols-1 h-80 @endif m-auto grid items-center justify-center text-center">
         <div class="">
@@ -10,38 +10,38 @@
             </h1>
             @if ($type == 'common-top')
             @else
-                <p class="sm:text-md mx-auto mt-5 max-w-3xl text-sm md:text-lg">
+                <p class="max-w-3xl mx-auto mt-5 text-sm sm:text-md md:text-lg">
                     {{ get_static_option('short_description') }}</p>
             @endif
         </div>
         <div class="">
-            <form class="relative mx-auto max-w-4xl" action="{{ url('searchForm') }}">
+            <form class="relative max-w-4xl mx-auto" action="{{ url('searchForm') }}">
                 <div class="relative">
                     <input type="text" name="search" min="3"
-                        class="h-12 w-full rounded-full bg-white/60 py-2 pl-4 pr-12 text-black shadow-md outline-none dark:bg-slate-900/60 dark:text-white dark:shadow-gray-800 md:h-14 md:py-4 md:pl-6"
+                        class="w-full h-12 py-2 pl-4 pr-12 text-black rounded-full shadow-md outline-none bg-white/60 dark:bg-slate-900/60 dark:text-white dark:shadow-gray-800 md:h-14 md:py-4 md:pl-6"
                         placeholder="Search" wire:model="query" wire:keydown.escape="resetData"
                         wire:keydown.tab="resetData" />
                     <button type="submit"
-                        class="absolute right-0 top-0 h-full rounded-full border-blue-600 bg-blue-600 px-4 text-white hover:border-blue-700 hover:bg-blue-700 md:px-6">Search</button>
+                        class="absolute top-0 right-0 h-full px-4 text-white bg-blue-600 border-blue-600 rounded-full hover:border-blue-700 hover:bg-blue-700 md:px-6">Search</button>
                 </div>
 
                 @if (!empty($query))
-                    <div class="fixed bottom-0 left-0 right-0 top-0" wire:click="resetData"></div>
+                    <div class="fixed top-0 bottom-0 left-0 right-0" wire:click="resetData"></div>
 
-                    <div class="absolute z-10 w-full rounded-lg bg-white p-4 shadow-lg">
+                    <div class="absolute z-10 w-full p-4 bg-white rounded-lg shadow-lg">
                         <div wire:loading>
                             <div class="p-4 text-left text-blue-600">{{ __('Searching...') }}</div>
                         </div>
 
-                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Supplier Product List') }}</p>
+                        <p class="text-lg font-semibold text-center text-gray-900">{{ __('Supplier Product List') }}</p>
                         @forelse ($supplierProductsList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
-                                class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
+                                class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->title }}</a>
                         @empty
                             <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Supplier List') }}</p>
+                        <p class="text-lg font-semibold text-center text-gray-900">{{ __('Supplier List') }}</p>
                         @forelse ($supplierList as $item)
                             <a href="{{ route('supplier_profile', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->company_name }}</a>
@@ -49,7 +49,7 @@
                             <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Categories List') }}</p>
+                        <p class="text-lg font-semibold text-center text-gray-900">{{ __('Categories List') }}</p>
                         @forelse ($categoriesList as $item)
                             <a href="{{ route('products_category', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
@@ -57,7 +57,7 @@
                             <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
 
-                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Brand List') }}</p>
+                        <p class="text-lg font-semibold text-center text-gray-900">{{ __('Brand List') }}</p>
                         @forelse ($brandList as $item)
                             <a href="{{ route('products_details', $item->id) }}"
                                 class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>

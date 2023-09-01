@@ -27,7 +27,7 @@ class ModalSupplierTeamMember extends ModalComponent
 
     public $phone;
 
-    public $designation;
+    public $poc;
 
     public $imageIsUploaded = false;
 
@@ -45,7 +45,7 @@ class ModalSupplierTeamMember extends ModalComponent
         $this->email = $data->email;
         $this->phone = $data->phone;
         $this->image = $data->image;
-        $this->designation = $data->designation;
+        $this->poc = $data->poc;
     }
 
     protected $rules = [
@@ -53,7 +53,7 @@ class ModalSupplierTeamMember extends ModalComponent
         'email' => 'required',
         'phone' => 'required',
         'image' => '',
-        'designation' => 'required',
+        'poc' => 'required',
     ];
 
     public function updated($propertyName)
@@ -69,15 +69,15 @@ class ModalSupplierTeamMember extends ModalComponent
         $validatedData = $this->validate();
         $validatedData['supplier_id'] = $this->supplier_id;
 
-        if (! empty($this->supplier_team_member_id)) {
-            if (! empty($this->image) && gettype($this->image) != 'string') {
+        if (!empty($this->supplier_team_member_id)) {
+            if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_team_member', 'public');
             }
             SupplierTeam::where('id', $this->supplier_team_member_id)->update($validatedData);
 
             $this->notification()->success($title = 'Supplier Team Member Updated Successfully!');
         } else {
-            if (! empty($this->image) && gettype($this->image) != 'string') {
+            if (!empty($this->image) && gettype($this->image) != 'string') {
                 $validatedData['image'] = $this->image->store('supplier_team_member', 'public');
             }
             SupplierTeam::create($validatedData);

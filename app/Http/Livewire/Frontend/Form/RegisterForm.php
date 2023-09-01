@@ -99,7 +99,7 @@ class RegisterForm extends Component
             'name' => $this->validatedData['name'],
             'email' => $this->validatedData['email'],
             'phone' => $this->validatedData['contact_no'],
-            'designation' => $this->validatedData['job_title'],
+            'poc' => $this->validatedData['job_title'],
             'image' => null,
         ]);
 

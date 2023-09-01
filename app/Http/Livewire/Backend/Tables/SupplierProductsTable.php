@@ -17,7 +17,7 @@ class SupplierProductsTable extends LivewireDatatable
 
     public function builder()
     {
-        return SupplierProduct::query()->joinRelationship('manufacturers')->joinRelationship('brands')->where('supplier_id', $this->supplier_id);
+        return SupplierProduct::query()->joinRelationship('manufacturers')->joinRelationship('country')->joinRelationship('brands')->where('supplier_id', $this->supplier_id);
     }
 
     public function columns()
@@ -29,7 +29,7 @@ class SupplierProductsTable extends LivewireDatatable
             Column::index($this)
                 ->unsortable(),
 
-            Column::name('name')
+            Column::name('title')
                 ->searchable()
                 ->filterable(),
 
@@ -46,8 +46,41 @@ class SupplierProductsTable extends LivewireDatatable
                 ->filterable(),
 
             NumberColumn::name('edt')
+                ->label('EDT (in Days)')
                 ->searchable()
                 ->filterable(),
+
+            NumberColumn::name('length')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('length_units')
+                ->searchable()
+                ->filterable(['m', 'cm', 'mm', 'in', 'ft']),
+
+            NumberColumn::name('breadth')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('breadth_units')
+                ->searchable()
+                ->filterable(['m', 'cm', 'mm', 'in', 'ft']),
+
+            NumberColumn::name('width')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('width_units')
+                ->searchable()
+                ->filterable(['m', 'cm', 'mm', 'in', 'ft']),
+
+            NumberColumn::name('weight')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('weight_units')
+                ->searchable()
+                ->filterable(['kg', 'g', 't', 'oz']),
 
             Column::name('avb_stock')
                 ->searchable()
@@ -55,6 +88,11 @@ class SupplierProductsTable extends LivewireDatatable
 
             Column::name('manufacturers.name')
                 ->label('Manufacturer')
+                ->searchable()
+                ->filterable(),
+
+            Column::name('country.name')
+                ->label('Country')
                 ->searchable()
                 ->filterable(),
 
@@ -71,6 +109,10 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
+            Column::name('barcode')
+                ->searchable()
+                ->filterable(),
+
             Column::name('sku')
                 ->searchable()
                 ->filterable(),
@@ -79,8 +121,8 @@ class SupplierProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::callback(['images', 'name'], function ($images, $name) {
-                return view('components.backend.dt-image', ['images' => $images, 'name' => $name]);
+            Column::callback(['images', 'title'], function ($images, $title) {
+                return view('components.backend.dt-image', ['images' => $images, 'name' => $title]);
             })->excludeFromExport()->unsortable()->label('Images'),
 
             DateColumn::name('created_at')

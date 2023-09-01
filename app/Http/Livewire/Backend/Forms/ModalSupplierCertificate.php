@@ -25,6 +25,8 @@ class ModalSupplierCertificate extends ModalComponent
 
     public $type;
 
+    public $verification;
+
     public function mount()
     {
         if (empty($this->supplier_certificate_id)) {
@@ -38,12 +40,14 @@ class ModalSupplierCertificate extends ModalComponent
         $this->title = $data->title;
         $this->attachment = $data->attachment;
         $this->type = $data->type;
+        $this->verification = $data->verification;
     }
 
     protected $rules = [
         'title' => 'required',
         'attachment' => 'required',
         'type' => 'required',
+        'verification' => '',
     ];
 
     public function updated($propertyName)
@@ -56,15 +60,15 @@ class ModalSupplierCertificate extends ModalComponent
         $validatedData = $this->validate();
         $validatedData['supplier_id'] = $this->supplier_id;
 
-        if (! empty($this->supplier_certificate_id)) {
-            if (! empty($this->attachment) && gettype($this->attachment) != 'string') {
+        if (!empty($this->supplier_certificate_id)) {
+            if (!empty($this->attachment) && gettype($this->attachment) != 'string') {
                 $validatedData['attachment'] = $this->attachment->store('supplier_certificates', 'public');
             }
             SupplierCertificate::where('id', $this->supplier_certificate_id)->update($validatedData);
 
             $this->notification()->success($title = 'Supplier Certificate Updated Successfully!');
         } else {
-            if (! empty($this->attachment) && gettype($this->attachment) != 'string') {
+            if (!empty($this->attachment) && gettype($this->attachment) != 'string') {
                 $validatedData['attachment'] = $this->attachment->store('supplier_certificates', 'public');
             }
             SupplierCertificate::create($validatedData);

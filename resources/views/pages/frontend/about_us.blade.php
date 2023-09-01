@@ -31,7 +31,7 @@
         </section>
         <div class="relative">
             <div
-                class="shape z-1 end-0 start-0 absolute -bottom-[2px] overflow-hidden text-white dark:text-slate-900 sm:-bottom-px">
+                class="shape z-1 absolute -bottom-[2px] end-0 start-0 overflow-hidden text-white dark:text-slate-900 sm:-bottom-px">
                 <svg class="h-auto w-full" viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
                 </svg>
@@ -141,7 +141,7 @@
                 <div class="-3 relative overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-28 w-28 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="end-0 start-0 absolute top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         <i class="uil uil-hard-hat"></i>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                 <div class="-3 relative overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-28 w-28 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="end-0 start-0 absolute top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         <i class="uil uil-building"></i>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                 <div class="-3 relative overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-28 w-28 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="end-0 start-0 absolute top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         <i class="uil uil-store-alt"></i>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                 <div class="-3 relative overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-28 w-28 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="end-0 start-0 absolute top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         <i class="uil uil-setting"></i>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                 <div class="tiny-five-item">
                     @foreach ($featured_suppliers as $item)
                         <div class="tiny-slide">
-                            <a href="{{ route('supplier_profile', ['profile' => $item->id]) }}"
+                            <a href="{{ route('supplier_profile', ['slug' => $item->slug]) }}"
                                 class='group relative block overflow-hidden p-3'>
                                 <img src="{{ asset('storage/' . $item->logo) }}"
                                     class="mx-auto h-32 w-full rounded-lg object-cover shadow-md"

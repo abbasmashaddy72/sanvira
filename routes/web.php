@@ -23,16 +23,16 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
     Route::get('return_refunds', 'FrontendController@return_refunds')->name('return_refunds');
     Route::get('career', 'FrontendController@career')->name('career');
 
-    Route::group(['middleware' => ['verified']], function () {
+    Route::group(['middleware' => ['verified', 'password.change.check']], function () {
         Route::get('supplier_products_sales/{sales_id}', 'FrontendController@supplier_products_sales')->name('supplier_products_sales');
-        Route::get('products_category/{product_category}', 'FrontendController@products_category')->name('products_category');
+        Route::get('products_category/{slug}', 'FrontendController@products_category')->name('products_category');
         Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category');
-        Route::get('supplier_profile/{profile}', 'FrontendController@supplier_profile')->name('supplier_profile');
+        Route::get('supplier_profile/{slug}', 'FrontendController@supplier_profile')->name('supplier_profile');
         Route::get('all_supplier_profile', 'FrontendController@all_supplier_profile')->name('all_supplier_profile');
         Route::get('all_products', 'FrontendController@all_products')->name('all_products');
         Route::get('all_brands', 'FrontendController@all_brands')->name('all_brands');
-        Route::get('brand_products/{brand}', 'FrontendController@brand_products')->name('brand_products');
-        Route::get('products_details/{data}', 'FrontendController@products_details')->name('products_details');
+        Route::get('brand_products/{slug}', 'FrontendController@brand_products')->name('brand_products');
+        Route::get('products_details/{slug}', 'FrontendController@products_details')->name('products_details');
         Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm');
     });
 
@@ -40,7 +40,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
 });
 
 // Backend Routes
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'password.change.check'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('role', 'RoleController@index')->name('role');
     Route::get('user', 'UserController@index')->name('user');

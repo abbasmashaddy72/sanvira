@@ -22,7 +22,7 @@ class SliderFactory extends Factory
         return [
             'name' => Supplier::pluck('company_name')[$this->faker->numberBetween(1, Supplier::count() - 1)],
             'image' => $images[array_rand($images)],
-            'url' => route('supplier_profile', ['profile' => Supplier::pluck('id')[$this->faker->numberBetween(1, Supplier::count() - 1)]]),
+            'url' => route('supplier_profile', ['slug' => Supplier::pluck('slug')[$this->faker->numberBetween(1, Supplier::count() - 1)]]),
         ];
     }
 }

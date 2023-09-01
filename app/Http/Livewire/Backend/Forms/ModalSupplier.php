@@ -52,13 +52,15 @@ class ModalSupplier extends ModalComponent
 
     public $agree;
 
+    public $verification = false;
+
     public $contact_person_name;
 
     public $contact_person_email;
 
     public $contact_person_number;
 
-    public $contact_person_designation;
+    public $contact_person_poc;
 
     public $logoIsUploaded = false;
 
@@ -86,10 +88,11 @@ class ModalSupplier extends ModalComponent
         $this->description = $data->description;
         $this->terms_conditions = $data->terms_conditions;
         $this->agree = $data->agree;
+        $this->verification = $data->verification;
         $this->contact_person_name = $data->manager->name;
         $this->contact_person_email = $data->manager->email;
         $this->contact_person_number = $data->manager->phone;
-        $this->contact_person_designation = $data->manager->designation;
+        $this->contact_person_poc = $data->manager->poc;
     }
 
     protected $rules = [
@@ -106,10 +109,11 @@ class ModalSupplier extends ModalComponent
         'website_url' => '',
         'description' => '',
         'terms_conditions' => '',
+        'verification' => '',
         'contact_person_name' => 'required',
         'contact_person_email' => 'required',
         'contact_person_number' => 'required',
-        'contact_person_designation' => 'required',
+        'contact_person_poc' => 'required',
     ];
 
     public function updated($propertyName)
@@ -128,11 +132,11 @@ class ModalSupplier extends ModalComponent
             $contact_person_name = $validatedData['contact_person_name'];
             $contact_person_email = $validatedData['contact_person_email'];
             $contact_person_number = $validatedData['contact_person_number'];
-            $contact_person_designation = $validatedData['contact_person_designation'];
+            $contact_person_poc = $validatedData['contact_person_poc'];
             unset($validatedData['contact_person_name']);
             unset($validatedData['contact_person_email']);
             unset($validatedData['contact_person_number']);
-            unset($validatedData['contact_person_designation']);
+            unset($validatedData['contact_person_poc']);
 
             $user = User::where('id', $this->user_id)->update([
                 'name' => $contact_person_name,
@@ -155,7 +159,7 @@ class ModalSupplier extends ModalComponent
                 'name' => $contact_person_name,
                 'email' => $contact_person_email,
                 'phone' => $contact_person_number,
-                'designation' => $contact_person_designation,
+                'poc' => $contact_person_poc,
             ]);
 
             $this->notification()->success($title = 'Supplier Updated Successfully!');
@@ -163,11 +167,11 @@ class ModalSupplier extends ModalComponent
             $contact_person_name = $validatedData['contact_person_name'];
             $contact_person_email = $validatedData['contact_person_email'];
             $contact_person_number = $validatedData['contact_person_number'];
-            $contact_person_designation = $validatedData['contact_person_designation'];
+            $contact_person_poc = $validatedData['contact_person_poc'];
             unset($validatedData['contact_person_name']);
             unset($validatedData['contact_person_email']);
             unset($validatedData['contact_person_number']);
-            unset($validatedData['contact_person_designation']);
+            unset($validatedData['contact_person_poc']);
 
             $user = User::create([
                 'name' => $contact_person_name,
@@ -191,7 +195,7 @@ class ModalSupplier extends ModalComponent
                 'name' => $contact_person_name,
                 'email' => $contact_person_email,
                 'phone' => $contact_person_number,
-                'designation' => $contact_person_designation,
+                'poc' => $contact_person_poc,
                 'image' => null,
             ]);
 

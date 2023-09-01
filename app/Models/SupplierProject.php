@@ -12,7 +12,7 @@ class SupplierProject extends Model
     protected $fillable = [
         'supplier_id',
         'name',
-        'country',
+        'country_id',
         'city',
         'description',
         'year_range',
@@ -27,5 +27,10 @@ class SupplierProject extends Model
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'supplier_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

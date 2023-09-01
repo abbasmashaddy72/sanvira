@@ -16,7 +16,7 @@ class SupplierProjectsTable extends LivewireDatatable
 
     public function builder()
     {
-        return SupplierProject::query()->where('supplier_id', $this->supplier_id);
+        return SupplierProject::query()->where('supplier_id', $this->supplier_id)->with('country');
     }
 
     public function columns()
@@ -32,7 +32,8 @@ class SupplierProjectsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('country')
+            Column::name('country.name')
+                ->label('Country')
                 ->searchable()
                 ->filterable(),
 

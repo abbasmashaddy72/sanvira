@@ -21,7 +21,7 @@ class ModalSupplierProject extends ModalComponent
 
     public $name;
 
-    public $country;
+    public $country_id;
 
     public $city;
 
@@ -47,7 +47,7 @@ class ModalSupplierProject extends ModalComponent
         $data = SupplierProject::findOrFail($this->supplier_project_id);
         $this->supplier_id = $data->supplier_id;
         $this->name = $data->name;
-        $this->country = $data->country;
+        $this->country_id = $data->country_id;
         $this->city = $data->city;
         $this->description = $data->description;
         $this->year_range = $data->year_range;
@@ -57,7 +57,7 @@ class ModalSupplierProject extends ModalComponent
 
     protected $rules = [
         'name' => 'required',
-        'country' => 'required',
+        'country_id' => 'required',
         'city' => 'required',
         'description' => '',
         'year_range' => 'required',
@@ -77,8 +77,8 @@ class ModalSupplierProject extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (! empty($this->supplier_project_id)) {
-            if (! empty($this->images) && gettype($this->images) != 'string') {
+        if (!empty($this->supplier_project_id)) {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];
@@ -91,7 +91,7 @@ class ModalSupplierProject extends ModalComponent
 
             $this->notification()->success($title = 'Project Updated Successfully!');
         } else {
-            if (! empty($this->images) && gettype($this->images) != 'string') {
+            if (!empty($this->images) && gettype($this->images) != 'string') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImage = [];

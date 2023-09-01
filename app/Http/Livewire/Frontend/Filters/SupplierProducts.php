@@ -67,8 +67,12 @@ class SupplierProducts extends Component
             $this->page_title = $this->page_title ?? $this->type;
         }
         if (!empty($this->product_category)) {
-            $this->supplier_product_category_id = $this->product_category->id;
+            $firstCategory = reset($this->product_category); // Get the first element of the array
+            $this->supplier_product_category_id = $firstCategory['id'];
         }
+        // if (!empty($this->product_category)) {
+        //     $this->supplier_product_category_id = $this->product_category->id;
+        // }
         if ($this->type == 'All Category Page') {
             $this->availableLetters = SupplierProductCategory::where('parent_id', 0)->pluck('name')->map(function ($name) {
                 return substr($name, 0, 1);
@@ -128,7 +132,7 @@ class SupplierProducts extends Component
         }
 
         if ($this->applyFilter == true) {
-            $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country']);
+            $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews']);
 
             if ($this->type == 'On Sale' || $this->setButton == 'onSale') {
                 $supplier_products->where('on_sale', 1);
@@ -184,15 +188,15 @@ class SupplierProducts extends Component
             $supplier_products = $supplier_products->paginate(12);
         } else {
             if ($this->type == 'On Sale' && $this->applyFilter != true) {
-                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->where('on_sale', 1)->orderByRaw("id = $this->sales_id DESC")->paginate(12);
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews'])->where('on_sale', 1)->orderByRaw("id = $this->sales_id DESC")->paginate(12);
             }
 
             if ($this->type == 'All Products' && $this->applyFilter != true) {
-                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->paginate(12);
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews'])->paginate(12);
             }
 
             if ($this->type == 'Profile Page' && $this->applyFilter != true) {
-                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->where('supplier_id', $this->profile_id)->paginate(12);
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews'])->where('supplier_id', $this->profile_id)->paginate(12);
             }
 
             if ($this->type == 'All Category Page' && $this->applyFilter != true) {
@@ -202,12 +206,16 @@ class SupplierProducts extends Component
 
             if ($this->type == 'Category Page' && $this->applyFilter != true) {
                 $sub_product_category = SupplierProductCategory::where('parent_id', $this->product_category->id)->withCount('products')->get();
-                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country'])->where('supplier_product_category_id', $this->product_category->id)->paginate(12);
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews'])->where('supplier_product_category_id', $this->product_category->id)->paginate(12);
+            }
+
+            if ($this->type == 'Product Details Similar Products' && $this->applyFilter != true) {
+                $sub_product_category = [];
+                $supplier_products = SupplierProduct::with(['brands', 'manufacturers', 'supplierProductCategory', 'country', 'productViews'])->where('supplier_product_category_id', $this->supplier_product_category_id)->paginate(5);
             }
         }
 
         $agent = new Agent;
-
         return view('livewire.frontend.filters.supplier-products', compact([
             'supplier_products',
             'sub_product_category',

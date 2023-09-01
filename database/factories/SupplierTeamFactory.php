@@ -26,7 +26,7 @@ class SupplierTeamFactory extends Factory
             'name' => $this->faker->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => rand(7000000000, 9000000000),
-            'designation' => $this->faker->companySuffix(),
+            'poc' => $this->faker->companySuffix(),
             'image' => $images[array_rand($images)],
         ];
     }

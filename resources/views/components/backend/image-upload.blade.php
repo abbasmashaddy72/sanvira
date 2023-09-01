@@ -7,11 +7,12 @@
             <div class="grid grid-cols-5 gap-1">
                 @foreach ($images as $image)
                     <div class="relative">
-                        <img class="h-10 w-10 rounded-md object-cover"
-                            src="{{ $isUploaded ? $image->temporaryUrl() : asset('storage/' . $image) }}">
+                        <img class="object-cover w-10 h-10 rounded-md"
+                            src="{{ $isUploaded ? $image->temporaryUrl() : asset('storage/' . $image) }}"
+                            onerror="this.onerror=null; this.src='https://placehold.co/200';">
                         <button type="button" wire:click='deleteImage({{ $deletId }}, {{ $loop->index }})'>
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="absolute -top-2 right-2 rounded-xl bg-white text-red-500 hover:text-red-600"
+                                class="absolute text-red-500 bg-white -top-2 right-2 rounded-xl hover:text-red-600"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                 class="feather feather-x-circle">
@@ -28,8 +29,9 @@
         @else
             <div class="relative">
                 {{ __('Uploaded Image Preview:') }}
-                <img class="h-10 w-10 rounded-md object-cover"
-                    src="{{ $isUploaded ? $images->temporaryUrl() : asset('storage/' . $images) }}">
+                <img class="object-cover w-10 h-10 rounded-md"
+                    src="{{ $isUploaded ? $images->temporaryUrl() : asset('storage/' . $images) }}"
+                    onerror="this.onerror=null; this.src='https://placehold.co/200';">
             </div>
         @endif
     @endif

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="grid grid-cols-12">
             <div class="col-span-12">
-                <div class="px-0 py-[60px]">
+                <div class="px-0 py-4">
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-12">
                         <div class="md:col-span-12 lg:col-span-3">
                             <div class="text-center">
@@ -68,9 +68,7 @@
                                     </li>
                                 @endif
                             </ul>
-                            <!--end icon-->
                         </div>
-                        <!--end col-->
 
                         <div class="md:col-span-4 lg:col-span-2">
                             <ul class="footer-list list-none space-y-2">
@@ -110,7 +108,7 @@
                                 </li>
                                 <li>
                                     <a href="{{ route('terms_of_use') }}"
-                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
+                                        class="[20px]duration-500 text-gray-700 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>{{ __('Terms of Use') }}</a>
                                 </li>
                                 {{-- <li>
@@ -120,28 +118,21 @@
                                 </li> --}}
                             </ul>
                         </div>
-                        <!--end col-->
 
                         <div class="md:col-span-4 lg:col-span-5">
                             <div class="grid grid-cols-1">
                                 <div class="w-full border-0 leading-[0]">
                                     <iframe src="{{ get_static_option('embed_map_link') }}" style="border:0"
-                                        class="h-[250px] w-full" allowfullscreen></iframe>
+                                        class="h-[170px] w-full" allowfullscreen></iframe>
                                 </div>
                             </div>
-                            <!--end grid-->
                         </div>
                     </div>
-                    <!--end grid-->
                 </div>
-                <!--end col-->
             </div>
         </div>
-        <!--end grid-->
     </div>
-    <!--end container-->
 </footer>
-<!--end footer-->
 <!-- Footer End -->
 
 <!-- Back to top -->
@@ -164,3 +155,11 @@
     </span>
 </div>
 <!-- Switcher -->
+
+<!-- Feedback button -->
+<div class="fixed right-0 top-1/2 z-10 -translate-y-1/2 transform">
+    <button
+        class="flex h-24 w-8 cursor-pointer items-center justify-center rounded-l-lg bg-blue-600 shadow hover:bg-blue-700">
+        <span class="-rotate-90 transform text-base text-white">Feedback</span>
+    </button>
+</div>

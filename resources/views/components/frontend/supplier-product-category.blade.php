@@ -1,4 +1,4 @@
-<a href="{{ route('products_category', ['product_category' => $item->id]) }}"
+<a href="{{ route('products_category', ['slug' => $item->slug]) }}"
     class="flex items-center rounded-md border-2 border-gray-200 bg-white p-3 shadow-md hover:border-2 hover:border-blue-600 dark:bg-slate-900 dark:shadow-gray-800">
     <img class="h-16 w-16 rounded-lg" src="{{ asset('storage/' . $item->image) }}" />
     <div class="ml-2 flex-1">

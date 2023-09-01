@@ -13,12 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->string('model')->nullable();
-            $table->timestamps();
+        Schema::table('supplier_teams', function (Blueprint $table) {
+            $table->renameColumn('designation', 'poc');
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('permissions');
+        Schema::table('supplier_teams', function (Blueprint $table) {
+            $table->renameColumn('poc', 'designation');
+        });
     }
 };

@@ -1,9 +1,10 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
     <x-dialog z-index="z-50" blur="md" align="center" />
-    <div class="row-gap-0 grid-cols-2 gap-2 sm:grid">
+    <div class="grid-cols-2 gap-2 row-gap-0 sm:grid">
         <x-input name="name" label="{{ __('Name') }}" type="text" wire:model.defer='name' required />
 
-        <x-input name="country" label="{{ __('Country') }}" type="text" wire:model.defer='country' required />
+        <x-select label="{{ __('Select Origin Country') }}" wire:model.defer="country_id"
+            placeholder="Select Origin Country" :async-data="route('api.admin.countries')" option-label="name" option-value="id" required />
 
         <x-input name="city" label="{{ __('City') }}" type="text" wire:model.defer='city' required />
 

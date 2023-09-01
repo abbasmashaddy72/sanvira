@@ -3,7 +3,7 @@
         @if (count($sub_product_category) != 0 || $this->type == 'All Category Page')
             <x-frontend.index-container class="py-14">
                 @if ($type == 'All Category Page')
-                    <div class="flex flex-wrap justify-center p-1 mb-4 bg-white">
+                    <div class="mb-4 flex flex-wrap justify-center bg-white p-1">
                         @php
                             $disabled = !in_array('#', $availableLetters) && !preg_grep('/^\d$/', $availableLetters);
                         @endphp
@@ -21,7 +21,7 @@
                     <div wire:loading wire:target="applyAlp">
                         <div class="flex justify-center">
                             <svg aria-hidden="true"
-                                class="w-8 h-8 mr-2 text-gray-200 animate-spin fill-blue-600 dark:text-gray-600"
+                                class="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
                                 viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -44,7 +44,7 @@
         @endif
     @endif
 
-    @if ($type != 'All Category Page')
+    @if ($type != 'All Category Page' && $type != 'Product Details Similar Products')
         <x-frontend.index-container class="{{ $type != 'Profile Page' ? 'py-14' : '' }}"
             containerTitle="{{ $page_title }}" containerSlot="{{ $supplier_products->total() }} Products">
 
@@ -75,7 +75,7 @@
             <div wire:loading wire:target="applyButton">
                 <div class="flex justify-center">
                     <svg aria-hidden="true"
-                        class="w-8 h-8 mr-2 text-gray-200 animate-spin fill-blue-600 dark:text-gray-600"
+                        class="mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
                         viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
@@ -90,34 +90,34 @@
 
             <div class="grid grid-cols-1 gap-4 md:grid-cols-12">
                 <div class="md:col-span-3 lg:col-span-3">
-                    <div class="sticky p-4 mt-8 bg-white border-2 border-gray-200 rounded-md shadow top-20">
+                    <div class="sticky top-20 mt-8 rounded-md border-2 border-gray-200 bg-white p-4 shadow">
                         <div class="flex justify-between">
                             <button wire:click="clearFilters"
-                                class="px-2 py-2 font-bold text-white bg-red-600 rounded-lg hover:bg-red-700">{{ __('Clear') }}</button>
+                                class="rounded-lg bg-red-600 px-2 py-2 font-bold text-white hover:bg-red-700">{{ __('Clear') }}</button>
                             <button wire:click="apply"
-                                class="px-2 py-2 font-bold text-white bg-blue-600 rounded-lg hover:bg-blue-700">{{ __('Apply') }}</button>
+                                class="rounded-lg bg-blue-600 px-2 py-2 font-bold text-white hover:bg-blue-700">{{ __('Apply') }}</button>
                         </div>
                         <div class="mt-4">
-                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Brand') }}</h5>
                             <x-select wire:model.defer="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
                                 option-label="name" option-value="id" multiselect />
                         </div>
                         <div class="mt-4">
-                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Manufacturer') }}</h5>
                             <x-select wire:model.defer="manufacturer_id" placeholder="Select Manufacturer"
                                 :async-data="route('api.admin.manufacturers')" option-label="name" option-value="id" multiselect />
                         </div>
                         <div class="mt-4">
-                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Category') }}</h5>
                             <x-select wire:model.defer="supplier_product_category_id"
                                 placeholder="Select Parent Category" :async-data="route('api.admin.supplier_categories')" option-label="name"
                                 option-value="id" multiselect />
                         </div>
                         <div class="mt-4">
-                            <h5 class="font-semibold text-left text-md dark:bg-slate-800 dark:shadow-gray-800">
+                            <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Country of Origin') }}</h5>
                             <x-select wire:model.defer="country_id" placeholder="Select Origin Country"
                                 :async-data="route('api.admin.countries')" option-label="name" option-value="id" multiselect />
@@ -150,7 +150,7 @@
                 </div>
 
                 <div class="md:col-span-9 lg:col-span-9">
-                    <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-2 lg:grid-cols-3">
+                    <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                         @foreach ($supplier_products as $item)
                             @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
                         @endforeach
@@ -168,5 +168,24 @@
                 </div>
             </div>
         </x-frontend.index-container>
+    @elseif ($type == 'Product Details Similar Products')
+        <div class="md:col-span-9 lg:col-span-9">
+            <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-5">
+                @foreach ($supplier_products as $item)
+                    @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
+                @endforeach
+            </div>
+
+            <div class="mt-8">
+                @if ($supplier_products != [])
+                    @if ($agent->isTablet() == 1)
+                        {{ $supplier_products->onEachSide(0)->links() }}
+                    @else
+                        {{ $supplier_products->links() }}
+                    @endif
+                @endif
+            </div>
+        </div>
+    @else
     @endif
 </div>
