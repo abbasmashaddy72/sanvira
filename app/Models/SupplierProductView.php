@@ -20,7 +20,7 @@ class SupplierProductView extends Model
 
     public function supplierProduct()
     {
-        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id')->select('id', 'name');
+        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id')->select('id', 'title');
     }
 
     public function userData()

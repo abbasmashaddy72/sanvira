@@ -20,7 +20,7 @@ class AppLayout extends Component
         view()->share('first_level_active_index', $activeMenu['first_level_active_index']);
         view()->share('second_level_active_index', $activeMenu['second_level_active_index']);
         view()->share('third_level_active_index', $activeMenu['third_level_active_index']);
-        view()->share('supplier_id', Supplier::where('user_id', auth()->user()->id)->value('id'));
+        view()->share('supplier_slug', Supplier::where('user_id', auth()->user()->id)->value('slug'));
 
         return view('layouts.app');
     }

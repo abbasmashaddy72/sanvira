@@ -32,7 +32,7 @@ class SupplierProductClicksReport extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('supplierProduct.name')
+            Column::name('supplierProduct.title')
                 ->label('Product Name')
                 ->searchable()
                 ->filterable(),

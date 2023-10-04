@@ -61,6 +61,8 @@ class SupplierProducts extends Component
 
     public function mount()
     {
+        // dd($this->product_category->id);
+
         if ($this->type == 'Category Page') {
             $this->page_title = $this->product_category->name;
         } else {
@@ -68,7 +70,7 @@ class SupplierProducts extends Component
         }
         if (!empty($this->product_category)) {
             $firstCategory = reset($this->product_category); // Get the first element of the array
-            $this->supplier_product_category_id = $firstCategory['id'];
+            $this->supplier_product_category_id = $this->product_category->id;
         }
         // if (!empty($this->product_category)) {
         //     $this->supplier_product_category_id = $this->product_category->id;

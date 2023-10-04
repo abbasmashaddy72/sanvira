@@ -29,7 +29,7 @@ class SupplierProductsReport extends LivewireDatatable
             Column::index($this)
                 ->unsortable(),
 
-            Column::name('name')
+            Column::name('title')
                 ->searchable()
                 ->filterable(),
 
