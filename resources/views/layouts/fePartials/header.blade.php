@@ -62,38 +62,24 @@
 
         <div id="navigation" class="lg:block">
             <ul class="navigation-menu float-left flex flex-wrap">
-                <li class="has-submenu parent-menu-item">
-                    <a href="javascript:void(0)">{{ __('Resources') }}</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li>
-                            <a class="sub-menu-item" href="{{ route('all_products_category') }}">
-                                {{ __('View All Categories') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sub-menu-item" href="{{ route('all_supplier_profile') }}">
-                                {{ __('View All Suppliers') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sub-menu-item" href="{{ route('all_products') }}">
-                                {{ __('View All Products') }}
-                            </a>
-                        </li>
-                        <li>
-                            <a class="sub-menu-item" href="{{ route('all_brands') }}">
-                                {{ __('View All Brands') }}
-                            </a>
-                        </li>
-                    </ul>
+                <li>
+                    <a class="sub-menu-item" href="{{ route('all_products_category') }}">
+                        {{ __('Categories') }}
+                    </a>
+                </li>
+                <li>
+                    <a class="sub-menu-item" href="{{ route('all_products') }}">
+                        {{ __('Products') }}
+                    </a>
+                </li>
+                <li>
+                    <a class="sub-menu-item" href="{{ route('all_brands') }}">
+                        {{ __('Brands') }}
+                    </a>
                 </li>
 
                 <li>
                     <a href="{{ route('about_us') }}" class="sub-menu-item">{{ __('About Us') }}</a>
-                </li>
-
-                <li>
-                    <a href="{{ route('career') }}" class="sub-menu-item">{{ __('Career') }}</a>
                 </li>
 
                 <li>

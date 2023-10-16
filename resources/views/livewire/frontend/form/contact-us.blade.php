@@ -74,7 +74,7 @@
                                 <select name="tob" wire:model.defer='tob'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                                     <option hidden selected>{{ __('Please Select') }}</option>
-                                    @foreach (['Manufacturer', 'Supplier', 'Contractor', 'Subcontractor', 'Consultant', 'Developer'] as $item)
+                                    @foreach (['Vendor', 'Consultant', 'Developer'] as $item)
                                         <option value="{{ $item }}">{{ $item }}</option>
                                     @endforeach
                                 </select>

@@ -38,8 +38,6 @@ class StaticHomepage extends Component
 
     public $return_refunds;
 
-    public $career;
-
     public $type;
 
     public $logoIsUploaded = false;
@@ -62,7 +60,6 @@ class StaticHomepage extends Component
         $this->privacy_policy = get_static_option('privacy_policy');
         $this->terms_of_use = get_static_option('terms_of_use');
         $this->return_refunds = get_static_option('return_refunds');
-        $this->career = get_static_option('career');
     }
 
     protected $rules = [
@@ -79,7 +76,6 @@ class StaticHomepage extends Component
         'privacy_policy' => '',
         'terms_of_use' => '',
         'return_refunds' => '',
-        'career' => '',
     ];
 
     public function updated($propertyName)
@@ -99,11 +95,11 @@ class StaticHomepage extends Component
         $validatedData = $this->validate();
 
         foreach ($validatedData as $key => $value) {
-            if ($key == 'footer_logo' && ! empty($validatedData['footer_logo']) && gettype($validatedData['footer_logo']) != 'string') {
+            if ($key == 'footer_logo' && !empty($validatedData['footer_logo']) && gettype($validatedData['footer_logo']) != 'string') {
                 $footer_logo = $validatedData['footer_logo']->store('frontend', 'public');
                 set_static_option($key, $footer_logo);
                 unset($validatedData['footer_logo']);
-            } elseif ($key == 'logo' && ! empty($validatedData['logo']) && gettype($validatedData['logo']) != 'string') {
+            } elseif ($key == 'logo' && !empty($validatedData['logo']) && gettype($validatedData['logo']) != 'string') {
                 $logo = $validatedData['logo']->store('frontend', 'public');
                 set_static_option($key, $logo);
                 unset($validatedData['logo']);

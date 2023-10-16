@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Supplier;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -24,12 +23,6 @@ class RouteServiceProvider extends ServiceProvider
         switch ($role) {
             case 'Super Admin':
                 return 'admin/dashboard';
-                break;
-            case 'Supplier':
-                return 'admin/supplier_profile/'.Supplier::where('user_id', auth()->user()->id)->first()->id;
-                break;
-            case 'Contractor':
-                return '/';
                 break;
 
             default:

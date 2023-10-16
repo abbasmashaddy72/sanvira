@@ -13,7 +13,7 @@ class CartCounter extends Component
 
     public function mount()
     {
-        $this->cartProducts = Cart::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray();
+        $this->cartProducts = Cart::where('user_id', auth()->id())->pluck('product_id')->toArray();
     }
 
     public function render()

@@ -12,23 +12,19 @@ class Brand extends Model
 
     protected $fillable = [
         'name',
+        'account_type',
         'slug',
         'image',
     ];
 
     public function products()
     {
-        return $this->hasMany(SupplierProduct::class, 'brand_id');
-    }
-
-    public function transactions()
-    {
-        return $this->belongsTo(BrandTransaction::class, 'id', 'brand_id');
+        return $this->hasMany(Product::class, 'brand_id');
     }
 
     public function brandViews()
     {
-        return $this->hasMany(SupplierBrandView::class, 'brand_id');
+        return $this->hasMany(BrandView::class, 'brand_id');
     }
 
     public function setNameAttribute($value)

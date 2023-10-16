@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             $this->call(RoleSeeder::class);
             $this->call(UserSeeder::class);
             $this->call(StaticOptionSeeder::class);
-            $this->call(SupplierProductCategorySeeder::class);
+            $this->call(CategorySeeder::class);
             $this->call(CountrySeeder::class);
         } else {
             $this->call(PermissionSeeder::class);
@@ -26,28 +26,16 @@ class DatabaseSeeder extends Seeder
             $this->call(UserSeeder::class);
             $this->call(StaticOptionSeeder::class);
             $this->call(BrandSeeder::class);
-            $this->call(ManufacturerSeeder::class);
+            $this->call(VendorSeeder::class);
             $this->call(CountrySeeder::class);
-            $this->call(SupplierSeeder::class);
-            $this->call(SupplierTeamSeeder::class);
-            $this->call(SupplierCertificateSeeder::class);
-            $this->call(SupplierProductCategorySeeder::class);
-            $this->call(SupplierProductSeeder::class);
-            $this->call(SupplierProductAttributesSeeder::class);
-            $this->call(SupplierProjectSeeder::class);
-            $this->call(SupplierTestimonialSeeder::class);
-            $this->call(BrandTransactionSeeder::class);
-            $this->call(SupplierTransactionSeeder::class);
-            $this->call(ContractorSeeder::class);
-            $this->call(SubContractorSeeder::class);
-            $this->call(SubContractorProjectSeeder::class);
-            $this->call(SubContractorServiceSeeder::class);
+            $this->call(CategorySeeder::class);
+            $this->call(ProductSeeder::class);
+            $this->call(ProductAttributesSeeder::class);
             $this->call(SliderSeeder::class);
-            $this->call(SupplierViewSeeder::class);
-            $this->call(SupplierProductViewSeeder::class);
-            $this->call(SupplierProductCategoryViewSeeder::class);
-            $this->call(SupplierBrandViewSeeder::class);
-            $this->call(SupplierManufacturerViewSeeder::class);
+            $this->call(ProductViewSeeder::class);
+            $this->call(CategoryViewSeeder::class);
+            $this->call(BrandViewSeeder::class);
+            $this->call(VendorViewSeeder::class);
         }
     }
 }

@@ -17,30 +17,8 @@
                                     <div class="flex">
                                         <i data-feather="fast-forward" class="report-box__icon text-primary"></i>
                                     </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $suppliers_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Suppliers') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-span-12 sm:col-span-6 xl:col-span-2">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="bar-chart-2" class="report-box__icon text-primary"></i>
-                                    </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $contractors_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Contractors') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-span-12 sm:col-span-6 xl:col-span-2">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="link" class="report-box__icon text-pending"></i>
-                                    </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $subContractor_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Sub Contractor') }}</div>
+                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $product_count }}</div>
+                                    <div class="mt-1 text-base text-slate-500">{{ __('Products') }}</div>
                                 </div>
                             </div>
                         </div>
@@ -61,8 +39,8 @@
                                     <div class="flex">
                                         <i data-feather="bar-chart-2" class="report-box__icon text-success"></i>
                                     </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $manufactures_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Manufactures') }}</div>
+                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $vendors_count }}</div>
+                                    <div class="mt-1 text-base text-slate-500">{{ __('Vendors') }}</div>
                                 </div>
                             </div>
                         </div>
@@ -73,8 +51,8 @@
                                         <i data-feather="fast-forward" class="report-box__icon text-primary"></i>
                                     </div>
                                     <div class="mt-6 text-3xl font-medium leading-8">
-                                        {{ count($supplier_data['filledRows']) }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Complete Profile Suppliers') }}
+                                        {{ count($products_data['filledRows']) }}</div>
+                                    <div class="mt-1 text-base text-slate-500">{{ __('Completly Filled Products') }}
                                     </div>
                                 </div>
                             </div>
@@ -86,8 +64,8 @@
                                         <i data-feather="fast-forward" class="report-box__icon text-primary"></i>
                                     </div>
                                     <div class="mt-6 text-3xl font-medium leading-8">
-                                        {{ count($supplier_data['emptyRows']) }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Partial Profile Suppliers') }}
+                                        {{ count($products_data['emptyRows']) }}</div>
+                                    <div class="mt-1 text-base text-slate-500">{{ __('Partialy Filled Products') }}
                                     </div>
                                 </div>
                             </div>

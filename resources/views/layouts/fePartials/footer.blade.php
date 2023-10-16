@@ -73,11 +73,6 @@
                         <div class="md:col-span-4 lg:col-span-2">
                             <ul class="footer-list list-none space-y-2">
                                 <li>
-                                    <a href="{{ route('career') }}"
-                                        class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
-                                        <i class="uil uil-angle-right-b me-1"></i>{{ __('Careers') }}</a>
-                                </li>
-                                <li>
                                     <a href="{{ route('about_us') }}"
                                         class="text-gray-700 duration-500 ease-in-out hover:text-gray-400">
                                         <i class="uil uil-angle-right-b me-1"></i>{{ __('About Us') }}</a>

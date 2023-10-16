@@ -24,12 +24,17 @@ class UserSeeder extends Seeder
             $user->roles()->attach([1]);
         } else {
             $users = User::factory()->count(rand(100, 300))->create();
+            $superAdmin = $users->first();
+            $superAdmin->update([
+                'email' => 'superadmin@kasperpro.com',
+            ]);
+
             foreach ($users as $user) {
                 if ($user->id == 1) {
                     $user->roles()->attach([1]);
                 }
                 if ($user->id != 1) {
-                    $user->roles()->attach([rand(1, 7)]);
+                    $user->roles()->attach([rand(1, 4)]);
                 }
             }
         }

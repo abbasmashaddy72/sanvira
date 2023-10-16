@@ -16,13 +16,13 @@ class CartModal extends ModalComponent
 
     public function mount()
     {
-        $this->cartProductLists = Cart::where('user_id', auth()->id())->with('supplierProducts')->get();
-        $this->cartProducts = Cart::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray();
+        $this->cartProductLists = Cart::where('user_id', auth()->id())->with('products')->get();
+        $this->cartProducts = Cart::where('user_id', auth()->id())->pluck('product_id')->toArray();
     }
 
     public function removeFromCart($productId)
     {
-        Cart::where('supplier_product_id', $productId)->where('user_id', auth()->id())->delete();
+        Cart::where('product_id', $productId)->where('user_id', auth()->id())->delete();
         if (($key = array_search($productId, $this->cartProducts)) !== false) {
             unset($this->cartProducts[$key]);
         }
@@ -34,7 +34,7 @@ class CartModal extends ModalComponent
 
     public function updateCart($productId, $quantity)
     {
-        Cart::where('supplier_product_id', $productId)->where('user_id', auth()->id())->update([
+        Cart::where('product_id', $productId)->where('user_id', auth()->id())->update([
             'quantity' => $quantity,
         ]);
 

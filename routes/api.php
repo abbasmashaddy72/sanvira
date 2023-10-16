@@ -19,9 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['as' => 'api.admin.', 'namespace' => 'App\Http\Controllers\Backend'], function () {
-    Route::get('supplier_categories/{parent_id?}', 'ApiController@supplier_categories')->name('supplier_categories');
-    Route::get('suppliers', 'ApiController@suppliers')->name('suppliers');
+    Route::get('categories/{parent_id?}', 'ApiController@categories')->name('categories');
     Route::get('brands', 'ApiController@brands')->name('brands');
-    Route::get('manufacturers', 'ApiController@manufacturers')->name('manufacturers');
+    Route::get('vendors', 'ApiController@vendors')->name('vendors');
     Route::get('countries', 'ApiController@countries')->name('countries');
 });

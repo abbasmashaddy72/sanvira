@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Livewire\Frontend\Filters;
 
 use App\Models\Brand;
@@ -32,15 +33,18 @@ class Brands extends Component
 
     public function render()
     {
-        if ($this->alphabet == '#') {
-            $brands = Brand::withCount('products')->where('name', 'REGEXP', '^[0-9]')->get();
+        if (Brand::count() <= 16) {
+            $brands = Brand::withCount('products')->get();
+            $filter = false;
         } else {
-            $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
+            if ($this->alphabet === '#') {
+                $brands = Brand::withCount('products')->where('name', 'REGEXP', '^[0-9]')->get();
+            } else {
+                $brands = Brand::withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
+            }
+            $filter = true;
         }
-        $featured_brands = Brand::withCount('products')->whereHas('transactions', function ($query) {
-            $query->where('account_type', '=', 'Featured');
-        })->get()->take(9);
 
-        return view('livewire.frontend.filters.brands', compact('brands', 'featured_brands'));
+        return view('livewire.frontend.filters.brands', compact('brands', 'filter'));
     }
 }

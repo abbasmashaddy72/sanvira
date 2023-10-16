@@ -16,13 +16,13 @@ class RfqModal extends ModalComponent
 
     public function mount()
     {
-        $this->rfqProductLists = Rfq::where('user_id', auth()->id())->with('supplierProducts')->get();
-        $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('supplier_product_id')->toArray();
+        $this->rfqProductLists = Rfq::where('user_id', auth()->id())->with('products')->get();
+        $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('product_id')->toArray();
     }
 
     public function removeFromRfq($productId)
     {
-        Rfq::where('supplier_product_id', $productId)->where('user_id', auth()->id())->delete();
+        Rfq::where('product_id', $productId)->where('user_id', auth()->id())->delete();
         if (($key = array_search($productId, $this->rfqProducts)) !== false) {
             unset($this->rfqProducts[$key]);
         }
@@ -34,7 +34,7 @@ class RfqModal extends ModalComponent
 
     public function updateRfq($productId, $quantity)
     {
-        Rfq::where('supplier_product_id', $productId)->where('user_id', auth()->id())->update([
+        Rfq::where('product_id', $productId)->where('user_id', auth()->id())->update([
             'quantity' => $quantity,
         ]);
 

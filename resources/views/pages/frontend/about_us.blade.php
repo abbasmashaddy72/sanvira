@@ -212,13 +212,13 @@
         <div class="relative mt-8 transition-all duration-500 ease-in-out">
             <div class="grid grid-cols-1">
                 <div class="tiny-five-item">
-                    @foreach ($featured_suppliers as $item)
+                    @foreach ($featured_brands as $item)
                         <div class="tiny-slide">
-                            <a href="{{ route('supplier_profile', ['slug' => $item->slug]) }}"
+                            <a href="{{ route('brand_products', ['slug' => $item->slug]) }}"
                                 class='group relative block overflow-hidden p-3'>
                                 <img src="{{ asset('storage/' . $item->logo) }}"
                                     class="mx-auto h-32 w-full rounded-lg object-cover shadow-md"
-                                    alt="{{ $item->company_name }}">
+                                    alt="{{ $item->name }}">
                             </a>
                         </div>
                     @endforeach

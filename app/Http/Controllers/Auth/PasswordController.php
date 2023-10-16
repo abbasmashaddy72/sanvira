@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rules\Password;
 
 class PasswordController extends Controller

@@ -14,22 +14,7 @@
             <div
                 class="col-span-2 grid grid-flow-col auto-rows-auto grid-rows-5 gap-2 border-r-2 border-r-gray-200 pr-4">
                 <h1 class="text-lg font-semibold">{{ __('Company Details') }}</h1>
-                <div>
-                    <label class="font-semibold">{{ __('Supplier Name:') }}
-                        <div class="relative mt-2">
-                            <input wire:model.defer='supplier_name' name="supplier_name" type="text" autofocus
-                                class="form-input text-sm font-normal" placeholder="Name :">
-                        </div>
-                    </label>
-                </div>
-                <div>
-                    <label class="font-semibold">{{ __('Supplier Address:') }}
-                        <div class="relative mt-2">
-                            <textarea wire:model.defer='supplier_address' name="supplier_address" id="comments"
-                                class="form-input text-sm font-normal" placeholder="Address :"></textarea>
-                        </div>
-                    </label>
-                </div>
+
                 <div>
                     <label class="font-semibold">{{ __('City:') }}
                         <div class="relative mt-2">
@@ -89,7 +74,7 @@
                         <div class="relative mt-2">
                             <select wire:model.defer='tob' name="tob" class="form-input text-sm font-normal">
                                 <option hidden selected>Please Select</option>
-                                @foreach (['Manufacturer', 'Supplier', 'Service Provider'] as $item)
+                                @foreach (['Vendor', 'Service Provider'] as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>

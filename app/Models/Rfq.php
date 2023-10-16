@@ -10,13 +10,13 @@ class Rfq extends Model
     use HasFactory;
 
     protected $fillable = [
-        'supplier_product_id',
+        'product_id',
         'user_id',
         'quantity',
     ];
 
-    public function supplierProducts()
+    public function products()
     {
-        return $this->belongsTo(SupplierProduct::class, 'supplier_product_id');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

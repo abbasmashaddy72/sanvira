@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->string('slug')->unique()->after('name');
+            $table->enum('account_type', ['Trial', 'Regular', 'Featured'])->default('Trial')->after('name');
+            $table->string('slug')->unique()->after('account_type');
         });
     }
 
@@ -26,6 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('brands', function (Blueprint $table) {
+            $table->dropColumn('account_type');
             $table->dropColumn('slug');
         });
     }

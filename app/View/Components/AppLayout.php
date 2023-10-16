@@ -2,7 +2,6 @@
 
 namespace App\View\Components;
 
-use App\Models\Supplier;
 use Illuminate\View\Component;
 use Illuminate\View\View;
 
@@ -20,15 +19,12 @@ class AppLayout extends Component
         view()->share('first_level_active_index', $activeMenu['first_level_active_index']);
         view()->share('second_level_active_index', $activeMenu['second_level_active_index']);
         view()->share('third_level_active_index', $activeMenu['third_level_active_index']);
-        view()->share('supplier_slug', Supplier::where('user_id', auth()->user()->id)->value('slug'));
 
         return view('layouts.app');
     }
 
     public function sideMenu()
     {
-        $supplier_id = Supplier::where('user_id', auth()->user()->id)->value('id');
-
         return [
             'dashboard' => [
                 'can' => 'dashboard',
@@ -37,30 +33,6 @@ class AppLayout extends Component
                 'title' => 'Dashboard',
                 'route_name' => 'admin.dashboard',
                 'params' => null,
-            ],
-            'reports' => [
-                'can' => ['supplier_report_regular', 'supplier_report_clicks'],
-                'role' => 'supplier',
-                'icon' => 'zap',
-                'title' => 'Reports',
-                'sub_menu' => [
-                    'regular' => [
-                        'can' => 'supplier_report_regular',
-                        'role' => 'supplier',
-                        'icon' => 'activity',
-                        'route_name' => 'admin.supplier_report_regular',
-                        'title' => 'Regular',
-                        'params' => null,
-                    ],
-                    'byViews' => [
-                        'can' => 'supplier_report_clicks',
-                        'role' => 'supplier',
-                        'icon' => 'activity',
-                        'route_name' => 'admin.supplier_report_clicks',
-                        'title' => 'By View',
-                        'params' => null,
-                    ],
-                ],
             ],
             'user' => [
                 'can' => 'user_list',
@@ -86,108 +58,28 @@ class AppLayout extends Component
                 'route_name' => 'admin.brand',
                 'params' => null,
             ],
-            'brand-_transaction' => [
-                'can' => 'brand_transaction_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'rss',
-                'title' => 'Brand Transactions',
-                'route_name' => 'admin.brand.transaction',
-                'params' => null,
-            ],
-            'manufacturer' => [
-                'can' => 'manufacturer_list',
+            'vendor' => [
+                'can' => 'vendor_list',
                 'role' => auth()->user()->roles->first()->slug,
                 'icon' => 'bar-chart-2',
-                'title' => 'Manufacturers',
-                'route_name' => 'admin.manufacturer',
+                'title' => 'Vendors',
+                'route_name' => 'admin.vendor',
                 'params' => null,
             ],
-            'supplier_categories' => [
-                'can' => 'supplier_category_list',
+            'categories' => [
+                'can' => 'category_list',
                 'role' => auth()->user()->roles->first()->slug,
                 'icon' => 'chevrons-up',
-                'title' => 'Supplier Categories',
-                'route_name' => 'admin.supplier-categories',
+                'title' => 'Categories',
+                'route_name' => 'admin.categories',
                 'params' => null,
             ],
-            'supplier' => [
-                'can' => 'supplier_list',
+            'product' => [
+                'can' => 'product_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'fast-forward',
-                'title' => 'Suppliers',
-                'route_name' => 'admin.supplier',
-                'params' => null,
-            ],
-            'supplier_profile' => [
-                'can' => 'supplier_profile_view',
-                'role' => 'supplier',
-                'icon' => 'user',
-                'title' => 'Profile',
-                'route_name' => 'admin.supplier_profile',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_team_member' => [
-                'can' => 'supplier_team_member_list',
-                'role' => 'supplier',
-                'icon' => 'users',
-                'title' => 'Team Members',
-                'route_name' => 'admin.supplier_team_member',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_certificate' => [
-                'can' => 'supplier_certificate_list',
-                'role' => 'supplier',
-                'icon' => 'credit-card',
-                'title' => 'Certificates',
-                'route_name' => 'admin.supplier_certificate',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_testimonial' => [
-                'can' => 'supplier_testimonial_list',
-                'role' => 'supplier',
-                'icon' => 'user-plus',
-                'title' => 'Testimonials',
-                'route_name' => 'admin.supplier_testimonial',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_project' => [
-                'can' => 'supplier_project_list',
-                'role' => 'supplier',
-                'icon' => 'file-text',
-                'title' => 'Projects',
-                'route_name' => 'admin.supplier_project',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_product' => [
-                'can' => 'supplier_product_list',
-                'role' => 'supplier',
                 'icon' => 'package',
                 'title' => 'Products',
-                'route_name' => 'admin.supplier_product',
-                'params' => ['supplier' => $supplier_id],
-            ],
-            'supplier_transaction' => [
-                'can' => 'supplier_transaction_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-bag',
-                'title' => 'Supplier Transactions',
-                'route_name' => 'admin.supplier.transaction',
-                'params' => null,
-            ],
-            'contractor' => [
-                'can' => 'contractor_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'bar-chart-2',
-                'title' => 'Contractors',
-                'route_name' => 'admin.contractor',
-                'params' => null,
-            ],
-            'sub_contractor' => [
-                'can' => 'sub_contractor_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'link',
-                'title' => 'Sub Contractors',
-                'route_name' => 'admin.sub-contractor',
+                'route_name' => 'admin.product',
                 'params' => null,
             ],
             'homepage' => [
@@ -220,14 +112,6 @@ class AppLayout extends Component
                 'icon' => 'refresh-ccw',
                 'title' => 'Return Refund',
                 'route_name' => 'admin.return_refunds',
-                'params' => null,
-            ],
-            'career' => [
-                'can' => 'career',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'briefcase',
-                'title' => 'Career',
-                'route_name' => 'admin.career',
                 'params' => null,
             ],
             'contact_us' => [

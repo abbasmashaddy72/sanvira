@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Supplier;
+use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -41,14 +41,6 @@ class StaticController extends Controller
         return view('pages.backend.static.return_refunds');
     }
 
-    public function career()
-    {
-        view()->share('title', 'Career');
-        abort_if(Gate::denies('career'), 403);
-
-        return view('pages.backend.static.career');
-    }
-
     public function contact_us()
     {
         view()->share('title', 'Contact Us');
@@ -59,7 +51,7 @@ class StaticController extends Controller
 
     public function image_upload(Request $request)
     {
-        $blog = new Supplier;
+        $blog = new Brand();
         $blog->id = 0;
         $blog->exists = true;
         $image = $blog->addMediaFromRequest('upload')->toMediaCollection('images');

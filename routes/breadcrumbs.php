@@ -38,64 +38,22 @@ Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
     $trail->push('Brand', route('admin.brand'));
 });
 
-// Application > Brand Transaction
-Breadcrumbs::for('brand.transaction', function (BreadcrumbTrail $trail) {
+// Application > Product
+Breadcrumbs::for('product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Brand Transactions', route('admin.brand.transaction'));
+    $trail->push('Product', route('admin.product'));
 });
 
-// Application > Manufacturer
-Breadcrumbs::for('manufacturer.index', function (BreadcrumbTrail $trail) {
+// Application > Vendor
+Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Manufacturer', route('admin.manufacturer'));
+    $trail->push('Vendor', route('admin.vendor'));
 });
 
-// Application > Suppliers
-Breadcrumbs::for('supplier.index', function (BreadcrumbTrail $trail) {
+// Application > Category
+Breadcrumbs::for('category.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
-    $trail->push('Suppliers', route('admin.supplier'));
-});
-
-// Application > Transaction
-Breadcrumbs::for('supplier.transaction', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Supplier Transactions', route('admin.supplier.transaction'));
-});
-
-// Application > Supplier Category
-Breadcrumbs::for('supplier-category.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Supplier Category', route('admin.supplier-categories'));
-});
-
-// Application > Suppliers > [Supplier Profile]
-Breadcrumbs::for('supplier.profile', function (BreadcrumbTrail $trail, $supplier) {
-    $trail->parent('supplier.index');
-    $trail->push($supplier->company_name, route('admin.supplier_profile', $supplier));
-});
-
-// Application > Supplier Report Regular
-Breadcrumbs::for('supplier.report.regular', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Supplier Report Regular', route('admin.supplier_report_regular'));
-});
-
-// Application > Supplier Report Clicks
-Breadcrumbs::for('supplier.report.clicks', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Supplier Report Clicks', route('admin.supplier_report_clicks'));
-});
-
-// Application > Contractor
-Breadcrumbs::for('contractor.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Contractor', route('admin.contractor'));
-});
-
-// Application > Sub Contractor
-Breadcrumbs::for('sub-contractor.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Sub Contractor', route('admin.sub-contractor'));
+    $trail->push('Category', route('admin.categories'));
 });
 
 // Application > HomePage
@@ -120,10 +78,4 @@ Breadcrumbs::for('homepage.terms_of_use', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('homepage.return_refunds', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('Return Refund', route('admin.return_refunds'));
-});
-
-// Application > Career
-Breadcrumbs::for('homepage.career', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Career', route('admin.career'));
 });

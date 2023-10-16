@@ -3,9 +3,8 @@
 namespace App\Http\Livewire\Frontend\Form;
 
 use App\Models\Brand;
-use App\Models\Supplier;
-use App\Models\SupplierProduct;
-use App\Models\SupplierProductCategory;
+use App\Models\Product;
+use App\Models\Category;
 use Livewire\Component;
 
 class Search extends Component
@@ -15,9 +14,7 @@ class Search extends Component
 
     public $type;
 
-    public $supplierProductsList;
-
-    public $supplierList;
+    public $productsList;
 
     public $categoriesList;
 
@@ -31,14 +28,13 @@ class Search extends Component
     public function resetData()
     {
         $this->query = '';
-        $this->supplierProductsList = [];
+        $this->productsList = [];
     }
 
     public function updatedQuery()
     {
-        $this->supplierProductsList = SupplierProduct::where('title', 'like', $this->query . '%')->get();
-        $this->supplierList = Supplier::where('company_name', 'like', $this->query . '%')->get();
-        $this->categoriesList = SupplierProductCategory::where('name', 'like', $this->query . '%')->get();
+        $this->productsList = Product::where('title', 'like', $this->query . '%')->get();
+        $this->categoriesList = Category::where('name', 'like', $this->query . '%')->get();
         $this->brandList = Brand::where('name', 'like', $this->query . '%')->get();
     }
 

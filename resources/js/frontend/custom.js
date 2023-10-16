@@ -256,7 +256,7 @@ if (document.getElementsByClassName("tiny-five-item").length > 0) {
         ],
         nav: false,
         speed: 400,
-        gutter: 0,
+        gutter: 15,
         responsive: {
             1025: {
                 items: 5,

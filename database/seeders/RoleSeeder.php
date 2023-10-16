@@ -18,11 +18,8 @@ class RoleSeeder extends Seeder
         $inputs = [
             ['1', 'Super Admin'],
             ['2', 'Admin'],
-            ['3', 'Supplier'],
-            ['4', 'Contractor'],
-            ['5', 'Sub Contractor'],
-            ['6', 'Manufacturer'],
-            ['7', 'Developer'],
+            ['3', 'Vendor'],
+            ['4', 'Buyer'],
         ];
 
         foreach ($inputs as $data) {

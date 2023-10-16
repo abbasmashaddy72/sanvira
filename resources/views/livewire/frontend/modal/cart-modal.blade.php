@@ -10,19 +10,18 @@
                     @foreach ($cartProductLists as $item)
                         <li class="flex py-6">
                             <div class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img src="{{ asset('storage/' . $item->supplierProducts->images[0]) }}"
-                                    alt="{{ $item->supplierProducts->title }}"
-                                    class="h-full w-full object-cover object-center">
+                                <img src="{{ asset('storage/' . $item->products->images[0]) }}"
+                                    alt="{{ $item->products->title }}" class="h-full w-full object-cover object-center">
                             </div>
 
                             <div class="ml-4 flex flex-1 flex-col">
                                 <div>
                                     <div class="flex justify-between text-base font-medium text-gray-900">
                                         <h3>
-                                            <p>{{ $item->supplierProducts->title }}</p>
+                                            <p>{{ $item->products->title }}</p>
                                         </h3>
                                         <div class="flex">
-                                            {{ $item->supplierProducts->price ? $item->supplierProducts->price : $item->supplierProducts->min_price . ' - ' . $item->supplierProducts->max_price }}
+                                            {{ $item->products->price ? $item->products->price : $item->products->min_price . ' - ' . $item->products->max_price }}
                                             <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
                                                 class="ml-1 h-5 w-5 fill-blue-600" viewBox="0 0 117.77 122.88">
                                                 <path
@@ -31,7 +30,7 @@
                                         </div>
                                     </div>
                                     <p class="mt-1 text-sm text-gray-500">
-                                        {{ $item->supplierProducts->manufacturer }}
+                                        {{ $item->products->vendor }}
                                     </p>
                                 </div>
                                 <div class="flex flex-1 items-end justify-between text-sm">
@@ -40,7 +39,7 @@
                                     </div>
 
                                     <div class="flex">
-                                        <button wire:click.prevent="removeFromCart({{ $item->supplier_product_id }})"
+                                        <button wire:click.prevent="removeFromCart({{ $item->product_id }})"
                                             class="font-medium text-red-600 hover:text-red-700">{{ __('Remove') }}</button>
                                     </div>
                                 </div>

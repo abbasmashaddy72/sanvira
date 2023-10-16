@@ -1,3 +1,3 @@
 <x-guest-layout>
-    @livewire('frontend.filters.supplier-products', ['type' => 'All Products'])
+    @livewire('frontend.filters.products', ['type' => 'All Products'])
 </x-guest-layout>

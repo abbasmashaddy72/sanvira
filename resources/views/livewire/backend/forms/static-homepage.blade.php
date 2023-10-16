@@ -56,7 +56,7 @@
                 <x-textarea name="short_description" label="{{ __('Short Description') }}"
                     wire:model.defer='short_description' />
                 <div>
-                    <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
+                    <h4 class="card-title my-4 text-2xl font-medium" wire:ignore>
                         {{ __('Social Media Links') }}
                     </h4>
                     <x-input name="twitter" label="{{ __('Twitter') }}" type="text" wire:model.defer='twitter' />
@@ -75,7 +75,7 @@
                 </div>
 
                 <div>
-                    <h4 class="my-4 text-2xl font-medium card-title" wire:ignore>
+                    <h4 class="card-title my-4 text-2xl font-medium" wire:ignore>
                         {{ __('Google Map') }}
                     </h4>
 
@@ -105,13 +105,7 @@
                     label="{{ __('Returns & Refunds') }}" wire:model.defer='return_refunds' />
             </div>
         @endif
-        @if ($type == 'Career')
-            <div>
-                <x-backend.ckEditor idPrefix="body2en" lang="EN" name="career" label="{{ __('Career') }}"
-                    wire:model.defer='career' />
-            </div>
-        @endif
 
-        <button class="mt-4 btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary mt-4" type="submit">Save</button>
     </form>
 </div>

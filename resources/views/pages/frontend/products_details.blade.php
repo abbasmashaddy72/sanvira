@@ -51,7 +51,7 @@
                     <div class="tiny-single-item-products">
                         @foreach ($data->images as $item)
                             <div class="tiny-slide">
-                                <a href="{{ asset('storage/' . $item) }}" data-lightbox="supplier_products">
+                                <a href="{{ asset('storage/' . $item) }}" data-lightbox="products">
                                     <img class="h-72 w-96 rounded-lg object-cover" src="{{ asset('storage/' . $item) }}"
                                         onerror="this.onerror=null; this.src='https://placehold.co/1280x625';" />
                                 </a>
@@ -70,7 +70,7 @@
                     <ul class="ml-6 list-disc">
                         @foreach ($data->data_sheets as $item)
                             <a href="{{ asset($item) }}" target="__blank">
-                                @livewire('frontend.filters.supplier-product-view', ['item' => $item, key($item->id)])
+                                @livewire('frontend.filters.product-view', ['item' => $item, key($item->id)])
                                 <li>Data Sheet {{ $loop->iteration }}</li>
                             </a>
                         @endforeach
@@ -115,8 +115,8 @@
                             </li>
 
                             {{-- <li class="flex items-center justify-between p-1">
-                                <span class="mr-2 font-medium text-blue-600">{{ __('Manufacturer Name:') }}</span>
-                                <span class="ml-2">{{ $data->manufacturers->name }}</span>
+                                <span class="mr-2 font-medium text-blue-600">{{ __('Vendor Name:') }}</span>
+                                <span class="ml-2">{{ $data->vendors->name }}</span>
                             </li>
 
                             <li class="flex items-center justify-between p-1">
@@ -128,8 +128,8 @@
                                 <span
                                     class="mr-2 truncate font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
                                 <a class="truncate text-blue-600"
-                                    href="{{ route('products_category', ['slug' => $data->supplierProductCategory->slug]) }}">
-                                    <span class="ml-2">{{ $data->supplierProductCategory->name }}</span>
+                                    href="{{ route('products_category', ['slug' => $data->category->slug]) }}">
+                                    <span class="ml-2">{{ $data->category->name }}</span>
                                 </a>
                             </li>
 
@@ -154,23 +154,13 @@
                             @endforeach
 
                         </ul>
-                        <div class="mt-4 flex flex-1 items-center justify-center px-5">
-                            <div class="block">
-                                <a href="{{ route('supplier_profile', ['slug' => $data->suppliers->slug]) }}">
-                                    <img alt="{{ $data->suppliers->company_name }}"
-                                        class="h-24 w-52 rounded-md border-2 border-gray-200 object-cover shadow"
-                                        src="{{ asset('storage/' . $data->suppliers->logo) }}"
-                                        onerror="this.onerror=null; this.src='https://placehold.co/1280x554';">
-                                </a>
-                            </div>
-                        </div>
                     </div>
-                    @livewire('frontend.filters.supplier-product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page'])
+                    @livewire('frontend.filters.product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page'])
                 </div>
             </div>
             <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow">
                 <h2 class="text-lg font-semibold">{{ __('Similar Products') }}</h2>
-                @livewire('frontend.filters.supplier-products', ['product_category' => [$data->supplierProductCategory], 'type' => 'Product Details Similar Products'])
+                @livewire('frontend.filters.products', ['category' => [$data->category], 'type' => 'Product Details Similar Products'])
             </div>
         </div>
     </x-frontend.index-container>
