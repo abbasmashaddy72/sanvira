@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Livewire\Frontend\Filters;
 
 use App\Models\Brand;

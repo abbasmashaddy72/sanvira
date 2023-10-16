@@ -51,7 +51,7 @@ class StaticController extends Controller
 
     public function image_upload(Request $request)
     {
-        $blog = new Brand();
+        $blog = new Brand;
         $blog->id = 0;
         $blog->exists = true;
         $image = $blog->addMediaFromRequest('upload')->toMediaCollection('images');

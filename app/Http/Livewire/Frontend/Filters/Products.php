@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Livewire\Frontend\Filters;
 
 use App\Models\Product;
@@ -205,7 +204,7 @@ class Products extends Component
             }
         }
 
-        $agent = new Agent();
+        $agent = new Agent;
         return view('livewire.frontend.filters.products', compact([
             'products',
             'sub_category',

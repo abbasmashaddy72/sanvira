@@ -9,7 +9,6 @@ use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CategoriesReport extends LivewireDatatable
 {
-
     public $exportable = true;
 
     public function builder()
