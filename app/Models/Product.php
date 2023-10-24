@@ -20,8 +20,6 @@ class Product extends Model
         'title',
         'slug',
         'description',
-        'min_oq',
-        'max_oq',
         'edt',
         'avb_stock',
         'model',
@@ -40,9 +38,6 @@ class Product extends Model
         'on_sale',
         'images',
         'data_sheets',
-        'price',
-        'min_price',
-        'max_price',
         'verification',
     ];
 
@@ -79,6 +74,11 @@ class Product extends Model
     public function productViews()
     {
         return $this->hasMany(ProductView::class, 'product_id');
+    }
+
+    public function variations()
+    {
+        return $this->hasMany(ProductVariation::class);
     }
 
     public function setTitleAttribute($value)

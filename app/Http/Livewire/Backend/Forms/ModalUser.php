@@ -23,6 +23,22 @@ class ModalUser extends ModalComponent
 
     public $password;
 
+    public $mobile;
+
+    public $street_no;
+
+    public $locality;
+
+    public $landmark;
+
+    public $city_id;
+
+    public $zip_code;
+
+    public $subscription;
+
+    public $image;
+
     // Custom Values
     public $role;
 
@@ -37,8 +53,16 @@ class ModalUser extends ModalComponent
         $data = User::findOrFail($this->user_id);
         $this->name = $data->name;
         $this->email = $data->email;
+        $this->mobile = $data->mobile;
+        $this->street_no = $data->street_no;
+        $this->locality = $data->locality;
+        $this->landmark = $data->landmark;
+        $this->city_id = $data->city_id;
+        $this->zip_code = $data->zip_code;
+        $this->subscription = $data->subscription;
+        $this->image = $data->image;
         $this->password = $data->password;
-        if (! empty($data->roles->first()->name)) {
+        if (!empty($data->roles->first()->name)) {
             $this->role = Role::where('name', $data->roles->first()->name)->pluck('id');
         }
     }
@@ -59,7 +83,7 @@ class ModalUser extends ModalComponent
     {
         $validatedData = $this->validate();
 
-        if (! empty($this->user_id)) {
+        if (!empty($this->user_id)) {
             if ($this->password != $validatedData['password']) {
                 $validatedData['password'] = Hash::make($validatedData['password']);
             }

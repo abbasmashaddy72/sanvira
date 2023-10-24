@@ -36,6 +36,7 @@
         "spatie/laravel-cookie-consent": "^3.2",
         "spatie/laravel-medialibrary": "^10.7.8",
         "tanmuhittin/laravel-google-translate": "^2.1",
+        "vildanbina/laravel-model-json": "^2.0",
         "wire-elements/modal": "^1.0.7",
         "wireui/wireui": "^1.17.8"
     },

@@ -32,6 +32,12 @@ Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
     $trail->push('Role', route('admin.role'));
 });
 
+// Application > Testimonial
+Breadcrumbs::for('testimonial.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Testimonial', route('admin.testimonial'));
+});
+
 // Application > Brand
 Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');

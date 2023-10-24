@@ -20,7 +20,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['as' => 'api.admin.', 'namespace' => 'App\Http\Controllers\Backend'], function () {
     Route::get('categories/{parent_id?}', 'ApiController@categories')->name('categories');
+    Route::get('users', 'ApiController@users')->name('users');
     Route::get('brands', 'ApiController@brands')->name('brands');
     Route::get('vendors', 'ApiController@vendors')->name('vendors');
     Route::get('countries', 'ApiController@countries')->name('countries');
+    Route::get('states', 'ApiController@states')->name('states');
+    Route::get('cities', 'ApiController@cities')->name('cities');
 });

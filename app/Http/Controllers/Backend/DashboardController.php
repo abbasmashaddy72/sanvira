@@ -48,7 +48,7 @@ class DashboardController extends Controller
 
         $filledRows = [];
         $emptyRows = [];
-        $skipColumns = ['price', 'min_price', 'max_price'];
+        $skipColumns = [];
 
         foreach ($allIds as $id) {
             $model = $model::find($id);

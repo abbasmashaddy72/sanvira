@@ -1,13 +1,10 @@
 <x-backend.modal-form form-action="submit" title="{{ $title }}">
     <x-dialog z-index="z-50" blur="md" align="center" />
-    <div class="grid grid-cols-2 gap-x-2">
+    <div class="flex grid grid-cols-3 items-center gap-x-2 gap-y-2">
         <x-input name="title" label="{{ __('Title') }}" type="text" wire:model.defer='title' required />
 
         <x-select label="{{ __('Select Brand') }}" wire:model.defer="brand_id" placeholder="Select Brand"
             :async-data="route('api.admin.brands')" option-label="name" option-value="id" required />
-
-        <x-input name="min_max_oq" label="{{ __('Min - Max Order Quantity') }}" type="text"
-            wire:model.defer='min_max_oq' placehomder="12-123" required />
 
         <x-input name="edt" label="{{ __('Estimate Delivery Time in Days') }}" type="text" wire:model.defer='edt'
             required />
@@ -62,9 +59,6 @@
             <x-checkbox name="verification" label="{{ __('Verification') }}" wire:model.defer='verification' />
         @endrole
 
-        <x-input name="price" label="{{ __('Price (Range 123-321 or Fixed 123)') }}" type="text"
-            placeholder="123-321 or 123" wire:model.defer='price' required />
-
         <div class="card">
             <x-backend.image-upload :images="$this->images" :isUploaded="$this->isUploaded" label="{{ __('Upload Images') }}"
                 name="images" deletId="{{ $product_id }}" model="images" required />
@@ -91,28 +85,65 @@
             :async-data="route('api.admin.vendors')" option-label="name" option-value="id" required />
     </div>
 
-    <div>
+    <div class="mt-2">
         <div class="flex items-center">
             <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
-                <x-input name="name_spa.0" label="{{ __('Attribute Name') }}" type="text"
-                    wire:model.defer='name_spa.0' />
-                <x-input name="value_spa.0" label="{{ __('Attribute Value') }}" type="text"
-                    wire:model.defer='value_spa.0' />
+                <x-input name="name_pa.0" label="{{ __('Attribute Name') }}" type="text"
+                    wire:model.defer='name_pa.0' />
+                <x-input name="value_pa.0" label="{{ __('Attribute Value') }}" type="text"
+                    wire:model.defer='value_pa.0' />
             </div>
             <button class="btn btn-primary ml-2 inline-flex flex-shrink-0"
-                wire:click.prevent="add({{ $i }})">Add</button>
+                wire:click.prevent="add_pa({{ $i_pa }})">Add</button>
         </div>
 
-        @foreach ($inputs as $key => $input_value)
+        @foreach ($inputs_pa as $key => $input_value)
             <div class="flex items-center">
                 <div class="grid flex-shrink-0 grid-cols-2 gap-x-2">
-                    <x-input name="name_spa.{{ $input_value }}" label="{{ __('Attribute Name') }}" type="text"
-                        wire:model.defer='name_spa.{{ $input_value }}' />
-                    <x-input name="value_spa.{{ $input_value }}" label="{{ __('Attribute Value') }}"
-                        type="text" wire:model.defer='value_spa.{{ $input_value }}' />
+                    <x-input name="name_pa.{{ $input_value }}" label="{{ __('Attribute Name') }}" type="text"
+                        wire:model.defer='name_pa.{{ $input_value }}' />
+                    <x-input name="value_pa.{{ $input_value }}" label="{{ __('Attribute Value') }}" type="text"
+                        wire:model.defer='value_pa.{{ $input_value }}' />
                 </div>
                 <button class="btn btn-danger ml-2 inline-flex flex-shrink-0"
-                    wire:click.prevent="remove({{ $key }})">Remove</button>
+                    wire:click.prevent="remove_pa({{ $key }})">Remove</button>
+
+            </div>
+        @endforeach
+    </div>
+
+    <div class="mt-2">
+        <div class="flex items-center">
+            <div class="grid grid-cols-4 gap-x-2">
+                <x-input name="min_price_pv.0" label="{{ __('Min. Price') }}" type="text"
+                    wire:model.defer='min_price_pv.0' />
+                <x-input name="max_price_pv.0" label="{{ __('Max. Price') }}" type="text"
+                    wire:model.defer='max_price_pv.0' />
+                <x-input name="min_order_quantity_pv.0" label="{{ __('Min. Order Quantity') }}" type="text"
+                    wire:model.defer='min_order_quantity_pv.0' />
+                <x-input name="max_order_quantity_pv.0" label="{{ __('Max. Order Quantity') }}" type="text"
+                    wire:model.defer='max_order_quantity_pv.0' />
+            </div>
+            <button class="btn btn-primary ml-2 inline-flex flex-shrink-0"
+                wire:click.prevent="add_pv({{ $i_pv }})">Add</button>
+        </div>
+
+        @foreach ($inputs_pv as $key => $input_value)
+            <div class="flex items-center">
+                <div class="grid grid-cols-4 gap-x-2">
+                    <x-input name="min_price_pv.{{ $input_value }}" label="{{ __('Min. Price') }}" type="text"
+                        wire:model.defer='min_price_pv.{{ $input_value }}' />
+                    <x-input name="max_price_pv.{{ $input_value }}" label="{{ __('Max. Price') }}" type="text"
+                        wire:model.defer='max_price_pv.{{ $input_value }}' />
+                    <x-input name="min_order_quantity_pv.{{ $input_value }}"
+                        label="{{ __('Min. Order Quantity') }}" type="text"
+                        wire:model.defer='min_order_quantity_pv.{{ $input_value }}' />
+                    <x-input name="max_order_quantity_pv.{{ $input_value }}"
+                        label="{{ __('Max. Order Quantity') }}" type="text"
+                        wire:model.defer='max_order_quantity_pv.{{ $input_value }}' />
+                </div>
+                <button class="btn btn-danger ml-2 inline-flex flex-shrink-0"
+                    wire:click.prevent="remove_pv({{ $key }})">Remove</button>
 
             </div>
         @endforeach

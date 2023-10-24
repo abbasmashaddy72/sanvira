@@ -10,15 +10,20 @@ class Country extends Model
     use HasFactory;
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
-        'code',
+        'id',
+        'region',
         'name',
-        'phone',
-        'symbol',
+        'phone_code',
         'capital',
         'currency',
-        'continent',
-        'continent_code',
+        'currency_symbol',
     ];
+
+    public function states()
+    {
+        return $this->hasMany(State::class, 'country_id', 'id');
+    }
 }

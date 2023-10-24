@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -13,15 +14,13 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
+            $table->unsignedBigInteger('id')->primary();
+            $table->string('region');
             $table->string('name');
-            $table->integer('phone');
-            $table->string('symbol');
+            $table->string('phone_code');
             $table->string('capital');
             $table->string('currency');
-            $table->string('continent');
-            $table->string('continent_code');
+            $table->string('currency_symbol');
         });
     }
 

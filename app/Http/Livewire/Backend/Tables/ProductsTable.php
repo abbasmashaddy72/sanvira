@@ -35,14 +35,6 @@ class ProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('min_oq')
-                ->searchable()
-                ->filterable(),
-
-            Column::name('max_oq')
-                ->searchable()
-                ->filterable(),
-
             NumberColumn::name('edt')
                 ->label('EDT (in Days)')
                 ->searchable()

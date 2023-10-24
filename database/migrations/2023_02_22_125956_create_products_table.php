@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -17,8 +18,6 @@ return new class extends Migration {
             $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->bigInteger('min_oq');
-            $table->bigInteger('max_oq');
             $table->string('edt');
             $table->string('avb_stock')->nullable();
             $table->string('vendor');
@@ -28,9 +27,6 @@ return new class extends Migration {
             $table->string('sku')->nullable();
             $table->boolean('on_sale')->default(0);
             $table->json('images');
-            $table->bigInteger('price')->nullable();
-            $table->bigInteger('min_price')->nullable();
-            $table->bigInteger('max_price')->nullable();
             $table->timestamps();
         });
     }

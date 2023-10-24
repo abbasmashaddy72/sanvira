@@ -59,16 +59,6 @@
                         @else border-gray-200 text-gray-700 @endif rounded-lg border-2 bg-white px-2 py-2 font-medium hover:border-2 hover:border-blue-600 hover:text-blue-600">
                         {{ __('Relevance') }}
                     </button>
-                    <button wire:click="applyButton('lowToHigh')" {{ $setButton === 'lowToHigh' ? 'disabled' : '' }}
-                        class="@if ($setButton === 'lowToHigh') border-blue-600 text-blue-600
-                        @else border-gray-200 text-gray-700 @endif rounded-lg border-2 bg-white px-2 py-2 font-medium hover:border-2 hover:border-blue-600 hover:text-blue-600">
-                        {{ __('Price: Low to High') }}
-                    </button>
-                    <button wire:click="applyButton('highToLow')" {{ $setButton === 'highToLow' ? 'disabled' : '' }}
-                        class="@if ($setButton === 'highToLow') border-blue-600 text-blue-600
-                        @else border-gray-200 text-gray-700 @endif rounded-lg border-2 bg-white px-2 py-2 font-medium hover:border-2 hover:border-blue-600 hover:text-blue-600">
-                        {{ __('Price: High to Low') }}
-                    </button>
                 </div>
             </x-slot>
 

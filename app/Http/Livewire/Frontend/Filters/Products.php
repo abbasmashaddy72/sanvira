@@ -31,14 +31,6 @@ class Products extends Component
     public $applyFilter = false;
 
     // 1st Filter Options
-    public $min_oq;
-
-    public $max_oq;
-
-    public $min_price;
-
-    public $max_price;
-
     public $min_edt;
 
     public $max_edt;
@@ -105,10 +97,6 @@ class Products extends Component
 
     public function clearFilters()
     {
-        $this->min_oq = null;
-        $this->max_oq = null;
-        $this->min_price = null;
-        $this->max_price = null;
         $this->min_edt = null;
         $this->max_edt = null;
         $this->brand_id = [];
@@ -138,30 +126,6 @@ class Products extends Component
             }
             if ($this->type === 'Category Page') {
                 $products->where('category_id', $this->category->id);
-            }
-            if ($this->setButton === 'lowToHigh') {
-                $products->orderBy('price', 'ASC')->orderBy('min_price', 'ASC');
-            }
-            if ($this->setButton === 'highToLow') {
-                $products->orderBy('price', 'DESC')->orderBy('min_price', 'DESC');
-            }
-            if ($this->min_oq !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('min_oq', '>=', $this->min_oq);
-            }
-            if ($this->max_oq !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('max_oq', '<=', $this->max_oq);
-            }
-            if ($this->min_price !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('price', '>=', $this->min_price);
-            }
-            if ($this->max_price !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('price', '<=', $this->max_price);
-            }
-            if ($this->min_price !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('min_price', '>=', $this->min_price);
-            }
-            if ($this->max_price !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('max_price', '<=', $this->max_price);
             }
             if ($this->min_edt !== null) {
                 $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('edt', '>=', $this->min_edt);

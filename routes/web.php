@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
 
     Route::get('product', 'ProductController@index')->name('product');
 
+    Route::get('testimonial', 'TestimonialController@index')->name('testimonial');
+
     Route::get('categories', 'CategoryController@index')->name('categories');
 
     Route::get('homepage', 'StaticController@homepage')->name('homepage');

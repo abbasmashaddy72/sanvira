@@ -31,16 +31,6 @@
                 <div class="truncate text-lg font-semibold duration-500 ease-in-out hover:text-blue-600">
                     {{ $item->title }}</div>
             </div>
-            <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
-                <span class="mr-2 h-6 w-6 font-semibold text-blue-600">AED</span>
-                <div id="price" role="tooltip"
-                    class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                    {{ __('AED') }}
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <span
-                    class="truncate">{{ $item->price ? $item->price : $item->min_price . ' - ' . $item->max_price }}</span>
-            </div>
 
             {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
                 <svg data-tooltip-target="sku" class="w-6 h-6 mr-2 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
@@ -57,23 +47,6 @@
                 <span class="truncate">{{ $item->sku }}</span>
             </div> --}}
             {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
-                <div class="flex">
-                    <svg data-tooltip-target="min_max_oq" class="w-6 h-6 mr-2 fill-blue-600" version="1.1"
-                        id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        x="0px" y="0px" viewBox="0 0 118.67 122.88"
-                        style="enable-background:new 0 0 118.67 122.88" xml:space="preserve">
-                        <g>
-                            <path
-                                d="M3.92,22.79C1.81,22.79,0,20.99,0,18.77c0-2.11,1.81-3.92,3.92-3.92h5.43c0.1,0,0.3,0,0.41,0c3.62,0.1,6.84,0.8,9.54,2.51 c3.01,1.91,5.22,4.82,6.43,9.15c0,0.1,0,0.2,0.1,0.3l1,4.03h11.59c0.73,2.95,2.34,5.7,4.78,7.83H29.04l0,0l8.94,33.67h63.4 l8.33-33.67H95.95c2.44-2.13,4.04-4.89,4.78-7.83h13.06h0.96c2.21,0,3.92,1.81,3.92,3.92c0,0.41-0.11,0.8-0.2,1.21l-10.25,41.29 c-0.41,1.81-2.01,3.01-3.81,3.01l0,0H40.09c1.41,5.22,2.81,8.04,4.72,9.35c2.31,1.51,6.33,1.6,13.07,1.51h0.1l0,0h45.42 c2.21,0,3.92,1.81,3.92,3.92c0,2.21-1.81,3.92-3.92,3.92H57.98l0,0c-8.34,0.1-13.46-0.1-17.59-2.81 c-4.22-2.81-6.43-7.64-8.64-16.38l0,0L18.29,28.83c0-0.1,0-0.1-0.1-0.2c-0.6-2.21-1.6-3.72-3.01-4.52c-1.41-0.91-3.31-1.3-5.52-1.3 c-0.1,0-0.2,0-0.3,0L3.92,22.79L3.92,22.79L3.92,22.79L3.92,22.79z M66.62,44.11L50.36,30.76c-1.99-1.6-2.31-4.53-0.71-6.52 c1.6-1.99,4.53-2.31,6.52-0.71l8.77,7.3l-0.01-26.2C64.92,2.07,67,0,69.55,0c2.56,0,4.63,2.07,4.63,4.63l0.01,26.21l8.78-7.3 c1.99-1.6,4.91-1.28,6.52,0.71c1.6,1.99,1.28,4.91-0.71,6.52L72.52,44.11l-0.05,0.04c-1.71,1.33-3.94,1.43-5.79,0L66.62,44.11 L66.62,44.11L66.62,44.11z M81.49,58.08c0-1.24,1.23-2.24,2.73-2.24c1.51,0,2.73,1,2.73,2.24v4.71c0,1.24-1.23,2.24-2.73,2.24 c-1.51,0-2.73-1-2.73-2.24V58.08L81.49,58.08L81.49,58.08z M65.12,58.08c0-1.24,1.23-2.24,2.73-2.24c1.51,0,2.73,1,2.73,2.24v4.71 c0,1.24-1.23,2.24-2.73,2.24c-1.51,0-2.73-1-2.73-2.24V58.08L65.12,58.08L65.12,58.08z M48.76,58.08c0-1.24,1.23-2.24,2.73-2.24 c1.51,0,2.73,1,2.73,2.24v4.71c0,1.24-1.23,2.24-2.73,2.24c-1.51,0-2.73-1-2.73-2.24V58.08L48.76,58.08L48.76,58.08z M91.64,103.58 c5.33,0,9.65,4.32,9.65,9.65s-4.32,9.65-9.65,9.65c-5.32,0-9.65-4.32-9.65-9.65S86.32,103.58,91.64,103.58L91.64,103.58 L91.64,103.58L91.64,103.58z M49.34,103.58c5.32,0,9.65,4.32,9.65,9.65s-4.32,9.65-9.65,9.65c-5.33,0-9.65-4.32-9.65-9.65 S44.01,103.58,49.34,103.58L49.34,103.58L49.34,103.58L49.34,103.58z" />
-                        </g>
-                    </svg>
-                    <div id="min_max_oq" role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Min - Max Order Quantity
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                    {{ $item->min_oq }} - {{ $item->max_oq }}
-                </div>
                 <div class="flex">
                     <svg data-tooltip-target="edt" class="w-6 h-6 mr-2 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
                         shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
@@ -170,9 +143,6 @@
 
         {{-- @if (\Route::currentRouteName() != 'homepage')
             <div class="flex flex-col items-center px-6 py-2">
-                <div class="inline-flex items-center mt-2">
-                    <x-inputs.number min="{{ $item->min_oq }}" wire:model.defer="quantity.{{ $item->id }}" />
-                </div>
                 @if (!in_array($item->id, $cartProducts))
                     <button wire:click="addToCart({{ $item->id }})"
                         class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
@@ -203,10 +173,6 @@
     </div>
 @else
     {{-- <div class="flex flex-col items-center px-6 py-2">
-        <div class="inline-flex items-center mt-2">
-            <x-label for="" name='Quantity' />
-            <x-inputs.number min="{{ $item->min_oq }}" wire:model.defer="quantity.{{ $item->id }}" />
-        </div>
         <div class="flex justify-between w-full mt-4">
             <div class="flex items-center text-gray-500">
                 @if (!in_array($item->id, $cartProducts))

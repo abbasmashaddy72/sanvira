@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Backend\Forms;
 
 use App\Models\Product;
 use App\Models\ProductAttributes;
+use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 use Livewire\WithFileUploads;
@@ -29,10 +30,6 @@ class ModalProduct extends ModalComponent
     public $title;
 
     public $description;
-
-    public $min_oq;
-
-    public $max_oq;
 
     public $edt;
 
@@ -70,27 +67,31 @@ class ModalProduct extends ModalComponent
 
     public $data_sheets = [];
 
-    public $price;
-
-    public $min_price;
-
-    public $max_price;
-
     public $verification;
 
     // ProductAttributes Model Values
-    public $product_id_spa;
+    public $name_pa = [];
 
-    public $name_spa = [];
-
-    public $value_spa = [];
+    public $value_pa = [];
 
     // Model Custom Values
-    public $min_max_oq;
+    public $inputs_pa = [];
 
-    public $inputs = [];
+    public $i_pa = 1;
 
-    public $i = 1;
+    // Model ProductVariation Values
+    public $min_price_pv;
+
+    public $max_price_pv;
+
+    public $min_order_quantity_pv;
+
+    public $max_order_quantity_pv;
+
+    // Model Custom Values
+    public $inputs_pv = [];
+
+    public $i_pv = 1;
 
     public $isUploaded = false;
 
@@ -104,16 +105,28 @@ class ModalProduct extends ModalComponent
 
     protected $listeners = ['setUnits'];
 
-    public function add($i)
+    public function add_pa($i_pa)
     {
-        $i = $i + 1;
-        $this->i = $i;
-        array_push($this->inputs, $i);
+        $i_pa = $i_pa + 1;
+        $this->i_pa = $i_pa;
+        array_push($this->inputs_pa, $i_pa);
     }
 
-    public function remove($i)
+    public function remove_pa($i_pa)
     {
-        unset($this->inputs[$i]);
+        unset($this->inputs_pa[$i_pa]);
+    }
+
+    public function add_pv($i_pv)
+    {
+        $i_pv = $i_pv + 1;
+        $this->i_pv = $i_pv;
+        array_push($this->inputs_pv, $i_pv);
+    }
+
+    public function remove_pv($i_pv)
+    {
+        unset($this->inputs_pv[$i_pv]);
     }
 
     public function UpdatedMainCategoryId()
@@ -143,7 +156,6 @@ class ModalProduct extends ModalComponent
         $this->vendor_id = $data->vendor_id;
         $this->title = $data->title;
         $this->description = $data->description;
-        $this->min_max_oq = $data->min_oq . '-' . $data->max_oq;
         $this->edt = $data->edt;
         $this->avb_stock = $data->avb_stock;
         $this->model = $data->model;
@@ -163,22 +175,28 @@ class ModalProduct extends ModalComponent
         $this->images = $data->images;
         $this->data_sheets = $data->data_sheets;
         $this->verification = $data->verification;
-        if (!is_null($data->price)) {
-            $this->price = $data->price;
-        } else {
-            $this->price = $data->min_price . '-' . $data->max_price;
-        }
         $this->main_category_id = $data->category->parent_id;
         $this->sub_category = true;
-        $data_spa = ProductAttributes::where('product_id', $this->product_id)->get();
-        foreach ($data_spa as $key => $value) {
-            $this->name_spa[] = $value->name;
-            $this->value_spa[] = $value->value;
+        $data_pa = ProductAttributes::where('product_id', $this->product_id)->get();
+        foreach ($data_pa as $key => $value) {
+            $this->name_pa[] = $value->name;
+            $this->value_pa[] = $value->value;
             if ($key != 0) {
-                $this->inputs[] = $key;
+                $this->inputs_pa[] = $key;
             }
         }
-        $this->i = $data_spa->count();
+        $this->i_pa = $data_pa->count();
+        $data_pv = ProductVariation::where('product_id', $this->product_id)->get();
+        foreach ($data_pv as $key => $value) {
+            $this->min_price_pv[] = $value->min_price;
+            $this->max_price_pv[] = $value->max_price;
+            $this->min_order_quantity_pv[] = $value->min_order_quantity;
+            $this->max_order_quantity_pv[] = $value->max_order_quantity;
+            if ($key != 0) {
+                $this->inputs_pv[] = $key;
+            }
+        }
+        $this->i_pv = $data_pv->count();
     }
 
     protected $rules = [
@@ -188,7 +206,6 @@ class ModalProduct extends ModalComponent
         'vendor_id' => 'required',
         'title' => 'required',
         'description' => '',
-        'min_max_oq' => 'required',
         'edt' => 'required',
         'avb_stock' => 'required',
         'model' => 'required',
@@ -207,9 +224,10 @@ class ModalProduct extends ModalComponent
         'on_sale' => 'required',
         'images' => 'required|array|min:4',
         'data_sheets' => '',
-        'price' => '',
         'min_price' => '',
         'max_price' => '',
+        'min_order_quantity' => '',
+        'max_order_quantity' => '',
     ];
 
     public function updated($propertyName)
@@ -226,22 +244,6 @@ class ModalProduct extends ModalComponent
     public function submit()
     {
         $validatedData = $this->validate();
-        $min_max_oq_data = explode('-', $validatedData['min_max_oq']);
-        unset($validatedData['min_max_oq']);
-        $validatedData['min_oq'] = $min_max_oq_data[0];
-        $validatedData['max_oq'] = $min_max_oq_data[1];
-
-        $price_data = explode('-', $validatedData['price']);
-        unset($validatedData['price']);
-        if (count($price_data) > 1) {
-            $validatedData['min_price'] = $price_data[0];
-            $validatedData['max_price'] = $price_data[1];
-            $validatedData['price'] = null;
-        } else {
-            $validatedData['min_price'] = null;
-            $validatedData['max_price'] = null;
-            $validatedData['price'] = $price_data[0];
-        }
 
         if (!empty($this->product_id)) {
             if (!empty($this->images) && gettype($this->images) == 'array') {
@@ -274,8 +276,18 @@ class ModalProduct extends ModalComponent
             }
             Product::where('id', $this->product_id)->update($validatedData);
             ProductAttributes::where('product_id', $this->product_id)->delete();
-            foreach ($this->name_spa as $key => $value) {
-                ProductAttributes::create(['product_id' => $this->product_id, 'name' => $this->name_spa[$key], 'value' => $this->value_spa[$key]]);
+            foreach ($this->name_pa as $key => $value) {
+                ProductAttributes::create(['product_id' => $this->product_id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
+            }
+            ProductVariation::where('product_id', $this->product_id)->delete();
+            foreach ($this->min_price_pv as $key => $value) {
+                ProductVariation::create([
+                    'product_id' => $this->product_id,
+                    'min_price_pv' => $this->min_price_pv[$key],
+                    'max_price_pv' => $this->max_price_pv[$key],
+                    'min_order_quantity_pv' => $this->min_order_quantity_pv[$key],
+                    'max_order_quantity_pv' => $this->max_order_quantity_pv[$key]
+                ]);
             }
 
             $this->notification()->success($title = 'Product Updated Successfully!');
@@ -309,10 +321,18 @@ class ModalProduct extends ModalComponent
                 }
             }
             $Product = Product::create($validatedData);
-            foreach ($this->name_spa as $key => $value) {
-                ProductAttributes::create(['product_id' => $Product->id, 'name' => $this->name_spa[$key], 'value' => $this->value_spa[$key]]);
+            foreach ($this->name_pa as $key => $value) {
+                ProductAttributes::create(['product_id' => $Product->id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
             }
-
+            foreach ($this->min_price_pv as $key => $value) {
+                ProductVariation::create([
+                    'product_id' => $Product->id,
+                    'min_price_pv' => $this->min_price_pv[$key],
+                    'max_price_pv' => $this->max_price_pv[$key],
+                    'min_order_quantity_pv' => $this->min_order_quantity_pv[$key],
+                    'max_order_quantity_pv' => $this->max_order_quantity_pv[$key]
+                ]);
+            }
             $this->notification()->success($title = 'Product Saved Successfully!');
         }
 
@@ -353,6 +373,11 @@ class ModalProduct extends ModalComponent
         $this->closeModal();
 
         $this->notification()->success($title = 'Product Image Deleted Successfully!');
+    }
+
+    public static function modalMaxWidth(): string
+    {
+        return '4xl';
     }
 
     public function render()

@@ -82,6 +82,14 @@ class AppLayout extends Component
                 'route_name' => 'admin.product',
                 'params' => null,
             ],
+            'testimonial' => [
+                'can' => 'testimonial_list',
+                'role' => auth()->user()->roles->first()->slug,
+                'icon' => 'user-plus',
+                'title' => 'Testimonials',
+                'route_name' => 'admin.testimonial',
+                'params' => null,
+            ],
             'homepage' => [
                 'can' => 'homepage',
                 'role' => auth()->user()->roles->first()->slug,

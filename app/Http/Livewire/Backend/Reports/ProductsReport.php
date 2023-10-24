@@ -46,12 +46,6 @@ class ProductsReport extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::raw("CASE WHEN min_price IS NOT NULL AND max_price IS NOT NULL THEN CONCAT(min_price, ' - ', max_price) ELSE price END AS price_range")
-                ->label('Min - Max Price'),
-
-            Column::raw("concat(min_oq , ' - ' , max_oq) AS min_max_oq")
-                ->label('Min - Max OQ'),
-
             NumberColumn::name('edt')
                 ->label('EDT in Days')
                 ->searchable()
