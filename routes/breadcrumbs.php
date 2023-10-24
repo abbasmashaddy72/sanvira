@@ -50,6 +50,24 @@ Breadcrumbs::for('product.index', function (BreadcrumbTrail $trail) {
     $trail->push('Product', route('admin.product'));
 });
 
+// Application > Order
+Breadcrumbs::for('orders.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Order', route('admin.orders'));
+});
+
+// Application > Product Reviews
+Breadcrumbs::for('product.review', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Product Reviews', route('admin.product_review'));
+});
+
+// Application > Address
+Breadcrumbs::for('address.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Address', route('admin.address'));
+});
+
 // Application > Vendor
 Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');

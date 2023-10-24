@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Routes
 Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
-    Route::get('/', 'FrontendController@index')->name('homepage');
+    Route::get('', 'FrontendController@index')->name('homepage');
     Route::get('contact_us', 'FrontendController@contact_us')->name('contact_us');
     Route::get('about_us', 'FrontendController@about_us')->name('about_us');
     Route::get('privacy_policy', 'FrontendController@privacy_policy')->name('privacy_policy');
@@ -33,21 +33,18 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
         Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm');
     });
 
-    Route::get('/change-language/{lang}', 'LanguageController@changeLanguage');
+    Route::get('change-language/{lang}', 'LanguageController@changeLanguage');
 });
 
 // Backend Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'password.change.check'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
+    // Super Admin
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('role', 'RoleController@index')->name('role');
     Route::get('user', 'UserController@index')->name('user');
 
-    Route::get('/profile', 'ProfileController@edit')->name('profile.edit');
-    Route::patch('/profile', 'ProfileController@update')->name('profile.update');
-    Route::delete('/profile', 'ProfileController@destroy')->name('profile.destroy');
-
-    Route::get('/{user}/impersonate', 'UserController@impersonate')->name('users.impersonate');
-    Route::get('/leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
+    Route::get('{user}/impersonate', 'UserController@impersonate')->name('users.impersonate');
+    Route::get('leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
 
     Route::get('brand', 'BrandController@index')->name('brand');
     Route::get('vendor', 'VendorController@index')->name('vendor');
@@ -65,6 +62,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('contact_us', 'StaticController@contact_us')->name('contact_us');
 
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
+
+    // Buyer
+    Route::get('orders', 'OrderController@index')->name('orders');
+    Route::get('product_review', 'ProductController@review')->name('product_review');
+    Route::get('address', 'AddressController@index')->name('address');
+    // Route::get('support', 'SupportController@index')->name('support');
+
+    // Common
+    Route::get('profile', 'ProfileController@edit')->name('profile.edit');
+    Route::patch('profile', 'ProfileController@update')->name('profile.update');
+    Route::delete('profile', 'ProfileController@destroy')->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';

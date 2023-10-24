@@ -31,38 +31,6 @@
                 <div class="truncate text-lg font-semibold duration-500 ease-in-out hover:text-blue-600">
                     {{ $item->title }}</div>
             </div>
-
-            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
-                <svg data-tooltip-target="sku" class="w-6 h-6 mr-2 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
-                    height="48" viewBox="0 -960 960 960" width="48">
-                    <path
-                        d="M620-159 460-319l43-43 117 117 239-239 43 43-282 282Zm220-414h-60v-207h-60v90H240v-90h-60v600h251v60H180q-26 0-43-17t-17-43v-600q0-26 17-43t43-17h202q7-35 34.5-57.5T480-920q36 0 63.5 22.5T578-840h202q26 0 43 17t17 43v207ZM480-780q17 0 28.5-11.5T520-820q0-17-11.5-28.5T480-860q-17 0-28.5 11.5T440-820q0 17 11.5 28.5T480-780Z" />
-                </svg>
-
-                <div id="sku" role="tooltip"
-                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    {{ __('Stock Keeping Unit') }}
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <span class="truncate">{{ $item->sku }}</span>
-            </div> --}}
-            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
-                <div class="flex">
-                    <svg data-tooltip-target="edt" class="w-6 h-6 mr-2 fill-blue-600" xmlns="http://www.w3.org/2000/svg"
-                        shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
-                        image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
-                        viewBox="0 0 505 512.15">
-                        <path
-                            d="m336.11 39.84-115.38 68.94 135.38 18.4 111.32-69.44-131.32-17.9zM362.44 245c73.77 0 133.58 59.8 133.58 133.58 0 73.77-59.81 133.57-133.58 133.57-73.77 0-133.57-59.8-133.57-133.57 0-73.78 59.8-133.58 133.57-133.58zm-23.12 86.93c0-10.96 8.89-19.85 19.85-19.85 10.97 0 19.86 8.89 19.86 19.85v52.99l29.81 9.41c10.45 3.3 16.24 14.45 12.95 24.9-3.3 10.45-14.45 16.24-24.9 12.95l-42.95-13.57c-8.43-2.3-14.62-10-14.62-19.15v-67.53zm-134.49-205.8-.09 141.71-51.45-35.04-51.46 29.07 6.1-148.91-88.54-12.03v312.98l178.95 23.13c2.52 7.1 5.47 13.99 8.85 20.63L9.3 432.08c-5.17-.21-9.3-4.48-9.3-9.69V89.86c.27-4.05 1.89-6.89 5.72-8.81L182.47.85c1.58-.72 3.53-1.01 5.26-.76l308.18 42.03c5.09.59 8.58 4.77 8.58 9.99v.02L505 280.9c-5.72-8.46-15.57-20.29-19.93-27.77V69.56l-115.81 74.93v59.81a174.577 174.577 0 0 0-19.39.36v-58.82l-145.04-19.71zm-81.52-30.58 112.17-69.44-47.58-6.49L44.24 84.8l79.07 10.75z" />
-                    </svg>
-                    <div id="edt" role="tooltip"
-                        class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Estimated Delivery Time in Days
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                    {{ $item->edt }}
-                </div>
-            </div> --}}
             <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
                 <svg data-tooltip-target="brand_name" class="mr-2 h-6 w-6 fill-blue-600" version="1.1" id="Layer_1"
                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -85,45 +53,6 @@
                 </div>
                 <span class="truncate">{{ $item->brands->name }}</span>
             </div>
-            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
-                <svg data-tooltip-target="vendor_name" class="w-6 h-6 mr-2 fill-blue-600" id="Layer_1"
-                    data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 98.06 122.88">
-                    <defs>
-                        <style>
-                            .cls-1 {
-                                fill-rule: evenodd;
-                            }
-                        </style>
-                    </defs>
-                    <title>factory-industry</title>
-                    <path class="cls-1"
-                        d="M15,36.34l-1.75,13.9h19l-1.75-13.9ZM29.2,32a1.63,1.63,0,0,1-3,1.3,6,6,0,0,1-.5-3,7.09,7.09,0,0,1,.86-2.63,1.62,1.62,0,0,1,2.62-.34,8.3,8.3,0,0,0,3.7,2,3.11,3.11,0,0,0,1.89-.11A2.28,2.28,0,0,0,35.92,28a6.54,6.54,0,0,0,.38-3.36,1.63,1.63,0,0,1,3.12-.79,6.73,6.73,0,0,0,5.22,3.36,7.73,7.73,0,0,0,3.08-.18A5.07,5.07,0,0,0,50,25.74c1-1,1.47-2.7,1-5a1.63,1.63,0,0,1,1.28-1.92,1.77,1.77,0,0,1,.51,0,6.17,6.17,0,0,0,6-3.11,5.69,5.69,0,0,0,.64-2.54,4.47,4.47,0,0,0-.6-2.29c-.81-1.35-2.56-2.25-5.36-2a1.63,1.63,0,0,1-1.73-1.13,6.34,6.34,0,0,0-3.08-4.1,4.08,4.08,0,0,0-2.27-.35,4.7,4.7,0,0,0-2.21.91A5.85,5.85,0,0,0,42,8.5a1.63,1.63,0,0,1-3.21.27,7.13,7.13,0,0,0-2.24-3.61,4.33,4.33,0,0,0-2.77-.93,6,6,0,0,0-3,.94A6.88,6.88,0,0,0,28,8.4a1.63,1.63,0,0,1-2.12.91A1.68,1.68,0,0,1,25.35,9a6.85,6.85,0,0,0-4.44-2.15,3.83,3.83,0,0,0-2.14.56,3.71,3.71,0,0,0-1.41,1.71l0,.06a7.56,7.56,0,0,0,.18,5.26,1.64,1.64,0,0,1-1,2.07l-.13,0a4.7,4.7,0,0,0-3.58,3.42V20a4.72,4.72,0,0,0,0,2,4.3,4.3,0,0,0,.81,1.81c1,1.25,2.75,2,5.38,1.63a1.63,1.63,0,0,1,1.61,2.49,12.93,12.93,0,0,0-1.17,2.49,8.43,8.43,0,0,0-.44,2.44,1.63,1.63,0,1,1-3.25-.06,11.32,11.32,0,0,1,.61-3.39l.23-.66A7.77,7.77,0,0,1,11,25.76a7.41,7.41,0,0,1-1.44-3.18,7.89,7.89,0,0,1,.06-3.35l0-.08A7.72,7.72,0,0,1,14,13.9a10,10,0,0,1,.34-6l0-.09A6.9,6.9,0,0,1,17,4.62,7,7,0,0,1,21,3.56,9.33,9.33,0,0,1,26,5.3a10.39,10.39,0,0,1,3.11-2.91A9.3,9.3,0,0,1,33.78,1,7.57,7.57,0,0,1,38.6,2.59,9.23,9.23,0,0,1,40.08,4.1a8.67,8.67,0,0,1,2.23-2.5A8,8,0,0,1,46.06.06,7.31,7.31,0,0,1,50.13.7a9,9,0,0,1,4.36,4.85C58,5.51,60.43,7,61.7,9.15a7.65,7.65,0,0,1,1.06,4,8.88,8.88,0,0,1-1,4A9,9,0,0,1,54.47,22a7.94,7.94,0,0,1-2.08,6,8.26,8.26,0,0,1-3.8,2.21,11.24,11.24,0,0,1-9.37-1.7,8.35,8.35,0,0,1-.35.92,5.44,5.44,0,0,1-2.78,2.77,6.39,6.39,0,0,1-3.85.32A10.28,10.28,0,0,1,29,31.15a3,3,0,0,0,.24.85ZM0,117.06H98.06v5.82H0v-5.82ZM2.47,71l8.41,1L11.75,65h22L35,75.1l60.55,7.6v32.21H2.47V71ZM12.94,53.46l-.86,8.3H33.46l-.86-8.3Zm7.24,33.76H32.8A1.77,1.77,0,0,1,34.57,89v15.88a1.77,1.77,0,0,1-1.77,1.76H20.18a1.76,1.76,0,0,1-1.76-1.76V89a1.76,1.76,0,0,1,1.76-1.76Zm39.48,3H72.29A1.77,1.77,0,0,1,74.05,92v12.88a1.77,1.77,0,0,1-1.76,1.76H59.66a1.77,1.77,0,0,1-1.76-1.76V92a1.78,1.78,0,0,1,1.76-1.76Z" />
-                </svg>
-                <div id="vendor_name" role="tooltip"
-                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    {{ __('Vendor Name') }}
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <span class="truncate">{{ $item->vendors->name }}</span>
-            </div> --}}
-
-            {{-- <div class="flex items-center justify-between px-6 py-2 border-b border-gray-300">
-                <svg data-tooltip-target="model" class="w-6 h-6 mr-2 fill-blue-600" version="1.1" id="Layer_1"
-                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" width="121.7px" height="122.881px" viewBox="0 0 121.7 122.881"
-                    enable-background="new 0 0 121.7 122.881" xml:space="preserve">
-                    <g>
-                        <path
-                            d="M80.833,29.638c0.309-0.061,0.63-0.002,0.896,0.161c0.455,0.188,0.776,0.635,0.778,1.158l0.264,36.584 c0.021,0.449-0.198,0.895-0.611,1.141l-14.941,8.912c-0.211,0.16-0.475,0.254-0.759,0.254c-0.069,0-0.138-0.004-0.204-0.016 l-38.773-4.311c-0.667-0.033-1.198-0.586-1.198-1.262V35.057h0.002c-0.015-0.498,0.268-0.979,0.752-1.191l19.45-8.55l0.001,0.002 c0.203-0.09,0.433-0.126,0.669-0.096L80.833,29.638L80.833,29.638L80.833,29.638z M53.613,0c14.789,0,28.202,6.018,37.918,15.694 c9.716,9.716,15.694,23.089,15.694,37.918c0,10.817-3.226,20.927-8.732,29.343l23.207,25.293l-16.009,14.633L83.311,98.258 c-8.497,5.664-18.724,8.967-29.697,8.967c-14.79,0-28.203-6.018-37.918-15.693C5.979,81.814,0,68.441,0,53.612 c0-14.79,6.019-28.202,15.695-37.918C25.41,5.979,38.784,0,53.613,0L53.613,0z M87.283,19.942 c-8.614-8.614-20.532-13.964-33.67-13.964s-25.056,5.35-33.67,13.964S5.979,40.475,5.979,53.612 c0,13.138,5.349,25.056,13.963,33.671c8.614,8.613,20.533,13.963,33.67,13.963s25.056-5.35,33.67-13.963 c8.614-8.615,13.964-20.533,13.964-33.671C101.247,40.475,95.897,28.557,87.283,19.942L87.283,19.942L87.283,19.942z M68.174,40.325v33.136l11.626-6.57l-0.244-33.406L68.174,40.325L68.174,40.325L68.174,40.325z M64.293,73.824V40.677l-15.63-1.657 l-0.542,15.802l-5.806-3.954l-5.806,3.281l1.198-16.528l-7.994-1.135V70.23L64.293,73.824L64.293,73.824L64.293,73.824z M62.583,29.782L50.84,36.253l15.863,2.024l10.666-6.556L62.583,29.782L62.583,29.782L62.583,29.782z M39.712,34.833l11.373-6.559 l-3.899-0.511l-14.592,6.161L39.712,34.833L39.712,34.833z" />
-                    </g>
-                </svg>
-                <div id="model" role="tooltip"
-                    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Model
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                {{ $item->model }}
-            </div> --}}
             <div class="flex items-center justify-between border-b border-gray-300 px-6 py-2">
                 <svg data-tooltip-target="country_of_origin" class="mr-2 h-6 w-6 fill-blue-600"
                     xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision"
@@ -141,61 +70,36 @@
             </div>
         </a>
 
-        {{-- @if (\Route::currentRouteName() != 'homepage')
-            <div class="flex flex-col items-center px-6 py-2">
-                @if (!in_array($item->id, $cartProducts))
-                    <button wire:click="addToCart({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
-                        Add to Cart</button>
-                @else
-                    <button wire:click="removeFromCart({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700">Remove
-                        Form Cart</button>
-                @endif
-                <div class="flex justify-between w-full mt-4">
-                    <div class="flex items-center text-gray-500">
-                        <x-checkbox id="right-label" label="Compare" />
-                    </div>
-                    <div>
-                        @if (!in_array($item->id, $rfqProducts))
-                            <button wire:click="addToRfq({{ $item->id }})"
-                                class="inline-flex justify-center px-2 py-2 font-medium text-gray-600 rounded hover:text-blue-600">
-                                Add to RFQ</button>
-                        @else
-                            <button wire:click="removeFromRfq({{ $item->id }})"
-                                class="inline-flex justify-center px-2 py-2 font-medium text-white bg-red-600 rounded hover:bg-red-700">Remove
-                                Form RFQ</button>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        @endif --}}
-    </div>
-@else
-    {{-- <div class="flex flex-col items-center px-6 py-2">
-        <div class="flex justify-between w-full mt-4">
-            <div class="flex items-center text-gray-500">
-                @if (!in_array($item->id, $cartProducts))
-                    <button wire:click="addToCart({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
-                        Add to Cart</button>
-                @else
-                    <button wire:click="removeFromCart({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700">Remove
-                        Form Cart</button>
-                @endif
-            </div>
-            <div>
+        @if (\Route::currentRouteName() != 'homepage')
+            <div class="my-2 grid grid-cols-2 items-center gap-2 px-4 py-2">
+                <x-input type="number" wire:model.defer="quantity.{{ $item->id }}" placeholder="Quantity" />
                 @if (!in_array($item->id, $rfqProducts))
                     <button wire:click="addToRfq({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-blue-600 rounded hover:bg-blue-700">
-                        Add to RFQ</button>
+                        class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-blue-700">
+                        Add to RFQ
+                    </button>
                 @else
                     <button wire:click="removeFromRfq({{ $item->id }})"
-                        class="flex justify-center w-full px-2 py-2 mt-4 font-bold text-white bg-red-600 rounded hover:bg-red-700">Remove
-                        Form RFQ</button>
+                        class="rounded bg-red-600 px-2 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-red-700">
+                        Clear from RFQ
+                    </button>
                 @endif
             </div>
-        </div>
-    </div> --}}
+        @endif
+    </div>
+@else
+    <div class="my-2 grid grid-cols-2 items-center gap-2 px-4 py-2">
+        <x-inputs.number placeholder="Quantity" wire:model.defer="quantity.{{ $item->id }}" />
+        @if (!in_array($item->id, $rfqProducts))
+            <button wire:click="addToRfq({{ $item->id }})"
+                class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-blue-700">
+                Add to RFQ
+            </button>
+        @else
+            <button wire:click="removeFromRfq({{ $item->id }})"
+                class="rounded bg-red-600 px-2 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-red-700">
+                Clear from RFQ
+            </button>
+        @endif
+    </div>
 @endif

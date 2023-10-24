@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ShippingAddress;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 
@@ -77,6 +78,8 @@ class DatabaseSeeder extends Seeder
             $this->call(VendorViewSeeder::class);
             $this->call(TestimonialSeeder::class);
             $this->call(ProductVariationSeeder::class);
+            $this->call(ShippingAddressSeeder::class);
+            $this->call(BillingAddressSeeder::class);
         }
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Frontend\Filters;
 
-use App\Models\Cart;
 use App\Models\Rfq;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -15,40 +14,15 @@ class ProductView extends Component
 
     public $item;
 
-    public $cartProducts = [];
-
     public $rfqProducts = [];
 
     public $quantity = [];
 
+    protected $listeners = ['rfqUpdated' => 'render'];
+
     public function mount()
     {
-        $this->cartProducts = Cart::where('user_id', auth()->id())->pluck('product_id')->toArray();
         $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('product_id')->toArray();
-    }
-
-    public function addToCart($productId)
-    {
-        Cart::create([
-            'product_id' => $productId,
-            'user_id' => auth()->id(),
-            'quantity' => $this->quantity[$productId],
-        ]);
-        $this->cartProducts[] = $productId;
-
-        $this->notification()->success($title = 'Product Added to Cart');
-        $this->emit('updateCart');
-    }
-
-    public function removeFromCart($productId)
-    {
-        Cart::where('product_id', $productId)->where('user_id', auth()->id())->delete();
-        if (($key = array_search($productId, $this->cartProducts)) !== false) {
-            unset($this->cartProducts[$key]);
-        }
-
-        $this->notification()->error($title = 'Product Removed from Cart');
-        $this->emit('updateCart');
     }
 
     public function addToRfq($productId)

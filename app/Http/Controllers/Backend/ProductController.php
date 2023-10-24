@@ -18,4 +18,11 @@ class ProductController extends Controller
 
         return view('pages.backend.product.index');
     }
+
+    public function review()
+    {
+        abort_if(Gate::denies('product_review_list'), 403);
+
+        return view('pages.backend.product.review');
+    }
 }

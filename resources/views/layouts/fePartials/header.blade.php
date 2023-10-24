@@ -28,6 +28,7 @@
 
         <div class="@auth pt-5 lg:pt-4 @else pt-4 lg:pt-3 @endauth float-right flex items-center space-x-3">
             @auth
+                @livewire('frontend.counter.rfq-counter')
                 <div x-data="{ dropdownMenu: false }" class="relative">
                     <div class="dropdown-toggle relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-xl font-medium uppercase text-white shadow-lg"
                         role="button" @click="dropdownMenu = !dropdownMenu">

@@ -29,6 +29,7 @@ class RfqModal extends ModalComponent
 
         $this->notification()->error($title = 'Product Removed from RFQ');
         $this->emit('updateRfq');
+        $this->emit('rfqUpdated');
         $this->closeModal();
     }
 
