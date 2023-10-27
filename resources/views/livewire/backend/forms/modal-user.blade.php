@@ -1,5 +1,5 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
-    <div class="grid-cols-1 gap-2 row-gap-0 sm:grid">
+    <div class="row-gap-0 grid-cols-1 gap-2 sm:grid">
         <x-native-select label="{{ __('Select Role') }}" placeholder="Select one Role" :options="$roles"
             option-label="name" option-value="id" wire:model.defer="role" required />
 
@@ -13,7 +13,7 @@
 
         <x-input name="locality" label="{{ __('Locality') }}" type="text" wire:model.defer='locality' required />
 
-        <x-input name="landmark" label="{{ __('lLndmark') }}" type="text" wire:model.defer='landmark' required />
+        <x-input name="landmark" label="{{ __('Landmark') }}" type="text" wire:model.defer='landmark' required />
 
         <x-input name="zip_code" label="{{ __('Zip Code') }}" type="text" wire:model.defer='zip_code' required />
 

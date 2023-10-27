@@ -10,13 +10,22 @@ class Rfq extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
         'user_id',
-        'quantity',
+        'status',
     ];
 
     public function products()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsToMany(Product::class, 'product_rfq')->withPivot('quantity');
+    }
+
+    public function order()
+    {
+        return $this->hasOne(Order::class, 'rfq_id', 'id');
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(Order::class, 'user_id');
     }
 }

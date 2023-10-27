@@ -7,19 +7,13 @@ use Livewire\Component;
 
 class RfqCounter extends Component
 {
-    public $rfqProducts;
-
-    protected $listeners = ['updateRfq' => 'render'];
-
-    public function mount()
-    {
-        $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('product_id')->toArray();
-    }
+    protected $listeners = ['updatedRfq' => 'render'];
 
     public function render()
     {
-        $rfqCount = Rfq::where('user_id', auth()->id())->count();
+        $rfqs = Rfq::where('status', 'Pending')->where('user_id', auth()->id())->withCount('products')->get();
+        $totalProductCount = $rfqs->sum('products_count');
 
-        return view('livewire.frontend.counter.rfq-counter', compact('rfqCount'));
+        return view('livewire.frontend.counter.rfq-counter', compact('totalProductCount'));
     }
 }

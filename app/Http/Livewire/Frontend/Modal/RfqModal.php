@@ -3,8 +3,9 @@
 namespace App\Http\Livewire\Frontend\Modal;
 
 use App\Models\Rfq;
-use LivewireUI\Modal\ModalComponent;
+use App\Models\Order;
 use WireUi\Traits\Actions;
+use LivewireUI\Modal\ModalComponent;
 
 class RfqModal extends ModalComponent
 {
@@ -16,19 +17,35 @@ class RfqModal extends ModalComponent
 
     public function mount()
     {
-        $this->rfqProductLists = Rfq::where('user_id', auth()->id())->with('products')->get();
-        $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('product_id')->toArray();
+        $this->rfqProductLists = Rfq::where('status', 'Pending')->where('user_id', auth()->id())->with('products')->get();
+        $this->rfqProducts = Rfq::where('status', 'Pending')->where('user_id', auth()->id())
+            ->whereHas('products', function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            })
+            ->with(['products' => function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            }])
+            ->get()
+            ->flatMap(function ($rfq) {
+                return $rfq->products;
+            })
+            ->pluck('id')
+            ->unique()
+            ->toArray();
     }
 
     public function removeFromRfq($productId)
     {
-        Rfq::where('product_id', $productId)->where('user_id', auth()->id())->delete();
+        $rfqs = Rfq::where('user_id', auth()->id())->get();
+        foreach ($rfqs as $rfq) {
+            $rfq->products()->detach($productId);
+        }
         if (($key = array_search($productId, $this->rfqProducts)) !== false) {
             unset($this->rfqProducts[$key]);
         }
 
         $this->notification()->error($title = 'Product Removed from RFQ');
-        $this->emit('updateRfq');
+        $this->emit('updatedRfq');
         $this->emit('rfqUpdated');
         $this->closeModal();
     }
@@ -40,7 +57,26 @@ class RfqModal extends ModalComponent
         ]);
 
         $this->notification()->success($title = 'Product Quantity Updated in Rfq');
-        $this->emit('updateRfq');
+        $this->emit('updatedRfq');
+        $this->closeModal();
+    }
+
+    public function add()
+    {
+        $rfqs = Rfq::where('user_id', auth()->id())->get();
+        foreach ($rfqs as $rfq) {
+            Order::create([
+                'rfq_id' => $rfq->id,
+                'rfq_submission_date' => now(),
+            ]);
+            $rfq->update([
+                'status' => 'Submitted',
+            ]);
+        }
+
+        $this->notification()->success($title = 'RFQ Submitted Successfully');
+        $this->emit('updatedRfq');
+        $this->emit('rfqUpdated');
         $this->closeModal();
     }
 

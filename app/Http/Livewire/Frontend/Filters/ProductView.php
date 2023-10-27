@@ -22,31 +22,52 @@ class ProductView extends Component
 
     public function mount()
     {
-        $this->rfqProducts = Rfq::where('user_id', auth()->id())->pluck('product_id')->toArray();
+        $this->rfqProducts = Rfq::where('status', 'Pending')->where('user_id', auth()->id())
+            ->whereHas('products', function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            })
+            ->with(['products' => function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            }])
+            ->get()
+            ->flatMap(function ($rfq) {
+                return $rfq->products;
+            })
+            ->pluck('id')
+            ->unique()
+            ->toArray();
     }
 
     public function addToRfq($productId)
     {
-        Rfq::create([
-            'product_id' => $productId,
-            'user_id' => auth()->id(),
-            'quantity' => $this->quantity[$productId],
+        // Create an RFQ
+        $rfq = new Rfq;
+        $rfq->user_id = auth()->id();
+        $rfq->save();
+
+        // Attach products to the RFQ
+        $rfq->products()->attach([
+            $productId => ['quantity' => $this->quantity[$productId]],
         ]);
+
         $this->rfqProducts[] = $productId;
 
         $this->notification()->success($title = 'Product Added to RFQ');
-        $this->emit('updateRfq');
+        $this->emit('updatedRfq');
     }
 
     public function removeFromRfq($productId)
     {
-        Rfq::where('product_id', $productId)->where('user_id', auth()->id())->delete();
+        $rfqs = Rfq::where('user_id', auth()->id())->get();
+        foreach ($rfqs as $rfq) {
+            $rfq->products()->detach($productId);
+        }
         if (($key = array_search($productId, $this->rfqProducts)) !== false) {
             unset($this->rfqProducts[$key]);
         }
 
         $this->notification()->error($title = 'Product Removed from RFQ');
-        $this->emit('updateRfq');
+        $this->emit('updatedRfq');
     }
 
     public function render()

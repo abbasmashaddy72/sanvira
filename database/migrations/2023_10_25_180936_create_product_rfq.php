@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rfqs', function (Blueprint $table) {
+        Schema::create('product_rfq', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status', ['Pending', 'Submitted', 'Processing', 'Quotation Sent', 'Quotation Received'])->default('Pending');
+            $table->foreignId('rfq_id')->constrained('rfqs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rfqs');
+        Schema::dropIfExists('product_rfq');
     }
 };

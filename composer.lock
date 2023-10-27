@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8b608570365648a26c93e144f24468dd",
+    "content-hash": "110b82b0a03c2362f7b0359a09513875",
     "packages": [
         {
             "name": "asantibanez/livewire-charts",
@@ -10058,16 +10058,16 @@
         },
         {
             "name": "wireui/wireui",
-            "version": "v1.17.9",
+            "version": "v1.17.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wireui/wireui.git",
-                "reference": "ef1502d9fd1dbf36e8eb36e3b1452b6f2f25fa1f"
+                "reference": "d75dafb76bbb64a303e7a88b0d1fc6989934a003"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wireui/wireui/zipball/ef1502d9fd1dbf36e8eb36e3b1452b6f2f25fa1f",
-                "reference": "ef1502d9fd1dbf36e8eb36e3b1452b6f2f25fa1f",
+                "url": "https://api.github.com/repos/wireui/wireui/zipball/d75dafb76bbb64a303e7a88b0d1fc6989934a003",
+                "reference": "d75dafb76bbb64a303e7a88b0d1fc6989934a003",
                 "shasum": ""
             },
             "require": {
@@ -10120,7 +10120,7 @@
             ],
             "support": {
                 "issues": "https://github.com/wireui/wireui/issues",
-                "source": "https://github.com/wireui/wireui/tree/v1.17.9"
+                "source": "https://github.com/wireui/wireui/tree/v1.17.12"
             },
             "funding": [
                 {
@@ -10128,7 +10128,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-01T05:47:14+00:00"
+            "time": "2023-10-25T05:42:02+00:00"
         },
         {
             "name": "yandex/translate-api",

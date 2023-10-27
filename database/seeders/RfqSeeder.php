@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Order;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Rfq;
 use Illuminate\Database\Seeder;
 
-class OrderSeeder extends Seeder
+class RfqSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +14,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::factory()->count(rand(100, 500))->create();
+        Rfq::factory()->count(rand(20, 50))->create();
     }
 }

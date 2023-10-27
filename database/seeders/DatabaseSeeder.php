@@ -80,6 +80,8 @@ class DatabaseSeeder extends Seeder
             $this->call(ProductVariationSeeder::class);
             $this->call(ShippingAddressSeeder::class);
             $this->call(BillingAddressSeeder::class);
+            $this->call(RfqSeeder::class);
+            $this->call(OrderSeeder::class);
         }
     }
 }
