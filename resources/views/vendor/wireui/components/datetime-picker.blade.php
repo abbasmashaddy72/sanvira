@@ -23,7 +23,7 @@
     }"
     {{ $attributes->only('wire:key')->class('relative')->merge(['wire:key' => "datepicker::{$name}"]) }}>
     <x-dynamic-component :component="WireUi::component('input')"
-        {{ $attributes->whereDoesntStartWith(['wire:model', 'x-model', 'wire:key', 'readonly']) }} :borderless="$borderless"
+        {{ $attributes->whereDoesntStartWith(['wire:model.live', 'x-model', 'wire:key', 'readonly']) }} :borderless="$borderless"
         :shadowless="$shadowless" :label="$label" :hint="$hint" :corner-hint="$cornerHint" :icon="$icon" :prefix="$prefix"
         :prepend="$prepend" readonly x-on:click="toggle" x-bind:value="model ? getDisplayValue() : null">
         @if (!$readonly && !$disabled)

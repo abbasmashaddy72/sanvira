@@ -20,13 +20,13 @@
                 </div>
             @endif
             <x-errors />
-            <form wire:submit.prevent='submit'>
+            <form wire:submit='submit'>
                 <div class="grid grid-cols-2 gap-2">
                     <div class="text-left">
                         <label class="font-semibold">{{ __('Your Name:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="user" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="name" type="text" wire:model.defer='name'
+                                <input name="name" type="text" wire:model='name'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                             </div>
                         </label>
@@ -35,7 +35,7 @@
                         <label class="font-semibold">{{ __('Your Contact Number:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="phone" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="contact_no" type="number" wire:model.defer='contact_no'
+                                <input name="contact_no" type="number" wire:model='contact_no'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                             </div>
                         </label>
@@ -44,7 +44,7 @@
                         <label class="font-semibold">{{ __('Business Mail:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="mail" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="email" type="mail" wire:model.defer='email'
+                                <input name="email" type="mail" wire:model='email'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                             </div>
                         </label>
@@ -53,7 +53,7 @@
                         <label class="font-semibold">{{ __('Company Name:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="activity" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="company_name" type="text" wire:model.defer='company_name'
+                                <input name="company_name" type="text" wire:model='company_name'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                             </div>
                         </label>
@@ -62,7 +62,7 @@
                         <label class="font-semibold">{{ __('Job Title:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="award" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="job_title" type="text" wire:model.defer='job_title'
+                                <input name="job_title" type="text" wire:model='job_title'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                             </div>
                         </label>
@@ -71,7 +71,7 @@
                         <label class="font-semibold">{{ __('Type of Business:') }}
                             <div class="form-icon relative mt-2">
                                 <i data-feather="list" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <select name="tob" wire:model.defer='tob'
+                                <select name="tob" wire:model='tob'
                                     class="form-input pl-11 text-sm font-normal" placeholder="Name :">
                                     <option hidden selected>{{ __('Please Select') }}</option>
                                     @foreach (['Vendor', 'Consultant', 'Developer'] as $item)
@@ -88,14 +88,14 @@
                             <label class="font-semibold">{{ __('Your Comment:') }}</label>
                             <div class="form-icon relative mt-2">
                                 <i data-feather="message-circle" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <textarea name="message" id="comments" wire:model.defer='message' class="form-input h-28 pl-11 text-sm font-normal"
+                                <textarea name="message" id="comments" wire:model='message' class="form-input h-28 pl-11 text-sm font-normal"
                                     placeholder="Message :"></textarea>
                             </div>
                         </div>
                     </div>
                     <x-checkbox id="right-label"
                         label="A representative of Kasper may contact me based on the information I've provided above. I agree to the terms of the use and privacy policy."
-                        wire:model.defer="agree" />
+                        wire:model="agree" />
                 </div>
                 <button type="submit"
                     class="btn mt-4 flex items-center justify-center rounded-md border-blue-600 bg-blue-600 text-white hover:border-blue-700 hover:bg-blue-700">{{ __('Send Message') }}</button>

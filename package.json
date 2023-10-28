@@ -19,7 +19,7 @@
         "axios": "^1.1.2",
         "blade-formatter": "^1.32.12",
         "dayjs": "^1.11.6",
-        "feather-icons": "^4.29.0",
+        "feather-icons": "^4.29.1",
         "filepond": "^4.30.4",
         "flatpickr": "^4.6.13",
         "flowbite": "^1.6.5",

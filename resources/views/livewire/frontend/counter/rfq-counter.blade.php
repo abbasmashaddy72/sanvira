@@ -1,4 +1,4 @@
-<button onclick="Livewire.emit('openModal', 'frontend.modal.rfq-modal')" class="relative flex">
+<button onclick="Livewire.dispatch('openModal', { component: 'frontend.modal.rfq-modal' } )" class="relative flex">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 flex-1 fill-yellow-300" viewBox="0 0 24 24" stroke-width="1.5"
         stroke="transparent">
         <path stroke-linecap="round" stroke-linejoin="round"

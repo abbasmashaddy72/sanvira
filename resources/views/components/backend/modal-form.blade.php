@@ -2,7 +2,7 @@
 
 <div>
     @if ($formAction)
-        <form wire:submit.prevent="{{ $formAction }}">
+        <form wire:submit="{{ $formAction }}">
     @endif
     <div class="border-gray-150 border-b bg-white p-4 sm:px-6 sm:py-4">
         @if (!empty($title))
@@ -20,7 +20,7 @@
     </div>
 
     <div class="justify-between bg-white px-4 pb-5 sm:flex sm:px-4">
-        <button wire:click="$emit('closeModal')" type="button" class="btn btn-danger">Close</button>
+        <button wire:click="$dispatch('closeModal')" type="button" class="btn btn-danger">Close</button>
         <button class="btn btn-primary" type="submit">
             @if (!empty($title))
                 {{ __('Update') }}

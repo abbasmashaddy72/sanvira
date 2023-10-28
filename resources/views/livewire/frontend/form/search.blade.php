@@ -19,7 +19,7 @@
                 <div class="relative">
                     <input type="text" name="search" min="3"
                         class="h-12 w-full rounded-full bg-white/60 py-2 pl-4 pr-12 text-black shadow-md outline-none dark:bg-slate-900/60 dark:text-white dark:shadow-gray-800 md:h-14 md:py-4 md:pl-6"
-                        placeholder="Search" wire:model="query" wire:keydown.escape="resetData"
+                        placeholder="Search" wire:model.live="query" wire:keydown.escape="resetData"
                         wire:keydown.tab="resetData" />
                     <button type="submit"
                         class="absolute right-0 top-0 h-full rounded-full border-blue-600 bg-blue-600 px-4 text-white hover:border-blue-700 hover:bg-blue-700 md:px-6">Search</button>

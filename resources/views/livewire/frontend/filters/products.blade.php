@@ -90,19 +90,19 @@
                         <div class="mt-4">
                             <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Brand') }}</h5>
-                            <x-select wire:model.defer="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
+                            <x-select wire:model="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')"
                                 option-label="name" option-value="id" multiselect />
                         </div>
                         <div class="mt-4">
                             <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Category') }}</h5>
-                            <x-select wire:model.defer="category_id" placeholder="Select Parent Category"
+                            <x-select wire:model="category_id" placeholder="Select Parent Category"
                                 :async-data="route('api.admin.categories')" option-label="name" option-value="id" multiselect />
                         </div>
                         <div class="mt-4">
                             <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                                 {{ __('Country of Origin') }}</h5>
-                            <x-select wire:model.defer="country_id" placeholder="Select Origin Country"
+                            <x-select wire:model="country_id" placeholder="Select Origin Country"
                                 :async-data="route('api.admin.countries')" option-label="name" option-value="id" multiselect />
                         </div>
                     </div>

@@ -12,7 +12,7 @@
             <div class="col-span-12">
 
                 <x-slot name="rt_button">
-                    <button onclick="Livewire.emit('openModal', 'backend.forms.modal-slider')"
+                    <button onclick="Livewire.dispatch('openModal', { component: 'backend.forms.modal-slider' } )"
                         class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 

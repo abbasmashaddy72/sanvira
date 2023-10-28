@@ -2,14 +2,17 @@ import "../../css/frontend/app.scss";
 import "./bootstrap";
 import "./custom";
 
-import Alpine from "alpinejs";
+import {
+    Alpine,
+    Livewire,
+} from "../../../vendor/livewire/livewire/dist/livewire.esm";
 
-window.Alpine = Alpine;
+Alpine.plugin(focus);
 
-Alpine.start();
+Livewire.start();
 
-import "./components/plugins.init";
 import "./components/feather.js";
+import "./components/plugins.init";
 
 import { tns } from "tiny-slider";
 window.tns = tns;
@@ -19,5 +22,3 @@ window.$ = $;
 
 import lightbox from "lightbox2";
 window.lightbox = lightbox;
-
-import { Tooltip } from "flowbite";

@@ -2,7 +2,7 @@
 
 <div>
     @if ($formAction)
-        <form wire:submit.prevent="{{ $formAction }}">
+        <form wire:submit="{{ $formAction }}">
     @endif
     <div class="border-gray-150 border-b bg-white p-4 sm:px-6 sm:py-4">
         @if (isset($title))
@@ -18,7 +18,7 @@
     </div>
 
     <div class="justify-between bg-white px-4 pb-5 sm:flex sm:px-4">
-        <button wire:click="$emit('closeModal')" type="button"
+        <button wire:click="$dispatch('closeModal')" type="button"
             class="mb-2 mr-2 rounded-lg bg-red-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Close</button>
         <button
             class="mb-2 mr-2 rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

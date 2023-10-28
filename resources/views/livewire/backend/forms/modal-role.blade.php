@@ -1,6 +1,6 @@
 <x-backend.modal-form form-action="add" title="{{ $name }}">
     <div class="grid gap-y-2">
-        <x-input name="name" label="{{ __('Name') }}" type="text" wire:model.defer='name' required />
+        <x-input name="name" label="{{ __('Name') }}" type="text" wire:model='name' required />
 
         @php
             $groupedPermissions = [];
@@ -99,7 +99,7 @@
                                     @endphp
                                     @if (strpos($lastWord, 'list') !== false || strpos($lastWord, 'view') !== false)
                                         <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
-                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                            wire:model='permissions_array' value="{{ $permission['id'] }}" />
                                     @endif
                                 @endforeach
                             </div>
@@ -121,7 +121,7 @@
                                     @endphp
                                     @if (strpos($lastWord, 'add') !== false || strpos($lastWord, 'edit') !== false)
                                         <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
-                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                            wire:model='permissions_array' value="{{ $permission['id'] }}" />
                                     @endif
                                 @endforeach
                             </div>
@@ -143,7 +143,7 @@
                                     @endphp
                                     @if (strpos($lastWord, 'delete') !== false)
                                         <x-checkbox id="{{ $permission['id'] }}" label="{{ ucwords($lastWord) }}"
-                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                            wire:model='permissions_array' value="{{ $permission['id'] }}" />
                                     @endif
                                 @endforeach
                             </div>
@@ -160,7 +160,7 @@
                                             !in_array($permission['id'], $writePermissions) &&
                                             !in_array($permission['id'], $deletePermissions))
                                         <x-checkbox id="{{ $permission['id'] }}" label="{{ $groupName }}"
-                                            wire:model.defer='permissions_array' value="{{ $permission['id'] }}" />
+                                            wire:model='permissions_array' value="{{ $permission['id'] }}" />
                                     @endif
                                 @endforeach
                             </div>

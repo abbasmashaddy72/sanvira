@@ -9,7 +9,7 @@
         </p>
     </header>
 
-    <button x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
+    <button x-data="" x-on:click.prevent="$dispatch('openModal', { component: 'confirm-user-deletio' })"
         class="btn btn-danger shadow-md">{{ __('Delete Account') }}</button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>

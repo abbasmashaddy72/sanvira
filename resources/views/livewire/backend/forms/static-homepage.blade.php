@@ -44,7 +44,7 @@
         </style>
     @endpush
 
-    <form wire:submit.prevent="add">
+    <form wire:submit="add">
         @if ($type == 'Homepage')
             <div class="grid grid-cols-3 gap-2">
                 <x-backend.image-upload :images="$this->logo" :isUploaded="$this->logoIsUploaded" label="{{ __('Upload Logo') }}" name="logo"
@@ -54,24 +54,24 @@
                     name="footer_logo" model="footer_logo" />
 
                 <x-textarea name="short_description" label="{{ __('Short Description') }}"
-                    wire:model.defer='short_description' />
+                    wire:model='short_description' />
                 <div>
                     <h4 class="card-title my-4 text-2xl font-medium" wire:ignore>
                         {{ __('Social Media Links') }}
                     </h4>
-                    <x-input name="twitter" label="{{ __('Twitter') }}" type="text" wire:model.defer='twitter' />
+                    <x-input name="twitter" label="{{ __('Twitter') }}" type="text" wire:model='twitter' />
 
-                    <x-input name="facebook" label="{{ __('Facebook') }}" type="text" wire:model.defer='facebook' />
+                    <x-input name="facebook" label="{{ __('Facebook') }}" type="text" wire:model='facebook' />
 
                     <x-input name="instagram" label="{{ __('Instagram') }}" type="text"
-                        wire:model.defer='instagram' />
+                        wire:model='instagram' />
 
-                    <x-input name="linkedin" label="{{ __('Linkedin') }}" type="text" wire:model.defer='linkedin' />
+                    <x-input name="linkedin" label="{{ __('Linkedin') }}" type="text" wire:model='linkedin' />
 
-                    <x-input name="youtube" label="{{ __('Youtube') }}" type="text" wire:model.defer='youtube' />
+                    <x-input name="youtube" label="{{ __('Youtube') }}" type="text" wire:model='youtube' />
 
                     <x-input name="google_business" label="{{ __('Google Business') }}" type="text"
-                        wire:model.defer='google_business' />
+                        wire:model='google_business' />
                 </div>
 
                 <div>
@@ -81,7 +81,7 @@
 
                     <x-input name="embed_map_link"
                         label="{{ __('Embed Map Link(Directly from Google Maps Search, Share, Embed copy src link & paste)') }}"
-                        type="text" wire:model.defer='embed_map_link' required />
+                        type="text" wire:model='embed_map_link' required />
 
                 </div>
             </div>
@@ -90,19 +90,19 @@
         @if ($type == 'Privacy Policy')
             <div>
                 <x-backend.ckEditor idPrefix="body1en" lang="EN" name="privacy_policy"
-                    label="{{ __('Privacy Policy') }}" wire:model.defer='privacy_policy' />
+                    label="{{ __('Privacy Policy') }}" wire:model='privacy_policy' />
             </div>
         @endif
         @if ($type == 'Terms of Use')
             <div>
                 <x-backend.ckEditor idPrefix="body2en" lang="EN" name="terms_of_use"
-                    label="{{ __('Terms of Use') }}" wire:model.defer='terms_of_use' />
+                    label="{{ __('Terms of Use') }}" wire:model='terms_of_use' />
             </div>
         @endif
         @if ($type == 'Return Refund')
             <div>
                 <x-backend.ckEditor idPrefix="body2en" lang="EN" name="return_refunds"
-                    label="{{ __('Returns & Refunds') }}" wire:model.defer='return_refunds' />
+                    label="{{ __('Returns & Refunds') }}" wire:model='return_refunds' />
             </div>
         @endif
 

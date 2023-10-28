@@ -36,7 +36,7 @@
         @endif
     @endif
     <div class="mb-3">
-        <x-input :name="$name" :label="$label" type="file" :wire:model.defer="$model" :multiple="is_array($images)" />
+        <x-input :name="$name" :label="$label" type="file" :wire:model="$model" :multiple="is_array($images)" />
         <div wire:loading wire:target="{{ $model }}">{{ __('Uploading...') }}</div>
     </div>
 </div>

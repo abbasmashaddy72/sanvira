@@ -8,7 +8,7 @@
     <label class="block">
         <x-label :label="$label" />
         <div class="mt-2 col-md-9">
-            <textarea id="{{ $componentId }}" wire:model.debounce.2000msDOMContentLoaded="{{ $name }}"></textarea>
+            <textarea id="{{ $componentId }}" wire:model.live.debounce.2000msDOMContentLoaded="{{ $name }}"></textarea>
         </div>
     </label>
 

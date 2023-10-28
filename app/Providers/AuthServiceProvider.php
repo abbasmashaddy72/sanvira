@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerPolicies();
+        // $this->registerPolicies();
 
         Gate::define('access-specific-urls', function ($user) {
             // You can add custom logic here to determine whether to allow access or not.

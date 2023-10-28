@@ -23,6 +23,9 @@ module.exports = {
         "./vendor/wireui/wireui/src/View/**/*.php",
         "./node_modules/flowbite/**/*.js",
     ],
+    options: {
+        safelist: ["sm:max-w-2xl"],
+    },
     darkMode: "class",
     important: true,
     theme: {

@@ -72,7 +72,7 @@
 
         @if (\Route::currentRouteName() != 'homepage')
             <div class="my-2 grid grid-cols-2 items-center gap-2 px-4 py-2">
-                <x-input type="number" wire:model.defer="quantity.{{ $item->id }}" placeholder="Quantity" />
+                <x-input type="number" wire:model="quantity.{{ $item->id }}" placeholder="Quantity" />
                 @if (!in_array($item->id, $rfqProducts))
                     <button wire:click="addToRfq({{ $item->id }})"
                         class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-blue-700">
@@ -89,7 +89,7 @@
     </div>
 @else
     <div class="my-2 grid grid-cols-2 items-center gap-2 px-4 py-2">
-        <x-inputs.number placeholder="Quantity" wire:model.defer="quantity.{{ $item->id }}" />
+        <x-inputs.number placeholder="Quantity" wire:model="quantity.{{ $item->id }}" />
         @if (!in_array($item->id, $rfqProducts))
             <button wire:click="addToRfq({{ $item->id }})"
                 class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-blue-700">

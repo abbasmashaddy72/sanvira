@@ -2,18 +2,20 @@ import "../../css/backend/app.css";
 
 import focus from "@alpinejs/focus";
 import { createPopper } from "@popperjs/core";
-import Alpine from "alpinejs";
 import * as FilePond from "filepond";
 import flatpickr from "flatpickr";
+import {
+    Alpine,
+    Livewire,
+} from "../../../vendor/livewire/livewire/dist/livewire.esm";
 
 window.flatpickr = flatpickr;
 window.FilePond = FilePond;
 window.createPopper = createPopper;
 
-window.Alpine = Alpine;
-Alpine.start();
 Alpine.plugin(focus);
 
+Livewire.start();
 /*
  |--------------------------------------------------------------------------
  | Midone Built-in Components
@@ -44,6 +46,7 @@ import "./components/feather";
  | Import JS custom components.
  |
  */
+import "../../../vendor/power-components/livewire-powergrid/dist/powergrid";
 import "./components/mobile-menu";
 import "./components/new-dark-mode-switcher";
 import "./components/side-menu";

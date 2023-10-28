@@ -1,17 +1,16 @@
-<div id="preloader">
+{{-- <div id="preloader">
     <div id="status">
         <div class="spinner">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <nav id='topnav' class="defaultscroll is-sticky nav-sticky z-10 items-center bg-white py-2">
     <div class="container">
-        <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}">
-            <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-14 w-24 object-cover"
-                alt="Logo" />
+        <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}" wire:navigate>
+            <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-14 w-24 object-cover" alt="Logo" />
         </a>
 
         <div class="menu-extras float-right">
@@ -64,27 +63,27 @@
         <div id="navigation" class="lg:block">
             <ul class="navigation-menu float-left flex flex-wrap">
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_products_category') }}">
+                    <a class="sub-menu-item" href="{{ route('all_products_category') }}" wire:navigate>
                         {{ __('Categories') }}
                     </a>
                 </li>
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_products') }}">
+                    <a class="sub-menu-item" href="{{ route('all_products') }}" wire:navigate>
                         {{ __('Products') }}
                     </a>
                 </li>
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_brands') }}">
+                    <a class="sub-menu-item" href="{{ route('all_brands') }}" wire:navigate>
                         {{ __('Brands') }}
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('about_us') }}" class="sub-menu-item">{{ __('About Us') }}</a>
+                    <a class="sub-menu-item" href="{{ route('about_us') }}" wire:navigate>{{ __('About Us') }}</a>
                 </li>
 
                 <li>
-                    <a href="{{ route('contact_us') }}" class="sub-menu-item">{{ __('Contact Us') }}</a>
+                    <a class="sub-menu-item" href="{{ route('contact_us') }}" wire:navigate>{{ __('Contact Us') }}</a>
                 </li>
             </ul>
         </div>

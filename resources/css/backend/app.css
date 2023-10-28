@@ -10,7 +10,7 @@
  | https://tailwindcss.com/docs/installation#include-tailwind-in-your-css
  |
  */
-@import './_tailwind.css';
+@import "./_tailwind.css";
 /*
  |--------------------------------------------------------------------------
  | Colors
@@ -23,7 +23,7 @@
  | https://tailwindcss.com/docs/theme
  |
  */
-@import './_colors.css';
+@import "./_colors.css";
 
 /*
  |--------------------------------------------------------------------------
@@ -37,7 +37,7 @@
  | https://tailwindcss.com/docs/theme
  |
  */
-@import './fonts/_roboto.css';
+@import "./fonts/_roboto.css";
 
 /*
  |--------------------------------------------------------------------------
@@ -47,7 +47,7 @@
  | Import helper mixins.
  |
  */
-@import '@left4code/tw-starter/dist/css/mixins/_media.css';
+@import "@left4code/tw-starter/dist/css/mixins/_media.css";
 
 /*
  |--------------------------------------------------------------------------
@@ -57,31 +57,31 @@
  | Import 3rd party library CSS/SASS files.
  |
  */
-@import '@left4code/tw-starter/dist/css/_breadcrumb.css';
-@import '@left4code/tw-starter/dist/css/_accordion.css';
-@import '@left4code/tw-starter/dist/css/_alert.css';
-@import '@left4code/tw-starter/dist/css/_btn.css';
-@import '@left4code/tw-starter/dist/css/_dropdown.css';
-@import '@left4code/tw-starter/dist/css/_file.css';
-@import '@left4code/tw-starter/dist/css/_form-reset.css';
-@import '@left4code/tw-starter/dist/css/_form-check.css';
-@import '@left4code/tw-starter/dist/css/_form-control.css';
-@import '@left4code/tw-starter/dist/css/_form-help.css';
-@import '@left4code/tw-starter/dist/css/_form-inline.css';
-@import '@left4code/tw-starter/dist/css/_form-label.css';
-@import '@left4code/tw-starter/dist/css/_form-select.css';
-@import '@left4code/tw-starter/dist/css/_image-fit.css';
-@import '@left4code/tw-starter/dist/css/_input-group.css';
-@import '@left4code/tw-starter/dist/css/_intro.css';
-@import '@left4code/tw-starter/dist/css/_modal.css';
-@import '@left4code/tw-starter/dist/css/_pagination.css';
-@import '@left4code/tw-starter/dist/css/_progress.css';
-@import '@left4code/tw-starter/dist/css/_scrollbar.css';
-@import '@left4code/tw-starter/dist/css/_tab.css';
-@import '@left4code/tw-starter/dist/css/_table.css';
-@import '@left4code/tw-starter/dist/css/_typing-dots.css';
-@import '@left4code/tw-starter/dist/css/_zoom-in.css';
-@import '@left4code/tw-starter/dist/css/_box.css';
+@import "@left4code/tw-starter/dist/css/_breadcrumb.css";
+@import "@left4code/tw-starter/dist/css/_accordion.css";
+@import "@left4code/tw-starter/dist/css/_alert.css";
+@import "@left4code/tw-starter/dist/css/_btn.css";
+@import "@left4code/tw-starter/dist/css/_dropdown.css";
+@import "@left4code/tw-starter/dist/css/_file.css";
+@import "@left4code/tw-starter/dist/css/_form-reset.css";
+@import "@left4code/tw-starter/dist/css/_form-check.css";
+@import "@left4code/tw-starter/dist/css/_form-control.css";
+@import "@left4code/tw-starter/dist/css/_form-help.css";
+@import "@left4code/tw-starter/dist/css/_form-inline.css";
+@import "@left4code/tw-starter/dist/css/_form-label.css";
+@import "@left4code/tw-starter/dist/css/_form-select.css";
+@import "@left4code/tw-starter/dist/css/_image-fit.css";
+@import "@left4code/tw-starter/dist/css/_input-group.css";
+@import "@left4code/tw-starter/dist/css/_intro.css";
+@import "@left4code/tw-starter/dist/css/_modal.css";
+@import "@left4code/tw-starter/dist/css/_pagination.css";
+@import "@left4code/tw-starter/dist/css/_progress.css";
+@import "@left4code/tw-starter/dist/css/_scrollbar.css";
+@import "@left4code/tw-starter/dist/css/_tab.css";
+@import "@left4code/tw-starter/dist/css/_table.css";
+@import "@left4code/tw-starter/dist/css/_typing-dots.css";
+@import "@left4code/tw-starter/dist/css/_zoom-in.css";
+@import "@left4code/tw-starter/dist/css/_box.css";
 
 /*
  |--------------------------------------------------------------------------
@@ -91,32 +91,33 @@
  | Import CSS components.
  |
  */
-@import './components/_global.css';
-@import './components/_top-bar.css';
-@import './components/_report-chart.css';
-@import './components/_report-box.css';
-@import './components/_content.css';
-@import './components/_side-nav.css';
-@import './components/_breadcrumb.css';
-@import './components/_feather-icon.css';
-@import './components/_mobile-menu.css';
-@import './components/_litepicker.css';
-@import './components/_ckeditor.css';
+@import "./components/_global.css";
+@import "./components/_top-bar.css";
+@import "./components/_report-chart.css";
+@import "./components/_report-box.css";
+@import "./components/_content.css";
+@import "./components/_side-nav.css";
+@import "./components/_breadcrumb.css";
+@import "./components/_feather-icon.css";
+@import "./components/_mobile-menu.css";
+@import "./components/_litepicker.css";
+@import "./components/_ckeditor.css";
+@import "/vendor/power-components/livewire-powergrid/dist/tailwind.css";
 
 /*
 Form Component
 */
 /* @import "../../../vendor/rawilk/laravel-form-components/resources/css/index.css"; */
-@import 'filepond/dist/filepond.min.css';
-@import 'flatpickr/dist/flatpickr.min.css';
-@import 'lightbox2/src/css/lightbox.css';
+@import "filepond/dist/filepond.min.css";
+@import "flatpickr/dist/flatpickr.min.css";
+@import "lightbox2/src/css/lightbox.css";
 [x-cloak] {
     display: none;
 }
 
 @layer base {
-    input[type='number']::-webkit-inner-spin-button,
-    input[type='number']::-webkit-outer-spin-button {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }

@@ -18,7 +18,7 @@
     </div>
 
     <div class="mr-4">
-        <a href="{{ route('homepage') }}" target="__blank">
+        <a href="{{ route('homepage') }}" target="__blank" wire:navigate>
             <svg class="h-5 w-5 text-gray-500 hover:bg-gray-100" xmlns="http://www.w3.org/2000/svg" width="24"
                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
@@ -45,11 +45,11 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.profile.update') }}" class="dropdown-item hover:bg-white/5">
-                        <i data-feather="user" class="mr-2 h-4 w-4"></i>{{ __('Profile') }}</a>
+                        <i data-feather="user" class="mr-2 h-4 w-4" wire:navigate></i>{{ __('Profile') }}</a>
                 </li>
                 <li>
                     <a href="" class="dropdown-item hover:bg-white/5">
-                        <i data-feather="help-circle" class="mr-2 h-4 w-4"></i>
+                        <i data-feather="help-circle" class="mr-2 h-4 w-4" wire:navigate></i>
                         {{ __('Help') }}
                     </a>
                 </li>
@@ -58,7 +58,8 @@
                 </li>
                 @impersonating($guard = null)
                     <li>
-                        <a href="{{ route('admin.users.leave-impersonate') }}" class="dropdown-item hover:bg-white/5">
+                        <a href="{{ route('admin.users.leave-impersonate') }}" class="dropdown-item hover:bg-white/5"
+                            wire:navigate>
                             <i data-feather="toggle-left" class="mr-2 h-4 w-4"></i>
                             {{ __('Leave impersonation') }}
                         </a>
@@ -67,7 +68,7 @@
                             @csrf
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); this.closest('form').submit();"
-                                class="dropdown-item hover:bg-white/5">
+                                class="dropdown-item hover:bg-white/5" wire:navigate>
                                 <i data-feather="toggle-right" class="mr-2 h-4 w-4"></i>
                                 {{ __('Logout') }}
                             </a>

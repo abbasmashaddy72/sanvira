@@ -1,5 +1,5 @@
 <div {{ $attributes->only(['class', 'wire:key'])->class('relative') }} x-data="wireui_select({
-    @if ($attributes->wire('model')->value()) wireModel: @entangle($attributes->wire('model')), @endif
+    @if ($attributes->wire('model')->value()) wireModel: @entangle($attributes->wire('model')).live, @endif
 })"
     x-props="{
         asyncData:    @toJs($asyncData),
@@ -37,7 +37,7 @@
             x-on:keydown.arrow-down.prevent="$event.shiftKey || getNextFocusable().focus()"
             x-on:keydown.arrow-up.prevent="getPrevFocusable().focus()" x-bind:placeholder="getPlaceholder"
             x-bind:value="getSelectedValue" inputmode="none" readonly autocomplete="disabled" :name="$name"
-            {{ $attributes->except(['class'])->class(['pl-8' => $icon])->whereDoesntStartWith(['wire:model', 'type', 'wire:key']) }}>
+            {{ $attributes->except(['class'])->class(['pl-8' => $icon])->whereDoesntStartWith(['wire:model.live', 'type', 'wire:key']) }}>
             <x-slot name="prepend">
                 <div
                     :class="{

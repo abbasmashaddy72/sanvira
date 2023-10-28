@@ -1,6 +1,7 @@
 <div class="flex justify-around space-x-1">
     @can('address_edit')
-        <button wire:click='$emit("openModal", "backend.forms.modal-address", @json(['address_id' => $id]))'
+        <button
+            wire:click='$dispatch("openModal", { component:"backend.forms.modal-address", arguments: { address_id: {{ $id }} }})'
             class="text-primary hover:bg-primary rounded p-1 hover:text-white">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path

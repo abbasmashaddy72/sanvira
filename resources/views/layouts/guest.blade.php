@@ -40,8 +40,8 @@
 
     @include('layouts.fePartials.footer')
 
-    @livewireScripts
-    @livewire('livewire-ui-modal')
+    @livewireScriptConfig
+    @livewire('wire-elements-modal')
     @env('production')
     <script>
         // Disable right-click
