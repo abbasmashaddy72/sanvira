@@ -251,8 +251,8 @@ if (document.getElementsByClassName("tiny-five-item").length > 0) {
         autoplayTimeout: 3000,
         navPosition: "bottom",
         controlsText: [
-            '<i class="uil uil-arrow-left"></i>',
-            '<i class="uil uil-arrow-right"></i>',
+            '<i data-feather="arrow-left"></i>',
+            '<i data-feather="arrow-right"></i>',
         ],
         nav: false,
         speed: 400,

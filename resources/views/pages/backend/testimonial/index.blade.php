@@ -4,12 +4,12 @@
     @can('testimonial_list')
         <x-backend.grid title="Testimonials">
             <x-slot name="rt_button">
-                <button onclick="Livewire.dispatch('openModal', { component: 'backend.forms.modal-testimonial' } )"
+                <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-testimonial' } )"
                     class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
             </x-slot>
 
             <div class="col-span-12">
-                @livewire('backend.tables.testimonials-table')
+                @livewire('backend.table-testimonial')
             </div>
         </x-backend.grid>
     @endcan

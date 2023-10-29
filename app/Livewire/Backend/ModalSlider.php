@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Slider;
 use Illuminate\Support\Facades\Gate;
@@ -55,6 +55,6 @@ class ModalSlider extends ModalComponent
     {
         abort_if(Gate::denies('slider_add'), 403);
 
-        return view('livewire.backend.forms.modal-slider');
+        return view('livewire.backend.modal-slider');
     }
 }

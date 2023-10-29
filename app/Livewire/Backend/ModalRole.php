@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Permission;
 use App\Models\Role;
@@ -82,6 +82,6 @@ class ModalRole extends ModalComponent
     {
         $permissions = Permission::all()->toArray();
 
-        return view('livewire.backend.forms.modal-role', compact('permissions'));
+        return view('livewire.backend.modal-role', compact('permissions'));
     }
 }

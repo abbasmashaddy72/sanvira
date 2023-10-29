@@ -4,7 +4,7 @@
             <div class="mt-6 px-6 text-center">
                 <div
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
-                    <i class="uil uil-phone"></i>
+                    <i data-feather="phone"></i>
                 </div>
 
                 <div class="content mt-7">
@@ -21,7 +21,7 @@
             <div class="mt-6 px-6 text-center">
                 <div
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
-                    <i class="uil uil-envelope"></i>
+                    <i data-feather="mail"></i>
                 </div>
 
                 <div class="content mt-7">
@@ -38,7 +38,7 @@
             <div class="mt-6 px-6 text-center">
                 <div
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
-                    <i class="uil uil-map-marker"></i>
+                    <i data-feather="map-pin"></i>
                 </div>
 
                 <div class="content mt-7">

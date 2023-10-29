@@ -5,7 +5,7 @@
         <div class="col-span-12">
 
             <div class="py-12">
-                @livewire('backend.tables.contact-us-table')
+                @livewire('backend.table-contact-us')
             </div>
         </div>
     </x-backend.grid>

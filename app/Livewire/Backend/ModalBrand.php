@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Brand;
 use Illuminate\Support\Facades\Gate;
@@ -76,6 +76,6 @@ class ModalBrand extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.forms.modal-brand');
+        return view('livewire.backend.modal-brand');
     }
 }

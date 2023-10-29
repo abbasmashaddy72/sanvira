@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
@@ -112,6 +112,6 @@ class StaticHomepage extends Component
 
     public function render()
     {
-        return view('livewire.backend.forms.static-homepage');
+        return view('livewire.backend.static-homepage');
     }
 }

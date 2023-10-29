@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Vendor;
 use Illuminate\Support\Facades\Gate;
@@ -59,6 +59,6 @@ class ModalVendor extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.forms.modal-vendor');
+        return view('livewire.backend.modal-vendor');
     }
 }

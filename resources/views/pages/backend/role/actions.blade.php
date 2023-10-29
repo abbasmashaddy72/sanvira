@@ -1,7 +1,7 @@
 <div class="flex justify-around space-x-1">
     @can('role_view')
         <button
-            wire:click='$dispatch("openModal", { component:"backend.forms.modal-role", arguments: { role_id: {{ $id }} }})'
+            wire:click='$dispatch("openModal", { component:"backend.modal-role", arguments: { role_id: {{ $id }} }})'
             class="rounded p-1 text-teal-600 hover:bg-teal-600 hover:text-white">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
@@ -14,7 +14,7 @@
 
     @can('role_edit')
         <button
-            wire:click='$dispatch("openModal", { component:"backend.forms.modal-role", arguments: { role_id: {{ $id }} }})'
+            wire:click='$dispatch("openModal", { component:"backend.modal-role", arguments: { role_id: {{ $id }} }})'
             class="text-primary hover:bg-primary rounded p-1 hover:text-white">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path

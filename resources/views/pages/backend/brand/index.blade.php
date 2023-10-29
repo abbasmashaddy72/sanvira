@@ -3,12 +3,12 @@
 
     <x-backend.grid>
         <x-slot name="rt_button">
-            <button onclick="Livewire.dispatch('openModal', { component: 'backend.forms.modal-brand' } )"
+            <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-brand' } )"
                 class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
         </x-slot>
 
         <div class="col-span-12">
-            @livewire('backend.tables.brands-table')
+            @livewire('backend.table-brand')
         </div>
     </x-backend.grid>
 </x-app-layout>

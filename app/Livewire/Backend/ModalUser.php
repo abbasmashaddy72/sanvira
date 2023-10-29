@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Role;
 use App\Models\User;
@@ -118,6 +118,6 @@ class ModalUser extends ModalComponent
     {
         $roles = Role::get();
 
-        return view('livewire.backend.forms.modal-user', compact('roles'));
+        return view('livewire.backend.modal-user', compact('roles'));
     }
 }

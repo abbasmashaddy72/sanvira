@@ -1,7 +1,7 @@
 <div class="flex justify-around space-x-1">
     @can('category_edit')
         <button
-            wire:click='$dispatch("openModal", { component:"backend.forms.modal-category", arguments: { category_id: {{ $id }} }})'
+            wire:click='$dispatch("openModal", { component:"backend.modal-category", arguments: { category_id: {{ $id }} }})'
             class="text-primary hover:bg-primary rounded p-1 hover:text-white">
             <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path

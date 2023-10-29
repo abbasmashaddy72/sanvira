@@ -1,5 +1,8 @@
+// CSS imports
 import "../../css/backend/app.css";
+import "./bootstrap";
 
+// JavaScript libraries
 import focus from "@alpinejs/focus";
 import { createPopper } from "@popperjs/core";
 import * as FilePond from "filepond";
@@ -9,51 +12,32 @@ import {
     Livewire,
 } from "../../../vendor/livewire/livewire/dist/livewire.esm";
 
+// Expose to global scope
 window.flatpickr = flatpickr;
 window.FilePond = FilePond;
 window.createPopper = createPopper;
 
+// Alpine.js setup
 Alpine.plugin(focus);
-
 Livewire.start();
-/*
- |--------------------------------------------------------------------------
- | Midone Built-in Components
- |--------------------------------------------------------------------------
- |
- | Import Midone built-in components.
- |
- */
-import "@left4code/tw-starter/dist/js/dropdown";
-import "./bootstrap";
 
-/*
- |--------------------------------------------------------------------------
- | 3rd Party Libraries
- |--------------------------------------------------------------------------
- |
- | Import 3rd party library JS files.
- |
- */
-import "./components/datepicker";
-import "./components/feather";
-
-/*
- |--------------------------------------------------------------------------
- | Custom Components
- |--------------------------------------------------------------------------
- |
- | Import JS custom components.
- |
- */
+// 3rd Party Libraries
 import "../../../vendor/power-components/livewire-powergrid/dist/powergrid";
+import "../../../vendor/wire-elements/modal/resources/js/modal";
+
+// Midone Built-in Components
+import "@left4code/tw-starter/dist/js/dropdown";
+
+// Components
+import "./components/datepicker";
+// import "./components/feather";
 import "./components/mobile-menu";
 import "./components/new-dark-mode-switcher";
 import "./components/side-menu";
 import "./components/side-menu-tooltip";
 
+// Custom Components
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-window.ClassicEditor = ClassicEditor;
-
 import lightbox from "lightbox2";
+window.ClassicEditor = ClassicEditor;
 window.lightbox = lightbox;

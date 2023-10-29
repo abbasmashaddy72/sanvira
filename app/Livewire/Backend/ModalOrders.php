@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Order;
 use WireUi\Traits\Actions;
@@ -56,6 +56,6 @@ class ModalOrders extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.forms.modal-orders');
+        return view('livewire.backend.modal-orders');
     }
 }

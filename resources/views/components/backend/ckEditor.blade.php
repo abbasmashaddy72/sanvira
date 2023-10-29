@@ -4,11 +4,11 @@
     $componentId = $idPrefix . '_' . uniqid();
 @endphp
 
-<div wire:ignore class="mt-4 form-group row">
+<div wire:ignore class="form-group row mt-4">
     <label class="block">
         <x-label :label="$label" />
-        <div class="mt-2 col-md-9">
-            <textarea id="{{ $componentId }}" wire:model.live.debounce.2000msDOMContentLoaded="{{ $name }}"></textarea>
+        <div class="col-md-9 mt-2">
+            <textarea id="{{ $componentId }}" wire:model.live.debounce.2000ms="{{ $name }}"></textarea>
         </div>
     </label>
 
@@ -121,7 +121,7 @@
 
         var ready = (callback) => {
             if (document.readyState != "loading") callback();
-            else document.addEventListener("DOMContentLoaded", callback);
+            else document.addEventListener("livewire:navigated", callback);
         }
 
         ready(() => {
@@ -137,7 +137,7 @@
                     editor.model.document.on('change:data', () => {
                         @this.set('{{ $name }}', editor.getData())
                     })
-                    document.addEventListener('DOMContentLoaded', () => {
+                    document.addEventListener('livewire:navigated', () => {
                         Livewire.on('reinit', () => {
                             editor.setData('', '')
                         })

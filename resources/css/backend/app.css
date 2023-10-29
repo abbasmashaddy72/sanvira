@@ -102,7 +102,7 @@
 @import "./components/_mobile-menu.css";
 @import "./components/_litepicker.css";
 @import "./components/_ckeditor.css";
-@import "/vendor/power-components/livewire-powergrid/dist/tailwind.css";
+@import "../../../vendor/power-components/livewire-powergrid/dist/tailwind.css";
 
 /*
 Form Component

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Gate;
@@ -87,6 +87,6 @@ class ModalCategory extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.forms.modal-category');
+        return view('livewire.backend.modal-category');
     }
 }

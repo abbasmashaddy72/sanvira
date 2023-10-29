@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Backend\Forms;
+namespace App\Livewire\Backend;
 
 use App\Models\Product;
 use App\Models\ProductAttributes;
@@ -382,6 +382,6 @@ class ModalProduct extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.forms.modal-product');
+        return view('livewire.backend.modal-product');
     }
 }

@@ -3,7 +3,7 @@
 
     <x-backend.grid>
         <div class="col-span-12">
-            @livewire('backend.forms.static-homepage', ['type' => 'Homepage'])
+            @livewire('backend.static-homepage', ['type' => 'Homepage'])
         </div>
     </x-backend.grid>
 
@@ -12,12 +12,12 @@
             <div class="col-span-12">
 
                 <x-slot name="rt_button">
-                    <button onclick="Livewire.dispatch('openModal', { component: 'backend.forms.modal-slider' } )"
+                    <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-slider' } )"
                         class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
                 </x-slot>
 
                 <div class="py-12">
-                    @livewire('backend.tables.sliders-table')
+                    @livewire('backend.table-slider')
                 </div>
             </div>
         </x-backend.grid>
