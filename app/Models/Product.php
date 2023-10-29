@@ -26,19 +26,15 @@ class Product extends Model
         'item_type',
         'sku',
         'barcode',
-        'own_sku',
         'length',
-        'length_units',
         'breadth',
-        'breadth_units',
         'width',
-        'width_units',
+        'measurement_unit',
         'weight',
-        'weight_units',
+        'weight_unit',
         'on_sale',
         'images',
         'data_sheets',
-        'verification',
     ];
 
     protected $casts = [
@@ -46,9 +42,14 @@ class Product extends Model
         'data_sheets' => 'array',
     ];
 
-    public function country()
+    public static $enumCasts = [
+        'measurement_unit' => 'm,cm,mm,in,ft',
+        'weight_unit' => 'kg,g,t,oz'
+    ];
+
+    public function category()
     {
-        return $this->belongsTo(Country::class, 'country_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     public function brands()
@@ -61,9 +62,9 @@ class Product extends Model
         return $this->belongsTo(Vendor::class, 'vendor_id');
     }
 
-    public function category()
+    public function country()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function productAttributes()
@@ -85,5 +86,30 @@ class Product extends Model
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    public function enquiries()
+    {
+        return $this->belongsToMany(Enquiry::class, 'enquiry_product');
+    }
+
+    public function quotations()
+    {
+        return $this->belongsToMany(Quotation::class, 'quotation_product');
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_product');
+    }
+
+    public function deliveryNotes()
+    {
+        return $this->belongsToMany(DeliveryNote::class, 'delivery_note_product');
+    }
+
+    public function invoices()
+    {
+        return $this->belongsToMany(Invoice::class, 'invoice_product');
     }
 }

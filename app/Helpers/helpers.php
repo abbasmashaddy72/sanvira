@@ -65,17 +65,17 @@ if (!function_exists('getKeyValues')) {
 if (!function_exists('set_static_option')) {
     function set_static_option($key, $value)
     {
-        if (!StaticOption::where('option_name', $key)->first()) {
+        if (!StaticOption::where('name', $key)->first()) {
             StaticOption::create([
-                'option_name' => $key,
-                'option_value' => $value,
+                'name' => $key,
+                'value' => $value,
             ]);
 
             return true;
         }
-        StaticOption::where('option_name', $key)->update([
-            'option_name' => $key,
-            'option_value' => $value,
+        StaticOption::where('name', $key)->update([
+            'name' => $key,
+            'value' => $value,
         ]);
         cache()->forget($key);
 
@@ -89,16 +89,16 @@ if (!function_exists('set_static_option')) {
 if (!function_exists('get_static_option')) {
     function get_static_option($key)
     {
-        global $option_name;
-        $option_name = $key;
-        $value = StaticOption::where('option_name', $option_name)->first();
-        cache()->remember($option_name, 86400, function () {
-            global $option_name;
+        global $name;
+        $name = $key;
+        $value = StaticOption::where('name', $name)->first();
+        cache()->remember($name, 86400, function () {
+            global $name;
 
-            return StaticOption::where('option_name', $option_name)->first();
+            return StaticOption::where('name', $name)->first();
         });
 
-        return !empty($value) ? $value->option_value : null;
+        return !empty($value) ? $value->value : null;
     }
 }
 

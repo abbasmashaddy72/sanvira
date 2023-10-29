@@ -14,14 +14,18 @@ class Rfq extends Model
         'status',
     ];
 
+    public static $enumCasts = [
+        'status' => 'Pending,Submitted,Processing,Close',
+    ];
+
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'product_rfq')->withPivot('quantity');
+        return $this->belongsToMany(Product::class, 'rfq_product')->withPivot('quantity');
     }
 
     public function order()
     {
-        return $this->hasOne(Order::class, 'rfq_id', 'id');
+        return $this->hasOne(Order::class, 'rfq_id');
     }
 
     public function users()

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('locality')->after('email')->nullable();
             $table->string('street_no')->after('email')->nullable();
             $table->string('mobile')->after('email')->nullable();
+            $table->enum('status', ['Active', 'InActive'])->after('last_password_change');
         });
     }
 

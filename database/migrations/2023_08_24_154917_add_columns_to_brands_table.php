@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('brands', function (Blueprint $table) {
-            $table->enum('account_type', ['Regular', 'Featured'])->default('Regular')->after('name');
+            $table->enum('account_type', ['Regular', 'Featured'])->after('name')->default('Regular');
             $table->string('slug')->unique()->after('account_type');
         });
     }

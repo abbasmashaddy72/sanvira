@@ -19,11 +19,9 @@ class VendorViewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
-            'vendor_id' => Vendor::pluck('id')[$this->faker->numberBetween(1, Vendor::count() - 1)],
+            'user_id' => fake()->randomElement(User::pluck('id')->toArray()),
+            'vendor_id' => fake()->randomElement(Vendor::pluck('id')->toArray()),
             'clicks' => rand(1, 40),
-            'created_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
-            'updated_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
         ];
     }
 }

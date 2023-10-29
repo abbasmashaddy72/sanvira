@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('product_variations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->decimal('discount', 10, 2);
+            $table->decimal('tax_percentage', 10, 2);
             $table->decimal('min_price', 10, 2);
             $table->decimal('max_price', 10, 2);
-            $table->integer('min_order_quantity');
-            $table->integer('max_order_quantity');
+            $table->integer('min_order_quantity')->unsigned();
+            $table->integer('max_order_quantity')->unsigned();
             $table->timestamps();
         });
     }

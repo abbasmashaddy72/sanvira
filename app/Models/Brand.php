@@ -17,6 +17,10 @@ class Brand extends Model
         'image',
     ];
 
+    public static $enumCasts = [
+        'account_type' => 'Regular,Featured',
+    ];
+
     public function products()
     {
         return $this->hasMany(Product::class, 'brand_id');

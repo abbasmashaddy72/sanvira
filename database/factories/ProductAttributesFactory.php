@@ -18,9 +18,9 @@ class ProductAttributesFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => Product::pluck('id')[$this->faker->numberBetween(1, Product::count() - 1)],
-            'name' => $this->faker->name(),
-            'value' => $this->faker->title(),
+            'product_id' => fake()->randomElement(Product::pluck('id')->toArray()),
+            'name' => fake()->name(),
+            'value' => fake()->title(),
         ];
     }
 }

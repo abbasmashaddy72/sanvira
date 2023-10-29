@@ -17,16 +17,12 @@ return new class extends Migration
             $table->string('slug')->after('name');
             $table->renameColumn('name', 'title');
             $table->string('barcode')->after('sku');
-            $table->string('own_sku')->after('barcode');
             $table->bigInteger('length')->after('item_type');
-            $table->enum('length_units', ['m', 'cm', 'mm', 'in', 'ft'])->after('length');
-            $table->bigInteger('breadth')->after('length_units');
-            $table->enum('breadth_units', ['m', 'cm', 'mm', 'in', 'ft'])->after('breadth');
-            $table->bigInteger('width')->after('breadth_units');
-            $table->enum('width_units', ['m', 'cm', 'mm', 'in', 'ft'])->after('width');
-            $table->bigInteger('weight')->after('width_units');
-            $table->enum('weight_units', ['kg', 'g', 't', 'oz'])->after('width');
-            $table->boolean('verification')->default(0)->after('data_sheets');
+            $table->bigInteger('breadth')->after('length');
+            $table->bigInteger('width')->after('breadth');
+            $table->enum('measurement_unit', ['m', 'cm', 'mm', 'in', 'ft'])->after('width');
+            $table->bigInteger('weight')->after('measurement_unit');
+            $table->enum('weight_unit', ['kg', 'g', 't', 'oz'])->after('weight');
         });
     }
 
@@ -49,7 +45,7 @@ return new class extends Migration
             $table->dropColumn('width');
             $table->dropColumn('width_units');
             $table->dropColumn('weight');
-            $table->dropColumn('weight_units');
+            $table->dropColumn('weight_unit');
         });
     }
 };

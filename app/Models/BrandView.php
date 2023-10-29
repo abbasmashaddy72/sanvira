@@ -15,13 +15,13 @@ class BrandView extends Model
         'clicks',
     ];
 
-    public function brand()
+    public function user()
     {
-        return $this->belongsTo(Brand::class, 'brand_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function userData()
+    public function brand()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Brand::class);
     }
 }

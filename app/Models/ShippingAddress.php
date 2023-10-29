@@ -18,4 +18,14 @@ class ShippingAddress extends Model
         'landmark',
         'zip_code',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
+    }
 }

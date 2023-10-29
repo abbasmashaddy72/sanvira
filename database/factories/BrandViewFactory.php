@@ -19,11 +19,9 @@ class BrandViewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
-            'brand_id' => Brand::pluck('id')[$this->faker->numberBetween(1, Brand::count() - 1)],
+            'user_id' => User::pluck('id')[fake()->numberBetween(1, User::count() - 1)],
+            'brand_id' => Brand::pluck('id')[fake()->numberBetween(1, Brand::count() - 1)],
             'clicks' => rand(1, 40),
-            'created_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
-            'updated_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
         ];
     }
 }

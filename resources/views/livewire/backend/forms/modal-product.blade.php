@@ -47,7 +47,7 @@
         <x-input name="weight" label="{{ __('Weight') }}" type="text" wire:model='weight'>
             <x-slot name="append">
                 <div class="absolute inset-y-0 right-0 flex items-center p-0.5">
-                    <x-native-select :options="['kg', 'g', 't', 'oz']" wire:model="weight_units" />
+                    <x-native-select :options="['kg', 'g', 't', 'oz']" wire:model="weight_unit" />
                 </div>
             </x-slot>
         </x-input>

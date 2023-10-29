@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rfq_id')->constrained('rfqs')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status', ['Pending', 'Processing', 'Quotation Sent', 'Quotation Received', 'Order Placed', 'Delivered Note Received', 'Due', 'Paid'])->default('Pending');
+            $table->foreignId('quotation_id')->constrained('quotations')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('purchase_order_pdf')->nullable();
             $table->timestamp('rfq_submission_date')->nullable();
+            $table->enum('status', ['Open', 'Close'])->default('Open');
             $table->timestamps();
         });
     }

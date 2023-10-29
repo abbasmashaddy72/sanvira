@@ -10,7 +10,7 @@ class StaticOption extends Model
     use HasFactory;
 
     protected $fillable = [
-        'option_name',
-        'option_value',
+        'name',
+        'value',
     ];
 }

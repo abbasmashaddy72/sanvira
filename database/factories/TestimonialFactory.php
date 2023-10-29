@@ -18,10 +18,10 @@ class TestimonialFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
-            'designation' => $this->faker->firstName(),
+            'user_id' => User::pluck('id')[fake()->numberBetween(1, User::count() - 1)],
+            'designation' => fake()->firstName(),
             'logo' => null,
-            'message' => $this->faker->realText(),
+            'message' => fake()->realText(),
             'show_designation' => rand(0, 1),
             'rating' => rand(1, 5),
         ];

@@ -25,7 +25,7 @@ class CategoryView extends Model
         return $this->belongsTo(Product::class, 'category_id')->select('id', 'name');
     }
 
-    public function userData()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

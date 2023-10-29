@@ -7,11 +7,47 @@ use App\Models\Brand;
 use App\Models\Vendor;
 use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
+        // $files = glob(app_path('Models/*.php'));
+
+        // $modelAttributes = [];
+
+        // foreach ($files as $file) {
+        //     $fileName = basename($file, '.php');
+        //     $className = 'App\\Models\\' . $fileName;
+
+        //     if (is_subclass_of($className, Model::class)) {
+        //         $columns = DB::getSchemaBuilder()->getColumnListing((new $className)->getTable());
+        //         $modelAttributes[$className] = $columns;
+        //     }
+        // }
+
+        // // Print the model attributes in the desired format
+        // echo '<ul>';
+
+        // foreach ($modelAttributes as $modelName => $attributes) {
+        //     echo '<li>' . $modelName . ':';
+        //     echo '<ul>';
+
+        //     foreach ($attributes as $attribute) {
+        //         echo '<li>' . $attribute . '</li>';
+        //     }
+
+        //     echo '</ul>';
+        //     echo '</li>';
+        // }
+
+        // echo '</ul>';
+
+
+        // exit;
+
         abort_if(Gate::denies('dashboard'), 403);
 
         view()->share('title', 'Dashboard');

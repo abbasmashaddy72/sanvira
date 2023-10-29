@@ -20,8 +20,23 @@ class City extends Model
         'state_code',
     ];
 
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function state()
     {
-        return $this->belongsTo(State::class, 'state_id', 'id');
+        return $this->belongsTo(State::class);
+    }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+
+    public function billingAddresses()
+    {
+        return $this->hasMany(BillingAddress::class);
     }
 }

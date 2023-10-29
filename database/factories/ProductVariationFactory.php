@@ -18,7 +18,9 @@ class ProductVariationFactory extends Factory
     public function definition()
     {
         return [
-            'product_id' => Product::pluck('id')[$this->faker->numberBetween(1, Product::count() - 1)],
+            'product_id' => fake()->randomElement(Product::pluck('id')->toArray()),
+            'discount' => rand(0, 100),
+            'tax_percentage' => rand(0, 100),
             'min_price' => rand(50, 250),
             'max_price' => rand(500, 50000),
             'min_order_quantity' => rand(10, 50),

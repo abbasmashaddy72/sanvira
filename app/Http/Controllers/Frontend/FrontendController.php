@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Rfq;
 use App\Models\Brand;
-use App\Models\Order;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
@@ -20,16 +18,6 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        // echo $userID = auth()->id();
-        // echo auth()->user()->roles->first()->name;
-        // echo (Order::query()
-        //     ->with('rfq')
-        //     ->whereHas('rfq', function ($query) use ($userID) {
-        //         $query->where('user_id', $userID);
-        //     })
-        //     ->get());
-        // echo (Order::query()->with('rfq')->get());
-        // exit;
         $sliders = Slider::get();
         $product_categories = Category::where('parent_id', 0)->withCount('products')->get()->take(8);
         $featured_brands = Brand::withCount('products')->where('account_type', '=', 'Featured')->get()->take(8);

@@ -10,13 +10,38 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'rfq_id',
-        'status',
+        'quotation_id',
+        'purchase_order_pdf',
         'rfq_submission_date',
+        'status',
     ];
 
-    public function rfq()
+    public static $enumCasts = [
+        'status' => 'Open,Close',
+    ];
+
+    public function products()
     {
-        return $this->belongsTo(Rfq::class);
+        return $this->belongsToMany(Product::class, 'order_product');
+    }
+
+    public function enquiry()
+    {
+        return $this->belongsTo(Enquiry::class, 'rfq_id');
+    }
+
+    public function quotation()
+    {
+        return $this->hasOne(Quotation::class, 'order_id');
+    }
+
+    public function deliveryNote()
+    {
+        return $this->hasOne(DeliveryNote::class, 'order_id');
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class, 'order_id');
     }
 }

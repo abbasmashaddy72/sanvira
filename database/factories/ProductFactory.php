@@ -7,6 +7,7 @@ use App\Models\Country;
 use Illuminate\Support\Str;
 use App\Models\Vendor;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,8 +22,8 @@ class ProductFactory extends Factory
      */
     public function definition()
     {
-        $paragraphs = $this->faker->paragraphs(6, false);
-        $title = $this->faker->realText(50);
+        $paragraphs = fake()->paragraphs(6, false);
+        $title = fake()->realText(50);
         $description = "<h1>{$title}</h1>";
         foreach ($paragraphs as $para) {
             $description .= "<p>{$para}</p>";
@@ -34,34 +35,30 @@ class ProductFactory extends Factory
         foreach ($random_keys as $key) {
             $random_array[] = $images[$key];
         }
-        $title = $this->faker->name();
+        $title = fake()->name();
 
         return [
-            'category_id' => $this->faker->randomElement(Category::where('parent_id', '!=', 0)->pluck('id')->toArray()),
-            'country_id' => Country::pluck('id')[$this->faker->numberBetween(1, Country::count() - 1)],
-            'brand_id' => Brand::pluck('id')[$this->faker->numberBetween(1, Brand::count() - 1)],
-            'vendor_id' => Vendor::pluck('id')[$this->faker->numberBetween(1, Vendor::count() - 1)],
+            'category_id' => fake()->randomElement(Category::where('parent_id', '!=', 0)->pluck('id')->toArray()),
+            'country_id' => fake()->randomElement(Country::pluck('id')->toArray()),
+            'brand_id' => fake()->randomElement(Brand::pluck('id')->toArray()),
+            'vendor_id' => fake()->randomElement(Vendor::pluck('id')->toArray()),
             'title' => $title,
             'slug' => Str::slug($title),
             'description' => $description,
             'edt' => rand(0, 100),
-            'avb_stock' => $this->faker->regexify('[A-Za-z0-9]{20}'),
-            'barcode' => $this->faker->randomNumber(),
-            'own_sku' => $this->faker->randomNumber(),
+            'avb_stock' => fake()->regexify('[A-Za-z0-9]{20}'),
+            'model' => fake()->streetSuffix(),
+            'item_type' => fake()->mimeType(),
+            'sku' => fake()->regexify('[A-Za-z0-9]{20}'),
+            'barcode' => fake()->randomNumber(),
             'length' => rand(1, 50),
-            'length_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
             'breadth' => rand(1, 50),
-            'breadth_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
             'width' => rand(1, 50),
-            'width_units' => $this->faker->randomElement(['m', 'cm', 'mm', 'in', 'ft']),
+            'measurement_unit' => fake()->randomElement(explode(',', Product::$enumCasts['measurement_unit'])),
             'weight' => rand(1, 50),
-            'weight_units' => $this->faker->randomElement(['kg', 'g', 't', 'oz']),
-            'model' => $this->faker->streetSuffix(),
-            'item_type' => $this->faker->mimeType(),
-            'sku' => $this->faker->regexify('[A-Za-z0-9]{20}'),
+            'weight_unit' => fake()->randomElement(explode(',', Product::$enumCasts['weight_unit'])),
             'on_sale' => rand(0, 1),
             'images' => $random_array,
-            'verification' => rand(0, 1),
         ];
     }
 }

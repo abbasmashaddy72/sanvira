@@ -19,11 +19,9 @@ class ProductViewFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
-            'product_id' => Product::pluck('id')[$this->faker->numberBetween(1, Product::count() - 1)],
+            'user_id' => User::pluck('id')[fake()->numberBetween(1, User::count() - 1)],
+            'product_id' => Product::pluck('id')[fake()->numberBetween(1, Product::count() - 1)],
             'clicks' => rand(1, 40),
-            'created_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
-            'updated_at' => $this->faker->dateTimeBetween('-30 days', '+30 days'),
         ];
     }
 }

@@ -81,7 +81,11 @@ class DatabaseSeeder extends Seeder
             $this->call(ShippingAddressSeeder::class);
             $this->call(BillingAddressSeeder::class);
             $this->call(RfqSeeder::class);
+            $this->call(EnquirySeeder::class);
+            $this->call(QuotationSeeder::class);
             $this->call(OrderSeeder::class);
+            $this->call(DeliveryNoteSeeder::class);
+            $this->call(InvoiceSeeder::class);
         }
     }
 }

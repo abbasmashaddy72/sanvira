@@ -18,5 +18,11 @@ class ContactUs extends Model
         'contact_no',
         'message',
         'agree',
+        'notes',
+        'status',
+    ];
+
+    public static $enumCasts = [
+        'status' => 'Active,InActive',
     ];
 }

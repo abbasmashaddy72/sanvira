@@ -129,7 +129,7 @@
 
                             <li class="line-clamp-1 flex items-center justify-between p-1">
                                 <span class="mr-2 truncate font-medium text-blue-600">{{ __('Weight:') }}</span>
-                                <span class="ml-2">{{ $data->weight . $data->weight_units }}</span>
+                                <span class="ml-2">{{ $data->weight . $data->weight_unit }}</span>
                             </li>
 
                             @foreach ($data->productAttributes as $item)

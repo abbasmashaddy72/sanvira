@@ -19,8 +19,8 @@ class ShippingAddressFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[$this->faker->numberBetween(1, User::count() - 1)],
-            'city_id' => City::pluck('id')[$this->faker->numberBetween(1, City::count() - 1)],
+            'user_id' => User::pluck('id')[fake()->numberBetween(1, User::count() - 1)],
+            'city_id' => City::pluck('id')[fake()->numberBetween(1, City::count() - 1)],
             'company_name' => fake()->company(),
             'street_no' => fake()->streetAddress(),
             'locality' => fake()->lastName(),

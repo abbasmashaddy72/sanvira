@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\Rfq;
 use App\Models\User;
 use App\Models\Product;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,10 +20,10 @@ class RfqFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => $this->faker->randomElement(User::whereHas('roles', function ($query) {
+            'user_id' => fake()->randomElement(User::whereHas('roles', function ($query) {
                 $query->where('name', 'Buyer');
             })->pluck('id')->toArray()),
-            'status' => $this->faker->randomElement(['Pending', 'Submitted', 'Processing', 'Quotation Sent', 'Quotation Received']),
+            'status' => fake()->randomElement(explode(',', Rfq::$enumCasts['status'])),
         ];
     }
 
@@ -37,16 +36,16 @@ class RfqFactory extends Factory
     {
         return $this->afterCreating(function (Rfq $rfq) {
             // Generate an array of random product IDs
-            $productIds = $this->faker->randomElements(Product::pluck('id')->toArray(), rand(1, 5));
+            $productIds = fake()->randomElements(Product::pluck('id')->toArray(), rand(1, 5));
 
             // Create an array of quantities for each product
-            $quantities = [];
+            $pivotData = [];
             foreach ($productIds as $productId) {
-                $quantities[$productId] = ['quantity' => rand(10, 500)];
+                $pivotData[$productId] = ['quantity' => rand(10, 500)];
             }
 
-            // Attach products to the RFQ
-            $rfq->products()->attach($quantities);
+            // Attach products to the RFQ with the specified quantities
+            $rfq->products()->attach($pivotData);
         });
     }
 }

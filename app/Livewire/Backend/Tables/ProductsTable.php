@@ -68,7 +68,7 @@ class ProductsTable extends LivewireDatatable
                 ->searchable()
                 ->filterable(),
 
-            Column::name('weight_units')
+            Column::name('weight_unit')
                 ->searchable()
                 ->filterable(['kg', 'g', 't', 'oz']),
 

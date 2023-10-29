@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('rfqs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('status', ['Pending', 'Submitted', 'Processing', 'Quotation Sent', 'Quotation Received'])->default('Pending');
+            $table->enum('status', ['Pending', 'Submitted', 'Processing', 'Close'])->default('Pending');
             $table->timestamps();
         });
     }

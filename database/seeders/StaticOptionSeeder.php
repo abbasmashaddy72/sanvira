@@ -32,8 +32,8 @@ class StaticOptionSeeder extends Seeder
 
         foreach ($inputs as $data) {
             StaticOption::create([
-                'option_name' => $data[0],
-                'option_value' => $data[1],
+                'name' => $data[0],
+                'value' => $data[1],
             ]);
         }
     }

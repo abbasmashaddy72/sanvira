@@ -20,7 +20,7 @@ class VendorView extends Model
         return $this->belongsTo(Vendor::class, 'vendor_id');
     }
 
-    public function userData()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

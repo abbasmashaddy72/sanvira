@@ -59,7 +59,7 @@ class ModalProduct extends ModalComponent
 
     public $weight;
 
-    public $weight_units = 'kg';
+    public $weight_unit = 'kg';
 
     public $on_sale = false;
 
@@ -170,7 +170,7 @@ class ModalProduct extends ModalComponent
         $this->width = $data->width;
         $this->width_units = $data->width_units;
         $this->weight = $data->weight;
-        $this->weight_units = $data->weight_units;
+        $this->weight_unit = $data->weight_unit;
         $this->on_sale = $data->on_sale;
         $this->images = $data->images;
         $this->data_sheets = $data->data_sheets;
@@ -220,7 +220,7 @@ class ModalProduct extends ModalComponent
         'width' => '',
         'width_units' => '',
         'weight' => '',
-        'weight_units' => '',
+        'weight_unit' => '',
         'on_sale' => 'required',
         'images' => 'required|array|min:4',
         'data_sheets' => '',
