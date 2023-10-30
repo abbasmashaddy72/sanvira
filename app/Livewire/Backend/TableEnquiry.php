@@ -54,7 +54,7 @@ final class TableEnquiry extends PowerGridComponent
             ->addColumn('submission_time')
             ->addColumn('status')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('status_lower', fn (Enquiry $model) => strtolower(e($model->status)))
 
             ->addColumn('created_at_formatted', fn (Enquiry $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
@@ -92,17 +92,16 @@ final class TableEnquiry extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(\App\Models\Enquiry $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-enquiry', ['enquiry_id' => $row->id])
         ];
     }
 

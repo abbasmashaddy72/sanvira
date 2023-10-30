@@ -88,7 +88,7 @@ class ModalTestimonial extends ModalComponent
             $this->notification()->success($title = 'Testimonial Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

@@ -30,7 +30,7 @@
 
 <body class="@if (app('impersonate')->isImpersonating()) border-4 border-warning @endif py-5">
     <x-notifications />
-
+    <x-dialog />
     @include('layouts.bePartials.mobile-menu')
 
     <div class="flex">

@@ -19,7 +19,8 @@
 
         <x-checkbox id="subscription" label="{{ __('Subscription') }}" wire:model='subscription' />
 
-        <x-input name="image" label="{{ __('Image') }}" type="text" wire:model='image' />
+        <x-backend.image-upload :images="$this->image" :isUploaded="$this->imageIsUploaded" label="{{ __('Upload Image') }}" name="images"
+            model="image" required />
 
         <livewire:backend.location-dropdown cityId='{{ $city_id }}' />
 

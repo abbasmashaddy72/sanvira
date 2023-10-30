@@ -52,7 +52,7 @@ final class TableOrder extends PowerGridComponent
             ->addColumn('quotation_id')
             ->addColumn('purchase_order_pdf')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('purchase_order_pdf_lower', fn (Order $model) => strtolower(e($model->purchase_order_pdf)))
 
             ->addColumn('rfq_submission_date_formatted', fn (Order $model) => Carbon::parse($model->rfq_submission_date)->format('d/m/Y H:i:s'))
@@ -96,17 +96,16 @@ final class TableOrder extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(\App\Models\Order $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-order', ['order_id' => $row->id])
         ];
     }
 

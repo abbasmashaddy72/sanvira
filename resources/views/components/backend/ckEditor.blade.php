@@ -6,7 +6,7 @@
 
 <div wire:ignore class="form-group row mt-4">
     <label class="block">
-        <x-label :label="$label" />
+        <x-label>{!! $label !!}</x-label>
         <div class="col-md-9 mt-2">
             <textarea id="{{ $componentId }}" wire:model.live.debounce.2000ms="{{ $name }}"></textarea>
         </div>

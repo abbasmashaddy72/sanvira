@@ -38,41 +38,43 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
 
 // Backend Routes
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth', 'verified', 'password.change.check'], 'namespace' => 'App\Http\Controllers\Backend'], function () {
-    // Super Admin
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-    Route::get('role', 'RoleController@index')->name('role');
-    Route::get('user', 'UserController@index')->name('user');
 
+    Route::get('role', 'RoleController@index')->name('role');
+
+    Route::get('user', 'UserController@index')->name('user');
     Route::get('{user}/impersonate', 'UserController@impersonate')->name('users.impersonate');
     Route::get('leave-impersonate', 'UserController@leaveImpersonate')->name('users.leave-impersonate');
 
+    Route::get('profile', 'ProfileController@edit')->name('profile.edit');
+    Route::patch('profile', 'ProfileController@update')->name('profile.update');
+    Route::delete('profile', 'ProfileController@destroy')->name('profile.destroy');
+
     Route::get('brand', 'BrandController@index')->name('brand');
     Route::get('vendor', 'VendorController@index')->name('vendor');
-
+    Route::get('categories', 'CategoryController@index')->name('categories');
     Route::get('product', 'ProductController@index')->name('product');
+    Route::get('product_review', 'ProductController@review')->name('product_review');
+
+    Route::get('enquiry', 'EnquiryController@index')->name('enquiry');
+    Route::get('quotation', 'QuotationController@index')->name('quotation');
+    Route::get('orders', 'OrderController@index')->name('orders');
+    Route::get('delivery_note', 'DeliveryNoteController@index')->name('delivery_note');
+    Route::get('invoice', 'InvoiceController@index')->name('invoice');
 
     Route::get('testimonial', 'TestimonialController@index')->name('testimonial');
-
-    Route::get('categories', 'CategoryController@index')->name('categories');
 
     Route::get('homepage', 'StaticController@homepage')->name('homepage');
     Route::get('privacy_policy', 'StaticController@privacy_policy')->name('privacy_policy');
     Route::get('terms_of_use', 'StaticController@terms_of_use')->name('terms_of_use');
     Route::get('return_refunds', 'StaticController@return_refunds')->name('return_refunds');
+
     Route::get('contact_us', 'StaticController@contact_us')->name('contact_us');
 
-    Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
-
     // Buyer
-    Route::get('orders', 'OrderController@index')->name('orders');
-    Route::get('product_review', 'ProductController@review')->name('product_review');
     Route::get('address', 'AddressController@index')->name('address');
-    // Route::get('support', 'SupportController@index')->name('support');
 
-    // Common
-    Route::get('profile', 'ProfileController@edit')->name('profile.edit');
-    Route::patch('profile', 'ProfileController@update')->name('profile.update');
-    Route::delete('profile', 'ProfileController@destroy')->name('profile.destroy');
+    Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });
 
 require __DIR__ . '/auth.php';

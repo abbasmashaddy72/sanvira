@@ -336,7 +336,7 @@ class ModalProduct extends ModalComponent
             $this->notification()->success($title = 'Product Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }
@@ -369,7 +369,7 @@ class ModalProduct extends ModalComponent
         });
         Product::where('id', $params['product_id'])->update(['images' => $updatedImages]);
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
 
         $this->notification()->success($title = 'Product Image Deleted Successfully!');

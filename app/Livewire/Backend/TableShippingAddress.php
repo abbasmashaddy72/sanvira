@@ -53,7 +53,7 @@ final class TableShippingAddress extends PowerGridComponent
             ->addColumn('city_id')
             ->addColumn('company_name')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('company_name_lower', fn (ShippingAddress $model) => strtolower(e($model->company_name)))
 
             ->addColumn('street_no')
@@ -107,17 +107,16 @@ final class TableShippingAddress extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(\App\Models\ShippingAddress $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-shipping-address', ['shipping_address_id' => $row->id])
         ];
     }
 

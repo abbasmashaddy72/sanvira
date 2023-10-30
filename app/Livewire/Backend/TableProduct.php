@@ -59,7 +59,6 @@ final class TableProduct extends PowerGridComponent
             ->addColumn('title_lower', fn (Product $model) => strtolower(e($model->title)))
 
             ->addColumn('slug')
-            ->addColumn('description')
             ->addColumn('edt')
             ->addColumn('avb_stock')
             ->addColumn('model')
@@ -89,10 +88,6 @@ final class TableProduct extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Slug', 'slug')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Description', 'description')
                 ->sortable()
                 ->searchable(),
 
@@ -170,10 +165,9 @@ final class TableProduct extends PowerGridComponent
     {
         return [
             Button::add('edit')
-                ->slot('Edit: ' . $row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-product', ['product_id' => $row->id])
         ];
     }
 

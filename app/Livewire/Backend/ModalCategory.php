@@ -80,7 +80,7 @@ class ModalCategory extends ModalComponent
             $this->notification()->success($title = 'Category Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

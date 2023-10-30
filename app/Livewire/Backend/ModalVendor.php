@@ -52,7 +52,7 @@ class ModalVendor extends ModalComponent
             $this->notification()->success($name = 'vendor Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

@@ -16,8 +16,12 @@ class ModalBrand extends ModalComponent
     // Set Data
     public $brand_id;
 
+    public $account_type_enum = [];
+
     // Model Values
     public $name;
+
+    public $account_type;
 
     public $image;
 
@@ -25,19 +29,23 @@ class ModalBrand extends ModalComponent
 
     public function mount()
     {
+        $this->account_type_enum = explode(',', Brand::$enumCasts['account_type']);
         if (empty($this->brand_id)) {
             abort_if(Gate::denies('brand_add'), 403);
 
             return;
         }
         abort_if(Gate::denies('brand_edit'), 403);
+
         $data = Brand::findOrFail($this->brand_id);
         $this->name = $data->name;
+        $this->account_type = $data->account_type;
         $this->image = $data->image;
     }
 
     protected $rules = [
         'name' => 'required',
+        'account_type' => 'required',
         'image' => 'required',
     ];
 
@@ -69,7 +77,7 @@ class ModalBrand extends ModalComponent
             $this->notification()->success($name = 'Brand Saved Successfully!');
         }
 
-        $this->dispatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

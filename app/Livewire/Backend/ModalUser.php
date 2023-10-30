@@ -4,14 +4,17 @@ namespace App\Livewire\Backend;
 
 use App\Models\Role;
 use App\Models\User;
+use WireUi\Traits\Actions;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use LivewireUI\Modal\ModalComponent;
-use WireUi\Traits\Actions;
 
 class ModalUser extends ModalComponent
 {
     use Actions;
+
+    use WithFileUploads;
 
     // Set Data
     public $user_id;
@@ -42,6 +45,8 @@ class ModalUser extends ModalComponent
     // Custom Values
     public $role;
 
+    public $imageIsUploaded = false;
+
     public function mount()
     {
         if (empty($this->user_id)) {
@@ -71,12 +76,23 @@ class ModalUser extends ModalComponent
         'name' => 'required',
         'email' => 'required',
         'password' => 'required',
+        'mobile' => '',
+        'street_no' => '',
+        'locality' => '',
+        'landmark' => '',
+        'city_id' => '',
+        'zip_code' => '',
+        'subscription' => '',
+        'image' => '',
         'role' => 'required',
     ];
 
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
+        if (gettype($this->image) != 'string') {
+            $this->imageIsUploaded = true;
+        }
     }
 
     public function add()
@@ -86,6 +102,9 @@ class ModalUser extends ModalComponent
         if (!empty($this->user_id)) {
             if ($this->password != $validatedData['password']) {
                 $validatedData['password'] = Hash::make($validatedData['password']);
+            }
+            if (!empty($this->image) && gettype($this->image) != 'string') {
+                $validatedData['image'] = $this->image->store('users', 'public');
             }
 
             $role = $validatedData['role'];
@@ -98,6 +117,9 @@ class ModalUser extends ModalComponent
             $this->notification()->success($title = 'User Updated Successfully!');
         } else {
             $validatedData['password'] = Hash::make($validatedData['password']);
+            if (!empty($this->image) && gettype($this->image) != 'string') {
+                $validatedData['image'] = $this->image->store('users', 'public');
+            }
 
             $role = $validatedData['role'];
             unset($validatedData['role']);
@@ -109,7 +131,7 @@ class ModalUser extends ModalComponent
             $this->notification()->success($title = 'User Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

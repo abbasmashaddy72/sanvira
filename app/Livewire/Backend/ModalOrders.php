@@ -49,7 +49,7 @@ class ModalOrders extends ModalComponent
             $this->notification()->success($name = 'Order Saved Successfully!');
         }
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }

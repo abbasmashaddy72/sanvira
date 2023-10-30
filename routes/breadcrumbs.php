@@ -44,6 +44,30 @@ Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
     $trail->push('Brand', route('admin.brand'));
 });
 
+// Application > Delivery Note
+Breadcrumbs::for('delivery-note.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Delivery Note', route('admin.delivery_note'));
+});
+
+// Application > Enquiry
+Breadcrumbs::for('enquiry.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Enquiry', route('admin.enquiry'));
+});
+
+// Application > Invoice
+Breadcrumbs::for('invoice.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Invoice', route('admin.invoice'));
+});
+
+// Application > Quotation
+Breadcrumbs::for('quotation.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Quotation', route('admin.quotation'));
+});
+
 // Application > Product
 Breadcrumbs::for('product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');

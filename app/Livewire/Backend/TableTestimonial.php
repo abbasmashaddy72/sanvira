@@ -52,11 +52,12 @@ final class TableTestimonial extends PowerGridComponent
             ->addColumn('user_id')
             ->addColumn('designation')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('designation_lower', fn (Testimonial $model) => strtolower(e($model->designation)))
 
-            ->addColumn('logo')
-            ->addColumn('message')
+            ->addColumn('logo', function (Testimonial $model) {
+                return view('components.backend.dt-image', ['image' => $model->image]);
+            })
             ->addColumn('show_designation')
             ->addColumn('rating')
             ->addColumn('created_at_formatted', fn (Testimonial $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
@@ -72,10 +73,6 @@ final class TableTestimonial extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Logo', 'logo')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Message', 'message')
                 ->sortable()
                 ->searchable(),
 
@@ -102,17 +99,16 @@ final class TableTestimonial extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(\App\Models\Testimonial $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-testimonial', ['testimonial_id' => $row->id])
         ];
     }
 

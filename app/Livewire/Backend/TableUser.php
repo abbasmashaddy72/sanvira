@@ -51,7 +51,7 @@ final class TableUser extends PowerGridComponent
             ->addColumn('id')
             ->addColumn('name')
 
-           /** Example of custom column using a closure **/
+            /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (User $model) => strtolower(e($model->name)))
 
             ->addColumn('email')
@@ -62,7 +62,9 @@ final class TableUser extends PowerGridComponent
             ->addColumn('city_id')
             ->addColumn('zip_code')
             ->addColumn('subscription')
-            ->addColumn('image')
+            ->addColumn('image', function (User $model) {
+                return view('components.backend.dt-image', ['image' => $model->image]);
+            })
             ->addColumn('last_password_change_formatted', fn (User $model) => Carbon::parse($model->last_password_change)->format('d/m/Y H:i:s'))
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (User $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
@@ -139,17 +141,16 @@ final class TableUser extends PowerGridComponent
     #[\Livewire\Attributes\On('edit')]
     public function edit($rowId): void
     {
-        $this->js('alert('.$rowId.')');
+        $this->js('alert(' . $rowId . ')');
     }
 
     public function actions(\App\Models\User $row): array
     {
         return [
             Button::add('edit')
-                ->slot('Edit: '.$row->id)
-                ->id()
-                ->class('pg-btn-white dark:ring-pg-primary-600 dark:border-pg-primary-600 dark:hover:bg-pg-primary-700 dark:ring-offset-pg-primary-800 dark:text-pg-primary-300 dark:bg-pg-primary-700')
-                ->dispatch('edit', ['rowId' => $row->id])
+                ->slot('Edit')
+                ->class('btn btn-primary')
+                ->openModal('backend.modal-user', ['user_id' => $row->id])
         ];
     }
 

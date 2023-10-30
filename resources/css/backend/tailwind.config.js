@@ -12,7 +12,7 @@ module.exports = {
         require("../../../vendor/power-components/livewire-powergrid/tailwind.config.js"),
     ],
     content: [
-        "./app/Http/Livewire/Backend/**/*.php",
+        "./app/Livewire/Backend/**/*.php",
         "./resources/views/components/auth/**/*.blade.php",
         "./resources/views/components/backend/**/*.blade.php",
         "./resources/views/layouts/bePartials/**/*.blade.php",

@@ -46,7 +46,7 @@ class ModalSlider extends ModalComponent
 
         Slider::create($validatedData);
 
-        $this->dispatchatch('refreshLivewireDatatable');
+        $this->dispatch('pg:eventRefresh-default');
 
         $this->closeModal();
     }
