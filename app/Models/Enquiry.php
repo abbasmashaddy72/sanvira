@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Enquiry extends Model
 {
@@ -12,7 +12,8 @@ class Enquiry extends Model
     protected $fillable = [
         'rfq_id',
         'user_id',
-        'submission_time',
+        'enquiry_no',
+        'submission_date_time',
         'status',
     ];
 
@@ -27,6 +28,11 @@ class Enquiry extends Model
 
     public function user()
     {
-        return $this->belongsTo(Order::class, 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function rfq()
+    {
+        return $this->belongsTo(Rfq::class, 'rfq_id');
     }
 }

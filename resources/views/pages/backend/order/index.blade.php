@@ -3,7 +3,7 @@
 
     <x-backend.grid>
         <x-slot name="rt_button">
-            <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-orders' } )"
+            <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-order' } )"
                 class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
         </x-slot>
 

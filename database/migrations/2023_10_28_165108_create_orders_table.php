@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('quotation_id')->constrained('quotations')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('order_no')->unique();
             $table->string('purchase_order_pdf')->nullable();
             $table->timestamp('rfq_submission_date')->nullable();
             $table->enum('status', ['Open', 'Close'])->default('Open');

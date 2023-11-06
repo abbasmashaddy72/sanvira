@@ -2,7 +2,7 @@
     <x-frontend.index-container class="bg-white py-8">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             <div class="mt-6 px-6 text-center">
-                <div
+                <div wire:ignore
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
                     <i data-feather="phone"></i>
                 </div>
@@ -19,7 +19,7 @@
             </div>
 
             <div class="mt-6 px-6 text-center">
-                <div
+                <div wire:ignore
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
                     <i data-feather="mail"></i>
                 </div>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="mt-6 px-6 text-center">
-                <div
+                <div wire:ignore
                     class="mx-auto flex h-20 w-20 items-center justify-center rounded-xl bg-blue-600/5 align-middle text-3xl text-blue-600 shadow-sm dark:shadow-gray-800">
                     <i data-feather="map-pin"></i>
                 </div>

@@ -37,24 +37,29 @@ final class TableDeliveryNote extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DeliveryNote::query();
+        return DeliveryNote::query()->with('order');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'order' => ['order_no']
+        ];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('order_id')
-            ->addColumn('delivery_notes_attachment')
+            ->addColumn('order_id', function (DeliveryNote $model) {
+                return e($model->order->order_no);
+            })
+            ->addColumn('delivery_note_no')
 
             /** Example of custom column using a closure **/
-            ->addColumn('delivery_notes_attachment_lower', fn (DeliveryNote $model) => strtolower(e($model->delivery_notes_attachment)))
+            ->addColumn('delivery_note_no_lower', fn (DeliveryNote $model) => strtolower(e($model->delivery_note_no)))
 
+            ->addColumn('delivery_notes_attachment')
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (DeliveryNote $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -63,10 +68,13 @@ final class TableDeliveryNote extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Order id', 'order_id'),
-            Column::make('Delivery notes attachment', 'delivery_notes_attachment')
+            Column::make('Order No.', 'order_id'),
+            Column::make('Delivery note no', 'delivery_note_no')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Delivery notes attachment', 'delivery_notes_attachment')
+                ->toggleable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -82,7 +90,9 @@ final class TableDeliveryNote extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('delivery_notes_attachment')->operators(['contains']),
+            Filter::inputText('order_no')->operators(['contains']),
+            Filter::inputText('delivery_note_no')->operators(['contains']),
+            Filter::boolean('delivery_notes_attachment'),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

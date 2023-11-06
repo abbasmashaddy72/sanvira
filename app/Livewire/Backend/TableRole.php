@@ -37,7 +37,7 @@ final class TableRole extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Role::query();
+        return Role::query()->with('users')->with('permissions');
     }
 
     public function relationSearch(): array
@@ -50,11 +50,16 @@ final class TableRole extends PowerGridComponent
         return PowerGrid::columns()
             ->addColumn('id')
             ->addColumn('name')
+            ->addColumn('user_count', function (Role $model) {
+                return e($model->users->count());
+            })
+            ->addColumn('permission_count', function (Role $model) {
+                return e($model->permissions->count());
+            })
 
             /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (Role $model) => strtolower(e($model->name)))
 
-            ->addColumn('slug')
             ->addColumn('created_at_formatted', fn (Role $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -66,9 +71,9 @@ final class TableRole extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Slug', 'slug')
-                ->sortable()
-                ->searchable(),
+            Column::make('Users Count', 'user_count'),
+
+            Column::make('Permissions Count', 'permission_count'),
 
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),

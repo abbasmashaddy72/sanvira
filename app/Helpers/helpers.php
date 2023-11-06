@@ -1,16 +1,19 @@
 <?php
 
+use Illuminate\Support\Str;
 use App\Models\StaticOption;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 // Gets ENUM values Data from DB in array format
 if (!function_exists('getEnum')) {
-    function getEnum($table_name, $colum_name)
+    function getEnum($table_name, $column_name)
     {
-        $values = DB::select(DB::raw('SHOW COLUMNS FROM ' . $table_name . ' WHERE Field = "' . $colum_name . '"'));
+        $values = DB::select("SHOW COLUMNS FROM $table_name WHERE Field = '$column_name'");
 
         preg_match('/^enum\((.*)\)$/', $values[0]->Type, $matches);
+
+        $enum = [];
         foreach (explode(',', $matches[1]) as $value) {
             $enum[trim($value, "'")] = trim($value, "'");
         }
@@ -18,6 +21,7 @@ if (!function_exists('getEnum')) {
         return $enum;
     }
 }
+
 
 // Gets Route Action Names
 if (!function_exists('getRouteAction')) {
@@ -126,5 +130,36 @@ if (!function_exists('console_log')) {
             $js_code = '<script>' . $js_code . '</script>';
         }
         echo $js_code;
+    }
+}
+
+// Generate Number
+if (!function_exists(('generateTableNumber'))) {
+    function generateTableNumber($tableName, $column)
+    {
+        $latestRecord = DB::table($tableName)->latest($column)->first();
+        $currentYear = date('Y');
+        $currentMonth = date('m');
+
+        $tablePrefix = strtoupper(substr($tableName, 0, 3));
+
+        if ($latestRecord && strpos($latestRecord->{$column}, '-') !== false) {
+            [$prefix, $yearMonth, $lastNumber] = explode('-', $latestRecord->{$column});
+        } else {
+            $prefix = $tablePrefix;
+            $yearMonth = $currentYear . $currentMonth;
+            $lastNumber = '0000';
+        }
+
+        if ($yearMonth !== $currentYear . $currentMonth) {
+            $yearMonth = $currentYear . $currentMonth;
+            $lastNumber = '0000';
+        }
+
+        $nextNumber = str_pad((int)$lastNumber + 1, 4, '0', STR_PAD_LEFT);
+
+        $newTableNo = $prefix . '-' . $yearMonth . '-' . $nextNumber;
+
+        return $newTableNo;
     }
 }

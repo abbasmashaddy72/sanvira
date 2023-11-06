@@ -17,7 +17,11 @@
                                 class="{{ $first_level_active_index == $menuKey ? 'side-menu side-menu--active' : 'side-menu' }}"
                                 wire:navigate>
                                 <div class="side-menu__icon">
-                                    <i data-feather="{{ $menu['icon'] }}"></i>
+                                    @if ($menu['icon'] != 'double-quotes-l')
+                                        <i class="{{ 'ri-' . $menu['icon'] . '-line text-xl' }}"></i>
+                                    @else
+                                        <i class="{{ 'ri-' . $menu['icon'] . ' text-xl' }}"></i>
+                                    @endif
                                 </div>
                                 <div class="side-menu__title">
                                     {{ $menu['title'] }}

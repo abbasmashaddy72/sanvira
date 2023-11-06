@@ -21,7 +21,7 @@
                                 class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}"
                                 wire:navigate>
                                 <div class="menu__icon">
-                                    <i data-feather="{{ $menu['icon'] }}"></i>
+                                    <i class="{{ 'ri-' . $menu['icon'] . '-line text-xl' }}"></i>
                                 </div>
                                 <div class="menu__title">
                                     {{ $menu['title'] }}{{ $menu['role'] }}

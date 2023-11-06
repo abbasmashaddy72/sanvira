@@ -20,11 +20,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('edt');
             $table->string('avb_stock')->nullable();
-            $table->string('vendor');
-            $table->string('brand');
             $table->string('model');
-            $table->string('item_type');
-            $table->string('sku')->nullable();
             $table->boolean('on_sale')->default(0);
             $table->json('images');
             $table->timestamps();

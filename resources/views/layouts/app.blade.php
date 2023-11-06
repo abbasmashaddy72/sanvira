@@ -28,9 +28,9 @@
     @livewireStyles
 </head>
 
-<body class="@if (app('impersonate')->isImpersonating()) border-4 border-warning @endif py-5">
+<body class="@if (app('impersonate')->isImpersonating()) border-4 border-warning @endif soft-scrollbar py-5">
     <x-notifications />
-    <x-dialog />
+    <x-dialog z-index="z-50" blur="md" align="center" />
     @include('layouts.bePartials.mobile-menu')
 
     <div class="flex">
@@ -44,7 +44,7 @@
 
     </div>
 
-    @livewireScriptConfig
+    @livewireScripts
     @livewire('wire-elements-modal')
     @stack('scripts')
     @livewireChartsScripts

@@ -23,7 +23,7 @@ class Brand extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class, 'brand_id');
+        return $this->hasManyThrough(Product::class, ProductVariation::class, 'brand_id', 'id', 'id', 'product_id');
     }
 
     public function brandViews()

@@ -6,7 +6,7 @@
     },
     "devDependencies": {
         "@alpinejs/focus": "^3.10.5",
-        "@ckeditor/ckeditor5-build-classic": "^37.1.0",
+        "@ckeditor/ckeditor5-build-classic": "^40.0.0",
         "@left4code/tw-starter": "^3.1.39",
         "@popperjs/core": "^2.11.6",
         "@tailwindcss/forms": "^0.5.2",
@@ -33,6 +33,7 @@
         "postcss-advanced-variables": "^3.0.1",
         "postcss-import": "^15.0.0",
         "postcss-multiple-tailwind": "^1.0.1",
+        "remixicon": "^3.5.0",
         "sass": "^1.56.1",
         "swiper": "^8.4.5",
         "tailwind-scrollbar-hide": "^1.1.7",

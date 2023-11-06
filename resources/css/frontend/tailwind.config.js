@@ -18,9 +18,10 @@ module.exports = {
         "./resources/views/vendor/cookie-consent/**/*.blade.php",
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/wire-elements/modal/resources/views/*.blade.php",
-        "./vendor/wireui/wireui/resources/**/*.blade.php",
+        "./vendor/wireui/wireui/src/**/*.php",
         "./vendor/wireui/wireui/ts/**/*.ts",
         "./vendor/wireui/wireui/src/View/**/*.php",
+        "./vendor/wireui/wireui/resources/**/*.blade.php",
         "./node_modules/flowbite/**/*.js",
     ],
     options: {
@@ -86,5 +87,9 @@ module.exports = {
             },
         },
     },
-    plugins: [require("flowbite/plugin"), require("tailwind-scrollbar-hide")],
+    plugins: [
+        require("flowbite/plugin"),
+        require("tailwind-scrollbar-hide"),
+        require("postcss-multiple-tailwind"),
+    ],
 };

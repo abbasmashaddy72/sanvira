@@ -34,7 +34,6 @@ class ModalDeliveryNote extends ModalComponent
             return;
         }
         abort_if(Gate::denies('delivery_note_edit'), 403);
-
         $data = DeliveryNote::findOrFail($this->delivery_note_id);
         $this->order_id = $data->order_id;
         $this->delivery_notes_attachment = $data->delivery_notes_attachment;

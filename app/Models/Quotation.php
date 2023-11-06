@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Quotation extends Model
 {
@@ -11,6 +11,7 @@ class Quotation extends Model
 
     protected $fillable = [
         'enquiry_id',
+        'quotation_no',
         'status'
     ];
 

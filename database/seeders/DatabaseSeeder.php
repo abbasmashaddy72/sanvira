@@ -77,7 +77,6 @@ class DatabaseSeeder extends Seeder
             $this->call(BrandViewSeeder::class);
             $this->call(VendorViewSeeder::class);
             $this->call(TestimonialSeeder::class);
-            $this->call(ProductVariationSeeder::class);
             $this->call(ShippingAddressSeeder::class);
             $this->call(BillingAddressSeeder::class);
             $this->call(RfqSeeder::class);

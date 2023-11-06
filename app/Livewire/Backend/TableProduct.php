@@ -37,22 +37,25 @@ final class TableProduct extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Product::query();
+        return Product::query()->with(['category']);
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'category' => [
+                'name'
+            ]
+        ];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('category_id')
-            ->addColumn('country_id')
-            ->addColumn('brand_id')
-            ->addColumn('vendor_id')
+            ->addColumn('category_id', function (Product $model) {
+                return e($model->category->name);
+            })
             ->addColumn('title')
 
             /** Example of custom column using a closure **/
@@ -60,17 +63,7 @@ final class TableProduct extends PowerGridComponent
 
             ->addColumn('slug')
             ->addColumn('edt')
-            ->addColumn('avb_stock')
             ->addColumn('model')
-            ->addColumn('item_type')
-            ->addColumn('sku')
-            ->addColumn('barcode')
-            ->addColumn('length')
-            ->addColumn('breadth')
-            ->addColumn('width')
-            ->addColumn('measurement_unit')
-            ->addColumn('weight')
-            ->addColumn('weight_unit')
             ->addColumn('on_sale')
             ->addColumn('created_at_formatted', fn (Product $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -79,15 +72,8 @@ final class TableProduct extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Category id', 'category_id'),
-            Column::make('Country id', 'country_id'),
-            Column::make('Brand id', 'brand_id'),
-            Column::make('Vendor id', 'vendor_id'),
+            Column::make('Category Name', 'category_id'),
             Column::make('Title', 'title')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Slug', 'slug')
                 ->sortable()
                 ->searchable(),
 
@@ -95,35 +81,7 @@ final class TableProduct extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Avb stock', 'avb_stock')
-                ->sortable()
-                ->searchable(),
-
             Column::make('Model', 'model')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Item type', 'item_type')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Sku', 'sku')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Barcode', 'barcode')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Length', 'length'),
-            Column::make('Breadth', 'breadth'),
-            Column::make('Width', 'width'),
-            Column::make('Measurement unit', 'measurement_unit')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Weight', 'weight'),
-            Column::make('Weight unit', 'weight_unit')
                 ->sortable()
                 ->searchable(),
 
@@ -141,15 +99,9 @@ final class TableProduct extends PowerGridComponent
     {
         return [
             Filter::inputText('title')->operators(['contains']),
-            Filter::inputText('slug')->operators(['contains']),
             Filter::inputText('edt')->operators(['contains']),
-            Filter::inputText('avb_stock')->operators(['contains']),
             Filter::inputText('model')->operators(['contains']),
-            Filter::inputText('item_type')->operators(['contains']),
-            Filter::inputText('sku')->operators(['contains']),
             Filter::inputText('barcode')->operators(['contains']),
-            Filter::inputText('measurement_unit')->operators(['contains']),
-            Filter::inputText('weight_unit')->operators(['contains']),
             Filter::boolean('on_sale'),
             Filter::datetimepicker('created_at'),
         ];
@@ -165,9 +117,10 @@ final class TableProduct extends PowerGridComponent
     {
         return [
             Button::add('edit')
+                ->wire()
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->openModal('backend.modal-product', ['product_id' => $row->id])
+                ->route('admin.product_edit', ['id' => $row->id])
         ];
     }
 

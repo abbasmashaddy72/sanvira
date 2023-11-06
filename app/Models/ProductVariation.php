@@ -11,7 +11,24 @@ class ProductVariation extends Model
 
     protected $fillable = [
         'product_id',
-        'discount',
+        'country_id',
+        'brand_id',
+        'vendor_id',
+        'avb_stock',
+        'sku',
+        'barcode',
+        'length',
+        'breadth',
+        'width',
+        'diameter',
+        'measurement_units',
+        'weight',
+        'weight_units',
+        'quantity_type',
+        'color',
+        'item_type',
+        'max_discount',
+        'max_discount_unit',
         'tax_percentage',
         'min_price',
         'max_price',
@@ -19,8 +36,13 @@ class ProductVariation extends Model
         'max_order_quantity',
     ];
 
-    public function product()
+    public function brand()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Brand::class, 'brand_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 }

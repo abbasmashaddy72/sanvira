@@ -44,7 +44,7 @@ class StaticController extends Controller
     public function contact_us()
     {
         view()->share('title', 'Contact Us');
-        abort_if(Gate::denies('contact_us'), 403);
+        abort_if(Gate::denies('contact_us_list'), 403);
 
         return view('pages.backend.static.contact_us');
     }

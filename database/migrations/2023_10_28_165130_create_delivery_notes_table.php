@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('delivery_notes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('delivery_note_no')->unique();
             $table->string('delivery_notes_attachment')->nullable();
             $table->enum('status', ['Open', 'Close']);
             $table->timestamps();

@@ -38,35 +38,35 @@
             </div>
         </div>
     </x-slot>
-    {{-- <x-frontend.index-container class="bg-white py-14">
+    <x-frontend.index-container class="bg-white py-14">
         <div class="grid grid-cols-1 pb-8 text-center">
             <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">{{ __('How it works?') }}
             </h3>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 mt-8 md:grid-cols-3 lg:grid-cols-5">
+        <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
             <div
-                class="relative p-2 overflow-hidden text-center transition-all duration-500 ease-in-out border-2 rounded shadow order-gray-200 group">
+                class="order-gray-200 group relative overflow-hidden rounded border-2 p-2 text-center shadow transition-all duration-500 ease-in-out">
                 <div class="relative -m-3 overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-20 w-20 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="absolute flex items-center justify-center mx-auto text-3xl text-blue-600 align-middle transition duration-500 ease-in-out end-0 start-0 top-2/4 -translate-y-2/4 rounded-xl">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         1
                     </div>
                 </div>
 
                 <div class="mt-6">
                     <p class="text-lg font-semibold duration-500 ease-in-out">Sign up to the Marketplace</p>
-                    <p class="mt-3 transition duration-500 ease-in-out text-slate-400">Create an account with Kasper’s
+                    <p class="mt-3 text-slate-400 transition duration-500 ease-in-out">Create an account with Kasper’s
                         Marketplace.</p>
                 </div>
             </div>
             <div
-                class="relative p-2 overflow-hidden text-center transition-all duration-500 ease-in-out border-2 rounded shadow order-gray-200 group">
+                class="order-gray-200 group relative overflow-hidden rounded border-2 p-2 text-center shadow transition-all duration-500 ease-in-out">
                 <div class="relative -m-3 overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-20 w-20 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="absolute flex items-center justify-center mx-auto text-3xl text-blue-600 align-middle transition duration-500 ease-in-out end-0 start-0 top-2/4 -translate-y-2/4 rounded-xl">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         2
                     </div>
                 </div>
@@ -74,60 +74,60 @@
                 <div class="mt-6">
                     <p class="text-lg font-semibold duration-500 ease-in-out">Select your
                         product</p>
-                    <p class="mt-3 transition duration-500 ease-in-out text-slate-400">Browse through & select the
+                    <p class="mt-3 text-slate-400 transition duration-500 ease-in-out">Browse through & select the
                         product that suits your needs.</p>
                 </div>
             </div>
             <div
-                class="relative p-2 overflow-hidden text-center transition-all duration-500 ease-in-out border-2 rounded shadow order-gray-200 group">
+                class="order-gray-200 group relative overflow-hidden rounded border-2 p-2 text-center shadow transition-all duration-500 ease-in-out">
                 <div class="relative -m-3 overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-20 w-20 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="absolute flex items-center justify-center mx-auto text-3xl text-blue-600 align-middle transition duration-500 ease-in-out end-0 start-0 top-2/4 -translate-y-2/4 rounded-xl">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         3
                     </div>
                 </div>
 
                 <div class="mt-6">
                     <p class="text-lg font-semibold duration-500 ease-in-out">Send RFQs & Purchase Orders</p>
-                    <p class="mt-3 transition duration-500 ease-in-out text-slate-400">Easily request quotations and
+                    <p class="mt-3 text-slate-400 transition duration-500 ease-in-out">Easily request quotations and
                         place purchase orders.</p>
                 </div>
             </div>
             <div
-                class="relative p-2 overflow-hidden text-center transition-all duration-500 ease-in-out border-2 rounded shadow order-gray-200 group">
+                class="order-gray-200 group relative overflow-hidden rounded border-2 p-2 text-center shadow transition-all duration-500 ease-in-out">
                 <div class="relative -m-3 overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-20 w-20 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="absolute flex items-center justify-center mx-auto text-3xl text-blue-600 align-middle transition duration-500 ease-in-out end-0 start-0 top-2/4 -translate-y-2/4 rounded-xl">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         4
                     </div>
                 </div>
 
                 <div class="mt-6">
                     <p class="text-lg font-semibold duration-500 ease-in-out">Compare & Negotiate</p>
-                    <p class="mt-3 transition duration-500 ease-in-out text-slate-400">Review multiple offers and
+                    <p class="mt-3 text-slate-400 transition duration-500 ease-in-out">Review multiple offers and
                         negotiate terms.</p>
                 </div>
             </div>
             <div
-                class="relative p-2 overflow-hidden text-center transition-all duration-500 ease-in-out border-2 rounded shadow order-gray-200 group">
+                class="order-gray-200 group relative overflow-hidden rounded border-2 p-2 text-center shadow transition-all duration-500 ease-in-out">
                 <div class="relative -m-3 overflow-hidden text-transparent">
                     <i data-feather="hexagon" class="mx-auto h-20 w-20 rotate-[30deg] fill-blue-600/5"></i>
                     <div
-                        class="absolute flex items-center justify-center mx-auto text-3xl text-blue-600 align-middle transition duration-500 ease-in-out end-0 start-0 top-2/4 -translate-y-2/4 rounded-xl">
+                        class="absolute end-0 start-0 top-2/4 mx-auto flex -translate-y-2/4 items-center justify-center rounded-xl align-middle text-3xl text-blue-600 transition duration-500 ease-in-out">
                         5
                     </div>
                 </div>
 
                 <div class="mt-6">
                     <p class="text-lg font-semibold duration-500 ease-in-out">Delivery & Payments</p>
-                    <p class="mt-3 transition duration-500 ease-in-out text-slate-400">Receive your products/services
+                    <p class="mt-3 text-slate-400 transition duration-500 ease-in-out">Receive your products/services
                         & make secure payments.</p>
                 </div>
             </div>
         </div>
-    </x-frontend.index-container> --}}
+    </x-frontend.index-container>
 
     <x-frontend.index-container class="py-14">
 
@@ -216,7 +216,7 @@
                         <div class="tiny-slide">
                             <a href="{{ route('brand_products', ['slug' => $item->slug]) }}"
                                 class='group relative block overflow-hidden p-3'>
-                                <img src="{{ asset('storage/' . $item->logo) }}"
+                                <img src="{{ asset('storage/' . $item->image) }}"
                                     class="mx-auto h-32 w-full rounded-lg object-cover shadow-md"
                                     alt="{{ $item->name }}">
                             </a>

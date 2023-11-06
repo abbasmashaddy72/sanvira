@@ -37,26 +37,30 @@ final class TableTestimonial extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Testimonial::query();
+        return Testimonial::query()->with('user');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'user' => ['name']
+        ];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user_id')
+            ->addColumn('user_id', function (Testimonial $model) {
+                return e($model->user->name);
+            })
             ->addColumn('designation')
 
             /** Example of custom column using a closure **/
             ->addColumn('designation_lower', fn (Testimonial $model) => strtolower(e($model->designation)))
 
             ->addColumn('logo', function (Testimonial $model) {
-                return view('components.backend.dt-image', ['image' => $model->image]);
+                return view('components.backend.dt-image', ['image' => $model->logo]);
             })
             ->addColumn('show_designation')
             ->addColumn('rating')
@@ -67,7 +71,7 @@ final class TableTestimonial extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('User id', 'user_id'),
+            Column::make('User Name', 'user_id'),
             Column::make('Designation', 'designation')
                 ->sortable()
                 ->searchable(),
@@ -90,6 +94,7 @@ final class TableTestimonial extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('user_id')->operators(['contains']),
             Filter::inputText('designation')->operators(['contains']),
             Filter::boolean('show_designation'),
             Filter::datetimepicker('created_at'),

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Order extends Model
 {
@@ -11,6 +11,7 @@ class Order extends Model
 
     protected $fillable = [
         'quotation_id',
+        'order_no',
         'purchase_order_pdf',
         'rfq_submission_date',
         'status',
@@ -32,7 +33,7 @@ class Order extends Model
 
     public function quotation()
     {
-        return $this->hasOne(Quotation::class, 'order_id');
+        return $this->belongsTo(Quotation::class, 'quotation_id');
     }
 
     public function deliveryNote()

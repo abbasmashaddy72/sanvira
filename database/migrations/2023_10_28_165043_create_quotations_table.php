@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('quotations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('enquiry_id')->constrained('enquiries')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('quotation_no')->unique();
             $table->enum('status', ['Open', 'Revise', 'Revised', 'Approved', 'Rejected'])->default('Open');
             $table->timestamps();
         });

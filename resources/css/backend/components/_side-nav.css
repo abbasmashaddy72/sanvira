@@ -30,7 +30,7 @@
         .side-menu__title {
             @apply w-full ml-3 flex items-center;
             .side-menu__sub-icon {
-                @apply transition ease-in duration-100 ml-auto mr-5;
+                @apply transition ease-in duration-75 ml-auto mr-5;
                 svg {
                     @apply w-4 h-4;
                 }
@@ -156,7 +156,7 @@
                     content: "";
                     z-index: -1;
                     width: 230px;
-                    @apply absolute top-0 left-0 h-full rounded-l-full transition ease-in duration-100;
+                    @apply absolute top-0 left-0 h-full rounded-l-full transition ease-in duration-75;
                     @include media-breakpoint-down(xl) {
                         @apply hidden;
                     }

@@ -21,7 +21,7 @@ class ModalEnquiry extends ModalComponent
 
     public $user_id;
 
-    public $submission_time;
+    public $submission_date_time;
 
     public $status;
 
@@ -38,7 +38,7 @@ class ModalEnquiry extends ModalComponent
         $data = Enquiry::findOrFail($this->enquiry_id);
         $this->rfq_id = $data->rfq_id;
         $this->user_id = $data->user_id;
-        $this->submission_time = $data->submission_time;
+        $this->submission_date_time = $data->submission_date_time;
         $this->status = $data->status;
     }
 

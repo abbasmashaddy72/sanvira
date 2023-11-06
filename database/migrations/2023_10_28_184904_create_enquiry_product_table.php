@@ -15,6 +15,18 @@ return new class extends Migration
             $table->id();
             $table->foreignId('enquiry_id')->constrained('enquiries')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('size')->nullable();
+            $table->decimal('diameter', 10, 2)->nullable();
+            $table->string('measurement_units')->nullable();
+            $table->decimal('weight', 10, 2)->nullable();
+            $table->string('weight_units')->nullable();
+            $table->string('quantity_type');
+            $table->longText('color')->nullable();
+            $table->string('item_type')->nullable();
+            $table->string('quantity')->nullable();
+            $table->decimal('our_price', 10, 2)->nullable();
+            $table->decimal('client_price', 10, 2)->nullable();
             $table->timestamps();
         });
     }

@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
-use App\Models\Country;
-use Illuminate\Support\Str;
 use App\Models\Vendor;
-use App\Models\Category;
+use App\Models\Country;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Str;
+use App\Models\ProductVariation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -35,30 +36,70 @@ class ProductFactory extends Factory
         foreach ($random_keys as $key) {
             $random_array[] = $images[$key];
         }
-        $title = fake()->name();
+        $title = fake()->unique()->name();
 
         return [
             'category_id' => fake()->randomElement(Category::where('parent_id', '!=', 0)->pluck('id')->toArray()),
-            'country_id' => fake()->randomElement(Country::pluck('id')->toArray()),
-            'brand_id' => fake()->randomElement(Brand::pluck('id')->toArray()),
-            'vendor_id' => fake()->randomElement(Vendor::pluck('id')->toArray()),
             'title' => $title,
             'slug' => Str::slug($title),
             'description' => $description,
             'edt' => rand(0, 100),
-            'avb_stock' => fake()->regexify('[A-Za-z0-9]{20}'),
             'model' => fake()->streetSuffix(),
-            'item_type' => fake()->mimeType(),
-            'sku' => fake()->regexify('[A-Za-z0-9]{20}'),
-            'barcode' => fake()->randomNumber(),
-            'length' => rand(1, 50),
-            'breadth' => rand(1, 50),
-            'width' => rand(1, 50),
-            'measurement_unit' => fake()->randomElement(explode(',', Product::$enumCasts['measurement_unit'])),
-            'weight' => rand(1, 50),
-            'weight_unit' => fake()->randomElement(explode(',', Product::$enumCasts['weight_unit'])),
             'on_sale' => rand(0, 1),
             'images' => $random_array,
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Product $product) {
+            // Create variations for the product
+            $length = null;
+            $breadth = null;
+            $width = null;
+            $diameter = null;
+            $measurement_units = fake()->randomElement([null, 'Feet', 'Inches', 'Yards', 'Meters', 'mm', 'cm']);
+            $weight = null;
+            $weight_units = fake()->randomElement([null, 'Kg', 'N/mm2', 'Kg/m3', 'ltrs', 'tons', 'pounds']);
+
+            if ($measurement_units != null) {
+                $length = rand(10, 10000);
+                $breadth = rand(10, 10000);
+                $width = rand(10, 10000);
+                $diameter = rand(10, 10000);
+            }
+            if ($weight_units != null) {
+                $weight = rand(10, 10000);
+            }
+
+            ProductVariation::factory()
+                ->count(rand(1, 5)) // Define the number of variations for the product
+                ->create([
+                    'product_id' => $product->id,
+                    'country_id' => fake()->randomElement(Country::pluck('id')->toArray()),
+                    'brand_id' => fake()->randomElement(Brand::pluck('id')->toArray()),
+                    'vendor_id' => fake()->randomElement(Vendor::pluck('id')->toArray()),
+                    'avb_stock' => rand(1000, 10000000),
+                    'sku' => Str::upper(bin2hex(random_bytes(5))),
+                    'barcode' => fake()->ean13(),
+                    'length' => $length,
+                    'breadth' => $breadth,
+                    'width' => $width,
+                    'diameter' => $diameter,
+                    'measurement_units' => $measurement_units,
+                    'weight' => $weight,
+                    'weight_units' => $weight_units,
+                    'quantity_type' => fake()->randomElement(['Bags', 'Cartoon', 'Pieces', 'Tons', 'Rolls', 'Cubic Meter', 'Each', 'Square Meter', 'Linear Meter', 'Jerry Can', rand(1, 50) . ' Pieces / Cartoon', 'Drum']),
+                    'color' => fake()->colorName(),
+                    'item_type' => fake()->randomElement([null, 'Q-1', 'Q-2', 'Q-3', 'Q-4']),
+                    'max_discount' => rand(0, 100),
+                    'max_discount_unit' => fake()->randomElement(['Regular', 'Percentage']),
+                    'tax_percentage' => rand(0, 100),
+                    'min_price' => rand(50, 250),
+                    'max_price' => rand(500, 50000),
+                    'min_order_quantity' => rand(10, 50),
+                    'max_order_quantity' => rand(100, 250),
+                ]);
+        });
     }
 }

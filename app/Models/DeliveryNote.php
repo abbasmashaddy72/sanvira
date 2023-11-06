@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeliveryNote extends Model
 {
@@ -11,6 +11,7 @@ class DeliveryNote extends Model
 
     protected $fillable = [
         'order_id',
+        'delivery_note_no',
         'delivery_notes_attachment',
         'status',
     ];

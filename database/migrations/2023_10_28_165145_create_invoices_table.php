@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('invoice_no')->unique();
             $table->enum('status', ['Open', 'Approved', 'Resubmit'])->default('Open');
             $table->timestamps();
         });

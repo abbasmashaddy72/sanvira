@@ -37,12 +37,16 @@ final class TableCategory extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query();
+        return Category::query()->with('parentCategory');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'parentCategory' => [
+                'name'
+            ]
+        ];
     }
 
     public function addColumns(): PowerGridColumns
@@ -54,11 +58,12 @@ final class TableCategory extends PowerGridComponent
             /** Example of custom column using a closure **/
             ->addColumn('name_lower', fn (Category $model) => strtolower(e($model->name)))
 
-            ->addColumn('slug')
             ->addColumn('image', function (Category $model) {
                 return view('components.backend.dt-image', ['image' => $model->image]);
             })
-            ->addColumn('parent_id')
+            ->addColumn('parent_id', function (Category $model) {
+                return e($model->parentCategory->name ?? 'Parent');
+            })
             ->addColumn('created_at_formatted', fn (Category $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -67,10 +72,6 @@ final class TableCategory extends PowerGridComponent
         return [
             Column::make('Id', 'id'),
             Column::make('Name', 'name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Slug', 'slug')
                 ->sortable()
                 ->searchable(),
 

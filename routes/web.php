@@ -54,6 +54,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('vendor', 'VendorController@index')->name('vendor');
     Route::get('categories', 'CategoryController@index')->name('categories');
     Route::get('product', 'ProductController@index')->name('product');
+    Route::get('product_add', 'ProductController@add')->name('product_add');
+    Route::get('product_edit/{id}', 'ProductController@edit')->name('product_edit');
     Route::get('product_review', 'ProductController@review')->name('product_review');
 
     Route::get('enquiry', 'EnquiryController@index')->name('enquiry');

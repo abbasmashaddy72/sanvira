@@ -37,12 +37,16 @@ final class TableUser extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query();
+        return User::query()->with('city');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'city' => [
+                'name'
+            ]
+        ];
     }
 
     public function addColumns(): PowerGridColumns
@@ -59,7 +63,9 @@ final class TableUser extends PowerGridComponent
             ->addColumn('street_no')
             ->addColumn('locality')
             ->addColumn('landmark')
-            ->addColumn('city_id')
+            ->addColumn('city_id', function (User $model) {
+                return e($model->city->name);
+            })
             ->addColumn('zip_code')
             ->addColumn('subscription')
             ->addColumn('image', function (User $model) {
@@ -77,6 +83,8 @@ final class TableUser extends PowerGridComponent
             Column::make('Name', 'name')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Image', 'image'),
 
             Column::make('Email', 'email')
                 ->sortable()
@@ -98,17 +106,10 @@ final class TableUser extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('City id', 'city_id'),
+            Column::make('City Name', 'city_id'),
             Column::make('Zip code', 'zip_code'),
             Column::make('Subscription', 'subscription')
                 ->toggleable(),
-
-            Column::make('Image', 'image')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Last password change', 'last_password_change_formatted', 'last_password_change')
-                ->sortable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -131,8 +132,6 @@ final class TableUser extends PowerGridComponent
             Filter::inputText('locality')->operators(['contains']),
             Filter::inputText('landmark')->operators(['contains']),
             Filter::boolean('subscription'),
-            Filter::inputText('image')->operators(['contains']),
-            Filter::datetimepicker('last_password_change'),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

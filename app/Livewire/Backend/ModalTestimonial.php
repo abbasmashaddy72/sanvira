@@ -48,7 +48,7 @@ class ModalTestimonial extends ModalComponent
         $this->message = $data->message;
         $this->show_designation = $data->show_designation;
         $this->rating = $data->rating;
-        $this->name = $data->users->name;
+        $this->name = $data->user->name;
     }
 
     protected $rules = [

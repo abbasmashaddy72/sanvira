@@ -22,7 +22,7 @@ class SearchFormData extends Component
 
     public function render()
     {
-        $this->productsList = Product::with(['brands', 'vendors', 'country'])->where('name', 'like', $this->data . '%')->get();
+        $this->productsList = Product::with(['brands', 'vendors', 'country'])->where('title', 'like', $this->data . '%')->get();
         $this->categoriesList = Category::where('name', 'like', $this->data . '%')->withCount('products')->get();
         $this->brandList = Brand::where('name', 'like', $this->data . '%')->withCount('products')->get();
 

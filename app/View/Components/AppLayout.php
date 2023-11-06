@@ -29,7 +29,7 @@ class AppLayout extends Component
             'dashboard' => [
                 'can' => 'dashboard',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'home',
+                'icon' => 'dashboard',
                 'title' => 'Dashboard',
                 'route_name' => 'admin.dashboard',
                 'params' => null,
@@ -37,7 +37,7 @@ class AppLayout extends Component
             'role' => [
                 'can' => 'role_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'settings',
+                'icon' => 'user-settings',
                 'title' => 'Roles',
                 'route_name' => 'admin.role',
                 'params' => null,
@@ -45,7 +45,7 @@ class AppLayout extends Component
             'user' => [
                 'can' => 'user_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'users',
+                'icon' => 'user',
                 'title' => 'Users',
                 'route_name' => 'admin.user',
                 'params' => null,
@@ -53,7 +53,7 @@ class AppLayout extends Component
             'profile' => [
                 'can' => 'access-specific-urls',
                 'role' => 'buyer',
-                'icon' => 'user',
+                'icon' => 'profile',
                 'title' => 'Profile',
                 'route_name' => 'admin.profile.edit',
                 'params' => null,
@@ -61,7 +61,7 @@ class AppLayout extends Component
             'brand' => [
                 'can' => 'brand_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'globe',
+                'icon' => 'trademark',
                 'title' => 'Brands',
                 'route_name' => 'admin.brand',
                 'params' => null,
@@ -69,7 +69,7 @@ class AppLayout extends Component
             'vendor' => [
                 'can' => 'vendor_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'bar-chart-2',
+                'icon' => 'building-3',
                 'title' => 'Vendors',
                 'route_name' => 'admin.vendor',
                 'params' => null,
@@ -77,7 +77,7 @@ class AppLayout extends Component
             'categories' => [
                 'can' => 'category_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'chevrons-up',
+                'icon' => 'article',
                 'title' => 'Categories',
                 'route_name' => 'admin.categories',
                 'params' => null,
@@ -85,7 +85,7 @@ class AppLayout extends Component
             'product' => [
                 'can' => 'product_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'package',
+                'icon' => 'box-3',
                 'title' => 'Products',
                 'route_name' => 'admin.product',
                 'params' => null,
@@ -101,7 +101,7 @@ class AppLayout extends Component
             'enquiry' => [
                 'can' => 'enquiry_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-cart',
+                'icon' => 'survey',
                 'title' => 'Enquires',
                 'route_name' => 'admin.enquiry',
                 'params' => null,
@@ -109,15 +109,15 @@ class AppLayout extends Component
             'quotation' => [
                 'can' => 'quotation_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-cart',
+                'icon' => 'chat-quote',
                 'title' => 'Quotations',
                 'route_name' => 'admin.quotation',
                 'params' => null,
             ],
             'order' => [
-                'can' => 'orders_list',
+                'can' => 'order_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-cart',
+                'icon' => 'file-word',
                 'title' => 'Orders',
                 'route_name' => 'admin.orders',
                 'params' => null,
@@ -125,7 +125,7 @@ class AppLayout extends Component
             'delivery_note' => [
                 'can' => 'delivery_note_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-cart',
+                'icon' => 'truck',
                 'title' => 'Delivery Notes',
                 'route_name' => 'admin.delivery_note',
                 'params' => null,
@@ -133,7 +133,7 @@ class AppLayout extends Component
             'invoice' => [
                 'can' => 'invoice_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shopping-cart',
+                'icon' => 'file-edit',
                 'title' => 'Invoices',
                 'route_name' => 'admin.invoice',
                 'params' => null,
@@ -141,7 +141,7 @@ class AppLayout extends Component
             'testimonial' => [
                 'can' => 'testimonial_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'user-plus',
+                'icon' => 'double-quotes-l',
                 'title' => 'Testimonials',
                 'route_name' => 'admin.testimonial',
                 'params' => null,
@@ -165,7 +165,7 @@ class AppLayout extends Component
             'terms_of_use' => [
                 'can' => 'terms_of_use',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'shield',
+                'icon' => 'shield-user',
                 'title' => 'Terms of Use',
                 'route_name' => 'admin.terms_of_use',
                 'params' => null,
@@ -173,15 +173,15 @@ class AppLayout extends Component
             'return_refunds' => [
                 'can' => 'return_refunds',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'refresh-ccw',
+                'icon' => 'refund',
                 'title' => 'Return Refund',
                 'route_name' => 'admin.return_refunds',
                 'params' => null,
             ],
             'contact_us' => [
-                'can' => 'contact_us',
+                'can' => 'contact_us_list',
                 'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'phone-forwarded',
+                'icon' => 'contacts-book',
                 'title' => 'Contact Us',
                 'route_name' => 'admin.contact_us',
                 'params' => null,

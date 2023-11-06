@@ -14,24 +14,11 @@ class Product extends Model
 
     protected $fillable = [
         'category_id',
-        'country_id',
-        'brand_id',
-        'vendor_id',
         'title',
         'slug',
         'description',
         'edt',
-        'avb_stock',
         'model',
-        'item_type',
-        'sku',
-        'barcode',
-        'length',
-        'breadth',
-        'width',
-        'measurement_unit',
-        'weight',
-        'weight_unit',
         'on_sale',
         'images',
         'data_sheets',
@@ -42,29 +29,9 @@ class Product extends Model
         'data_sheets' => 'array',
     ];
 
-    public static $enumCasts = [
-        'measurement_unit' => 'm,cm,mm,in,ft',
-        'weight_unit' => 'kg,g,t,oz'
-    ];
-
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
-    }
-
-    public function brands()
-    {
-        return $this->belongsTo(Brand::class, 'brand_id');
-    }
-
-    public function vendors()
-    {
-        return $this->belongsTo(Vendor::class, 'vendor_id');
-    }
-
-    public function country()
-    {
-        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function productAttributes()
@@ -79,10 +46,10 @@ class Product extends Model
 
     public function variations()
     {
-        return $this->hasMany(ProductVariation::class);
+        return $this->hasMany(ProductVariation::class, 'product_id', 'id');
     }
 
-    public function setTitleAttribute($value)
+    public function setSlugAttribute($value)
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);

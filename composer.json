@@ -23,7 +23,7 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7.3",
-        "livewire/livewire": "^3.0",
+        "livewire/livewire": "^3.1",
         "mistic100/randomcolor": "^1.0",
         "monarobase/country-list": "^3.4",
         "opcodesio/log-viewer": "^2.4",
@@ -35,7 +35,7 @@
         "spatie/laravel-medialibrary": "^10.7.8",
         "vildanbina/laravel-model-json": "^2.0",
         "wire-elements/modal": "^2.0.7",
-        "wireui/wireui": "^1.17.12"
+        "wireui/wireui": "^1.18"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

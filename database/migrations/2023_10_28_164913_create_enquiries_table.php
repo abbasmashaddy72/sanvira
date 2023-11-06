@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('rfq_id')->constrained('rfqs')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->time('submission_time');
+            $table->string('enquiry_no')->unique();
+            $table->dateTime('submission_date_time');
             $table->enum('status', ['Open', 'Close'])->default('Open');
             $table->timestamps();
         });

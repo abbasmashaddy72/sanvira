@@ -29,18 +29,19 @@ class FrontendController extends Controller
         ]));
     }
 
-    public function contact_us()
+    public function searchForm(Request $request)
     {
-        view()->share('title', 'Contact Us');
+        $data = $request->search;
+        view()->share('title', $request->search);
 
-        return view('pages.frontend.contact_us');
+        return view('pages.frontend.searchForm', compact('data'));
     }
 
-    public function products_sales($sales_id)
+    public function all_products_category()
     {
-        view()->share('title', 'On Sale Products');
+        view()->share('title', 'All Available Categories');
 
-        return view('pages.frontend.sales_page', compact('sales_id'));
+        return view('pages.frontend.category');
     }
 
     public function products_category($slug)
@@ -64,11 +65,31 @@ class FrontendController extends Controller
         return view('pages.frontend.category', compact('category'));
     }
 
-    public function all_products_category()
+    public function all_brands()
     {
-        view()->share('title', 'All Available Categories');
+        view()->share('title', 'All Brands');
 
-        return view('pages.frontend.category');
+        return view('pages.frontend.brands');
+    }
+
+    public function brand_products($slug)
+    {
+        $brand = Brand::where('slug', $slug)->first();
+
+        if (!$brand) {
+            abort(404);
+        }
+
+        view()->share('title', $brand->name);
+
+        return view('pages.frontend.brands_details', compact('brand'));
+    }
+
+    public function products_sales($sales_id)
+    {
+        view()->share('title', 'On Sale Products');
+
+        return view('pages.frontend.sales_page', compact('sales_id'));
     }
 
     public function all_products()
@@ -120,40 +141,19 @@ class FrontendController extends Controller
         ]));
     }
 
-    public function searchForm(Request $request)
-    {
-        $data = $request->search;
-        view()->share('title', $request->search);
-
-        return view('pages.frontend.searchForm', compact('data'));
-    }
-
-    public function all_brands()
-    {
-        view()->share('title', 'All Brands');
-
-        return view('pages.frontend.brands');
-    }
-
-    public function brand_products($slug)
-    {
-        $brand = Brand::where('slug', $slug)->first();
-
-        if (!$brand) {
-            abort(404);
-        }
-
-        view()->share('title', $brand->name);
-
-        return view('pages.frontend.brands_details', compact('brand'));
-    }
-
     public function about_us()
     {
         view()->share('title', 'About Us');
         $featured_brands = Brand::where('account_type', '=', 'Featured')->get()->take(14);
 
         return view('pages.frontend.about_us', compact('featured_brands'));
+    }
+
+    public function contact_us()
+    {
+        view()->share('title', 'Contact Us');
+
+        return view('pages.frontend.contact_us');
     }
 
     public function privacy_policy()

@@ -37,24 +37,29 @@ final class TableInvoice extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Invoice::query();
+        return Invoice::query()->with('order');
     }
 
     public function relationSearch(): array
     {
-        return [];
+        return [
+            'order' => ['order_no']
+        ];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('order_id')
-            ->addColumn('status')
+            ->addColumn('order_id', function (Invoice $model) {
+                return e($model->order->order_no);
+            })
+            ->addColumn('invoice_no')
 
             /** Example of custom column using a closure **/
-            ->addColumn('status_lower', fn (Invoice $model) => strtolower(e($model->status)))
+            ->addColumn('invoice_no_lower', fn (Invoice $model) => strtolower(e($model->invoice_no)))
 
+            ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Invoice $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -62,7 +67,11 @@ final class TableInvoice extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Order id', 'order_id'),
+            Column::make('Order No.', 'order_id'),
+            Column::make('Invoice no', 'invoice_no')
+                ->sortable()
+                ->searchable(),
+
             Column::make('Status', 'status')
                 ->sortable()
                 ->searchable(),
@@ -77,6 +86,8 @@ final class TableInvoice extends PowerGridComponent
     public function filters(): array
     {
         return [
+            Filter::inputText('order_no')->operators(['contains']),
+            Filter::inputText('invoice_no')->operators(['contains']),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

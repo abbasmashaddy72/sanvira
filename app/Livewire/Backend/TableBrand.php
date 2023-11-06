@@ -55,7 +55,6 @@ final class TableBrand extends PowerGridComponent
             ->addColumn('name_lower', fn (Brand $model) => strtolower(e($model->name)))
 
             ->addColumn('account_type')
-            ->addColumn('slug')
             ->addColumn('image', function (Brand $model) {
                 return view('components.backend.dt-image', ['image' => $model->image]);
             })
@@ -71,10 +70,6 @@ final class TableBrand extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Account type', 'account_type')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Slug', 'slug')
                 ->sortable()
                 ->searchable(),
 

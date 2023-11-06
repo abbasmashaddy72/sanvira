@@ -3,14 +3,14 @@
 namespace App\Livewire\Backend;
 
 use App\Models\Product;
-use App\Models\ProductAttributes;
-use App\Models\ProductVariation;
-use Illuminate\Support\Facades\Gate;
-use LivewireUI\Modal\ModalComponent;
-use Livewire\WithFileUploads;
+use Livewire\Component;
 use WireUi\Traits\Actions;
+use Livewire\WithFileUploads;
+use App\Models\ProductVariation;
+use App\Models\ProductAttributes;
+use Illuminate\Support\Facades\Gate;
 
-class ModalProduct extends ModalComponent
+class FormProduct extends Component
 {
     use Actions;
     use WithFileUploads;
@@ -19,88 +19,59 @@ class ModalProduct extends ModalComponent
     public $product_id;
 
     // Product Model Values
-    public $category_id;
-
-    public $country_id;
-
-    public $brand_id;
-
-    public $vendor_id;
-
     public $title;
-
-    public $description;
-
-    public $edt;
-
-    public $avb_stock;
-
     public $model;
-
-    public $item_type;
-
-    public $sku;
-
-    public $barcode;
-
-    public $own_sku;
-
-    public $length;
-
-    public $length_units = 'mm';
-
-    public $breadth;
-
-    public $breadth_units = 'mm';
-
-    public $width;
-
-    public $width_units = 'mm';
-
-    public $weight;
-
-    public $weight_unit = 'kg';
-
+    public $category_id;
+    public $edt;
     public $on_sale = false;
-
     public $images = [];
-
     public $data_sheets = [];
-
-    public $verification;
+    public $description;
 
     // ProductAttributes Model Values
     public $name_pa = [];
-
     public $value_pa = [];
 
-    // Model Custom Values
-    public $inputs_pa = [];
+    // ProductVariation Model Values
+    public $country_id_pv = [];
+    public $vendor_id_pv = [];
+    public $brand_id_pv = [];
+    public $avb_stock_pv = [];
+    public $sku_pv = [];
+    public $barcode_pv = [];
+    public $quantity_type_pv = [];
+    public $color_pv = [];
+    public $item_type_pv = [];
+    public $measurement_units_pv = [];
+    public $weight_units_pv = [];
+    public $length_pv = [];
+    public $breadth_pv = [];
+    public $width_pv = [];
+    public $diameter_pv = [];
+    public $weight_pv = [];
+    public $min_price_pv = [];
+    public $max_price_pv = [];
+    public $min_order_quantity_pv = [];
+    public $max_order_quantity_pv = [];
+    public $max_discount_pv = [];
+    public $max_discount_unit_pv = [];
+    public $tax_percentage_pv = [];
+    public $measurement_units = [];
 
+    // ProductAttributes Model Custom Values
+    public $inputs_pa = [];
     public $i_pa = 1;
 
-    // Model ProductVariation Values
-    public $min_price_pv;
-
-    public $max_price_pv;
-
-    public $min_order_quantity_pv;
-
-    public $max_order_quantity_pv;
-
-    // Model Custom Values
+    // ProductVariation Model Custom Values
     public $inputs_pv = [];
-
     public $i_pv = 1;
 
+    // Custom Values
     public $isUploaded = false;
-
     public $isDataSheetsUploaded = false;
-
     protected $temporaryUploadDirectory = 'storage/livewire-tmp';
 
     public $sub_category;
-
     public $main_category_id;
 
     protected $listeners = ['setUnits'];
@@ -132,18 +103,12 @@ class ModalProduct extends ModalComponent
     public function UpdatedMainCategoryId()
     {
         $this->sub_category = true;
-    }
-
-    public function setUnits($value)
-    {
-        $this->length_units = $value;
-        $this->breadth_units = $value;
-        $this->width_units = $value;
+        $this->category_id = null;
     }
 
     public function mount()
     {
-        if (empty($this->product_id)) {
+        if (empty($this->product_id) && is_null($this->product_id)) {
             abort_if(Gate::denies('product_add'), 403);
 
             return;
@@ -151,30 +116,13 @@ class ModalProduct extends ModalComponent
         abort_if(Gate::denies('product_edit'), 403);
         $data = Product::with('Category')->findOrFail($this->product_id);
         $this->category_id = $data->category_id;
-        $this->country_id = $data->country_id;
-        $this->brand_id = $data->brand_id;
-        $this->vendor_id = $data->vendor_id;
         $this->title = $data->title;
         $this->description = $data->description;
         $this->edt = $data->edt;
-        $this->avb_stock = $data->avb_stock;
         $this->model = $data->model;
-        $this->item_type = $data->item_type;
-        $this->sku = $data->sku;
-        $this->barcode = $data->barcode;
-        $this->own_sku = $data->own_sku;
-        $this->length = $data->length;
-        $this->length_units = $data->length_units;
-        $this->breadth = $data->breadth;
-        $this->breadth_units = $data->breadth_units;
-        $this->width = $data->width;
-        $this->width_units = $data->width_units;
-        $this->weight = $data->weight;
-        $this->weight_unit = $data->weight_unit;
         $this->on_sale = $data->on_sale;
         $this->images = $data->images;
         $this->data_sheets = $data->data_sheets;
-        $this->verification = $data->verification;
         $this->main_category_id = $data->category->parent_id;
         $this->sub_category = true;
         $data_pa = ProductAttributes::where('product_id', $this->product_id)->get();
@@ -188,6 +136,25 @@ class ModalProduct extends ModalComponent
         $this->i_pa = $data_pa->count();
         $data_pv = ProductVariation::where('product_id', $this->product_id)->get();
         foreach ($data_pv as $key => $value) {
+            $this->country_id_pv[] = $value->country_id;
+            $this->brand_id_pv[] = $value->brand_id;
+            $this->vendor_id_pv[] = $value->vendor_id;
+            $this->avb_stock_pv[] = $value->avb_stock;
+            $this->sku_pv[] = $value->sku;
+            $this->barcode_pv[] = $value->barcode;
+            $this->length_pv[] = $value->length;
+            $this->breadth_pv[] = $value->breadth;
+            $this->width_pv[] = $value->width;
+            $this->diameter_pv[] = $value->diameter;
+            $this->measurement_units_pv[] = $value->measurement_units;
+            $this->weight_pv[] = $value->weight;
+            $this->weight_units_pv[] = $value->weight_units;
+            $this->quantity_type_pv[] = $value->quantity_type;
+            $this->color_pv[] = $value->color;
+            $this->item_type_pv[] = $value->item_type;
+            $this->max_discount_pv[] = $value->max_discount;
+            $this->max_discount_unit_pv[] = $value->max_discount_unit;
+            $this->tax_percentage_pv[] = $value->tax_percentage;
             $this->min_price_pv[] = $value->min_price;
             $this->max_price_pv[] = $value->max_price;
             $this->min_order_quantity_pv[] = $value->min_order_quantity;
@@ -201,33 +168,13 @@ class ModalProduct extends ModalComponent
 
     protected $rules = [
         'category_id' => 'required',
-        'country_id' => 'required',
-        'brand_id' => 'required',
-        'vendor_id' => 'required',
         'title' => 'required',
         'description' => '',
         'edt' => 'required',
-        'avb_stock' => 'required',
         'model' => 'required',
-        'item_type' => 'required',
-        'sku' => '',
-        'barcode' => '',
-        'own_sku' => '',
-        'length' => '',
-        'length_units' => '',
-        'breadth' => '',
-        'breadth_units' => '',
-        'width' => '',
-        'width_units' => '',
-        'weight' => '',
-        'weight_unit' => '',
         'on_sale' => 'required',
         'images' => 'required|array|min:4',
         'data_sheets' => '',
-        'min_price' => '',
-        'max_price' => '',
-        'min_order_quantity' => '',
-        'max_order_quantity' => '',
     ];
 
     public function updated($propertyName)
@@ -277,20 +224,41 @@ class ModalProduct extends ModalComponent
             Product::where('id', $this->product_id)->update($validatedData);
             ProductAttributes::where('product_id', $this->product_id)->delete();
             foreach ($this->name_pa as $key => $value) {
-                ProductAttributes::create(['product_id' => $this->product_id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
-            }
-            ProductVariation::where('product_id', $this->product_id)->delete();
-            foreach ($this->min_price_pv as $key => $value) {
-                ProductVariation::create([
+                ProductAttributes::create([
                     'product_id' => $this->product_id,
-                    'min_price_pv' => $this->min_price_pv[$key],
-                    'max_price_pv' => $this->max_price_pv[$key],
-                    'min_order_quantity_pv' => $this->min_order_quantity_pv[$key],
-                    'max_order_quantity_pv' => $this->max_order_quantity_pv[$key]
+                    'name' => $this->name_pa[$key],
+                    'value' => $this->value_pa[$key]
                 ]);
             }
-
-            $this->notification()->success($title = 'Product Updated Successfully!');
+            ProductVariation::where('product_id', $this->product_id)->delete();
+            foreach ($this->max_discount_pv as $key => $value) {
+                ProductVariation::create([
+                    'product_id' => $this->product_id,
+                    'country_id' => $this->country_id_pv[$key],
+                    'brand_id' => $this->brand_id_pv[$key],
+                    'vendor_id' => $this->vendor_id_pv[$key],
+                    'avb_stock' => $this->avb_stock_pv[$key],
+                    'sku' => $this->sku_pv[$key],
+                    'barcode' => $this->barcode_pv[$key],
+                    'length' => $this->length_pv[$key],
+                    'breadth' => $this->breadth_pv[$key],
+                    'width' => $this->width_pv[$key],
+                    'diameter' => $this->diameter_pv[$key],
+                    'measurement_units' => $this->measurement_units_pv[$key],
+                    'weight' => $this->weight_pv[$key],
+                    'weight_units' => $this->weight_units_pv[$key],
+                    'quantity_type' => $this->quantity_type_pv[$key],
+                    'color' => $this->color_pv[$key],
+                    'item_type' => $this->item_type_pv[$key],
+                    'max_discount' => $this->max_discount_pv[$key],
+                    'max_discount_unit' => $this->max_discount_unit_pv[$key],
+                    'tax_percentage' => $this->tax_percentage_pv[$key],
+                    'min_price' => $this->min_price_pv[$key],
+                    'max_price' => $this->max_price_pv[$key],
+                    'min_order_quantity' => $this->min_order_quantity_pv[$key],
+                    'max_order_quantity' => $this->max_order_quantity_pv[$key],
+                ]);
+            }
         } else {
             if (!empty($this->images) && gettype($this->images) == 'array') {
                 $images = $validatedData['images'];
@@ -320,25 +288,47 @@ class ModalProduct extends ModalComponent
                     $validatedData['data_sheets'] = $multiDataSheets;
                 }
             }
-            $Product = Product::create($validatedData);
+            $product = Product::create($validatedData);
             foreach ($this->name_pa as $key => $value) {
-                ProductAttributes::create(['product_id' => $Product->id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
+                ProductAttributes::create(['product_id' => $product->id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
             }
             foreach ($this->min_price_pv as $key => $value) {
                 ProductVariation::create([
-                    'product_id' => $Product->id,
-                    'min_price_pv' => $this->min_price_pv[$key],
-                    'max_price_pv' => $this->max_price_pv[$key],
-                    'min_order_quantity_pv' => $this->min_order_quantity_pv[$key],
-                    'max_order_quantity_pv' => $this->max_order_quantity_pv[$key]
+                    'product_id' => $product->id,
+                    'country_id' => $this->country_id_pv[$key],
+                    'brand_id' => $this->brand_id_pv[$key],
+                    'vendor_id' => $this->vendor_id_pv[$key],
+                    'avb_stock' => $this->avb_stock_pv[$key],
+                    'sku' => $this->sku_pv[$key],
+                    'barcode' => $this->barcode_pv[$key],
+                    'length' => $this->length_pv[$key],
+                    'breadth' => $this->breadth_pv[$key],
+                    'width' => $this->width_pv[$key],
+                    'diameter' => $this->diameter_pv[$key],
+                    'measurement_units' => $this->measurement_units_pv[$key],
+                    'weight' => $this->weight_pv[$key],
+                    'weight_units' => $this->weight_units_pv[$key],
+                    'quantity_type' => $this->quantity_type_pv[$key],
+                    'color' => $this->color_pv[$key],
+                    'item_type' => $this->item_type_pv[$key],
+                    'max_discount' => $this->max_discount_pv[$key],
+                    'max_discount_unit' => $this->max_discount_unit_pv[$key],
+                    'tax_percentage' => $this->tax_percentage_pv[$key],
+                    'min_price' => $this->min_price_pv[$key],
+                    'max_price' => $this->max_price_pv[$key],
+                    'min_order_quantity' => $this->min_order_quantity_pv[$key],
+                    'max_order_quantity' => $this->max_order_quantity_pv[$key],
                 ]);
             }
-            $this->notification()->success($title = 'Product Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
+        $this->redirect(route('admin.product'));
 
-        $this->closeModal();
+        if (!empty($this->product_id)) {
+            $this->notification()->success($title = 'Product Updated Successfully!');
+        } else {
+            $this->notification()->success($title = 'Product Saved Successfully!');
+        }
     }
 
     public function deleteImage($product_id, $key)
@@ -369,19 +359,13 @@ class ModalProduct extends ModalComponent
         });
         Product::where('id', $params['product_id'])->update(['images' => $updatedImages]);
 
-        $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
 
         $this->notification()->success($title = 'Product Image Deleted Successfully!');
     }
 
-    public static function modalMaxWidth(): string
-    {
-        return '4xl';
-    }
-
     public function render()
     {
-        return view('livewire.backend.modal-product');
+        return view('livewire.backend.form-product');
     }
 }

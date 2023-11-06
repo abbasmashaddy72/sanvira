@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Invoice extends Model
 {
@@ -11,6 +11,7 @@ class Invoice extends Model
 
     protected $fillable = [
         'order_id',
+        'invoice_no',
         'status',
     ];
 

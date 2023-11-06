@@ -7,7 +7,7 @@ use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class ModalOrders extends ModalComponent
+class ModalOrder extends ModalComponent
 {
     use Actions;
 
@@ -56,6 +56,6 @@ class ModalOrders extends ModalComponent
 
     public function render()
     {
-        return view('livewire.backend.modal-orders');
+        return view('livewire.backend.modal-order');
     }
 }

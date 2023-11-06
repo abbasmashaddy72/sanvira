@@ -74,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     //Gets First & Last Word Initials of Auth User Names
-    public function getInitialsAttribute()
+    public function getInitialsAttribute($value)
     {
         $name = $this->name;
         $name_array = explode(' ', trim($name));

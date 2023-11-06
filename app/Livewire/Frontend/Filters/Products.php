@@ -2,12 +2,13 @@
 
 namespace App\Livewire\Frontend\Filters;
 
+use App\Models\Brand;
 use App\Models\Product;
-use App\Models\Category;
-use Jenssegers\Agent\Agent;
+use App\Models\ProductVariation;
 use Livewire\Component;
-use Livewire\WithPagination;
 use WireUi\Traits\Actions;
+use Jenssegers\Agent\Agent;
+use Livewire\WithPagination;
 
 class Products extends Component
 {
@@ -20,9 +21,6 @@ class Products extends Component
     // Category Based Product Page Values
     public $category;
 
-    // Profile Page Values
-    public $profile_id;
-
     // Custom Values
     public $type;
 
@@ -31,9 +29,6 @@ class Products extends Component
     public $applyFilter = false;
 
     // 1st Filter Options
-    public $min_edt;
-
-    public $max_edt;
 
     public $brand_id = [];
 
@@ -44,44 +39,41 @@ class Products extends Component
     // 2nd Filter Options
     public $setButton = 'relevance';
 
-    // 3rd Filter Options
-    public $availableLetters;
+    public $search;
 
-    public $alphabet = 'A';
+    // Add to RFQ
+    public $overlayVisible = false;
+
+    public $selectedProductId;
+
+    public $variation_brand_id;
+    public $variation_size_id;
+    public $variation_weight_id;
+    public $variation_diameter_id;
+    public $variation_quantity_type_id;
+    public $variation_color_id;
+    public $variation_item_type_id;
+
+    public function openOverlay($productId)
+    {
+        $this->selectedProductId = $productId;
+        // $this->selectedProductId = $productId;
+        // Fetch product data based on $productId and assign it to $this->selectedProduct
+        // Example: $this->selectedProduct = Product::find($productId);
+
+        // Once the product data is assigned, show the overlay
+        $this->overlayVisible = true;
+    }
+
+    public function closeOverlay()
+    {
+        $this->overlayVisible = false;
+        // Reset any necessary data if needed
+    }
 
     public function mount()
     {
-        if ($this->type === 'Category Page') {
-            $this->page_title = $this->category->name;
-        } else {
-            $this->page_title = $this->page_title ?? $this->type;
-        }
-        if (!empty($this->category)) {
-            reset($this->category); // Get the first element of the array
-            if (gettype($this->category) == 'array') {
-                $this->category_id = $this->category[0]->id;
-            } else {
-                $this->category_id = $this->category->id;
-            }
-        }
-        if ($this->type !== 'All Category Page') {
-            return;
-        }
-        $this->availableLetters = Category::where('parent_id', 0)->pluck('name')->map(function ($name) {
-            return substr($name, 0, 1);
-        })->unique()->sort()->toArray();
-
-        if (is_numeric(reset($this->availableLetters))) {
-            $this->alphabet = '#';
-        } else {
-            $this->alphabet = reset($this->availableLetters);
-        }
-    }
-
-    public function applyAlp($item)
-    {
-        $this->alphabet = $item;
-        $this->applyFilter = true;
+        $this->page_title = $this->page_title ?? $this->type;
     }
 
     public function apply()
@@ -97,8 +89,6 @@ class Products extends Component
 
     public function clearFilters()
     {
-        $this->min_edt = null;
-        $this->max_edt = null;
         $this->brand_id = [];
         $this->category_id = [];
         $this->country_id = [];
@@ -106,72 +96,88 @@ class Products extends Component
         $this->applyFilter = false;
     }
 
+    public function addToRfq($itemId)
+    {
+        // Fetch the selected variation values
+        $selectedVariations = [
+            'brand_id' => $this->variation_brand_id,
+            'size_id' => $this->variation_size_id,
+            'weight_id' => $this->variation_weight_id,
+            'diameter_id' => $this->variation_diameter_id,
+            'quantity_type_id' => $this->variation_quantity_type_id,
+            'color_id' => $this->variation_color_id,
+            'item_type_id' => $this->variation_item_type_id,
+        ];
+
+        dd($selectedVariations);
+        $this->closeOverlay();
+
+        // Here, you can process and store the data as per your application's requirement
+        // For example, save it in the database
+        // Example: ProductVariation::create(['product_id' => $itemId, 'selected_variations' => json_encode($selectedVariations)]);
+
+        // You can also emit an event or perform any other necessary logic
+
+        // To reset the selected variations after adding to RFQ
+        $this->reset([
+            'variation_brand_id',
+            'variation_size_id',
+            'variation_weight_id',
+            'variation_diameter_id',
+            'variation_quantity_type_id',
+            'variation_color_id',
+            'variation_item_type_id',
+        ]);
+    }
+
     public function render()
     {
-        if (!empty($this->alphabet) && $this->applyFilter === true) {
-            if ($this->alphabet === '#') {
-                $sub_category = Category::where('parent_id', 0)->withCount('products')->where('name', 'REGEXP', '^[0-9]')->get();
-            } else {
-                $sub_category = Category::where('parent_id', 0)->withCount('products')->where('name', 'like', $this->alphabet . '%')->get();
-            }
-        } else {
-            $sub_category = [];
-        }
+        // Initial query setup
+        $productsQuery = Product::with(['variations', 'variations.brand', 'category', 'variations.country', 'productViews']);
 
+        // Search filter
+        if ($this->search) {
+            $productsQuery->where(function ($query) {
+                $query->where('title', 'like', '%' . $this->search . '%'); // Replace 'name' with the column you want to search
+            });
+        }
         if ($this->applyFilter === true) {
-            $products = Product::with(['brands', 'category', 'country', 'productViews']);
-
             if ($this->type === 'On Sale' || $this->setButton === 'onSale') {
-                $products->where('on_sale', 1);
+                $productsQuery->where('on_sale', 1);
             }
-            if ($this->type === 'Category Page') {
-                $products->where('category_id', $this->category->id);
-            }
-            if ($this->min_edt !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('edt', '>=', $this->min_edt);
-            }
-            if ($this->max_edt !== null) {
-                $products->{$this->type === 'All Products' ? 'orWhere' : 'where'}('edt', '<=', $this->max_edt);
-            }
+
             if (count($this->brand_id) > 0) {
-                $products->{$this->type === 'All Products' ? 'orWhereIn' : 'whereIn'}('brand_id', $this->brand_id);
+                $productsQuery->whereHas('variations.brand', function ($query) {
+                    $query->whereIn('brand_id', $this->brand_id);
+                });
             }
+
             if (count($this->category_id) > 0) {
-                $products->{$this->type === 'All Products' ? 'orWhereIn' : 'whereIn'}('category_id', $this->category_id);
+                $productsQuery->whereIn('category_id', $this->category_id);
             }
+
             if (count($this->country_id) > 0) {
-                $products->{$this->type === 'All Products' ? 'orWhereIn' : 'whereIn'}('country_id', $this->country_id);
+                $productsQuery->whereHas('variations.country', function ($query) {
+                    $query->whereIn('country_id', $this->country_id);
+                });
             }
-            $products = $products->paginate(12);
+
+            $products = $productsQuery->paginate(12);
         } else {
-            if ($this->type === 'On Sale' && $this->applyFilter !== true) {
-                $products = Product::with(['brands', 'category', 'country', 'productViews'])->where('on_sale', 1)->orderByRaw("id = {$this->sales_id} DESC")->paginate(12);
-            }
-
-            if ($this->type === 'All Products' && $this->applyFilter !== true) {
-                $products = Product::with(['brands', 'category', 'country', 'productViews'])->paginate(12);
-            }
-
-            if ($this->type === 'All Category Page' && $this->applyFilter !== true) {
-                $products = [];
-                $sub_category = Category::where('parent_id', 0)->withCount('products')->get();
-            }
-
-            if ($this->type === 'Category Page' && $this->applyFilter !== true) {
-                $sub_category = Category::where('parent_id', $this->category->id)->withCount('products')->get();
-                $products = Product::with(['brands', 'category', 'country', 'productViews'])->where('category_id', $this->category->id)->paginate(12);
-            }
-
-            if ($this->type === 'Product Details Similar Products' && $this->applyFilter !== true) {
-                $sub_category = [];
-                $products = Product::with(['brands', 'category', 'country', 'productViews'])->where('category_id', $this->category_id)->paginate(5);
+            if ($this->type === 'On Sale') {
+                $productsQuery->where('on_sale', 1)->orderByRaw("id = {$this->sales_id} DESC");
+            } elseif ($this->type === 'All Products') {
+                // No additional filters needed
+            } elseif ($this->type === 'Product Details Similar Products') {
+                $productsQuery->where('category_id', $this->category_id)->paginate(5);
             }
         }
+
+        $products = $productsQuery->paginate(12);
 
         $agent = new Agent;
         return view('livewire.frontend.filters.products', compact([
             'products',
-            'sub_category',
             'agent',
         ]));
     }
