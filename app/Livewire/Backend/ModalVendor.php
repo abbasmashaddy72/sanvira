@@ -14,7 +14,7 @@ class ModalVendor extends ModalComponent
     // Set Data
     public $vendor_id;
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public function mount()

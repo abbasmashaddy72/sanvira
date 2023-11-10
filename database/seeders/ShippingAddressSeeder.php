@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\ShippingAddress;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ShippingAddressSeeder extends Seeder
 {

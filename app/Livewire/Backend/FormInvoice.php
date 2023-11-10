@@ -7,7 +7,7 @@ use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class ModalInvoice extends ModalComponent
+class FormInvoice extends ModalComponent
 {
     use Actions;
 
@@ -16,7 +16,7 @@ class ModalInvoice extends ModalComponent
 
     public $status_enum = [];
 
-    // Model Values
+    // Model Keys
     public $order_id;
 
     public $status;
@@ -60,13 +60,11 @@ class ModalInvoice extends ModalComponent
             $this->notification()->success($name = 'Invoice Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
-
-        $this->closeModal();
+        $this->redirect(route('admin.invoice'));
     }
 
     public function render()
     {
-        return view('livewire.backend.modal-invoice');
+        return view('livewire.backend.form-invoice');
     }
 }

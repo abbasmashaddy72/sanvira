@@ -2,11 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Brand;
-use App\Models\Vendor;
-use App\Models\Country;
-use App\Models\Product;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

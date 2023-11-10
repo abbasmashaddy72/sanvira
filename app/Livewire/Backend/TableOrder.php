@@ -112,9 +112,10 @@ final class TableOrder extends PowerGridComponent
     {
         return [
             Button::add('edit')
+                ->wire()
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->openModal('backend.modal-order', ['order_id' => $row->id])
+                ->route('admin.order_edit', ['id' => $row->id])
         ];
     }
 

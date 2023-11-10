@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\DeliveryNote;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DeliveryNoteSeeder extends Seeder
 {

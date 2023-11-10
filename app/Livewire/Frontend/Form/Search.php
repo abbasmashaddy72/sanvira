@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class Search extends Component
 {
-    // Custom Values
+    // Custom Keys
     public $query;
 
     public $type;

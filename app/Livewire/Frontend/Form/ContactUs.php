@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class ContactUs extends Component
 {
-    // Model Values
+    // Model Keys
     public $name;
 
     public $email;
@@ -24,7 +24,7 @@ class ContactUs extends Component
 
     public $agree;
 
-    // Custom Values
+    // Custom Keys
     public $successMessage = false;
 
     protected $rules = [

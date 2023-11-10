@@ -18,4 +18,20 @@ class OrderController extends Controller
 
         return view('pages.backend.order.index');
     }
+
+    public function add()
+    {
+        abort_if(Gate::denies('order_add'), 403);
+        view()->share('title', 'Order Add');
+
+        return view('pages.backend.order.add_edit');
+    }
+
+    public function edit($id)
+    {
+        abort_if(Gate::denies('order_edit'), 403);
+        view()->share('title', 'Order Edit');
+
+        return view('pages.backend.order.add_edit', compact('id'));
+    }
 }

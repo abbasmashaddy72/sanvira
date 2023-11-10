@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ShippingAddress;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 

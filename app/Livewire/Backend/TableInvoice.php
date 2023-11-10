@@ -103,9 +103,10 @@ final class TableInvoice extends PowerGridComponent
     {
         return [
             Button::add('edit')
+                ->wire()
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->openModal('backend.modal-invoice', ['invoice_id' => $row->id])
+                ->route('admin.invoice_edit', ['id' => $row->id])
         ];
     }
 

@@ -18,7 +18,7 @@ class ModalCategory extends ModalComponent
 
     public $type;
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public $image;

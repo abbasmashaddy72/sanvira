@@ -108,9 +108,10 @@ final class TableDeliveryNote extends PowerGridComponent
     {
         return [
             Button::add('edit')
+                ->wire()
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->openModal('backend.modal-delivery-note', ['delivery_note_id' => $row->id])
+                ->route('admin.delivery_note_edit', ['id' => $row->id])
         ];
     }
 

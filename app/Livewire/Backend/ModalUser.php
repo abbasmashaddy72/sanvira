@@ -19,7 +19,7 @@ class ModalUser extends ModalComponent
     // Set Data
     public $user_id;
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public $email;
@@ -42,7 +42,7 @@ class ModalUser extends ModalComponent
 
     public $image;
 
-    // Custom Values
+    // Custom Keys
     public $role;
 
     public $imageIsUploaded = false;

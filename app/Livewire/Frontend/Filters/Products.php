@@ -2,9 +2,7 @@
 
 namespace App\Livewire\Frontend\Filters;
 
-use App\Models\Brand;
 use App\Models\Product;
-use App\Models\ProductVariation;
 use Livewire\Component;
 use WireUi\Traits\Actions;
 use Jenssegers\Agent\Agent;
@@ -15,13 +13,13 @@ class Products extends Component
     use Actions;
     use WithPagination;
 
-    // Sales Page Values
+    // Sales Page Keys
     public $sales_id;
 
-    // Category Based Product Page Values
+    // Category Based Product Page Keys
     public $category;
 
-    // Custom Values
+    // Custom Keys
     public $type;
 
     public $page_title;
@@ -46,6 +44,15 @@ class Products extends Component
 
     public $selectedProductId;
 
+    public $variations = [];
+
+    public $sizes = [];
+    public $weights = [];
+    public $diameters = [];
+    public $quantities = [];
+    public $colors = [];
+    public $itemTypes = [];
+
     public $variation_brand_id;
     public $variation_size_id;
     public $variation_weight_id;
@@ -57,18 +64,96 @@ class Products extends Component
     public function openOverlay($productId)
     {
         $this->selectedProductId = $productId;
-        // $this->selectedProductId = $productId;
-        // Fetch product data based on $productId and assign it to $this->selectedProduct
-        // Example: $this->selectedProduct = Product::find($productId);
-
-        // Once the product data is assigned, show the overlay
+        $this->clearVariations();
+        $this->variations = []; // Reset the variations
+        $this->loadProductVariations();
         $this->overlayVisible = true;
     }
 
     public function closeOverlay()
     {
         $this->overlayVisible = false;
-        // Reset any necessary data if needed
+        $this->variations = []; // Reset the variations
+    }
+
+    public function updatedVariationBrandId($brandId)
+    {
+        $this->variation_brand_id = $brandId;
+        $this->loadProductVariations();
+    }
+
+    public function clearVariations()
+    {
+        $this->variation_brand_id = null;
+        $this->variation_size_id = null;
+        $this->variation_weight_id = null;
+        $this->variation_diameter_id = null;
+        $this->variation_quantity_type_id = null;
+        $this->variation_color_id = null;
+        $this->variation_item_type_id = null;
+    }
+
+    protected function loadProductVariations()
+    {
+        $product = Product::with(['variations', 'variations.brand'])
+            ->findOrFail($this->selectedProductId);
+
+        $this->variations = $product->variations;
+        if ($this->variation_brand_id) {
+            $this->variations = $this->variations->where('brand_id', $this->variation_brand_id);
+        }
+
+        $this->extractVariationDetails();
+    }
+
+    protected function extractVariationDetails()
+    {
+        $this->sizes = [];
+        $this->weights = [];
+        $this->diameters = [];
+        $this->quantities = [];
+        $this->colors = [];
+        $this->itemTypes = [];
+
+        foreach ($this->variations as $variation) {
+            if ($variation->length && $variation->breadth && $variation->width && $variation->measurement_units) {
+                $size = round($variation->length) . ' x ' . round($variation->breadth) . ' x ' . round($variation->width) . ' ' . $variation->measurement_units;
+                if (!in_array($size, $this->sizes)) {
+                    $this->sizes[] = $size;
+                }
+            }
+            if ($variation->weight && $variation->weight_units) {
+                $weight = $variation->weight . ' ' . $variation->weight_units;
+                if (!in_array($weight, $this->weights)) {
+                    $this->weights[] = $weight;
+                }
+            }
+
+            if ($variation->diameter && $variation->measurement_units) {
+                $diameter = $variation->diameter . ' ' . $variation->measurement_units;
+                if (!in_array($diameter, $this->diameters)) {
+                    $this->diameters[] = $diameter;
+                }
+            }
+
+            foreach (explode(';', $variation->quantity_type) as $quantity) {
+                if (!in_array($quantity, $this->quantities)) {
+                    $this->quantities[] = $quantity;
+                }
+            }
+
+            foreach (explode(';', $variation->color) as $color) {
+                if (!in_array($color, $this->colors)) {
+                    $this->colors[] = $color;
+                }
+            }
+
+            foreach (explode(';', $variation->item_type) as $type) {
+                if (!in_array($type, $this->itemTypes)) {
+                    $this->itemTypes[] = $type;
+                }
+            }
+        }
     }
 
     public function mount()
@@ -98,7 +183,7 @@ class Products extends Component
 
     public function addToRfq($itemId)
     {
-        // Fetch the selected variation values
+        // Fetch the selected variation Keys
         $selectedVariations = [
             'brand_id' => $this->variation_brand_id,
             'size_id' => $this->variation_size_id,

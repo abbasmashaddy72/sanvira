@@ -5,9 +5,9 @@ namespace App\Livewire\Backend;
 use App\Models\Enquiry;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class ModalEnquiry extends ModalComponent
+class FormEnquiry extends Component
 {
     use Actions;
 
@@ -16,7 +16,7 @@ class ModalEnquiry extends ModalComponent
 
     public $status_enum = [];
 
-    // Model Values
+    // Model Keys
     public $rfq_id;
 
     public $user_id;
@@ -67,13 +67,11 @@ class ModalEnquiry extends ModalComponent
             $this->notification()->success($name = 'Enquiry Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
-
-        $this->closeModal();
+        $this->redirect(route('admin.enquiry'));
     }
 
     public function render()
     {
-        return view('livewire.backend.modal-enquiry');
+        return view('livewire.backend.form-enquiry');
     }
 }

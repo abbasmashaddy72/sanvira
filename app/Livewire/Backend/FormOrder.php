@@ -7,7 +7,7 @@ use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class ModalOrder extends ModalComponent
+class FormOrder extends ModalComponent
 {
     use Actions;
 
@@ -16,7 +16,7 @@ class ModalOrder extends ModalComponent
     // Set Data
     public $order_id;
 
-    // Model Values
+    // Model Keys
     public $status;
 
     public function mount()
@@ -49,13 +49,11 @@ class ModalOrder extends ModalComponent
             $this->notification()->success($name = 'Order Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
-
-        $this->closeModal();
+        $this->redirect(route('admin.order'));
     }
 
     public function render()
     {
-        return view('livewire.backend.modal-order');
+        return view('livewire.backend.form-order');
     }
 }

@@ -18,7 +18,7 @@ class ModalBrand extends ModalComponent
 
     public $account_type_enum = [];
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public $account_type;

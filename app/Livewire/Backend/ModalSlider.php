@@ -11,14 +11,14 @@ class ModalSlider extends ModalComponent
 {
     use WithFileUploads;
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public $image;
 
     public $url;
 
-    // Set Values
+    // Set Keys
     public $imageIsUploaded = false;
 
     protected $rules = [

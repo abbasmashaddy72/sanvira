@@ -3,7 +3,7 @@
 
     <x-backend.grid>
         <x-slot name="rt_button">
-            <button onclick="Livewire.dispatch('openModal', { component: 'backend.modal-enquiry' } )"
+            <button wire:navigate href="{{ route('admin.enquiry_add') }}"
                 class="btn btn-primary mr-2 shadow-md">{{ __('Add') }}</button>
         </x-slot>
 

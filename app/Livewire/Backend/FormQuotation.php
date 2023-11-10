@@ -7,7 +7,7 @@ use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class ModalQuotation extends ModalComponent
+class FormQuotation extends ModalComponent
 {
     use Actions;
 
@@ -16,7 +16,7 @@ class ModalQuotation extends ModalComponent
 
     public $status_enum = [];
 
-    // Model Values
+    // Model Keys
     public $enquiry_id;
 
     public $status;
@@ -60,13 +60,11 @@ class ModalQuotation extends ModalComponent
             $this->notification()->success($name = 'Quotation Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
-
-        $this->closeModal();
+        $this->redirect(route('admin.quotation'));
     }
 
     public function render()
     {
-        return view('livewire.backend.modal-quotation');
+        return view('livewire.backend.form-quotation');
     }
 }

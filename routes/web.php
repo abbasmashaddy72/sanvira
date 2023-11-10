@@ -53,16 +53,31 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('brand', 'BrandController@index')->name('brand');
     Route::get('vendor', 'VendorController@index')->name('vendor');
     Route::get('categories', 'CategoryController@index')->name('categories');
+
     Route::get('product', 'ProductController@index')->name('product');
     Route::get('product_add', 'ProductController@add')->name('product_add');
     Route::get('product_edit/{id}', 'ProductController@edit')->name('product_edit');
     Route::get('product_review', 'ProductController@review')->name('product_review');
 
     Route::get('enquiry', 'EnquiryController@index')->name('enquiry');
+    Route::get('enquiry_add', 'EnquiryController@add')->name('enquiry_add');
+    Route::get('enquiry_edit/{id}', 'EnquiryController@edit')->name('enquiry_edit');
+
     Route::get('quotation', 'QuotationController@index')->name('quotation');
+    Route::get('quotation_add', 'QuotationController@add')->name('quotation_add');
+    Route::get('quotation_edit/{id}', 'QuotationController@edit')->name('quotation_edit');
+
     Route::get('orders', 'OrderController@index')->name('orders');
+    Route::get('orders_add', 'OrderController@add')->name('orders_add');
+    Route::get('orders_edit/{id}', 'OrderController@edit')->name('orders_edit');
+
     Route::get('delivery_note', 'DeliveryNoteController@index')->name('delivery_note');
+    Route::get('delivery_note_add', 'DeliveryNoteController@add')->name('delivery_note_add');
+    Route::get('delivery_note_edit/{id}', 'DeliveryNoteController@edit')->name('delivery_note_edit');
+
     Route::get('invoice', 'InvoiceController@index')->name('invoice');
+    Route::get('invoice_add', 'InvoiceController@add')->name('invoice_add');
+    Route::get('invoice_edit/{id}', 'InvoiceController@edit')->name('invoice_edit');
 
     Route::get('testimonial', 'TestimonialController@index')->name('testimonial');
 

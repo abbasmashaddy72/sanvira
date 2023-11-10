@@ -18,7 +18,7 @@ class FormProduct extends Component
     // Set Data
     public $product_id;
 
-    // Product Model Values
+    // Product Model Keys
     public $title;
     public $model;
     public $category_id;
@@ -28,11 +28,11 @@ class FormProduct extends Component
     public $data_sheets = [];
     public $description;
 
-    // ProductAttributes Model Values
+    // ProductAttributes Model Keys
     public $name_pa = [];
     public $value_pa = [];
 
-    // ProductVariation Model Values
+    // ProductVariation Model Keys
     public $country_id_pv = [];
     public $vendor_id_pv = [];
     public $brand_id_pv = [];
@@ -58,15 +58,15 @@ class FormProduct extends Component
     public $tax_percentage_pv = [];
     public $measurement_units = [];
 
-    // ProductAttributes Model Custom Values
+    // ProductAttributes Model Custom Keys
     public $inputs_pa = [];
     public $i_pa = 1;
 
-    // ProductVariation Model Custom Values
+    // ProductVariation Model Custom Keys
     public $inputs_pv = [];
     public $i_pv = 1;
 
-    // Custom Values
+    // Custom Keys
     public $isUploaded = false;
     public $isDataSheetsUploaded = false;
     protected $temporaryUploadDirectory = 'storage/livewire-tmp';
@@ -358,8 +358,6 @@ class FormProduct extends Component
             return in_array($value, $toRemoveImages);
         });
         Product::where('id', $params['product_id'])->update(['images' => $updatedImages]);
-
-        $this->closeModal();
 
         $this->notification()->success($title = 'Product Image Deleted Successfully!');
     }

@@ -18,7 +18,7 @@ class ModalTestimonial extends ModalComponent
 
     public $user_id;
 
-    // Model Values
+    // Model Keys
     public $designation;
 
     public $logo;

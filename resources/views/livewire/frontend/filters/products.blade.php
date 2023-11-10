@@ -138,78 +138,15 @@
                                                 <h2 class="mb-2 border-b-2 border-gray-300 text-lg font-semibold">
                                                     {{ $item->title }}</h2>
                                                 <!-- Variation Selection -->
-                                                <x-native-select label="Brand" wire:model='variation_brand_id'>
-                                                    @foreach ($item->variations as $variation)
-                                                        <option value="{{ $variation->brand->id }}"
-                                                            @if ($loop->index == 0) selected @endif>
-                                                            {{ $variation->brand->name }}
+                                                <x-native-select label="Brand" wire:model.live='variation_brand_id'>
+                                                    <option value="">Select Brand</option>
+                                                    @foreach ($variations->pluck('brand')->unique('id') as $brand)
+                                                        <option value="{{ $brand->id }}">{{ $brand->name }}
                                                         </option>
                                                     @endforeach
                                                 </x-native-select>
 
                                                 <div class="grid grid-cols-2 gap-1">
-                                                    @php
-                                                        $sizes = [];
-                                                        $weights = [];
-                                                        $diameters = [];
-                                                        $quantities = [];
-                                                        $colors = [];
-                                                        $itemTypes = [];
-                                                    @endphp
-
-                                                    @foreach ($item->variations as $variation)
-                                                        @if ($variation->length && $variation->breadth && $variation->width && $variation->measurement_units)
-                                                            @php
-                                                                $size = round($variation->length) . ' x ' . round($variation->breadth) . ' x ' . round($variation->width) . ' ' . $variation->measurement_units;
-                                                                if (!in_array($size, $sizes)) {
-                                                                    $sizes[] = $size;
-                                                                }
-                                                            @endphp
-                                                        @endif
-
-                                                        @if ($variation->weight && $variation->weight_units)
-                                                            @php
-                                                                $weight = $variation->weight . ' ' . $variation->weight_units;
-                                                                if (!in_array($weight, $weights)) {
-                                                                    $weights[] = $weight;
-                                                                }
-                                                            @endphp
-                                                        @endif
-
-                                                        @if ($variation->diameter && $variation->measurement_units)
-                                                            @php
-                                                                $diameter = $variation->diameter . ' ' . $variation->measurement_units;
-                                                                if (!in_array($diameter, $diameters)) {
-                                                                    $diameters[] = $diameter;
-                                                                }
-                                                            @endphp
-                                                        @endif
-
-                                                        @foreach (explode(';', $variation->quantity_type) as $quantity)
-                                                            @php
-                                                                if (!in_array($quantity, $quantities)) {
-                                                                    $quantities[] = $quantity;
-                                                                }
-                                                            @endphp
-                                                        @endforeach
-
-                                                        @foreach (explode(';', $variation->color) as $color)
-                                                            @php
-                                                                if (!in_array($color, $colors)) {
-                                                                    $colors[] = $color;
-                                                                }
-                                                            @endphp
-                                                        @endforeach
-
-                                                        @foreach (explode(';', $variation->item_type) as $type)
-                                                            @php
-                                                                if (!in_array($type, $itemTypes)) {
-                                                                    $itemTypes[] = $type;
-                                                                }
-                                                            @endphp
-                                                        @endforeach
-                                                    @endforeach
-
                                                     @if (count($sizes) > 0)
                                                         <x-native-select label="Size" wire:model='variation_size_id'>
                                                             @foreach ($sizes as $size)

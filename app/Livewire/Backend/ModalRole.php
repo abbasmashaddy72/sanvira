@@ -15,7 +15,7 @@ class ModalRole extends ModalComponent
     // Set Data
     public $role_id;
 
-    // Model Values
+    // Model Keys
     public $name;
 
     public $slug;

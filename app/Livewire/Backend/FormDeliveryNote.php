@@ -8,7 +8,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Gate;
 use LivewireUI\Modal\ModalComponent;
 
-class ModalDeliveryNote extends ModalComponent
+class FormDeliveryNote extends ModalComponent
 {
     use Actions;
     use WithFileUploads;
@@ -18,7 +18,7 @@ class ModalDeliveryNote extends ModalComponent
 
     public $status_enum = [];
 
-    // Model Values
+    // Model Keys
     public $order_id;
 
     public $delivery_notes_attachment;
@@ -73,13 +73,11 @@ class ModalDeliveryNote extends ModalComponent
             $this->notification()->success($name = 'Delivery Note Saved Successfully!');
         }
 
-        $this->dispatch('pg:eventRefresh-default');
-
-        $this->closeModal();
+        $this->redirect(route('admin.delivery_note'));
     }
 
     public function render()
     {
-        return view('livewire.backend.modal-delivery-note');
+        return view('livewire.backend.form-delivery-note');
     }
 }

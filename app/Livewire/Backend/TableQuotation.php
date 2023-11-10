@@ -104,9 +104,10 @@ final class TableQuotation extends PowerGridComponent
     {
         return [
             Button::add('edit')
+                ->wire()
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->openModal('backend.modal-quotation', ['quotation_id' => $row->id])
+                ->route('admin.quotation_edit', ['id' => $row->id])
         ];
     }
 

@@ -5,15 +5,13 @@ namespace App\Livewire\Frontend\Form;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-use Livewire\Redirector;
 use Monarobase\CountryList\CountryListFacade;
 
 class RegisterForm extends Component
 {
-    // User Model Values
+    // User Model Keys
     public $name;
 
     public $email;
@@ -50,7 +48,7 @@ class RegisterForm extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function submit(): RedirectResponse | Redirector
+    public function submit()
     {
         $this->validatedData = $this->validate();
 
@@ -64,7 +62,7 @@ class RegisterForm extends Component
 
         auth()->login($this->user);
 
-        return redirect(RouteServiceProvider::HOME());
+        $this->redirect(RouteServiceProvider::HOME());
     }
 
     public function render()

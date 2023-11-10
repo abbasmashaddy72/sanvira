@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Categories extends Component
 {
-    // Filter Values
+    // Filter Keys
     public $availableLetters;
 
     public $alphabet = 'A';

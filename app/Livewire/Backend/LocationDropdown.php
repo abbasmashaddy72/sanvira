@@ -26,14 +26,15 @@ class LocationDropdown extends Component
         $this->states = [];
         $this->cities = [];
 
-        if (!empty($this->cityId)) {
-            $this->cityData = City::findOrFail($this->cityId);
-            $this->selectedCountry = $this->cityData->country_id;
-            $this->selectedState = $this->cityData->state_id;
-            $this->selectedCity = $this->cityId;
-            $this->cities = City::where('state_id', $this->cityData->state_id)->get();
-            $this->states = State::where('country_id', $this->cityData->country_id)->get();
+        if (empty($this->cityId)) {
+            return;
         }
+        $this->cityData = City::findOrFail($this->cityId);
+        $this->selectedCountry = $this->cityData->country_id;
+        $this->selectedState = $this->cityData->state_id;
+        $this->selectedCity = $this->cityId;
+        $this->cities = City::where('state_id', $this->cityData->state_id)->get();
+        $this->states = State::where('country_id', $this->cityData->country_id)->get();
     }
 
     public function updatedSelectedCountry($countryId)
