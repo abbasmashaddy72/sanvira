@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -18,7 +19,6 @@ return new class extends Migration {
             $table->bigInteger('zip_code')->after('email')->nullable();
             $table->foreignId('city_id')->after('email')->nullable()->constrained('cities')->onUpdate('cascade')->onDelete('cascade');
             $table->string('landmark')->after('email')->nullable();
-            $table->string('locality')->after('email')->nullable();
             $table->string('street_no')->after('email')->nullable();
             $table->string('mobile')->after('email')->nullable();
             $table->enum('status', ['Active', 'InActive'])->after('last_password_change');

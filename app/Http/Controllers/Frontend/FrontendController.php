@@ -4,12 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
 use App\Models\Slider;
-use App\Models\Enquiry;
 use App\Models\Product;
 use App\Models\Category;
-use App\Models\BrandView;
-use App\Models\VendorView;
-use App\Models\ProductView;
 use App\Models\CategoryView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,14 +15,6 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        $data = Enquiry::with('rfq', 'buyer')->findOrFail(134);
-        // $this->status = $this->data->status;
-
-        // Accessing the products relationship with pivot data
-        $productData = $data->products()->get();
-
-        customEcho($productData);
-
         $sliders = Slider::get();
         $product_categories = Category::where('parent_id', 0)->withCount('products')->get()->take(8);
         $featured_brands = Brand::withCount('products')->where('account_type', '=', 'Featured')->get()->take(8);
@@ -117,34 +105,7 @@ class FrontendController extends Controller
         }
 
         view()->share('title', $data->title);
-        // $data->with(['brands', 'Vendors', 'productAttributes', 'Category']);
-        // ProductView::updateOrCreate(
-        //     [
-        //         'user_id' => auth()->user()->id,
-        //         'product_id' => $data->id,
-        //     ],
-        //     [
-        //         'clicks' => DB::raw('clicks + 1'),
-        //     ]
-        // );
-        // BrandView::updateOrCreate(
-        //     [
-        //         'user_id' => auth()->user()->id,
-        //         'brand_id' => $data->brand_id,
-        //     ],
-        //     [
-        //         'clicks' => DB::raw('clicks + 1'),
-        //     ]
-        // );
-        // VendorView::updateOrCreate(
-        //     [
-        //         'user_id' => auth()->user()->id,
-        //         'vendor_id' => $data->vendor_id,
-        //     ],
-        //     [
-        //         'clicks' => DB::raw('clicks + 1'),
-        //     ]
-        // );
+
         return view('pages.frontend.products_details', compact([
             'data',
         ]));

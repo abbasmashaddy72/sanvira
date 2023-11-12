@@ -3,23 +3,14 @@ import "../../css/backend/app.css";
 import "./bootstrap";
 
 // JavaScript libraries
-// import focus from "@alpinejs/focus";
 import { createPopper } from "@popperjs/core";
 import * as FilePond from "filepond";
 import flatpickr from "flatpickr";
-// import {
-//     Alpine,
-//     Livewire,
-// } from "../../../vendor/livewire/livewire/dist/livewire.esm";
 
 // Expose to global scope
 window.flatpickr = flatpickr;
 window.FilePond = FilePond;
 window.createPopper = createPopper;
-
-// Alpine.js setup
-// Alpine.plugin(focus);
-// Livewire.start();
 
 // 3rd Party Libraries
 import "../../../vendor/power-components/livewire-powergrid/dist/powergrid";

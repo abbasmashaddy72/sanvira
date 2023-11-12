@@ -37,7 +37,7 @@ final class TableEnquiry extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Enquiry::query()->latest()->with('rfq', 'buyer', 'staff');
+        return Enquiry::query()->latest()->with(['rfq', 'buyer', 'staff']);
     }
 
     public function relationSearch(): array

@@ -49,7 +49,7 @@ class Product extends Model
         return $this->hasMany(ProductVariation::class, 'product_id', 'id');
     }
 
-    public function setSlugAttribute($value)
+    public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);

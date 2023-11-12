@@ -27,16 +27,6 @@ class Order extends Model
         'quotation_submission_date_time' => 'datetime:Y-m-d h:i:s'
     ];
 
-    public function buyer()
-    {
-        return $this->belongsTo(User::class, 'buyer_id');
-    }
-
-    public function staff()
-    {
-        return $this->belongsTo(User::class, 'staff_id');
-    }
-
     public function products()
     {
         return $this->belongsToMany(Product::class, 'order_product')->withPivot([
@@ -55,23 +45,18 @@ class Order extends Model
         ]);
     }
 
-    public function enquiry()
+    public function buyer()
     {
-        return $this->belongsTo(Enquiry::class, 'rfq_id');
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(User::class, 'staff_id');
     }
 
     public function quotation()
     {
         return $this->belongsTo(Quotation::class, 'quotation_id');
-    }
-
-    public function deliveryNote()
-    {
-        return $this->hasOne(DeliveryNote::class, 'order_id');
-    }
-
-    public function invoice()
-    {
-        return $this->hasOne(Invoice::class, 'order_id');
     }
 }

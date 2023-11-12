@@ -66,7 +66,7 @@ class FormOrder extends ModalComponent
 
     public function submit()
     {
-        $validatedData = $this->validate();
+        // $validatedData = $this->validate();
 
         // Assuming $order is an instance of the Order model
         $order = Order::findOrFail($this->order_id);
@@ -86,7 +86,7 @@ class FormOrder extends ModalComponent
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $product->pivot->our_price,
-                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
+                'client_price' => $this->client_prices[$product->pivot->product_id] ?? null,
             ];
         });
 
@@ -122,7 +122,7 @@ class FormOrder extends ModalComponent
         } else {
             // No new PDF provided, only update the status
             $order->update([
-                'status' => $validatedData['status'],
+                'status' => $this->status,
             ]);
         }
 

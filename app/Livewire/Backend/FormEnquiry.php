@@ -87,26 +87,37 @@ class FormEnquiry extends Component
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $product->pivot->our_price,
-                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
+                'client_price' => $this->client_prices[$product->pivot->product_id] ?? null,
             ];
         });
-
         // Create or retrieve an Quotation
         $quotation = Quotation::where('buyer_id', auth()->user()->id)
             ->where('status', 'Open')
             ->first();
 
-        if (!$quotation) {
-            // If no pending Quotation exists, create a new Quotation
-            $quotation = Quotation::create([
-                'enquiry_id' => $enquiry->id,
-                'buyer_id' => auth()->user()->id,
-                'staff_id' => auth()->user()->id,
-                'quotation_no' => generateTableNumber('quotations', 'quotation_no'),
-                'enquiry_submission_date_time' => now(),
-                'status' => 'Open',
-            ]);
+        if ($quotation) {
+
+            // Attach the products to the Enquiry using the pivot table
+            $quotation->products()->syncWithoutDetaching($productData);
+
+            // Optionally, you can update Enquiry status to 'Submitted' as well
+            $enquiry->update(['status' => $this->status]);
+
+            $this->notification()->success($title = 'Enquiry Submitted Successfully');
+
+            $this->redirect(route('admin.enquiry'));
+            return;
         }
+        // If no pending Quotation exists, create a new Quotation
+        $quotation = Quotation::create([
+            'enquiry_id' => $enquiry->id,
+            'buyer_id' => auth()->user()->id,
+            'staff_id' => auth()->user()->id,
+            'quotation_no' => generateTableNumber('quotations', 'quotation_no'),
+            'enquiry_submission_date_time' => now(),
+            'status' => 'Open',
+        ]);
+
 
         // Attach the products to the Enquiry using the pivot table
         $quotation->products()->syncWithoutDetaching($productData);

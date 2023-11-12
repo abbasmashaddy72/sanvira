@@ -61,10 +61,9 @@ final class TableUser extends PowerGridComponent
             ->addColumn('email')
             ->addColumn('mobile')
             ->addColumn('street_no')
-            ->addColumn('locality')
             ->addColumn('landmark')
             ->addColumn('city_id', function (User $model) {
-                return e($model->city->name);
+                return e($model->city->name ?? null);
             })
             ->addColumn('zip_code')
             ->addColumn('subscription')
@@ -98,10 +97,6 @@ final class TableUser extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Locality', 'locality')
-                ->sortable()
-                ->searchable(),
-
             Column::make('Landmark', 'landmark')
                 ->sortable()
                 ->searchable(),
@@ -129,7 +124,6 @@ final class TableUser extends PowerGridComponent
             Filter::inputText('email')->operators(['contains']),
             Filter::inputText('mobile')->operators(['contains']),
             Filter::inputText('street_no')->operators(['contains']),
-            Filter::inputText('locality')->operators(['contains']),
             Filter::inputText('landmark')->operators(['contains']),
             Filter::boolean('subscription'),
             Filter::inputText('status')->operators(['contains']),

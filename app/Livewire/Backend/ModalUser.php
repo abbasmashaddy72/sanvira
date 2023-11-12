@@ -30,8 +30,6 @@ class ModalUser extends ModalComponent
 
     public $street_no;
 
-    public $locality;
-
     public $landmark;
 
     public $city_id;
@@ -60,7 +58,6 @@ class ModalUser extends ModalComponent
         $this->email = $data->email;
         $this->mobile = $data->mobile;
         $this->street_no = $data->street_no;
-        $this->locality = $data->locality;
         $this->landmark = $data->landmark;
         $this->city_id = $data->city_id;
         $this->zip_code = $data->zip_code;
@@ -78,7 +75,6 @@ class ModalUser extends ModalComponent
         'password' => 'required',
         'mobile' => '',
         'street_no' => '',
-        'locality' => '',
         'landmark' => '',
         'city_id' => '',
         'zip_code' => '',

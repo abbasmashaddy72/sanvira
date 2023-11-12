@@ -24,7 +24,6 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'mobile' => rand(6000000000, 9999999999),
             'street_no' => fake()->streetAddress(),
-            'locality' => fake()->lastName(),
             'landmark' => fake()->address(),
             'city_id' => fake()->randomElement(City::pluck('id')->toArray()),
             'zip_code' => rand(100000, 90000),

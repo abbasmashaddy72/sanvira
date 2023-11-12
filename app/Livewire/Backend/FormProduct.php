@@ -231,32 +231,32 @@ class FormProduct extends Component
                 ]);
             }
             ProductVariation::where('product_id', $this->product_id)->delete();
-            foreach ($this->max_discount_pv as $key => $value) {
+            foreach ($this->brand_id_pv as $key => $value) {
                 ProductVariation::create([
                     'product_id' => $this->product_id,
-                    'country_id' => $this->country_id_pv[$key],
-                    'brand_id' => $this->brand_id_pv[$key],
-                    'vendor_id' => $this->vendor_id_pv[$key],
-                    'avb_stock' => $this->avb_stock_pv[$key],
-                    'sku' => $this->sku_pv[$key],
-                    'barcode' => $this->barcode_pv[$key],
-                    'length' => $this->length_pv[$key],
-                    'breadth' => $this->breadth_pv[$key],
-                    'width' => $this->width_pv[$key],
-                    'diameter' => $this->diameter_pv[$key],
-                    'measurement_units' => $this->measurement_units_pv[$key],
-                    'weight' => $this->weight_pv[$key],
-                    'weight_units' => $this->weight_units_pv[$key],
-                    'quantity_type' => $this->quantity_type_pv[$key],
-                    'color' => $this->color_pv[$key],
-                    'item_type' => $this->item_type_pv[$key],
-                    'max_discount' => $this->max_discount_pv[$key],
-                    'max_discount_unit' => $this->max_discount_unit_pv[$key],
-                    'tax_percentage' => $this->tax_percentage_pv[$key],
-                    'min_price' => $this->min_price_pv[$key],
-                    'max_price' => $this->max_price_pv[$key],
-                    'min_order_quantity' => $this->min_order_quantity_pv[$key],
-                    'max_order_quantity' => $this->max_order_quantity_pv[$key],
+                    'country_id' => $this->country_id_pv[$key] ?? null,
+                    'brand_id' => $this->brand_id_pv[$key] ?? null,
+                    'vendor_id' => $this->vendor_id_pv[$key] ?? null,
+                    'avb_stock' => $this->avb_stock_pv[$key] ?? null,
+                    'sku' => $this->sku_pv[$key] ?? null,
+                    'barcode' => $this->barcode_pv[$key] ?? null,
+                    'length' => $this->length_pv[$key] ?? null,
+                    'breadth' => $this->breadth_pv[$key] ?? null,
+                    'width' => $this->width_pv[$key] ?? null,
+                    'diameter' => $this->diameter_pv[$key] ?? null,
+                    'measurement_units' => $this->measurement_units_pv[$key] ?? null,
+                    'weight' => $this->weight_pv[$key] ?? null,
+                    'weight_units' => $this->weight_units_pv[$key] ?? null,
+                    'quantity_type' => $this->quantity_type_pv[$key] ?? null,
+                    'color' => $this->color_pv[$key] ?? null,
+                    'item_type' => $this->item_type_pv[$key] ?? null,
+                    'max_discount' => $this->max_discount_pv[$key] ?? null,
+                    'max_discount_unit' => $this->max_discount_unit_pv[$key] ?? null,
+                    'tax_percentage' => $this->tax_percentage_pv[$key] ?? null,
+                    'min_price' => $this->min_price_pv[$key] ?? null,
+                    'max_price' => $this->max_price_pv[$key] ?? null,
+                    'min_order_quantity' => $this->min_order_quantity_pv[$key] ?? null,
+                    'max_order_quantity' => $this->max_order_quantity_pv[$key] ?? null,
                 ]);
             }
         } else {
@@ -270,9 +270,7 @@ class FormProduct extends Component
                         $multiImages[$key] = $image->store('product_images', 'public');
                     }
                 }
-                if ($this->images != $images) {
-                    $validatedData['images'] = $multiImages;
-                }
+                $validatedData['images'] = $multiImages;
             }
             if (!empty($this->data_sheets) && gettype($this->data_sheets) == 'array') {
                 $data_sheets = $validatedData['data_sheets'];
@@ -284,40 +282,38 @@ class FormProduct extends Component
                         $multiDataSheets[$key] = $data_sheet->store('product_data_sheets', 'public');
                     }
                 }
-                if ($this->data_sheets != $data_sheets) {
-                    $validatedData['data_sheets'] = $multiDataSheets;
-                }
+                $validatedData['data_sheets'] = $multiDataSheets;
             }
             $product = Product::create($validatedData);
             foreach ($this->name_pa as $key => $value) {
                 ProductAttributes::create(['product_id' => $product->id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
             }
-            foreach ($this->min_price_pv as $key => $value) {
+            foreach ($this->brand_id_pv as $key => $value) {
                 ProductVariation::create([
                     'product_id' => $product->id,
-                    'country_id' => $this->country_id_pv[$key],
-                    'brand_id' => $this->brand_id_pv[$key],
-                    'vendor_id' => $this->vendor_id_pv[$key],
-                    'avb_stock' => $this->avb_stock_pv[$key],
-                    'sku' => $this->sku_pv[$key],
-                    'barcode' => $this->barcode_pv[$key],
-                    'length' => $this->length_pv[$key],
-                    'breadth' => $this->breadth_pv[$key],
-                    'width' => $this->width_pv[$key],
-                    'diameter' => $this->diameter_pv[$key],
-                    'measurement_units' => $this->measurement_units_pv[$key],
-                    'weight' => $this->weight_pv[$key],
-                    'weight_units' => $this->weight_units_pv[$key],
-                    'quantity_type' => $this->quantity_type_pv[$key],
-                    'color' => $this->color_pv[$key],
-                    'item_type' => $this->item_type_pv[$key],
-                    'max_discount' => $this->max_discount_pv[$key],
-                    'max_discount_unit' => $this->max_discount_unit_pv[$key],
-                    'tax_percentage' => $this->tax_percentage_pv[$key],
-                    'min_price' => $this->min_price_pv[$key],
-                    'max_price' => $this->max_price_pv[$key],
-                    'min_order_quantity' => $this->min_order_quantity_pv[$key],
-                    'max_order_quantity' => $this->max_order_quantity_pv[$key],
+                    'country_id' => $this->country_id_pv[$key] ?? null,
+                    'brand_id' => $this->brand_id_pv[$key] ?? null,
+                    'vendor_id' => $this->vendor_id_pv[$key] ?? null,
+                    'avb_stock' => $this->avb_stock_pv[$key] ?? null,
+                    'sku' => $this->sku_pv[$key] ?? null,
+                    'barcode' => $this->barcode_pv[$key] ?? null,
+                    'length' => $this->length_pv[$key] ?? null,
+                    'breadth' => $this->breadth_pv[$key] ?? null,
+                    'width' => $this->width_pv[$key] ?? null,
+                    'diameter' => $this->diameter_pv[$key] ?? null,
+                    'measurement_units' => $this->measurement_units_pv[$key] ?? null,
+                    'weight' => $this->weight_pv[$key] ?? null,
+                    'weight_units' => $this->weight_units_pv[$key] ?? null,
+                    'quantity_type' => $this->quantity_type_pv[$key] ?? null,
+                    'color' => $this->color_pv[$key] ?? null,
+                    'item_type' => $this->item_type_pv[$key] ?? null,
+                    'max_discount' => $this->max_discount_pv[$key] ?? null,
+                    'max_discount_unit' => $this->max_discount_unit_pv[$key] ?? null,
+                    'tax_percentage' => $this->tax_percentage_pv[$key] ?? null,
+                    'min_price' => $this->min_price_pv[$key] ?? null,
+                    'max_price' => $this->max_price_pv[$key] ?? null,
+                    'min_order_quantity' => $this->min_order_quantity_pv[$key] ?? null,
+                    'max_order_quantity' => $this->max_order_quantity_pv[$key] ?? null,
                 ]);
             }
         }

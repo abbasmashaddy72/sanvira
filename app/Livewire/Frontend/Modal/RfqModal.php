@@ -3,7 +3,6 @@
 namespace App\Livewire\Frontend\Modal;
 
 use App\Models\Rfq;
-use App\Models\Order;
 use App\Models\Enquiry;
 use WireUi\Traits\Actions;
 use LivewireUI\Modal\ModalComponent;
@@ -87,7 +86,7 @@ class RfqModal extends ModalComponent
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $originalPrice,
-                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
+                'client_price' => $this->client_prices[$product->pivot->product_id] ?? null,
             ];
         });
 

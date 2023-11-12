@@ -95,40 +95,40 @@
                 <div class="mt-2 space-y-4">
                     <div class="flex items-center rounded-lg border-2 border-gray-200 shadow-lg">
                         <div class="grid grid-cols-4 items-end gap-2 p-4">
-                            <x-select label="{{ __('Select Origin Country') }}" wire:model="country_id_pv.0"
-                                placeholder="Select Origin Country" :async-data="route('api.admin.countries')" option-label="name"
+                            <x-native-select label="{{ __('Select Origin Country') }}" wire:model="country_id_pv.0"
+                                name='country_id_pv.0' placeholder="Select Origin Country" :options="getKeyValuesWithMap('Country', 'name', 'id')"
+                                option-label="name" option-value="id" required />
+
+                            <x-native-select label="{{ __('Select Vendor') }}" wire:model="vendor_id_pv.0"
+                                name='vendor_id_pv.0' placeholder="Select Vendor" :options="getKeyValuesWithMap('Vendor', 'name', 'id')"
+                                option-label="name" option-value="id" required />
+
+                            <x-native-select label="{{ __('Select Brand') }}" wire:model="brand_id_pv.0"
+                                name='brand_id_pv.0' placeholder="Select Brand" :options="getKeyValuesWithMap('Brand', 'name', 'id')" option-label="name"
                                 option-value="id" required />
 
-                            <x-select label="{{ __('Select Vendor') }}" wire:model="vendor_id_pv.0"
-                                placeholder="Select Vendor" :async-data="route('api.admin.vendors')" option-label="name" option-value="id"
-                                required />
-
-                            <x-select label="{{ __('Select Brand') }}" wire:model="brand_id_pv.0"
-                                placeholder="Select Brand" :async-data="route('api.admin.brands')" option-label="name" option-value="id"
-                                required />
-
                             <x-input name="avb_stock_pv.0" label="{{ __('Available Stock') }}" type="text"
-                                wire:model='avb_stock_pv.0' required />
+                                wire:model='avb_stock_pv.0' name='avb_stock_pv.0' required />
 
                             <x-input name="sku_pv.0" label="{{ __('Stock Keping Unit') }}" type="text"
-                                wire:model='sku_pv.0' required />
+                                wire:model='sku_pv.0' name='sku_pv.0' required />
 
                             <x-input name="barcode_pv.0" label="{{ __('Barcode') }}" type="text"
-                                wire:model='barcode_pv.0' required />
+                                wire:model='barcode_pv.0' name='barcode_pv.0' required />
 
                             <x-input name="quantity_type_pv.0" label="{{ __('Quantity Type') }}" type="text"
-                                wire:model='quantity_type_pv.0' />
+                                wire:model='quantity_type_pv.0' name='quantity_type_pv.0' />
 
                             <x-input name="color_pv.0" label="{{ __('Colors') }}" type="text"
-                                wire:model='color_pv.0' />
+                                wire:model='color_pv.0' name='color_pv.0' />
 
                             <div class="col-span-4">
                                 <div class="grid grid-cols-3 items-end justify-between gap-2">
                                     <p class="text-lg font-medium">Meaturement Details</p>
-                                    <x-native-select :options="['m', 'cm', 'mm', 'in', 'ft']" wire:model="measurement_units"
-                                        label="Measurement Units" />
+                                    <x-native-select :options="['m', 'cm', 'mm', 'in', 'ft']" wire:model="measurement_units.0"
+                                        name='measurement_units.0' label="Measurement Units" />
                                     <x-native-select :options="['kg', 'g', 't', 'oz']" wire:model="weight_units_pv.0"
-                                        label="Weight Units" />
+                                        name='weight_units_pv.0' label="Weight Units" />
                                 </div>
                                 <hr class="my-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
                             </div>
@@ -136,19 +136,19 @@
                             <div class="col-span-4">
                                 <div class="justify-betwen grid grid-cols-5 items-end gap-2">
                                     <x-input name="length_pv.0" label="{{ __('Length') }}" type="number"
-                                        wire:model='length_pv.0' />
+                                        wire:model='length_pv.0' name='length_pv.0' />
 
                                     <x-input name="breadth_pv.0" label="{{ __('Breadth') }}" type="number"
-                                        wire:model='breadth_pv.0' />
+                                        wire:model='breadth_pv.0' name='breadth_pv.0' />
 
                                     <x-input name="width_pv.0" label="{{ __('Width') }}" type="number"
-                                        wire:model='width_pv.0' />
+                                        wire:model='width_pv.0' name='width_pv.0' />
 
                                     <x-input name="diameter_pv.0" label="{{ __('Diameter') }}" type="number"
-                                        wire:model='diameter_pv.0' />
+                                        wire:model='diameter_pv.0' name='diameter_pv.0' />
 
                                     <x-input name="weight_pv.0" label="{{ __('Weight') }}" type="number"
-                                        wire:model='weight_pv.0' />
+                                        wire:model='weight_pv.0' name='weight_pv.0' />
                                 </div>
                             </div>
 
@@ -160,25 +160,25 @@
                             </div>
 
                             <x-input name="max_discount_pv.0" label="{{ __('Max. Discount') }}" type="number"
-                                wire:model='max_discount_pv.0' />
+                                wire:model='max_discount_pv.0' name='max_discount_pv.0' />
 
                             <x-native-select :options="['Regular', 'Percentage']" wire:model="max_discount_unit_pv.0"
-                                label='Max. Discount Units' />
+                                name='max_discount_unit_pv.0' label='Max. Discount Units' />
 
                             <x-input name="tax_percentage_pv.0" label="{{ __('Tax Percentage') }}" type="number"
-                                wire:model='tax_percentage_pv.0' />
+                                wire:model='tax_percentage_pv.0' name='tax_percentage_pv.0' />
 
                             <x-input name="min_price_pv.0" label="{{ __('Min. Price') }}" type="text"
-                                wire:model='min_price_pv.0' />
+                                wire:model='min_price_pv.0' name='min_price_pv.0' />
 
                             <x-input name="max_price_pv.0" label="{{ __('Max. Price') }}" type="text"
-                                wire:model='max_price_pv.0' />
+                                wire:model='max_price_pv.0' name='max_price_pv.0' />
 
                             <x-input name="min_order_quantity_pv.0" label="{{ __('Min. Order Quantity') }}"
-                                type="text" wire:model='min_order_quantity_pv.0' />
+                                type="text" wire:model='min_order_quantity_pv.0' name='min_order_quantity_pv.0' />
 
                             <x-input name="max_order_quantity_pv.0" label="{{ __('Max. Order Quantity') }}"
-                                type="text" wire:model='max_order_quantity_pv.0' />
+                                type="text" wire:model='max_order_quantity_pv.0' name='max_order_quantity_pv.0' />
                         </div>
                     </div>
 
@@ -194,39 +194,47 @@
                                 </svg>
                             </button>
                             <div class="grid grid-cols-4 items-end gap-2 p-4">
-                                <x-select label="{{ __('Select Origin Country') }}"
+                                <x-native-select label="{{ __('Select Origin Country') }}"
                                     wire:model="country_id_pv.{{ $input_value }}"
-                                    placeholder="Select Origin Country" :async-data="route('api.admin.countries')" option-label="name"
-                                    option-value="id" required />
+                                    name='country_id_pv.{{ $input_value }}' placeholder="Select Origin Country"
+                                    :options="getKeyValuesWithMap('Country', 'name', 'id')" option-label="name" option-value="id" required />
 
-                                <x-select label="{{ __('Select Vendor') }}"
-                                    wire:model="vendor_id_pv.{{ $input_value }}" placeholder="Select Vendor"
-                                    :async-data="route('api.admin.vendors')" option-label="name" option-value="id" required />
+                                <x-native-select label="{{ __('Select Vendor') }}"
+                                    wire:model="vendor_id_pv.{{ $input_value }}"
+                                    name='vendor_id_pv.{{ $input_value }}' placeholder="Select Vendor"
+                                    :options="getKeyValuesWithMap('Vendor', 'name', 'id')" option-label="name" option-value="id" required />
 
-                                <x-select label="{{ __('Select Brand') }}"
-                                    wire:model="brand_id_pv.{{ $input_value }}" placeholder="Select Brand"
-                                    :async-data="route('api.admin.brands')" option-label="name" option-value="id" required />
+                                <x-native-select label="{{ __('Select Brand') }}"
+                                    wire:model="brand_id_pv.{{ $input_value }}"
+                                    name='brand_id_pv.{{ $input_value }}' placeholder="Select Brand"
+                                    :options="getKeyValuesWithMap('Brand', 'name', 'id')" option-label="name" option-value="id" required />
 
                                 <x-input name="avb_stock_pv.{{ $input_value }}" label="{{ __('Available Stock') }}"
-                                    type="text" wire:model='avb_stock_pv.{{ $input_value }}' required />
+                                    type="text" wire:model='avb_stock_pv.{{ $input_value }}'
+                                    name='avb_stock_pv.{{ $input_value }}' required />
 
                                 <x-input name="sku_pv.{{ $input_value }}" label="{{ __('Stock Keping Unit') }}"
-                                    type="text" wire:model='sku_pv.{{ $input_value }}' required />
+                                    type="text" wire:model='sku_pv.{{ $input_value }}'
+                                    name='sku_pv.{{ $input_value }}' required />
 
                                 <x-input name="barcode_pv.{{ $input_value }}" label="{{ __('Barcode') }}"
-                                    type="text" wire:model='barcode_pv.{{ $input_value }}' required />
+                                    type="text" wire:model='barcode_pv.{{ $input_value }}'
+                                    name='barcode_pv.{{ $input_value }}' required />
 
                                 <x-input name="quantity_type_pv.{{ $input_value }}"
                                     label="{{ __('Quantity Type') }}" type="text"
-                                    wire:model='quantity_type_pv.{{ $input_value }}' />
+                                    wire:model='quantity_type_pv.{{ $input_value }}'
+                                    name='quantity_type_pv.{{ $input_value }}' />
 
                                 <div class="col-span-4">
                                     <div class="grid grid-cols-3 items-end justify-between gap-2">
                                         <p class="text-lg font-medium">Meaturement Details</p>
                                         <x-native-select :options="['kg', 'g', 't', 'oz']"
-                                            wire:model="weight_units_pv.{{ $input_value }}" label="Weight Units" />
-                                        <x-native-select :options="['m', 'cm', 'mm', 'in', 'ft']" wire:model="measurement_units"
-                                            label="Measurement Units" />
+                                            wire:model="weight_units_pv.{{ $input_value }}"
+                                            name='weight_units_pv.{{ $input_value }}' label="Weight Units" />
+                                        <x-native-select :options="['m', 'cm', 'mm', 'in', 'ft']"
+                                            wire:model="measurement_units.{{ $input_value }}"
+                                            name='measurement_units.{{ $input_value }}' label="Measurement Units" />
                                     </div>
                                     <hr class="my-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
                                 </div>
@@ -234,19 +242,24 @@
                                 <div class="col-span-4">
                                     <div class="justify-betwen grid grid-cols-5 items-end gap-2">
                                         <x-input name="length_pv.{{ $input_value }}" label="{{ __('Length') }}"
-                                            type="number" wire:model='length_pv.{{ $input_value }}' />
+                                            type="number" wire:model='length_pv.{{ $input_value }}'
+                                            name='length_pv.{{ $input_value }}' />
 
                                         <x-input name="breadth_pv.{{ $input_value }}" label="{{ __('Breadth') }}"
-                                            type="number" wire:model='breadth_pv.{{ $input_value }}' />
+                                            type="number" wire:model='breadth_pv.{{ $input_value }}'
+                                            name='breadth_pv.{{ $input_value }}' />
 
                                         <x-input name="width_pv.{{ $input_value }}" label="{{ __('Width') }}"
-                                            type="number" wire:model='width_pv.{{ $input_value }}' />
+                                            type="number" wire:model='width_pv.{{ $input_value }}'
+                                            name='width_pv.{{ $input_value }}' />
 
                                         <x-input name="diameter_pv.{{ $input_value }}" label="{{ __('Diameter') }}"
-                                            type="number" wire:model='diameter_pv.{{ $input_value }}' />
+                                            type="number" wire:model='diameter_pv.{{ $input_value }}'
+                                            name='diameter_pv.{{ $input_value }}' />
 
                                         <x-input name="weight_pv.{{ $input_value }}" label="{{ __('Weight') }}"
-                                            type="number" wire:model='weight_pv.{{ $input_value }}' />
+                                            type="number" wire:model='weight_pv.{{ $input_value }}'
+                                            name='weight_pv.{{ $input_value }}' />
                                     </div>
                                 </div>
 
@@ -259,28 +272,35 @@
 
                                 <x-input name="max_discount_pv.{{ $input_value }}"
                                     label="{{ __('Max. Discount') }}" type="number"
-                                    wire:model='max_discount_pv.{{ $input_value }}' />
+                                    wire:model='max_discount_pv.{{ $input_value }}'
+                                    name='max_discount_pv.{{ $input_value }}' />
 
                                 <x-native-select :options="['Regular', 'Percentage']" label='Max. Discount Units'
-                                    wire:model="max_discount_unit_pv.{{ $input_value }}" />
+                                    wire:model="max_discount_unit_pv.{{ $input_value }}"
+                                    name='max_discount_unit_pv.{{ $input_value }}' />
 
                                 <x-input name="tax_percentage_pv.{{ $input_value }}"
                                     label="{{ __('Tax Percentage') }}" type="number"
-                                    wire:model='tax_percentage_pv.{{ $input_value }}' />
+                                    wire:model='tax_percentage_pv.{{ $input_value }}'
+                                    name='tax_percentage_pv.{{ $input_value }}' />
 
                                 <x-input name="min_price_pv.{{ $input_value }}" label="{{ __('Min. Price') }}"
-                                    type="text" wire:model='min_price_pv.{{ $input_value }}' />
+                                    type="text" wire:model='min_price_pv.{{ $input_value }}'
+                                    name='min_price_pv.{{ $input_value }}' />
 
                                 <x-input name="max_price_pv.{{ $input_value }}" label="{{ __('Max. Price') }}"
-                                    type="text" wire:model='max_price_pv.{{ $input_value }}' />
+                                    type="text" wire:model='max_price_pv.{{ $input_value }}'
+                                    name='max_price_pv.{{ $input_value }}' />
 
                                 <x-input name="min_order_quantity_pv.{{ $input_value }}"
                                     label="{{ __('Min. Order Quantity') }}" type="text"
-                                    wire:model='min_order_quantity_pv.{{ $input_value }}' />
+                                    wire:model='min_order_quantity_pv.{{ $input_value }}'
+                                    name='min_order_quantity_pv.{{ $input_value }}' />
 
                                 <x-input name="max_order_quantity_pv.{{ $input_value }}"
                                     label="{{ __('Max. Order Quantity') }}" type="text"
-                                    wire:model='max_order_quantity_pv.{{ $input_value }}' />
+                                    wire:model='max_order_quantity_pv.{{ $input_value }}'
+                                    name='max_order_quantity_pv.{{ $input_value }}' />
                             </div>
                         </div>
                     @endforeach

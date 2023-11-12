@@ -82,7 +82,7 @@ class FormQuotation extends ModalComponent
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $product->pivot->our_price,
-                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
+                'client_price' => $this->client_prices[$product->pivot->product_id] ?? null,
             ];
         });
 
@@ -91,17 +91,29 @@ class FormQuotation extends ModalComponent
             ->where('status', 'Open')
             ->first();
 
-        if (!$order) {
-            // If no pending Order exists, create a new Order
-            $order = Order::create([
-                'quotation_id' => $quotation->id,
-                'buyer_id' => auth()->user()->id,
-                'staff_id' => auth()->user()->id,
-                'order_no' => generateTableNumber('orders', 'order_no'),
-                'quotation_submission_date_time' => now(),
-                'status' => 'Open',
-            ]);
+        if ($order) {
+
+            // Attach the products to the Quotation using the pivot table
+            $order->products()->syncWithoutDetaching($productData);
+
+            // Optionally, you can update Quotation status to 'Submitted' as well
+            $quotation->update(['status' => $this->status]);
+
+            $this->notification()->success($title = 'Quotation Submitted Successfully');
+
+            $this->redirect(route('admin.quotation'));
+            return;
         }
+        // If no pending Order exists, create a new Order
+        $order = Order::create([
+            'quotation_id' => $quotation->id,
+            'buyer_id' => auth()->user()->id,
+            'staff_id' => auth()->user()->id,
+            'order_no' => generateTableNumber('orders', 'order_no'),
+            'quotation_submission_date_time' => now(),
+            'status' => 'Open',
+        ]);
+
 
         // Attach the products to the Quotation using the pivot table
         $order->products()->syncWithoutDetaching($productData);

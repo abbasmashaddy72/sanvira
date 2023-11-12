@@ -86,7 +86,7 @@ class FormDeliveryNote extends ModalComponent
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $product->pivot->our_price,
-                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
+                'client_price' => $this->client_prices[$product->pivot->product_id] ?? null,
             ];
         });
 

@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\DeliveryNote;
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Order;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Models\ProductVariation;

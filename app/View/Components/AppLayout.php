@@ -210,11 +210,9 @@ class AppLayout extends Component
         $thirdLevelActiveIndex = '';
 
         foreach ($this->sideMenu() as $menuKey => $menu) {
-            if ($menu !== 'devider' && isset($menu['route_name'])) {
-                // Check if the starting portion of the route name matches
-                if (strpos($pageName, $menu['route_name']) === 0) {
+            if ($menu !== 'devider' && isset($menu['route_name']) && strpos($pageName, $menu['route_name']) === 0) {
                     $firstLevelActiveIndex = $menuKey;
-                }
+                
             }
 
             if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
@@ -222,12 +220,10 @@ class AppLayout extends Component
             }
 
             foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
-                if (isset($subMenu['route_name'])) {
-                    // Check if the starting portion of the route name matches
-                    if (strpos($pageName, $subMenu['route_name']) === 0 && $menuKey != 'menu-layout') {
+                if (isset($subMenu['route_name']) && strpos($pageName, $subMenu['route_name']) === 0 && $menuKey != 'menu-layout') {
                         $firstLevelActiveIndex = $menuKey;
                         $secondLevelActiveIndex = $subMenuKey;
-                    }
+                    
                 }
 
                 if (!isset($subMenu['sub_menu'])) {
@@ -235,13 +231,11 @@ class AppLayout extends Component
                 }
 
                 foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
-                    if (isset($lastSubMenu['route_name'])) {
-                        // Check if the starting portion of the route name matches
-                        if (strpos($pageName, $lastSubMenu['route_name']) === 0) {
+                    if (isset($lastSubMenu['route_name']) && strpos($pageName, $lastSubMenu['route_name']) === 0) {
                             $firstLevelActiveIndex = $menuKey;
                             $secondLevelActiveIndex = $subMenuKey;
                             $thirdLevelActiveIndex = $lastSubMenuKey;
-                        }
+                        
                     }
                 }
             }
