@@ -32,8 +32,6 @@ class Rfq extends Model
             'color',
             'item_type',
             'quantity',
-            'our_price',
-            'client_price',
         ]);
     }
 

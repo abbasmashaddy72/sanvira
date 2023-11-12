@@ -37,7 +37,7 @@ final class TableProduct extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Product::query()->with(['category']);
+        return Product::query()->latest()->with(['category']);
     }
 
     public function relationSearch(): array

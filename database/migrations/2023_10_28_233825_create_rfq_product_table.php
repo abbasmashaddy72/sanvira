@@ -23,8 +23,6 @@ return new class extends Migration
             $table->string('color')->nullable();
             $table->string('item_type')->nullable();
             $table->string('quantity')->nullable();
-            $table->string('our_price')->nullable();
-            $table->string('client_price')->nullable();
         });
     }
 

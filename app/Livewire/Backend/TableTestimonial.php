@@ -37,7 +37,7 @@ final class TableTestimonial extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Testimonial::query()->with('user');
+        return Testimonial::query()->latest()->with('user');
     }
 
     public function relationSearch(): array

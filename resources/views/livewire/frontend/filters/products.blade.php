@@ -176,10 +176,7 @@
                                                 </div>
 
                                                 <x-input label='Quantity' wire:model='quantity' type='number' />
-                                                <x-input label="You Price" placeholder="Our Price: 89999"
-                                                    wire:model='price' type='number' />
 
-                                                <!-- Add to RFQ -->
                                                 <div class="absolute bottom-2 left-0 right-0 text-center">
                                                     <button wire:click="addToRfq({{ $item->id }})"
                                                         class="rounded bg-blue-600 px-4 py-2 font-medium text-white transition duration-300 ease-in-out hover:bg-blue-700">

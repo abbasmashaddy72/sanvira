@@ -37,7 +37,7 @@ final class TableVendor extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Vendor::query();
+        return Vendor::query()->latest();
     }
 
     public function relationSearch(): array

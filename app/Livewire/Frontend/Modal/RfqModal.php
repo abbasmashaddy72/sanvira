@@ -65,12 +65,17 @@ class RfqModal extends ModalComponent
     public function add()
     {
         // Assuming $rfq is an instance of the RFQ model
-        $rfq = Rfq::where('user_id', auth()->id())->where('status', 'pending')->first();
+        $rfq = Rfq::with(['products.variations'])->where('user_id', auth()->id())->where('status', 'pending')->first();
         // Get all products attached to the RFQ with their pivot data
         $rfqProducts = $rfq->products;
 
         // Extract the pivot data for each product
         $productData = $rfqProducts->map(function ($product) {
+            $originalPrice  = $product->variations
+                ->where('product_id', $product->id)
+                ->where('brand_id', $product->pivot->brand_id)
+                ->pluck('max_price')->first();
+
             return [
                 'product_id' => $product->id,
                 'brand_id' => $product->pivot->brand_id,
@@ -81,8 +86,8 @@ class RfqModal extends ModalComponent
                 'color' => $product->pivot->color,
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
-                'our_price' => $product->pivot->our_price,
-                'client_price' => $product->pivot->client_price,
+                'our_price' => $originalPrice,
+                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
             ];
         });
 

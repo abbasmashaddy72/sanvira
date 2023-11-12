@@ -37,7 +37,7 @@ final class TableInvoice extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Invoice::query()->with('deliveryNote', 'buyer', 'staff');
+        return Invoice::query()->latest()->with('deliveryNote', 'buyer', 'staff');
     }
 
     public function relationSearch(): array

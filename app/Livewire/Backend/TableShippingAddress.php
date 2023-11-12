@@ -37,7 +37,7 @@ final class TableShippingAddress extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return ShippingAddress::query();
+        return ShippingAddress::query()->latest();
     }
 
     public function relationSearch(): array

@@ -62,7 +62,6 @@ class Products extends Component
     public $variation_color_id;
     public $variation_item_type_id;
     public $quantity;
-    public $price;
 
     public $rfqProducts = [];
 
@@ -216,8 +215,6 @@ class Products extends Component
                 'color' => $this->variation_color_id,
                 'item_type' => $this->variation_item_type_id,
                 'quantity' => $this->quantity,
-                'our_price' => $this->price,
-                'client_price' => $this->price,
             ]
         ];
 
@@ -258,7 +255,6 @@ class Products extends Component
             'variation_color_id',
             'variation_item_type_id',
             'quantity',
-            'price',
         ]);
     }
 

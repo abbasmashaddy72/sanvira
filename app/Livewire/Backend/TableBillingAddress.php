@@ -37,7 +37,7 @@ final class TableBillingAddress extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return BillingAddress::query();
+        return BillingAddress::query()->latest();
     }
 
     public function relationSearch(): array

@@ -28,6 +28,7 @@ class FormOrder extends ModalComponent
     // Custom Data
     public $data;
     public $productData;
+    public $client_prices = [];
 
     public function mount()
     {
@@ -43,6 +44,14 @@ class FormOrder extends ModalComponent
 
         // Accessing the products relationship with pivot data
         $this->productData = $this->data->products()->get();
+
+        // Initialize $client_prices array with client prices from $productData
+        $this->client_prices = collect($this->productData)
+            ->pluck('pivot.client_price', 'id')
+            ->map(function ($clientPrice) {
+                return $clientPrice ?: ''; // Set to empty string if client_price is null
+            })
+            ->toArray();
     }
 
     protected $rules = [
@@ -77,7 +86,7 @@ class FormOrder extends ModalComponent
                 'item_type' => $product->pivot->item_type,
                 'quantity' => $product->pivot->quantity,
                 'our_price' => $product->pivot->our_price,
-                'client_price' => $product->pivot->client_price,
+                'client_price' => $this->client_prices[$product->pivot->id] ?? null,
             ];
         });
 

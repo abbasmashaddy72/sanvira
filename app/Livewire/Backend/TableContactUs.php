@@ -37,7 +37,7 @@ final class TableContactUs extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return ContactUs::query();
+        return ContactUs::query()->latest();
     }
 
     public function relationSearch(): array

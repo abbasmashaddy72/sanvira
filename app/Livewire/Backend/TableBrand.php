@@ -37,7 +37,7 @@ final class TableBrand extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Brand::query();
+        return Brand::query()->latest();
     }
 
     public function relationSearch(): array

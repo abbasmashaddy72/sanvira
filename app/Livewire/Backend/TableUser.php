@@ -37,7 +37,7 @@ final class TableUser extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return User::query()->with('city');
+        return User::query()->latest()->with('city');
     }
 
     public function relationSearch(): array

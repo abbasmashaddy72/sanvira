@@ -37,7 +37,7 @@ final class TableSlider extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Slider::query();
+        return Slider::query()->latest();
     }
 
     public function relationSearch(): array

@@ -37,7 +37,7 @@ final class TableCategory extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Category::query()->with('parentCategory');
+        return Category::query()->latest()->with('parentCategory');
     }
 
     public function relationSearch(): array

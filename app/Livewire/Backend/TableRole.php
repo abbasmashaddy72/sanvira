@@ -37,7 +37,7 @@ final class TableRole extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Role::query()->with('users')->with('permissions');
+        return Role::query()->latest()->with('users')->with('permissions');
     }
 
     public function relationSearch(): array

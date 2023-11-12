@@ -25,7 +25,11 @@
                 <tr class="{{ $index % 2 === 0 ? 'bg-white dark:bg-gray-800' : 'bg-gray-100 dark:bg-gray-700' }}">
                     @foreach ($columnKeys as $key)
                         <td class="whitespace-nowrap px-6 py-4">
-                            {{ data_get($item, $key) }}
+                            @if ('pivot.client_price' == $key)
+                                <x-input wire:model="client_prices.{{ $item->pivot->product_id }}" />
+                            @else
+                                {{ data_get($item, $key) }}
+                            @endif
                         </td>
                     @endforeach
                     <!-- Add extra fields in the rows -->

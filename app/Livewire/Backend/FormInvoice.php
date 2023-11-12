@@ -24,6 +24,7 @@ class FormInvoice extends ModalComponent
     // Custom Data
     public $data;
     public $productData;
+    public $client_prices = [];
 
     public function mount()
     {
@@ -40,6 +41,14 @@ class FormInvoice extends ModalComponent
 
         // Accessing the products relationship with pivot data
         $this->productData = $this->data->products()->get();
+
+        // Initialize $client_prices array with client prices from $productData
+        $this->client_prices = collect($this->productData)
+            ->pluck('pivot.client_price', 'id')
+            ->map(function ($clientPrice) {
+                return $clientPrice ?: ''; // Set to empty string if client_price is null
+            })
+            ->toArray();
     }
 
     protected $rules = [

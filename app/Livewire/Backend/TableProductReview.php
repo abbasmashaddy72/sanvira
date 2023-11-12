@@ -37,7 +37,7 @@ final class TableProductReview extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return ProductReview::query();
+        return ProductReview::query()->latest();
     }
 
     public function relationSearch(): array

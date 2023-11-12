@@ -37,7 +37,7 @@ final class TableQuotation extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Quotation::query()->with('enquiry', 'buyer', 'staff');
+        return Quotation::query()->latest()->with('enquiry', 'buyer', 'staff');
     }
 
     public function relationSearch(): array

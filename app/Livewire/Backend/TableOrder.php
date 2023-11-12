@@ -37,7 +37,7 @@ final class TableOrder extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Order::query()->with('quotation', 'buyer', 'staff');
+        return Order::query()->latest()->with('quotation', 'buyer', 'staff');
     }
 
     public function relationSearch(): array

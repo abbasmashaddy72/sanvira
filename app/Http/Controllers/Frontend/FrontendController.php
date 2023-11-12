@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Models\Brand;
 use App\Models\Slider;
+use App\Models\Enquiry;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\BrandView;
@@ -18,6 +19,14 @@ class FrontendController extends Controller
 {
     public function index()
     {
+        $data = Enquiry::with('rfq', 'buyer')->findOrFail(134);
+        // $this->status = $this->data->status;
+
+        // Accessing the products relationship with pivot data
+        $productData = $data->products()->get();
+
+        customEcho($productData);
+
         $sliders = Slider::get();
         $product_categories = Category::where('parent_id', 0)->withCount('products')->get()->take(8);
         $featured_brands = Brand::withCount('products')->where('account_type', '=', 'Featured')->get()->take(8);

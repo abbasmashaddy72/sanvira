@@ -37,7 +37,7 @@ final class TableDeliveryNote extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DeliveryNote::query()->with('order', 'buyer', 'staff');
+        return DeliveryNote::query()->latest()->with('order', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
