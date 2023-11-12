@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend;
 
+use App\Models\Invoice;
 use WireUi\Traits\Actions;
 use App\Models\DeliveryNote;
 use Livewire\WithFileUploads;
@@ -25,6 +26,10 @@ class FormDeliveryNote extends ModalComponent
 
     public $status;
 
+    // Custom Data
+    public $data;
+    public $productData;
+
     public function mount()
     {
         $this->status_enum = explode(',', DeliveryNote::$enumCasts['status']);
@@ -34,14 +39,14 @@ class FormDeliveryNote extends ModalComponent
             return;
         }
         abort_if(Gate::denies('delivery_note_edit'), 403);
-        $data = DeliveryNote::findOrFail($this->delivery_note_id);
-        $this->order_id = $data->order_id;
-        $this->delivery_notes_attachment = $data->delivery_notes_attachment;
-        $this->status = $data->status;
+        $this->data = DeliveryNote::with('buyer', 'products')->findOrFail($this->delivery_note_id);
+        $this->status = $this->data->status;
+
+        // Accessing the products relationship with pivot data
+        $this->productData = $this->data->products()->get();
     }
 
     protected $rules = [
-        'order_id' => 'required',
         'delivery_notes_attachment' => '',
         'status' => 'required',
     ];
@@ -51,27 +56,68 @@ class FormDeliveryNote extends ModalComponent
         $this->validateOnly($propertyName);
     }
 
-    public function add()
+    public function submit()
     {
         $validatedData = $this->validate();
+        // Assuming $deliveryNote is an instance of the DeliveryNote model
+        $deliveryNote = DeliveryNote::findOrFail($this->delivery_note_id);
+        // Get all products attached to the DeliveryNote with their pivot data
+        $deliveryNoteProducts = $deliveryNote->products;
 
-        if (!empty($this->delivery_note_id)) {
-            if (!empty($this->delivery_notes_attachment) && gettype($this->delivery_notes_attachment) != 'string') {
-                $validatedData['delivery_notes_attachment'] = $this->delivery_notes_attachment->store('delivery_note', 'public');
-            }
+        // Extract the pivot data for each product
+        $productData = $deliveryNoteProducts->map(function ($product) {
+            return [
+                'product_id' => $product->id,
+                'brand_id' => $product->pivot->brand_id,
+                'size' => $product->pivot->size,
+                'weight' => $product->pivot->weight,
+                'diameter' => $product->pivot->diameter,
+                'quantity_type' => $product->pivot->quantity_type,
+                'color' => $product->pivot->color,
+                'item_type' => $product->pivot->item_type,
+                'quantity' => $product->pivot->quantity,
+                'our_price' => $product->pivot->our_price,
+                'client_price' => $product->pivot->client_price,
+            ];
+        });
 
-            DeliveryNote::where('id', $this->delivery_note_id)->update($validatedData);
+        // Create or retrieve an Invoice
+        $invoice = Invoice::where('buyer_id', auth()->user()->id)
+            ->where('status', 'Open')
+            ->first();
 
-            $this->notification()->success($name = 'Delivery Note Updated Successfully!');
-        } else {
-            if (!empty($this->delivery_notes_attachment) && gettype($this->delivery_notes_attachment) != 'string') {
-                $validatedData['delivery_notes_attachment'] = $this->delivery_notes_attachment->store('delivery_note', 'public');
-            }
-
-            DeliveryNote::create($validatedData);
-
-            $this->notification()->success($name = 'Delivery Note Saved Successfully!');
+        if (!$invoice) {
+            // If no pending Invoice exists, create a new Invoice
+            $invoice = Invoice::create([
+                'delivery_note_id' => $deliveryNote->id,
+                'buyer_id' => auth()->user()->id,
+                'staff_id' => auth()->user()->id,
+                'invoice_no' => generateTableNumber('invoices', 'invoice_no'),
+                'delivery_note_submission_date_time' => now(),
+                'status' => 'Open',
+            ]);
         }
+
+        // Attach the products to the DeliveryNote using the pivot table
+        $invoice->products()->syncWithoutDetaching($productData);
+
+        if (!empty($this->delivery_notes_attachment) && gettype($this->delivery_notes_attachment) != 'string') {
+            // New attachment provided, store it
+            $validatedData['delivery_notes_attachment'] = $this->delivery_notes_attachment->store('delivery_notes_attachment', 'public');
+
+            // Update the delivery note only if a new attachment is provided
+            $deliveryNote->update([
+                'status' => $validatedData['status'],
+                'delivery_notes_attachment' => $validatedData['delivery_notes_attachment']
+            ]);
+        } else {
+            // No new attachment provided, only update the status
+            $deliveryNote->update([
+                'status' => $validatedData['status'],
+            ]);
+        }
+
+        $this->notification()->success($title = 'Delivery Note Submitted Successfully');
 
         $this->redirect(route('admin.delivery_note'));
     }

@@ -79,7 +79,7 @@ final class TableCategory extends PowerGridComponent
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Parent id', 'parent_id'),
+            Column::make('Parent Name', 'parent_id'),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 

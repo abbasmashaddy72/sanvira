@@ -65,8 +65,8 @@ final class TableProductReview extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Product id', 'product_id'),
-            Column::make('User id', 'user_id'),
+            Column::make('Product Name', 'product_id'),
+            Column::make('User Name', 'user_id'),
             Column::make('Rating', 'rating'),
             Column::make('Title', 'title')
                 ->sortable()

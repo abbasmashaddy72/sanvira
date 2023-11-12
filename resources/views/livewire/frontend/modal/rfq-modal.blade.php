@@ -24,7 +24,7 @@
                                         </div>
                                     </div>
                                     <div class="flex flex-1 items-end justify-between text-sm">
-                                        <div class="w-32">
+                                        <div class="w-44">
                                             <x-inputs.number label="Quantity" value="{{ $product->pivot->quantity }}" />
                                         </div>
 

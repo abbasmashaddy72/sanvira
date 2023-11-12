@@ -67,8 +67,8 @@ final class TableBillingAddress extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('User id', 'user_id'),
-            Column::make('City id', 'city_id'),
+            Column::make('User Name', 'user_id'),
+            Column::make('City Name', 'city_id'),
             Column::make('Company name', 'company_name')
                 ->sortable()
                 ->searchable(),

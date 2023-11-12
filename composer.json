@@ -42,6 +42,7 @@
         "beyondcode/laravel-query-detector": "^1.6",
         "fakerphp/faker": "^1.21",
         "glhd/laravel-dumper": "^1.0.1",
+        "hedii/artisan-log-cleaner": "^6.1",
         "imanghafoori/laravel-microscope": "^1.0.278",
         "laravel/breeze": "^1.17",
         "laravel/pint": "^1.3",

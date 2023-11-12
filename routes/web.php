@@ -68,8 +68,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('quotation_edit/{id}', 'QuotationController@edit')->name('quotation_edit');
 
     Route::get('orders', 'OrderController@index')->name('orders');
-    Route::get('orders_add', 'OrderController@add')->name('orders_add');
-    Route::get('orders_edit/{id}', 'OrderController@edit')->name('orders_edit');
+    Route::get('order_add', 'OrderController@add')->name('order_add');
+    Route::get('order_edit/{id}', 'OrderController@edit')->name('order_edit');
 
     Route::get('delivery_note', 'DeliveryNoteController@index')->name('delivery_note');
     Route::get('delivery_note_add', 'DeliveryNoteController@add')->name('delivery_note_add');

@@ -108,34 +108,34 @@ class FrontendController extends Controller
         }
 
         view()->share('title', $data->title);
-        $data->with(['brands', 'Vendors', 'productAttributes', 'Category']);
-        ProductView::updateOrCreate(
-            [
-                'user_id' => auth()->user()->id,
-                'product_id' => $data->id,
-            ],
-            [
-                'clicks' => DB::raw('clicks + 1'),
-            ]
-        );
-        BrandView::updateOrCreate(
-            [
-                'user_id' => auth()->user()->id,
-                'brand_id' => $data->brand_id,
-            ],
-            [
-                'clicks' => DB::raw('clicks + 1'),
-            ]
-        );
-        VendorView::updateOrCreate(
-            [
-                'user_id' => auth()->user()->id,
-                'vendor_id' => $data->vendor_id,
-            ],
-            [
-                'clicks' => DB::raw('clicks + 1'),
-            ]
-        );
+        // $data->with(['brands', 'Vendors', 'productAttributes', 'Category']);
+        // ProductView::updateOrCreate(
+        //     [
+        //         'user_id' => auth()->user()->id,
+        //         'product_id' => $data->id,
+        //     ],
+        //     [
+        //         'clicks' => DB::raw('clicks + 1'),
+        //     ]
+        // );
+        // BrandView::updateOrCreate(
+        //     [
+        //         'user_id' => auth()->user()->id,
+        //         'brand_id' => $data->brand_id,
+        //     ],
+        //     [
+        //         'clicks' => DB::raw('clicks + 1'),
+        //     ]
+        // );
+        // VendorView::updateOrCreate(
+        //     [
+        //         'user_id' => auth()->user()->id,
+        //         'vendor_id' => $data->vendor_id,
+        //     ],
+        //     [
+        //         'clicks' => DB::raw('clicks + 1'),
+        //     ]
+        // );
         return view('pages.frontend.products_details', compact([
             'data',
         ]));

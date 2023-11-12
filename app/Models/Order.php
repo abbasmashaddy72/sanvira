@@ -11,9 +11,11 @@ class Order extends Model
 
     protected $fillable = [
         'quotation_id',
+        'buyer_id',
+        'staff_id',
         'order_no',
+        'quotation_submission_date_time',
         'purchase_order_pdf',
-        'rfq_submission_date',
         'status',
     ];
 
@@ -21,9 +23,36 @@ class Order extends Model
         'status' => 'Open,Close',
     ];
 
+    protected $casts = [
+        'quotation_submission_date_time' => 'datetime:Y-m-d h:i:s'
+    ];
+
+    public function buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function staff()
+    {
+        return $this->belongsTo(User::class, 'staff_id');
+    }
+
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'order_product');
+        return $this->belongsToMany(Product::class, 'order_product')->withPivot([
+            'id',
+            'product_id',
+            'brand_id',
+            'size',
+            'weight',
+            'diameter',
+            'quantity_type',
+            'color',
+            'item_type',
+            'quantity',
+            'our_price',
+            'client_price',
+        ]);
     }
 
     public function enquiry()

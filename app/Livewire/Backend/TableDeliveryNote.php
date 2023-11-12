@@ -37,14 +37,12 @@ final class TableDeliveryNote extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return DeliveryNote::query()->with('order');
+        return DeliveryNote::query()->with('order', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
     {
-        return [
-            'order' => ['order_no']
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
@@ -54,11 +52,18 @@ final class TableDeliveryNote extends PowerGridComponent
             ->addColumn('order_id', function (DeliveryNote $model) {
                 return e($model->order->order_no);
             })
+            ->addColumn('buyer_id', function (DeliveryNote $model) {
+                return e($model->buyer->name);
+            })
+            ->addColumn('staff_id', function (DeliveryNote $model) {
+                return e($model->staff->name);
+            })
             ->addColumn('delivery_note_no')
 
             /** Example of custom column using a closure **/
             ->addColumn('delivery_note_no_lower', fn (DeliveryNote $model) => strtolower(e($model->delivery_note_no)))
 
+            ->addColumn('order_submission_date_time_formatted', fn (DeliveryNote $model) => Carbon::parse($model->order_submission_date_time)->format('d/m/Y H:i:s'))
             ->addColumn('delivery_notes_attachment')
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (DeliveryNote $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
@@ -68,13 +73,19 @@ final class TableDeliveryNote extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Order No.', 'order_id'),
+            Column::make('Order Name', 'order_id'),
+            Column::make('Buyer Name', 'buyer_id'),
+            Column::make('Staff Name', 'staff_id'),
             Column::make('Delivery note no', 'delivery_note_no')
                 ->sortable()
                 ->searchable(),
 
+            Column::make('Order submission date time', 'order_submission_date_time_formatted', 'order_submission_date_time')
+                ->sortable(),
+
             Column::make('Delivery notes attachment', 'delivery_notes_attachment')
-                ->toggleable(),
+                ->sortable()
+                ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -90,9 +101,9 @@ final class TableDeliveryNote extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('order_no')->operators(['contains']),
             Filter::inputText('delivery_note_no')->operators(['contains']),
-            Filter::boolean('delivery_notes_attachment'),
+            Filter::datetimepicker('order_submission_date_time'),
+            Filter::inputText('delivery_notes_attachment')->operators(['contains']),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

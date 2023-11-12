@@ -37,14 +37,12 @@ final class TableOrder extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Order::query()->with('quotation');
+        return Order::query()->with('quotation', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
     {
-        return [
-            'quotation' => ['quotation_no']
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
@@ -54,13 +52,19 @@ final class TableOrder extends PowerGridComponent
             ->addColumn('quotation_id', function (Order $model) {
                 return e($model->quotation->quotation_no);
             })
+            ->addColumn('buyer_id', function (Order $model) {
+                return e($model->buyer->name);
+            })
+            ->addColumn('staff_id', function (Order $model) {
+                return e($model->staff->name);
+            })
             ->addColumn('order_no')
 
             /** Example of custom column using a closure **/
             ->addColumn('order_no_lower', fn (Order $model) => strtolower(e($model->order_no)))
 
+            ->addColumn('quotation_submission_date_time_formatted', fn (Order $model) => Carbon::parse($model->quotation_submission_date_time)->format('d/m/Y H:i:s'))
             ->addColumn('purchase_order_pdf')
-            ->addColumn('rfq_submission_date_formatted', fn (Order $model) => Carbon::parse($model->rfq_submission_date)->format('d/m/Y H:i:s'))
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Order $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -69,16 +73,19 @@ final class TableOrder extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Quotation id', 'quotation_id'),
+            Column::make('Quotation Name', 'quotation_id'),
+            Column::make('Buyer Name', 'buyer_id'),
+            Column::make('Staff Name', 'staff_id'),
             Column::make('Order no', 'order_no')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Purchase order pdf', 'purchase_order_pdf')
-                ->toggleable(),
-
-            Column::make('Rfq submission date', 'rfq_submission_date_formatted', 'rfq_submission_date')
+            Column::make('Quotation submission date time', 'quotation_submission_date_time_formatted', 'quotation_submission_date_time')
                 ->sortable(),
+
+            Column::make('Purchase order pdf', 'purchase_order_pdf')
+                ->sortable()
+                ->searchable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -95,8 +102,8 @@ final class TableOrder extends PowerGridComponent
     {
         return [
             Filter::inputText('order_no')->operators(['contains']),
-            Filter::datetimepicker('rfq_submission_date'),
-            Filter::boolean('purchase_order_pdf'),
+            Filter::datetimepicker('quotation_submission_date_time'),
+            Filter::inputText('purchase_order_pdf')->operators(['contains']),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

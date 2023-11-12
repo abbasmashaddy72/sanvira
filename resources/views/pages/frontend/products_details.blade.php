@@ -44,7 +44,7 @@
         </style>
     @endpush
 
-    <x-frontend.index-container containerTitle='{{ $data->name }}' class="py-14">
+    <x-frontend.index-container containerTitle='{{ $data->title }}' class="py-14">
         <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow lg:col-span-8">
                 <div class="relative">
@@ -87,18 +87,18 @@
                                 <span class="ml-2">{{ $data->edt }}</span>
                             </li>
 
-                            <li class="flex items-center justify-between p-1">
+                            {{-- <li class="flex items-center justify-between p-1">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Brand Name:') }}</span>
                                 <a class="text-blue-600"
                                     href="{{ route('brand_products', ['slug' => $data->brands->slug]) }}">
                                     <span class="ml-2">{{ $data->brands->name }}</span>
                                 </a>
-                            </li>
+                            </li> --}}
 
-                            <li class="flex items-center justify-between p-1">
+                            {{-- <li class="flex items-center justify-between p-1">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Stock Keeping Unit:') }}</span>
                                 <span class="ml-2">{{ $data->sku }}</span>
-                            </li>
+                            </li> --}}
 
                             {{-- <li class="flex items-center justify-between p-1">
                                 <span class="mr-2 font-medium text-blue-600">{{ __('Vendor Name:') }}</span>
@@ -111,26 +111,25 @@
                             </li> --}}
 
                             <li class="line-clamp-1 flex items-center justify-between p-1">
-                                <span
-                                    class="mr-2 truncate font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
+                                <span class="mr-2 truncate font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
                                 <a class="truncate text-blue-600"
                                     href="{{ route('products_category', ['slug' => $data->category->slug]) }}">
                                     <span class="ml-2">{{ $data->category->name }}</span>
                                 </a>
                             </li>
 
-                            <li class="line-clamp-1 flex items-center justify-between p-1">
+                            {{-- <li class="flex items-center justify-between p-1 line-clamp-1">
                                 <span
-                                    class="mr-2 truncate font-medium text-blue-600">{{ __('Length x Width x Breadth:') }}</span>
+                                    class="mr-2 font-medium text-blue-600 truncate">{{ __('Length x Width x Breadth:') }}</span>
                                 <span class="ml-2">{{ $data->length . $data->length_units }} x
                                     {{ $data->width . $data->width_units }} x
                                     {{ $data->breadth . $data->breadth_units }}</span>
-                            </li>
+                            </li> --}}
 
-                            <li class="line-clamp-1 flex items-center justify-between p-1">
-                                <span class="mr-2 truncate font-medium text-blue-600">{{ __('Weight:') }}</span>
+                            {{-- <li class="flex items-center justify-between p-1 line-clamp-1">
+                                <span class="mr-2 font-medium text-blue-600 truncate">{{ __('Weight:') }}</span>
                                 <span class="ml-2">{{ $data->weight . $data->weight_unit }}</span>
-                            </li>
+                            </li> --}}
 
                             @foreach ($data->productAttributes as $item)
                                 <li class="flex items-center justify-between p-1">
@@ -141,11 +140,11 @@
 
                         </ul>
                     </div>
-                    @livewire('frontend.filters.product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page'])
+                    {{-- @livewire('frontend.filters.product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page']) --}}
                 </div>
             </div>
             <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow">
-                <h2 class="text-lg font-semibold">{{ __('Similar Products') }}</h2>
+                <h2 class="text-lg font-semibold">{{ __('Similar Products') }}</h2>{{ $data->category }}
                 @livewire('frontend.filters.products', ['category' => [$data->category], 'type' => 'Product Details Similar Products'])
             </div>
         </div>

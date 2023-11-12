@@ -3,9 +3,10 @@
 namespace App\Livewire\Backend;
 
 use App\Models\Enquiry;
+use Livewire\Component;
+use App\Models\Quotation;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
-use Livewire\Component;
 
 class FormEnquiry extends Component
 {
@@ -21,25 +22,29 @@ class FormEnquiry extends Component
 
     public $user_id;
 
-    public $submission_date_time;
+    public $rfq_submission_date_time;
 
     public $status;
+
+    // Custom Data
+    public $data;
+    public $productData;
 
     public function mount()
     {
         $this->status_enum = explode(',', Enquiry::$enumCasts['status']);
         if (empty($this->enquiry_id)) {
-            abort_if(Gate::denies('brand_add'), 403);
+            abort_if(Gate::denies('enquiry_add'), 403);
 
             return;
         }
-        abort_if(Gate::denies('brand_edit'), 403);
+        abort_if(Gate::denies('enquiry_edit'), 403);
 
-        $data = Enquiry::findOrFail($this->enquiry_id);
-        $this->rfq_id = $data->rfq_id;
-        $this->user_id = $data->user_id;
-        $this->submission_date_time = $data->submission_date_time;
-        $this->status = $data->status;
+        $this->data = Enquiry::with('rfq', 'buyer')->findOrFail($this->enquiry_id);
+        $this->status = $this->data->status;
+
+        // Accessing the products relationship with pivot data
+        $this->productData = $this->data->products()->get();
     }
 
     protected $rules = [
@@ -53,19 +58,54 @@ class FormEnquiry extends Component
         $this->validateOnly($propertyName);
     }
 
-    public function add()
+    public function submit()
     {
-        $validatedData = $this->validate();
+        // Assuming $enquiry is an instance of the Enquiry model
+        $enquiry = Enquiry::findOrFail($this->enquiry_id);
+        // Get all products attached to the Enquiry with their pivot data
+        $enquiryProducts = $enquiry->products;
 
-        if (!empty($this->enquiry_id)) {
-            Enquiry::where('id', $this->enquiry_id)->update($validatedData);
+        // Extract the pivot data for each product
+        $productData = $enquiryProducts->map(function ($product) {
+            return [
+                'product_id' => $product->id,
+                'brand_id' => $product->pivot->brand_id,
+                'size' => $product->pivot->size,
+                'weight' => $product->pivot->weight,
+                'diameter' => $product->pivot->diameter,
+                'quantity_type' => $product->pivot->quantity_type,
+                'color' => $product->pivot->color,
+                'item_type' => $product->pivot->item_type,
+                'quantity' => $product->pivot->quantity,
+                'our_price' => $product->pivot->our_price,
+                'client_price' => $product->pivot->client_price,
+            ];
+        });
 
-            $this->notification()->success($name = 'Enquiry Updated Successfully!');
-        } else {
-            Enquiry::create($validatedData);
+        // Create or retrieve an Quotation
+        $quotation = Quotation::where('buyer_id', auth()->user()->id)
+            ->where('status', 'Open')
+            ->first();
 
-            $this->notification()->success($name = 'Enquiry Saved Successfully!');
+        if (!$quotation) {
+            // If no pending Quotation exists, create a new Quotation
+            $quotation = Quotation::create([
+                'enquiry_id' => $enquiry->id,
+                'buyer_id' => auth()->user()->id,
+                'staff_id' => auth()->user()->id,
+                'quotation_no' => generateTableNumber('quotations', 'quotation_no'),
+                'enquiry_submission_date_time' => now(),
+                'status' => 'Open',
+            ]);
         }
+
+        // Attach the products to the Enquiry using the pivot table
+        $quotation->products()->syncWithoutDetaching($productData);
+
+        // Optionally, you can update Enquiry status to 'Submitted' as well
+        $enquiry->update(['status' => $this->status]);
+
+        $this->notification()->success($title = 'Enquiry Submitted Successfully');
 
         $this->redirect(route('admin.enquiry'));
     }

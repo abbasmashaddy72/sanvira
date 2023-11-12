@@ -2,6 +2,7 @@
 
 use App\Models\StaticOption;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 // Gets ENUM values Data from DB in array format
@@ -21,6 +22,15 @@ if (!function_exists('getEnum')) {
     }
 }
 
+// Return Custom Echo without HTML as HTML
+if (!function_exists('customEcho')) {
+    function customEcho($data)
+    {
+        $formattedData = nl2br(htmlspecialchars(html_entity_decode($data)));
+        echo $formattedData;
+        exit;
+    }
+}
 
 // Gets Route Action Names
 if (!function_exists('getRouteAction')) {
@@ -133,7 +143,7 @@ if (!function_exists('console_log')) {
 }
 
 // Generate Number
-if (!function_exists(('generateTableNumber'))) {
+if (!function_exists('generateTableNumber')) {
     function generateTableNumber($tableName, $column)
     {
         $latestRecord = DB::table($tableName)->latest($column)->first();
@@ -160,5 +170,12 @@ if (!function_exists(('generateTableNumber'))) {
         $newTableNo = $prefix . '-' . $yearMonth . '-' . $nextNumber;
 
         return $newTableNo;
+    }
+}
+
+if (!function_exists('logQuery')) {
+    function logQuery()
+    {
+        Log::info('Attach Query: ' . DB::getQueryLog()['query']);
     }
 }

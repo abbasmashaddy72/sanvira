@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Backend;
 
+use App\Models\Order;
 use App\Models\Quotation;
 use WireUi\Traits\Actions;
 use Illuminate\Support\Facades\Gate;
@@ -21,6 +22,10 @@ class FormQuotation extends ModalComponent
 
     public $status;
 
+    // Custom Data
+    public $data;
+    public $productData;
+
     public function mount()
     {
         $this->status_enum = explode(',', Quotation::$enumCasts['status']);
@@ -31,9 +36,11 @@ class FormQuotation extends ModalComponent
         }
         abort_if(Gate::denies('quotation_edit'), 403);
 
-        $data = Quotation::findOrFail($this->quotation_id);
-        $this->enquiry_id = $data->enquiry_id;
-        $this->status = $data->status;
+        $this->data = Quotation::with('enquiry', 'buyer')->findOrFail($this->quotation_id);
+        $this->status = $this->data->status;
+
+        // Accessing the products relationship with pivot data
+        $this->productData = $this->data->products()->get();
     }
 
     protected $rules = [
@@ -46,19 +53,54 @@ class FormQuotation extends ModalComponent
         $this->validateOnly($propertyName);
     }
 
-    public function add()
+    public function submit()
     {
-        $validatedData = $this->validate();
+        // Assuming $quotation is an instance of the Quotation model
+        $quotation = Quotation::findOrFail($this->quotation_id);
+        // Get all products attached to the Quotation with their pivot data
+        $quotationProducts = $quotation->products;
 
-        if (!empty($this->quotation_id)) {
-            Quotation::where('id', $this->quotation_id)->update($validatedData);
+        // Extract the pivot data for each product
+        $productData = $quotationProducts->map(function ($product) {
+            return [
+                'product_id' => $product->id,
+                'brand_id' => $product->pivot->brand_id,
+                'size' => $product->pivot->size,
+                'weight' => $product->pivot->weight,
+                'diameter' => $product->pivot->diameter,
+                'quantity_type' => $product->pivot->quantity_type,
+                'color' => $product->pivot->color,
+                'item_type' => $product->pivot->item_type,
+                'quantity' => $product->pivot->quantity,
+                'our_price' => $product->pivot->our_price,
+                'client_price' => $product->pivot->client_price,
+            ];
+        });
 
-            $this->notification()->success($name = 'Quotation Updated Successfully!');
-        } else {
-            Quotation::create($validatedData);
+        // Create or retrieve an Order
+        $order = Order::where('buyer_id', auth()->user()->id)
+            ->where('status', 'Open')
+            ->first();
 
-            $this->notification()->success($name = 'Quotation Saved Successfully!');
+        if (!$order) {
+            // If no pending Order exists, create a new Order
+            $order = Order::create([
+                'quotation_id' => $quotation->id,
+                'buyer_id' => auth()->user()->id,
+                'staff_id' => auth()->user()->id,
+                'order_no' => generateTableNumber('orders', 'order_no'),
+                'quotation_submission_date_time' => now(),
+                'status' => 'Open',
+            ]);
         }
+
+        // Attach the products to the Quotation using the pivot table
+        $order->products()->syncWithoutDetaching($productData);
+
+        // Optionally, you can update Quotation status to 'Submitted' as well
+        $quotation->update(['status' => $this->status]);
+
+        $this->notification()->success($title = 'Quotation Submitted Successfully');
 
         $this->redirect(route('admin.quotation'));
     }

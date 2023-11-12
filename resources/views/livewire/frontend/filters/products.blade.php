@@ -59,7 +59,7 @@
             </div>
 
             <div class="md:col-span-9 lg:col-span-9">
-                <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
                     @foreach ($products as $item)
                         <div
                             class="group relative overflow-hidden rounded-md border-2 border-gray-200 bg-white shadow duration-500 ease-in-out hover:border-2 hover:border-blue-600 hover:shadow-xl dark:bg-slate-900 dark:shadow-gray-800 dark:hover:shadow-xl dark:hover:shadow-gray-700">
@@ -138,84 +138,40 @@
                                                 <h2 class="mb-2 border-b-2 border-gray-300 text-lg font-semibold">
                                                     {{ $item->title }}</h2>
                                                 <!-- Variation Selection -->
-                                                <x-native-select label="Brand" wire:model.live='variation_brand_id'>
-                                                    <option value="">Select Brand</option>
-                                                    @foreach ($variations->pluck('brand')->unique('id') as $brand)
-                                                        <option value="{{ $brand->id }}">{{ $brand->name }}
-                                                        </option>
-                                                    @endforeach
-                                                </x-native-select>
+                                                <x-select label="Brand" placeholder="Brand" :options="$variations->pluck('brand')->unique('id')"
+                                                    option-label='name' option-value='id'
+                                                    wire:model='variation_brand_id' />
 
                                                 <div class="grid grid-cols-2 gap-1">
                                                     @if (count($sizes) > 0)
-                                                        <x-native-select label="Size" wire:model='variation_size_id'>
-                                                            @foreach ($sizes as $size)
-                                                                <option value="{{ $size }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $size }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Size" placeholder="Size" :options="$sizes"
+                                                            wire:model='variation_size_id' />
                                                     @endif
 
                                                     @if (count($weights) > 0)
-                                                        <x-native-select label="Weight"
-                                                            wire:model='variation_weight_id'>
-                                                            @foreach ($weights as $weight)
-                                                                <option value="{{ $weight }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $weight }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Weight" placeholder="Weight" :options="$weights"
+                                                            wire:model='variation_weight_id' />
                                                     @endif
 
                                                     @if (count($diameters) > 0)
-                                                        <x-native-select label="Diameter"
-                                                            wire:model='variation_diameter_id'>
-                                                            @foreach ($diameters as $diameter)
-                                                                <option value="{{ $diameter }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $diameter }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Diameter" placeholder="Diameter"
+                                                            :options="$diameters" wire:model='variation_diameter_id' />
                                                     @endif
 
                                                     @if (count($quantities) > 0)
-                                                        <x-native-select label="Quantity"
-                                                            wire:model='variation_quantity_type_id'>
-                                                            @foreach ($quantities as $quantity)
-                                                                <option value="{{ $quantity }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $quantity }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Quantity" placeholder="Quantity"
+                                                            :options="$quantities"
+                                                            wire:model='variation_quantity_type_id' />
                                                     @endif
 
                                                     @if (count($colors) > 0)
-                                                        <x-native-select label="Color"
-                                                            wire:model='variation_color_id'>
-                                                            @foreach ($colors as $color)
-                                                                <option value="{{ $color }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $color }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Color" placeholder="Color" :options="$colors"
+                                                            wire:model='variation_color_id' />
                                                     @endif
 
                                                     @if (count($itemTypes) > 0)
-                                                        <x-native-select label="Item Type"
-                                                            wire:model='variation_item_type_id'>
-                                                            @foreach ($itemTypes as $type)
-                                                                <option value="{{ $type }}"
-                                                                    @if ($loop->index == 0) selected @endif>
-                                                                    {{ $type }}
-                                                                </option>
-                                                            @endforeach
-                                                        </x-native-select>
+                                                        <x-select label="Item Type" placeholder="Item Type"
+                                                            :options="$itemTypes" wire:model='variation_item_type_id' />
                                                     @endif
                                                 </div>
 

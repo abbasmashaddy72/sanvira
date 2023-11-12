@@ -17,9 +17,13 @@ class FormInvoice extends ModalComponent
     public $status_enum = [];
 
     // Model Keys
-    public $order_id;
+    public $delivery_note_id;
 
     public $status;
+
+    // Custom Data
+    public $data;
+    public $productData;
 
     public function mount()
     {
@@ -31,13 +35,15 @@ class FormInvoice extends ModalComponent
         }
         abort_if(Gate::denies('invoice_edit'), 403);
 
-        $data = Invoice::findOrFail($this->invoice_id);
-        $this->order_id = $data->order_id;
-        $this->status = $data->status;
+        $this->data = Invoice::findOrFail($this->invoice_id);
+        $this->status = $this->data->status;
+
+        // Accessing the products relationship with pivot data
+        $this->productData = $this->data->products()->get();
     }
 
     protected $rules = [
-        'order_id' => 'required',
+        'delivery_note_id' => 'required',
         'status' => 'required',
     ];
 
@@ -46,19 +52,15 @@ class FormInvoice extends ModalComponent
         $this->validateOnly($propertyName);
     }
 
-    public function add()
+    public function submit()
     {
-        $validatedData = $this->validate();
+        // Assuming $invoice is an instance of the Invoice model
+        $invoice = Invoice::findOrFail($this->invoice_id);
 
-        if (!empty($this->invoice_id)) {
-            Invoice::where('id', $this->invoice_id)->update($validatedData);
+        // Optionally, you can update Invoice status to 'Submitted' as well
+        $invoice->update(['status' => $this->status]);
 
-            $this->notification()->success($name = 'Invoice Updated Successfully!');
-        } else {
-            Invoice::create($validatedData);
-
-            $this->notification()->success($name = 'Invoice Saved Successfully!');
-        }
+        $this->notification()->success($title = 'Invoice Submitted Successfully');
 
         $this->redirect(route('admin.invoice'));
     }

@@ -21,7 +21,20 @@ class Rfq extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class, 'rfq_product')->withPivot('quantity');
+        return $this->belongsToMany(Product::class, 'rfq_product')->withPivot([
+            'id',
+            'product_id',
+            'brand_id',
+            'size',
+            'weight',
+            'diameter',
+            'quantity_type',
+            'color',
+            'item_type',
+            'quantity',
+            'our_price',
+            'client_price',
+        ]);
     }
 
     public function order()

@@ -25,9 +25,10 @@ class EnquiryFactory extends Factory
         $now = Carbon::now();
         return [
             'rfq_id' => fake()->randomElement(Rfq::pluck('id')->toArray()),
-            'user_id' => fake()->randomElement(User::pluck('id')->toArray()),
+            'buyer_id' => fake()->randomElement(User::pluck('id')->toArray()),
+            'staff_id' => fake()->randomElement(User::pluck('id')->toArray()),
             'enquiry_no' => 'ENQ-' . $now->year . $now->month . '-000' . fake()->unique()->numberBetween(0001, 10000),
-            'submission_date_time' => fake()->dateTime(),
+            'rfq_submission_date_time' => fake()->dateTime(),
             'status' => fake()->randomElement(explode(',', Enquiry::$enumCasts['status'])),
         ];
     }
@@ -48,13 +49,10 @@ class EnquiryFactory extends Factory
         $pivotData = [];
         foreach ($productIds as $productId) {
             $pivotData[$productId] = [
-                'quantity' => rand(10, 500),
                 'brand_id' => fake()->randomElement(ProductVariation::where('product_id', $productId)->pluck('brand_id')->toArray()),
-                'size' => rand(100, 500) . ' x ' . rand(100, 500) . ' x ' . rand(100, 500),
-                'diameter' => rand(100, 500),
-                'measurement_units' => fake()->randomElement([null, 'Feet', 'Inches', 'Yards', 'Meters', 'mm', 'cm']),
-                'weight' => rand(10, 500),
-                'weight_units' => fake()->randomElement([null, 'Kg', 'N/mm2', 'Kg/m3', 'ltrs', 'tons', 'pounds']),
+                'size' => rand(100, 500) . ' x ' . rand(100, 500) . ' x ' . rand(100, 500) . ' ' . fake()->randomElement([null, 'Feet', 'Inches', 'Yards', 'Meters', 'mm', 'cm']),
+                'weight' => rand(10, 500) . ' ' . fake()->randomElement([null, 'Kg', 'N/mm2', 'Kg/m3', 'ltrs', 'tons', 'pounds']),
+                'diameter' => rand(100, 500) . fake()->randomElement([null, 'Feet', 'Inches', 'Yards', 'Meters', 'mm', 'cm']),
                 'quantity_type' => fake()->randomElement(['Bags', 'Cartoon', 'Pieces', 'Tons', 'Rolls', 'Cubic Meter', 'Each', 'Square Meter', 'Linear Meter', 'Jerry Can', rand(1, 50) . ' Pieces / Cartoon', 'Drum']),
                 'color' => fake()->colorName(),
                 'item_type' => fake()->randomElement([null, 'Q-1', 'Q-2', 'Q-3', 'Q-4']),

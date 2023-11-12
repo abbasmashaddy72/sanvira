@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-slot name="breadcrumb">{{ Breadcrumbs::render('order.index') }}</x-slot>
+    <x-slot name="breadcrumb">{{ Breadcrumbs::render('orders.index') }}</x-slot>
 
     <x-backend.grid>
         <div class="col-span-12">

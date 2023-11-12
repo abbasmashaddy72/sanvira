@@ -37,15 +37,12 @@ final class TableEnquiry extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Enquiry::query()->with('user', 'rfq');
+        return Enquiry::query()->with('rfq', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
     {
-        return [
-            'rfq' => ['rfq_no'],
-            'user' => ['name'],
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
@@ -55,15 +52,18 @@ final class TableEnquiry extends PowerGridComponent
             ->addColumn('rfq_id', function (Enquiry $model) {
                 return e($model->rfq->rfq_no);
             })
-            ->addColumn('user_id', function (Enquiry $model) {
-                return e($model->user->name);
+            ->addColumn('buyer_id', function (Enquiry $model) {
+                return e($model->buyer->name);
+            })
+            ->addColumn('staff_id', function (Enquiry $model) {
+                return e($model->staff->name);
             })
             ->addColumn('enquiry_no')
 
             /** Example of custom column using a closure **/
             ->addColumn('enquiry_no_lower', fn (Enquiry $model) => strtolower(e($model->enquiry_no)))
 
-            ->addColumn('submission_date_time_formatted', fn (Enquiry $model) => Carbon::parse($model->submission_date_time)->format('d/m/Y H:i:s'))
+            ->addColumn('rfq_submission_date_time_formatted', fn (Enquiry $model) => Carbon::parse($model->rfq_submission_date_time)->format('d/m/Y H:i:s'))
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Enquiry $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -72,16 +72,14 @@ final class TableEnquiry extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Rfq No.', 'rfq_id')
-                ->searchable(),
-            Column::make('User Name', 'user_id')
-                ->searchable(),
-
+            Column::make('Rfq No.', 'rfq_id'),
+            Column::make('Buyer Name', 'buyer_id'),
+            Column::make('Staff Name', 'staff_id'),
             Column::make('Enquiry no', 'enquiry_no')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Submission date time', 'submission_date_time_formatted', 'submission_date_time')
+            Column::make('Rfq submission date time', 'rfq_submission_date_time_formatted', 'rfq_submission_date_time')
                 ->sortable(),
 
             Column::make('Status', 'status')
@@ -98,10 +96,8 @@ final class TableEnquiry extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('rfq_id')->operators(['contains']),
-            Filter::inputText('user_id')->operators(['contains']),
             Filter::inputText('enquiry_no')->operators(['contains']),
-            Filter::datetimepicker('submission_date_time'),
+            Filter::datetimepicker('rfq_submission_date_time'),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

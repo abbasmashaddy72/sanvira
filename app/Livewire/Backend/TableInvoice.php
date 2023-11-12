@@ -37,28 +37,33 @@ final class TableInvoice extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Invoice::query()->with('order');
+        return Invoice::query()->with('deliveryNote', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
     {
-        return [
-            'order' => ['order_no']
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('order_id', function (Invoice $model) {
-                return e($model->order->order_no);
+            ->addColumn('delivery_note_id', function (Invoice $model) {
+                return e($model->deliveryNote->delivery_note_no);
+            })
+            ->addColumn('buyer_id', function (Invoice $model) {
+                return e($model->buyer->name);
+            })
+            ->addColumn('staff_id', function (Invoice $model) {
+                return e($model->staff->name);
             })
             ->addColumn('invoice_no')
 
             /** Example of custom column using a closure **/
             ->addColumn('invoice_no_lower', fn (Invoice $model) => strtolower(e($model->invoice_no)))
 
+            ->addColumn('delivery_note_submission_date_time_formatted', fn (Invoice $model) => Carbon::parse($model->delivery_note_submission_date_time)->format('d/m/Y H:i:s'))
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Invoice $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -67,10 +72,15 @@ final class TableInvoice extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Order No.', 'order_id'),
+            Column::make('Delivery Note Name', 'delivery_note_id'),
+            Column::make('Buyer Name', 'buyer_id'),
+            Column::make('Staff Name', 'staff_id'),
             Column::make('Invoice no', 'invoice_no')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Delivery note submission date time', 'delivery_note_submission_date_time_formatted', 'delivery_note_submission_date_time')
+                ->sortable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -86,8 +96,8 @@ final class TableInvoice extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('order_no')->operators(['contains']),
             Filter::inputText('invoice_no')->operators(['contains']),
+            Filter::datetimepicker('delivery_note_submission_date_time'),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
@@ -16,17 +17,14 @@ return new class extends Migration {
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
             $table->string('size')->nullable();
-            $table->decimal('diameter', 10, 2)->nullable();
-            $table->string('measurement_units')->nullable();
-            $table->decimal('weight', 10, 2)->nullable();
-            $table->string('weight_units')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('diameter')->nullable();
             $table->string('quantity_type');
-            $table->longText('color')->nullable();
+            $table->string('color')->nullable();
             $table->string('item_type')->nullable();
             $table->string('quantity')->nullable();
-            $table->decimal('our_price', 10, 2)->nullable();
-            $table->decimal('client_price', 10, 2)->nullable();
-            $table->timestamps();
+            $table->string('our_price')->nullable();
+            $table->string('client_price')->nullable();
         });
     }
 

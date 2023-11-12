@@ -37,14 +37,12 @@ final class TableQuotation extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Quotation::query()->with('enquiry');
+        return Quotation::query()->with('enquiry', 'buyer', 'staff');
     }
 
     public function relationSearch(): array
     {
-        return [
-            'enquiry' => ['enquiry_no']
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
@@ -54,11 +52,18 @@ final class TableQuotation extends PowerGridComponent
             ->addColumn('enquiry_id', function (Quotation $model) {
                 return e($model->enquiry->enquiry_no);
             })
+            ->addColumn('buyer_id', function (Quotation $model) {
+                return e($model->buyer->name);
+            })
+            ->addColumn('staff_id', function (Quotation $model) {
+                return e($model->staff->name);
+            })
             ->addColumn('quotation_no')
 
             /** Example of custom column using a closure **/
             ->addColumn('quotation_no_lower', fn (Quotation $model) => strtolower(e($model->quotation_no)))
 
+            ->addColumn('enquiry_submission_date_time_formatted', fn (Quotation $model) => Carbon::parse($model->enquiry_submission_date_time)->format('d/m/Y H:i:s'))
             ->addColumn('status')
             ->addColumn('created_at_formatted', fn (Quotation $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
@@ -67,11 +72,15 @@ final class TableQuotation extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Enquiry No', 'enquiry_id')
-                ->searchable(),
+            Column::make('Enquiry Name', 'enquiry_id'),
+            Column::make('Buyer Name', 'buyer_id'),
+            Column::make('Staff Name', 'staff_id'),
             Column::make('Quotation no', 'quotation_no')
                 ->sortable()
                 ->searchable(),
+
+            Column::make('Enquiry submission date time', 'enquiry_submission_date_time_formatted', 'enquiry_submission_date_time')
+                ->sortable(),
 
             Column::make('Status', 'status')
                 ->sortable()
@@ -87,8 +96,8 @@ final class TableQuotation extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('enquiry_id')->operators(['contains']),
             Filter::inputText('quotation_no')->operators(['contains']),
+            Filter::datetimepicker('enquiry_submission_date_time'),
             Filter::inputText('status')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];

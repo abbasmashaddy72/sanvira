@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Frontend\Filters;
 
+use App\Models\Rfq;
 use App\Models\Product;
 use Livewire\Component;
 use WireUi\Traits\Actions;
@@ -60,6 +61,12 @@ class Products extends Component
     public $variation_quantity_type_id;
     public $variation_color_id;
     public $variation_item_type_id;
+    public $quantity;
+    public $price;
+
+    public $rfqProducts = [];
+
+    protected $listeners = ['rfqUpdated' => 'render'];
 
     public function openOverlay($productId)
     {
@@ -159,6 +166,21 @@ class Products extends Component
     public function mount()
     {
         $this->page_title = $this->page_title ?? $this->type;
+
+        $this->rfqProducts = Rfq::where('status', 'Pending')->where('user_id', auth()->id())
+            ->whereHas('products', function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            })
+            ->with(['products' => function ($query) {
+                $query->select('products.id'); // Specify 'products.id' to avoid ambiguity
+            }])
+            ->get()
+            ->flatMap(function ($rfq) {
+                return $rfq->products;
+            })
+            ->pluck('id')
+            ->unique()
+            ->toArray();
     }
 
     public function apply()
@@ -185,23 +207,46 @@ class Products extends Component
     {
         // Fetch the selected variation Keys
         $selectedVariations = [
-            'brand_id' => $this->variation_brand_id,
-            'size_id' => $this->variation_size_id,
-            'weight_id' => $this->variation_weight_id,
-            'diameter_id' => $this->variation_diameter_id,
-            'quantity_type_id' => $this->variation_quantity_type_id,
-            'color_id' => $this->variation_color_id,
-            'item_type_id' => $this->variation_item_type_id,
+            $itemId => [
+                'brand_id' => $this->variation_brand_id,
+                'size' => $this->variation_size_id,
+                'weight' => $this->variation_weight_id,
+                'diameter' => $this->variation_diameter_id,
+                'quantity_type' => $this->variation_quantity_type_id,
+                'color' => $this->variation_color_id,
+                'item_type' => $this->variation_item_type_id,
+                'quantity' => $this->quantity,
+                'our_price' => $this->price,
+                'client_price' => $this->price,
+            ]
         ];
 
-        dd($selectedVariations);
+        // Get the user's pending RFQ if it exists
+        $pendingRfq = Rfq::where('user_id', auth()->user()->id)
+            ->where('status', 'Pending')
+            ->first();
+
+        if ($pendingRfq) {
+            // If a pending RFQ exists, attach products to the existing RFQ
+            $pendingRfq->products()->attach($selectedVariations);
+        } else {
+            // If no pending RFQ exists, create a new RFQ
+            $newRfq = Rfq::create([
+                'user_id' => auth()->user()->id,
+                'rfq_no' => generateTableNumber('rfqs', 'rfq_no'),
+                'status' => 'Pending',
+            ]);
+
+            // Attach products to the new RFQ using the pivot table
+            $newRfq->products()->attach($selectedVariations);
+        }
+
+        $this->rfqProducts[] = $itemId;
+        $this->dispatch('updatedRfq');
+
+        $this->notification()->success($name = 'RFQ Saved Successfully!');
+
         $this->closeOverlay();
-
-        // Here, you can process and store the data as per your application's requirement
-        // For example, save it in the database
-        // Example: ProductVariation::create(['product_id' => $itemId, 'selected_variations' => json_encode($selectedVariations)]);
-
-        // You can also emit an event or perform any other necessary logic
 
         // To reset the selected variations after adding to RFQ
         $this->reset([
@@ -212,6 +257,8 @@ class Products extends Component
             'variation_quantity_type_id',
             'variation_color_id',
             'variation_item_type_id',
+            'quantity',
+            'price',
         ]);
     }
 

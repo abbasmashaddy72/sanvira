@@ -4,7 +4,7 @@
             <div class="col-span-3 rounded-lg bg-white px-4 dark:bg-gray-800 sm:p-6">
                 <p class="text-lg font-semibold">Product Details</p>
                 <hr class="my-2 h-px border-0 bg-gray-200 dark:bg-gray-700" />
-                <div class="flex grid grid-cols-3 items-end gap-x-2 gap-y-4">
+                <div class="grid grid-cols-3 items-end gap-x-2 gap-y-4">
                     <x-input name="title" label="{{ __('Title') }}" type="text" wire:model='title' required />
 
                     <x-input name="model" label="{{ __('Model') }}" type="text" wire:model='model' required />
