@@ -9,7 +9,7 @@
 
 <nav id='topnav' class="defaultscroll is-sticky nav-sticky z-10 items-center bg-white py-2">
     <div class="container">
-        <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}" wire:navigate>
+        <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}">
             <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-14 w-24 object-cover" alt="Logo" />
         </a>
 

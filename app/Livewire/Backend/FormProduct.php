@@ -193,7 +193,7 @@ class FormProduct extends Component
         $validatedData = $this->validate();
 
         if (!empty($this->product_id)) {
-            if (!empty($this->images) && gettype($this->images) == 'array') {
+            if (!empty($validatedData['images']) && gettype($validatedData['images']) == 'array') {
                 $images = $validatedData['images'];
                 unset($validatedData['images']);
                 $multiImages = [];
@@ -207,7 +207,7 @@ class FormProduct extends Component
                     $validatedData['images'] = $multiImages;
                 }
             }
-            if (!empty($this->data_sheets) && gettype($this->data_sheets) == 'array') {
+            if (!empty($validatedData['data_sheets']) && gettype($validatedData['data_sheets']) == 'array') {
                 $data_sheets = $validatedData['data_sheets'];
                 unset($validatedData['data_sheets']);
                 $multiDataSheets = [];

@@ -23,7 +23,7 @@ class ModalCategory extends ModalComponent
 
     public $image;
 
-    public $parent_id;
+    public $parent_id = 0;
 
     public $imageIsUploaded = false;
 

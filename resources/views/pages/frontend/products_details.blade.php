@@ -143,10 +143,10 @@
                     {{-- @livewire('frontend.filters.product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page']) --}}
                 </div>
             </div>
-            <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow">
+            {{-- <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow">
                 <h2 class="text-lg font-semibold">{{ __('Similar Products') }}</h2>{{ $data->category }}
                 @livewire('frontend.filters.products', ['category' => [$data->category], 'type' => 'Product Details Similar Products'])
-            </div>
+            </div> --}}
         </div>
     </x-frontend.index-container>
     @push('scripts')

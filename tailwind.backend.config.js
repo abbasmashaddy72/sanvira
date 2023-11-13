@@ -8,8 +8,8 @@ const {
 module.exports = {
     mode: "jit",
     presets: [
-        require("../../../vendor/power-components/livewire-powergrid/tailwind.config.js"),
-        require("../../../vendor/wireui/wireui/tailwind.config.js"),
+        require("./vendor/power-components/livewire-powergrid/tailwind.config.js"),
+        require("./vendor/wireui/wireui/tailwind.config.js"),
     ],
     content: [
         "./app/Livewire/Backend/**/*.php",
@@ -101,7 +101,6 @@ module.exports = {
         require("@tailwindcss/forms")({
             strategy: "class",
         }),
-        require("postcss-multiple-tailwind"),
     ],
     variants: {
         extend: {

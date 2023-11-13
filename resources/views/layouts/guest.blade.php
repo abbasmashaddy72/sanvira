@@ -16,6 +16,7 @@
         {{ config('app.name', 'Laravel') }}
     </title>
 
+    {{ Vite::useBuildDirectory('build/frontend') }}
     @wireUiScripts
     @vite('resources/js/frontend/app.js')
     @stack('styles')

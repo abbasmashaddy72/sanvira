@@ -4,7 +4,7 @@ const plugin = require("tailwindcss/plugin");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     mode: "jit",
-    presets: [require("../../../vendor/wireui/wireui/tailwind.config.js")],
+    presets: [require("./vendor/wireui/wireui/tailwind.config.js")],
     content: [
         "./app/Http/Livewire/Frontend/**/*.php",
         "./resources/views/components/frontend/**/*.blade.php",
@@ -87,9 +87,5 @@ module.exports = {
             },
         },
     },
-    plugins: [
-        require("flowbite/plugin"),
-        require("tailwind-scrollbar-hide"),
-        require("postcss-multiple-tailwind"),
-    ],
+    plugins: [require("flowbite/plugin"), require("tailwind-scrollbar-hide")],
 };
