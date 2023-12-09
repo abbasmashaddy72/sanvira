@@ -1,3 +1,4 @@
+# New Project Type
 # Kasper Project Installation Guide
 
 ## Overview
