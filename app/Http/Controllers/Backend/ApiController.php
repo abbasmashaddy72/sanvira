@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\City;
-use App\Models\Brand;
 use App\Models\State;
-use App\Models\Vendor;
 use App\Models\Country;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -38,36 +36,6 @@ class ApiController extends Controller
     public function users(Request $request)
     {
         $data = User::query()->select('id', 'name')
-            ->orderBy('name')
-            ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
-            ->when(
-                $request->exists('selected'),
-                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
-                fn (Builder $query) => $query->limit(10)
-            )
-            ->get();
-
-        return $data;
-    }
-
-    public function brands(Request $request)
-    {
-        $data = Brand::query()->select('id', 'name')
-            ->orderBy('name')
-            ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
-            ->when(
-                $request->exists('selected'),
-                fn (Builder $query) => $query->whereIn('id', $request->input('selected', [])),
-                fn (Builder $query) => $query->limit(10)
-            )
-            ->get();
-
-        return $data;
-    }
-
-    public function vendors(Request $request)
-    {
-        $data = Vendor::query()->select('id', 'name')
             ->orderBy('name')
             ->when($request->search, fn (Builder $query) => $query->where('name', 'like', "%{$request->search}%"))
             ->when(

@@ -203,27 +203,4 @@
             </div>
         </div>
     </x-frontend.index-container>
-    <x-frontend.index-container class="bg-white py-14">
-        <div class="grid grid-cols-1 pb-8 text-center">
-            <h3 class="text-2xl font-semibold leading-normal md:text-3xl md:leading-normal">
-                {{ __('Some of our Clients') }}
-            </h3>
-        </div>
-        <div class="relative mt-8 transition-all duration-500 ease-in-out">
-            <div class="grid grid-cols-1">
-                <div class="tiny-five-item">
-                    @foreach ($featured_brands as $item)
-                        <div class="tiny-slide">
-                            <a href="{{ route('brand_products', ['slug' => $item->slug]) }}"
-                                class='group relative block overflow-hidden p-3'>
-                                <img src="{{ asset('storage/' . $item->image) }}"
-                                    class="mx-auto h-32 w-full rounded-lg object-cover shadow-md"
-                                    alt="{{ $item->name }}">
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </x-frontend.index-container>
 </x-guest-layout>

@@ -26,28 +26,6 @@
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
-                                        <i data-feather="globe" class="report-box__icon text-warning"></i>
-                                    </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $brands_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Brands') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-span-12 sm:col-span-6 xl:col-span-2">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="bar-chart-2" class="report-box__icon text-success"></i>
-                                    </div>
-                                    <div class="mt-6 text-3xl font-medium leading-8">{{ $vendors_count }}</div>
-                                    <div class="mt-1 text-base text-slate-500">{{ __('Vendors') }}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-span-12 sm:col-span-6 xl:col-span-2">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
                                         <i data-feather="fast-forward" class="report-box__icon text-primary"></i>
                                     </div>
                                     <div class="mt-6 text-3xl font-medium leading-8">

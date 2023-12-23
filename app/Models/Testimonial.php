@@ -10,16 +10,11 @@ class Testimonial extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'name',
         'designation',
         'logo',
         'message',
         'show_designation',
         'rating',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id', 'id');
-    }
 }

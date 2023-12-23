@@ -44,8 +44,6 @@ class DatabaseSeeder extends Seeder
             $this->call(PermissionSeeder::class);
             $this->call(RoleSeeder::class);
             $this->call(StaticOptionSeeder::class);
-            $this->call(BrandSeeder::class);
-            $this->call(VendorSeeder::class);
             // Import JSON data into the Country model
             Artisan::call('model:import', [
                 'model' => 'Country',
@@ -74,17 +72,8 @@ class DatabaseSeeder extends Seeder
             $this->call(ProductViewSeeder::class);
             $this->call(ProductReviewSeeder::class);
             $this->call(CategoryViewSeeder::class);
-            $this->call(BrandViewSeeder::class);
-            $this->call(VendorViewSeeder::class);
             $this->call(TestimonialSeeder::class);
-            $this->call(ShippingAddressSeeder::class);
-            $this->call(BillingAddressSeeder::class);
             $this->call(RfqSeeder::class);
-            $this->call(EnquirySeeder::class);
-            $this->call(QuotationSeeder::class);
-            $this->call(OrderSeeder::class);
-            $this->call(DeliveryNoteSeeder::class);
-            $this->call(InvoiceSeeder::class);
         }
     }
 }

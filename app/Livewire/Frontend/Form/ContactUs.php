@@ -14,10 +14,6 @@ class ContactUs extends Component
 
     public $company_name;
 
-    public $job_title;
-
-    public $tob;
-
     public $contact_no;
 
     public $message;
@@ -31,8 +27,6 @@ class ContactUs extends Component
         'name' => 'required',
         'email' => 'required',
         'company_name' => 'required',
-        'job_title' => 'required',
-        'tob' => 'required',
         'contact_no' => 'required',
         'message' => 'required',
         'agree' => 'required',

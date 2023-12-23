@@ -56,8 +56,6 @@ final class TableContactUs extends PowerGridComponent
 
             ->addColumn('email')
             ->addColumn('company_name')
-            ->addColumn('job_title')
-            ->addColumn('tob')
             ->addColumn('contact_no')
             ->addColumn('message')
             ->addColumn('agree')
@@ -79,14 +77,6 @@ final class TableContactUs extends PowerGridComponent
                 ->searchable(),
 
             Column::make('Company name', 'company_name')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Job title', 'job_title')
-                ->sortable()
-                ->searchable(),
-
-            Column::make('Tob', 'tob')
                 ->sortable()
                 ->searchable(),
 
@@ -122,8 +112,6 @@ final class TableContactUs extends PowerGridComponent
             Filter::inputText('name')->operators(['contains']),
             Filter::inputText('email')->operators(['contains']),
             Filter::inputText('company_name')->operators(['contains']),
-            Filter::inputText('job_title')->operators(['contains']),
-            Filter::inputText('tob')->operators(['contains']),
             Filter::inputText('contact_no')->operators(['contains']),
             Filter::boolean('agree'),
             Filter::inputText('status')->operators(['contains']),

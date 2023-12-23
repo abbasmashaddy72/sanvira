@@ -48,14 +48,6 @@
                         @empty
                             <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
                         @endforelse
-
-                        <p class="text-center text-lg font-semibold text-gray-900">{{ __('Brand List') }}</p>
-                        @forelse ($brandList as $item)
-                            <a href="{{ route('products_details', $item->id) }}"
-                                class="p-4 text-left text-blue-600 hover:text-blue-800">{{ $item->name }}</a>
-                        @empty
-                            <div class="p-4 text-left text-blue-600">{{ __('No results!') }}</div>
-                        @endforelse
                     </div>
                 @endif
             </form>

@@ -38,64 +38,16 @@ Breadcrumbs::for('testimonial.index', function (BreadcrumbTrail $trail) {
     $trail->push('Testimonial', route('admin.testimonial'));
 });
 
-// Application > Brand
-Breadcrumbs::for('brand.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Brand', route('admin.brand'));
-});
-
-// Application > Delivery Note
-Breadcrumbs::for('delivery-note.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Delivery Note', route('admin.delivery_note'));
-});
-
-// Application > Enquiry
-Breadcrumbs::for('enquiry.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Enquiry', route('admin.enquiry'));
-});
-
-// Application > Invoice
-Breadcrumbs::for('invoice.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Invoice', route('admin.invoice'));
-});
-
-// Application > Quotation
-Breadcrumbs::for('quotation.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Quotation', route('admin.quotation'));
-});
-
 // Application > Product
 Breadcrumbs::for('product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('Product', route('admin.product'));
 });
 
-// Application > Order
-Breadcrumbs::for('orders.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Order', route('admin.orders'));
-});
-
 // Application > Product Reviews
 Breadcrumbs::for('product.review', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('Product Reviews', route('admin.product_review'));
-});
-
-// Application > Address
-Breadcrumbs::for('address.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Address', route('admin.address'));
-});
-
-// Application > Vendor
-Breadcrumbs::for('vendor.index', function (BreadcrumbTrail $trail) {
-    $trail->parent('#');
-    $trail->push('Vendor', route('admin.vendor'));
 });
 
 // Application > Category

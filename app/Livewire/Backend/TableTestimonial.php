@@ -51,9 +51,7 @@ final class TableTestimonial extends PowerGridComponent
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('user_id', function (Testimonial $model) {
-                return e($model->user->name);
-            })
+            ->addColumn('name')
             ->addColumn('designation')
 
             /** Example of custom column using a closure **/
@@ -71,7 +69,7 @@ final class TableTestimonial extends PowerGridComponent
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('User Name', 'user_id'),
+            Column::make('Name', 'name'),
             Column::make('Designation', 'designation')
                 ->sortable()
                 ->searchable(),
@@ -94,7 +92,6 @@ final class TableTestimonial extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::inputText('user_id')->operators(['contains']),
             Filter::inputText('designation')->operators(['contains']),
             Filter::boolean('show_designation'),
             Filter::datetimepicker('created_at'),

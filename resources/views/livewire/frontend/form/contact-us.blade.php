@@ -7,11 +7,13 @@
                 <div class="mb-4 rounded-b border-t-4 border-teal-500 bg-teal-100 px-4 py-3 text-teal-900 shadow-md"
                     role="alert">
                     <div class="flex">
-                        <div class="py-1"><svg class="mr-4 h-6 w-6 fill-current text-teal-500"
-                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <div class="py-1">
+                            <svg class="mr-4 h-6 w-6 fill-current text-teal-500" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20">
                                 <path
                                     d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" />
-                            </svg></div>
+                            </svg>
+                        </div>
                         <div>
                             <p class="font-bold">{{ __('Thanks for reaching out') }}</p>
                             <p class="text-sm">{{ __('We will contact you ASAP!') }}</p>
@@ -27,7 +29,7 @@
                             <div class="form-icon relative mt-2">
                                 <i data-feather="user" class="absolute left-4 top-3 h-4 w-4"></i>
                                 <input name="name" type="text" wire:model='name'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
+                                    class="form-input pl-11 text-sm font-normal" placeholder="Name:">
                             </div>
                         </label>
                     </div>
@@ -36,7 +38,7 @@
                             <div class="form-icon relative mt-2">
                                 <i data-feather="phone" class="absolute left-4 top-3 h-4 w-4"></i>
                                 <input name="contact_no" type="number" wire:model='contact_no'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
+                                    class="form-input pl-11 text-sm font-normal" placeholder="Contact No.:">
                             </div>
                         </label>
                     </div>
@@ -45,7 +47,7 @@
                             <div class="form-icon relative mt-2">
                                 <i data-feather="mail" class="absolute left-4 top-3 h-4 w-4"></i>
                                 <input name="email" type="mail" wire:model='email'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
+                                    class="form-input pl-11 text-sm font-normal" placeholder="Email:">
                             </div>
                         </label>
                     </div>
@@ -54,30 +56,7 @@
                             <div class="form-icon relative mt-2">
                                 <i data-feather="activity" class="absolute left-4 top-3 h-4 w-4"></i>
                                 <input name="company_name" type="text" wire:model='company_name'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
-                            </div>
-                        </label>
-                    </div>
-                    <div class="text-left">
-                        <label class="font-semibold">{{ __('Job Title:') }}
-                            <div class="form-icon relative mt-2">
-                                <i data-feather="award" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <input name="job_title" type="text" wire:model='job_title'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
-                            </div>
-                        </label>
-                    </div>
-                    <div class="text-left">
-                        <label class="font-semibold">{{ __('Type of Business:') }}
-                            <div class="form-icon relative mt-2">
-                                <i data-feather="list" class="absolute left-4 top-3 h-4 w-4"></i>
-                                <select name="tob" wire:model='tob'
-                                    class="form-input pl-11 text-sm font-normal" placeholder="Name :">
-                                    <option hidden selected>{{ __('Please Select') }}</option>
-                                    @foreach (['Vendor', 'Consultant', 'Developer'] as $item)
-                                        <option value="{{ $item }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
+                                    class="form-input pl-11 text-sm font-normal" placeholder="Company Name:">
                             </div>
                         </label>
                     </div>
@@ -85,11 +64,11 @@
                 <div class="mt-2 space-y-2">
                     <div class="mb-5">
                         <div class="text-left">
-                            <label class="font-semibold">{{ __('Your Comment:') }}</label>
+                            <label class="font-semibold">{{ __('Your Message:') }}</label>
                             <div class="form-icon relative mt-2">
                                 <i data-feather="message-circle" class="absolute left-4 top-3 h-4 w-4"></i>
                                 <textarea name="message" id="comments" wire:model='message' class="form-input h-28 pl-11 text-sm font-normal"
-                                    placeholder="Message :"></textarea>
+                                    placeholder="Message:"></textarea>
                             </div>
                         </div>
                     </div>

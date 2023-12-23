@@ -27,8 +27,6 @@ Route::group(['namespace' => 'App\Http\Controllers\Frontend'], function () {
         Route::get('products_category/{slug}', 'FrontendController@products_category')->name('products_category');
         Route::get('all_products_category', 'FrontendController@all_products_category')->name('all_products_category');
         Route::get('all_products', 'FrontendController@all_products')->name('all_products');
-        Route::get('all_brands', 'FrontendController@all_brands')->name('all_brands');
-        Route::get('brand_products/{slug}', 'FrontendController@brand_products')->name('brand_products');
         Route::get('products_details/{slug}', 'FrontendController@products_details')->name('products_details');
         Route::get('searchForm', 'FrontendController@searchForm')->name('searchForm');
     });
@@ -50,34 +48,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::patch('profile', 'ProfileController@update')->name('profile.update');
     Route::delete('profile', 'ProfileController@destroy')->name('profile.destroy');
 
-    Route::get('brand', 'BrandController@index')->name('brand');
-    Route::get('vendor', 'VendorController@index')->name('vendor');
     Route::get('categories', 'CategoryController@index')->name('categories');
 
     Route::get('product', 'ProductController@index')->name('product');
     Route::get('product_add', 'ProductController@add')->name('product_add');
     Route::get('product_edit/{id}', 'ProductController@edit')->name('product_edit');
     Route::get('product_review', 'ProductController@review')->name('product_review');
-
-    Route::get('enquiry', 'EnquiryController@index')->name('enquiry');
-    Route::get('enquiry_add', 'EnquiryController@add')->name('enquiry_add');
-    Route::get('enquiry_edit/{id}', 'EnquiryController@edit')->name('enquiry_edit');
-
-    Route::get('quotation', 'QuotationController@index')->name('quotation');
-    Route::get('quotation_add', 'QuotationController@add')->name('quotation_add');
-    Route::get('quotation_edit/{id}', 'QuotationController@edit')->name('quotation_edit');
-
-    Route::get('orders', 'OrderController@index')->name('orders');
-    Route::get('order_add', 'OrderController@add')->name('order_add');
-    Route::get('order_edit/{id}', 'OrderController@edit')->name('order_edit');
-
-    Route::get('delivery_note', 'DeliveryNoteController@index')->name('delivery_note');
-    Route::get('delivery_note_add', 'DeliveryNoteController@add')->name('delivery_note_add');
-    Route::get('delivery_note_edit/{id}', 'DeliveryNoteController@edit')->name('delivery_note_edit');
-
-    Route::get('invoice', 'InvoiceController@index')->name('invoice');
-    Route::get('invoice_add', 'InvoiceController@add')->name('invoice_add');
-    Route::get('invoice_edit/{id}', 'InvoiceController@edit')->name('invoice_edit');
 
     Route::get('testimonial', 'TestimonialController@index')->name('testimonial');
 
@@ -87,9 +63,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     Route::get('return_refunds', 'StaticController@return_refunds')->name('return_refunds');
 
     Route::get('contact_us', 'StaticController@contact_us')->name('contact_us');
-
-    // Buyer
-    Route::get('address', 'AddressController@index')->name('address');
 
     Route::post('image_upload', 'StaticController@image_upload')->name('ckeditor.upload');
 });

@@ -12,8 +12,6 @@ class ProductVariation extends Model
     protected $fillable = [
         'product_id',
         'country_id',
-        'brand_id',
-        'vendor_id',
         'avb_stock',
         'sku',
         'barcode',
@@ -36,11 +34,6 @@ class ProductVariation extends Model
         'max_order_quantity',
     ];
 
-    public function brand()
-    {
-        return $this->belongsTo(Brand::class, 'brand_id');
-    }
-
     public function country()
     {
         return $this->belongsTo(Country::class, 'country_id');
@@ -51,8 +44,6 @@ class ProductVariation extends Model
         return $this->belongsToMany(Product::class, 'product_variations')->withPivot([
             'product_id',
             'country_id',
-            'brand_id',
-            'vendor_id',
             'avb_stock',
             'sku',
             'barcode',

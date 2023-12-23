@@ -17,8 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('country_id')->constrained('countries')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained('brands')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('vendor_id')->constrained('vendors')->onUpdate('cascade')->onDelete('cascade');
             $table->decimal('avb_stock', 10, 2)->nullable();
             $table->string('sku')->nullable();
             $table->string('barcode')->nullable();

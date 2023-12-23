@@ -24,7 +24,6 @@ class Rfq extends Model
         return $this->belongsToMany(Product::class, 'rfq_product')->withPivot([
             'id',
             'product_id',
-            'brand_id',
             'size',
             'weight',
             'diameter',
@@ -33,15 +32,5 @@ class Rfq extends Model
             'item_type',
             'quantity',
         ]);
-    }
-
-    public function order()
-    {
-        return $this->hasOne(Order::class, 'rfq_id');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(Order::class, 'user_id');
     }
 }

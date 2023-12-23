@@ -39,12 +39,6 @@
                     </div>
                     <div class="mt-4">
                         <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
-                            {{ __('Brand') }}</h5>
-                        <x-select wire:model="brand_id" placeholder="Select Brand" :async-data="route('api.admin.brands')" option-label="name"
-                            option-value="id" multiselect />
-                    </div>
-                    <div class="mt-4">
-                        <h5 class="text-md text-left font-semibold dark:bg-slate-800 dark:shadow-gray-800">
                             {{ __('Category') }}</h5>
                         <x-select wire:model="category_id" placeholder="Select Parent Category" :async-data="route('api.admin.categories')"
                             option-label="name" option-value="id" multiselect />
@@ -104,9 +98,6 @@
                                             <h2 class="mb-2 border-b-2 border-gray-300 text-lg font-semibold">
                                                 {{ $item->title }}</h2>
                                             <!-- Variation Selection -->
-                                            <x-select label="Brand" placeholder="Brand" :options="$variations->pluck('brand')->unique('id')"
-                                                option-label='name' option-value='id' wire:model='variation_brand_id' />
-
                                             <div class="grid grid-cols-2 gap-1">
                                                 @if (count($sizes) > 0)
                                                     <x-select label="Size" placeholder="Size" :options="$sizes"

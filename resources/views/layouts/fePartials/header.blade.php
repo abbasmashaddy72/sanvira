@@ -1,12 +1,3 @@
-{{-- <div id="preloader">
-    <div id="status">
-        <div class="spinner">
-            <div class="double-bounce1"></div>
-            <div class="double-bounce2"></div>
-        </div>
-    </div>
-</div> --}}
-
 <nav id='topnav' class="defaultscroll is-sticky nav-sticky z-10 items-center bg-white py-2">
     <div class="container">
         <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}">
@@ -25,65 +16,23 @@
             </div>
         </div>
 
-        <div class="@auth pt-5 lg:pt-4 @else pt-4 lg:pt-3 @endauth float-right flex items-center space-x-3">
-            @auth
-                @livewire('frontend.counter.rfq-counter')
-                <div x-data="{ dropdownMenu: false }" class="relative">
-                    <div class="dropdown-toggle relative flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-xl font-medium uppercase text-white shadow-lg"
-                        role="button" @click="dropdownMenu = !dropdownMenu">
-                        {{ Auth::user()->initials }}
-                    </div>
-                    <ul class="absolute right-0 mt-2 w-44 rounded-md bg-gray-100 bg-white py-2 shadow" x-show="dropdownMenu"
-                        @click.away="dropdownMenu = false">
-                        <li class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white">
-                            {{ Auth::user()->name }}
-                        </li>
-                        <li>
-                            <a href="{{ route('admin.dashboard') }}"
-                                class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white">
-                                {{ __('Dashboard') }}
-                            </a>
-                        </li>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();"
-                                class="block px-4 py-2 text-sm text-gray-300 text-gray-700 hover:bg-red-600 hover:text-white">
-                                {{ __('Logout') }}
-                            </a>
-                        </form>
-                    </ul>
-                </div>
-            @else
-                <a href="{{ route('register') }}" class="text-md font-semibold text-gray-600">{{ __('Register') }}</a>
-                <a href="{{ route('login') }}" class="text-md rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white">
-                    {{ __('Log in') }}</a>
-            @endauth
-        </div>
-
         <div id="navigation" class="lg:block">
-            <ul class="navigation-menu float-left flex flex-wrap">
+            <ul class="navigation-menu flex flex-wrap justify-center">
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_products_category') }}" wire:navigate>
-                        {{ __('Categories') }}
+                    <a class="sub-menu-item" href="{{ route('homepage') . '#testimonials' }}">
+                        {{ __('Testimonials') }}
                     </a>
                 </li>
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_products') }}" wire:navigate>
-                        {{ __('Products') }}
+                    <a class="sub-menu-item" href="{{ route('homepage') . '#faqs' }}">
+                        {{ __('FAQs') }}
                     </a>
                 </li>
                 <li>
-                    <a class="sub-menu-item" href="{{ route('all_brands') }}" wire:navigate>
-                        {{ __('Brands') }}
-                    </a>
+                    <a class="sub-menu-item" href="#">{{ __('Blogs') }}</a>
                 </li>
-
                 <li>
-                    <a class="sub-menu-item" href="{{ route('about_us') }}" wire:navigate>{{ __('About Us') }}</a>
-                </li>
-
-                <li>
-                    <a class="sub-menu-item" href="{{ route('contact_us') }}" wire:navigate>{{ __('Contact Us') }}</a>
+                    <a class="sub-menu-item" href="{{ route('contact_us') }}">{{ __('Contact Us') }}</a>
                 </li>
             </ul>
         </div>

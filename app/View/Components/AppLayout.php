@@ -58,22 +58,6 @@ class AppLayout extends Component
                 'route_name' => 'admin.profile.edit',
                 'params' => null,
             ],
-            'brand' => [
-                'can' => 'brand_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'trademark',
-                'title' => 'Brands',
-                'route_name' => 'admin.brand',
-                'params' => null,
-            ],
-            'vendor' => [
-                'can' => 'vendor_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'building-3',
-                'title' => 'Vendors',
-                'route_name' => 'admin.vendor',
-                'params' => null,
-            ],
             'categories' => [
                 'can' => 'category_list',
                 'role' => auth()->user()->roles->first()->slug,
@@ -96,46 +80,6 @@ class AppLayout extends Component
                 'icon' => 'star',
                 'title' => 'Product Reviews',
                 'route_name' => 'admin.product_review',
-                'params' => null,
-            ],
-            'enquiry' => [
-                'can' => 'enquiry_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'survey',
-                'title' => 'Enquires',
-                'route_name' => 'admin.enquiry',
-                'params' => null,
-            ],
-            'quotation' => [
-                'can' => 'quotation_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'chat-quote',
-                'title' => 'Quotations',
-                'route_name' => 'admin.quotation',
-                'params' => null,
-            ],
-            'order' => [
-                'can' => 'order_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'file-word',
-                'title' => 'Orders',
-                'route_name' => 'admin.orders',
-                'params' => null,
-            ],
-            'delivery_note' => [
-                'can' => 'delivery_note_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'truck',
-                'title' => 'Delivery Notes',
-                'route_name' => 'admin.delivery_note',
-                'params' => null,
-            ],
-            'invoice' => [
-                'can' => 'invoice_list',
-                'role' => auth()->user()->roles->first()->slug,
-                'icon' => 'file-edit',
-                'title' => 'Invoices',
-                'route_name' => 'admin.invoice',
                 'params' => null,
             ],
             'testimonial' => [
@@ -186,14 +130,6 @@ class AppLayout extends Component
                 'route_name' => 'admin.contact_us',
                 'params' => null,
             ],
-            'address' => [
-                'can' => 'address_list',
-                'role' => 'buyer',
-                'icon' => 'file-plus',
-                'title' => 'Address',
-                'route_name' => 'admin.address',
-                'params' => null,
-            ],
         ];
     }
 
@@ -211,8 +147,7 @@ class AppLayout extends Component
 
         foreach ($this->sideMenu() as $menuKey => $menu) {
             if ($menu !== 'devider' && isset($menu['route_name']) && strpos($pageName, $menu['route_name']) === 0) {
-                    $firstLevelActiveIndex = $menuKey;
-                
+                $firstLevelActiveIndex = $menuKey;
             }
 
             if (!(isset($menu['sub_menu']) ?? $menu['sub_menu'] = [])) {
@@ -221,9 +156,8 @@ class AppLayout extends Component
 
             foreach ($menu['sub_menu'] as $subMenuKey => $subMenu) {
                 if (isset($subMenu['route_name']) && strpos($pageName, $subMenu['route_name']) === 0 && $menuKey != 'menu-layout') {
-                        $firstLevelActiveIndex = $menuKey;
-                        $secondLevelActiveIndex = $subMenuKey;
-                    
+                    $firstLevelActiveIndex = $menuKey;
+                    $secondLevelActiveIndex = $subMenuKey;
                 }
 
                 if (!isset($subMenu['sub_menu'])) {
@@ -232,10 +166,9 @@ class AppLayout extends Component
 
                 foreach ($subMenu['sub_menu'] as $lastSubMenuKey => $lastSubMenu) {
                     if (isset($lastSubMenu['route_name']) && strpos($pageName, $lastSubMenu['route_name']) === 0) {
-                            $firstLevelActiveIndex = $menuKey;
-                            $secondLevelActiveIndex = $subMenuKey;
-                            $thirdLevelActiveIndex = $lastSubMenuKey;
-                        
+                        $firstLevelActiveIndex = $menuKey;
+                        $secondLevelActiveIndex = $subMenuKey;
+                        $thirdLevelActiveIndex = $lastSubMenuKey;
                     }
                 }
             }

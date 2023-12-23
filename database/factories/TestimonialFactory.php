@@ -18,7 +18,7 @@ class TestimonialFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::pluck('id')[fake()->numberBetween(1, User::count() - 1)],
+            'name' => fake()->name(),
             'designation' => fake()->firstName(),
             'logo' => null,
             'message' => fake()->realText(),

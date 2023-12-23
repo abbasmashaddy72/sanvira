@@ -87,29 +87,6 @@
                                 <span class="ml-2">{{ $data->edt }}</span>
                             </li>
 
-                            {{-- <li class="flex items-center justify-between p-1">
-                                <span class="mr-2 font-medium text-blue-600">{{ __('Brand Name:') }}</span>
-                                <a class="text-blue-600"
-                                    href="{{ route('brand_products', ['slug' => $data->brands->slug]) }}">
-                                    <span class="ml-2">{{ $data->brands->name }}</span>
-                                </a>
-                            </li> --}}
-
-                            {{-- <li class="flex items-center justify-between p-1">
-                                <span class="mr-2 font-medium text-blue-600">{{ __('Stock Keeping Unit:') }}</span>
-                                <span class="ml-2">{{ $data->sku }}</span>
-                            </li> --}}
-
-                            {{-- <li class="flex items-center justify-between p-1">
-                                <span class="mr-2 font-medium text-blue-600">{{ __('Vendor Name:') }}</span>
-                                <span class="ml-2">{{ $data->vendors->name }}</span>
-                            </li>
-
-                            <li class="flex items-center justify-between p-1">
-                                <span class="mr-2 font-medium text-blue-600">{{ __('Model Name:') }}</span>
-                                <span class="ml-2">{{ $data->model }}</span>
-                            </li> --}}
-
                             <li class="line-clamp-1 flex items-center justify-between p-1">
                                 <span class="mr-2 truncate font-medium text-blue-600">{{ __('Catygeory Name:') }}</span>
                                 <a class="truncate text-blue-600"
@@ -117,19 +94,6 @@
                                     <span class="ml-2">{{ $data->category->name }}</span>
                                 </a>
                             </li>
-
-                            {{-- <li class="flex items-center justify-between p-1 line-clamp-1">
-                                <span
-                                    class="mr-2 font-medium text-blue-600 truncate">{{ __('Length x Width x Breadth:') }}</span>
-                                <span class="ml-2">{{ $data->length . $data->length_units }} x
-                                    {{ $data->width . $data->width_units }} x
-                                    {{ $data->breadth . $data->breadth_units }}</span>
-                            </li> --}}
-
-                            {{-- <li class="flex items-center justify-between p-1 line-clamp-1">
-                                <span class="mr-2 font-medium text-blue-600 truncate">{{ __('Weight:') }}</span>
-                                <span class="ml-2">{{ $data->weight . $data->weight_unit }}</span>
-                            </li> --}}
 
                             @foreach ($data->productAttributes as $item)
                                 <li class="flex items-center justify-between p-1">
@@ -140,13 +104,8 @@
 
                         </ul>
                     </div>
-                    {{-- @livewire('frontend.filters.product-view', ['item' => $data, key($data->id), 'type' => 'Product Details Page']) --}}
                 </div>
             </div>
-            {{-- <div class="col-span-12 rounded border-2 border-gray-200 bg-white p-4 shadow">
-                <h2 class="text-lg font-semibold">{{ __('Similar Products') }}</h2>{{ $data->category }}
-                @livewire('frontend.filters.products', ['category' => [$data->category], 'type' => 'Product Details Similar Products'])
-            </div> --}}
         </div>
     </x-frontend.index-container>
     @push('scripts')

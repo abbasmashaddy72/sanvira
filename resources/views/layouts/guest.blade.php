@@ -23,18 +23,12 @@
     @livewireStyles
 </head>
 
-<body class="font-inter bg-gray-100 text-base text-black dark:bg-slate-900 dark:text-white">
+<body class="font-nunito bg-gray-100 text-base text-black dark:bg-slate-900 dark:text-white">
     <x-notifications />
     @include('layouts.fePartials.header')
 
     @if (!empty($topSection))
         {{ $topSection }}
-    @else
-        @if (\Route::currentRouteName() != 'homepage')
-            @livewire('frontend.form.search', ['type' => 'common-top'])
-        @else
-            @livewire('frontend.form.search')
-        @endif
     @endif
 
     {{ $slot }}

@@ -99,14 +99,6 @@
                                 name='country_id_pv.0' placeholder="Select Origin Country" :options="getKeyValuesWithMap('Country', 'name', 'id')"
                                 option-label="name" option-value="id" required />
 
-                            <x-native-select label="{{ __('Select Vendor') }}" wire:model="vendor_id_pv.0"
-                                name='vendor_id_pv.0' placeholder="Select Vendor" :options="getKeyValuesWithMap('Vendor', 'name', 'id')"
-                                option-label="name" option-value="id" required />
-
-                            <x-native-select label="{{ __('Select Brand') }}" wire:model="brand_id_pv.0"
-                                name='brand_id_pv.0' placeholder="Select Brand" :options="getKeyValuesWithMap('Brand', 'name', 'id')" option-label="name"
-                                option-value="id" required />
-
                             <x-input name="avb_stock_pv.0" label="{{ __('Available Stock') }}" type="text"
                                 wire:model='avb_stock_pv.0' name='avb_stock_pv.0' required />
 
@@ -198,16 +190,6 @@
                                     wire:model="country_id_pv.{{ $input_value }}"
                                     name='country_id_pv.{{ $input_value }}' placeholder="Select Origin Country"
                                     :options="getKeyValuesWithMap('Country', 'name', 'id')" option-label="name" option-value="id" required />
-
-                                <x-native-select label="{{ __('Select Vendor') }}"
-                                    wire:model="vendor_id_pv.{{ $input_value }}"
-                                    name='vendor_id_pv.{{ $input_value }}' placeholder="Select Vendor"
-                                    :options="getKeyValuesWithMap('Vendor', 'name', 'id')" option-label="name" option-value="id" required />
-
-                                <x-native-select label="{{ __('Select Brand') }}"
-                                    wire:model="brand_id_pv.{{ $input_value }}"
-                                    name='brand_id_pv.{{ $input_value }}' placeholder="Select Brand"
-                                    :options="getKeyValuesWithMap('Brand', 'name', 'id')" option-label="name" option-value="id" required />
 
                                 <x-input name="avb_stock_pv.{{ $input_value }}" label="{{ __('Available Stock') }}"
                                     type="text" wire:model='avb_stock_pv.{{ $input_value }}'

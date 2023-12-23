@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
@@ -10,19 +9,24 @@ use App\Models\CategoryView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Testimonial;
+use App\Models\Blog;
+use App\Models\Faq;
 
 class FrontendController extends Controller
 {
     public function index()
     {
         $sliders = Slider::get();
-        $product_categories = Category::where('parent_id', 0)->withCount('products')->get()->take(8);
-        $featured_brands = Brand::withCount('products')->where('account_type', '=', 'Featured')->get()->take(8);
+        $testimonials = Testimonial::inRandomOrder()->take(8)->get();
+        $blogs =  [] ?? Blog::inRandomOrder()->take(6)->get();
+        $faqs =  [] ?? Faqs::get();
 
         return view('pages.frontend.index', compact([
             'sliders',
-            'product_categories',
-            'featured_brands',
+            'testimonials',
+            'blogs',
+            'faqs',
         ]));
     }
 
@@ -62,26 +66,6 @@ class FrontendController extends Controller
         return view('pages.frontend.category', compact('category'));
     }
 
-    public function all_brands()
-    {
-        view()->share('title', 'All Brands');
-
-        return view('pages.frontend.brands');
-    }
-
-    public function brand_products($slug)
-    {
-        $brand = Brand::where('slug', $slug)->first();
-
-        if (!$brand) {
-            abort(404);
-        }
-
-        view()->share('title', $brand->name);
-
-        return view('pages.frontend.brands_details', compact('brand'));
-    }
-
     public function products_sales($sales_id)
     {
         view()->share('title', 'On Sale Products');
@@ -114,9 +98,8 @@ class FrontendController extends Controller
     public function about_us()
     {
         view()->share('title', 'About Us');
-        $featured_brands = Brand::where('account_type', '=', 'Featured')->get()->take(14);
 
-        return view('pages.frontend.about_us', compact('featured_brands'));
+        return view('pages.frontend.about_us');
     }
 
     public function contact_us()

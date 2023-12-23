@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Brand;
-use App\Models\Vendor;
 use App\Models\Product;
 use Illuminate\Support\Facades\Gate;
 
@@ -25,14 +23,10 @@ class DashboardController extends Controller
     private function adminDashboard()
     {
         $product_count = Product::count();
-        $brands_count = Brand::count();
-        $vendors_count = Vendor::count();
         $products_data = $this->getFilledPartialsRows('Product');
 
         return view('pages.backend.admin_dashboard', compact([
             'product_count',
-            'brands_count',
-            'vendors_count',
             'products_data',
         ]));
     }

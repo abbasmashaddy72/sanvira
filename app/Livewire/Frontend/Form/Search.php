@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Frontend\Form;
 
-use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use Livewire\Component;
@@ -17,8 +16,6 @@ class Search extends Component
     public $productsList;
 
     public $categoriesList;
-
-    public $brandList;
 
     public function mount()
     {
@@ -35,7 +32,6 @@ class Search extends Component
     {
         $this->productsList = Product::where('title', 'like', $this->query . '%')->get();
         $this->categoriesList = Category::where('name', 'like', $this->query . '%')->get();
-        $this->brandList = Brand::where('name', 'like', $this->query . '%')->get();
     }
 
     public function render()

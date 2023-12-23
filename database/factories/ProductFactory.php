@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Brand;
-use App\Models\Vendor;
 use App\Models\Country;
 use App\Models\Product;
 use App\Models\Category;
@@ -26,16 +24,14 @@ class ProductFactory extends Factory
         $paragraphs = fake()->paragraphs(6, false);
         $title = fake()->realText(50);
         $description = "<h1>{$title}</h1>";
-        foreach ($paragraphs as $para);
-        {
+        foreach ($paragraphs as $para); {
             $description .= "<p>{$para}</p>";
         }
         $images = ["products\/bbuRBhb6kARIQp0UBpFOcpsO9LgX4mWJ4ch97YQh.jpg", "products\/ZHE1IdI33TlnparmqOPSphlWjBhQb8VcjnAruIdc.jpg", "products\/SUjSiIbFwI1Sk3k3DZXHmBY0EvO3XrpfdGZNLBaz.jpg", "products\/AXXuV6HCdidI4cd3pQjXyb5c8ak6wni3mJ0IPbCl.jpg", "products\/oLRSjtwHjOL4YytlnM6juOkiuYHV3SFF4LT28j9v.jpg", "products\/cE4nxZsw5kUXqxkQOoneM08bggH5VA2Oh4Fqw3aO.jpg", "products\/oCRLgjYuy4K8rXyNAUhvuNkLlGmekFFvh0eOy9ul.jpg", "products\/pwhQrIYlovGqCI59Oysh6OFJYUL2O4h2knA1rGJG.jpg", "products\/LrLaHx0utK0YMO05ubaRgT9C8jHP2bXcQhQNjcxw.jpg", "products\/2lCdoqpLTqRJHDTWuGXhYu8qmQIr4iE2oUHkHGSg.jpg", "products\/TllLKGF2dIToUOD8CQQx6GVGtnFjnERvtVpwQP3L.jpg", "products\/KwuUsMz23Mou55ntAJY0si3Jjj8yOP9SvO3T1odH.jpg"];
         $n = rand(2, 8);
         $random_keys = array_rand($images, $n);
         $random_array = [];
-        foreach ($random_keys as $key);
-        {
+        foreach ($random_keys as $key); {
             $random_array[] = $images[$key];
         }
         $title = fake()->unique()->name();
@@ -66,8 +62,6 @@ class ProductFactory extends Factory
         for ($i = 0; $i < $variationCount; $i++) {
             // Create variations for the product
             $country_id = fake()->randomElement(Country::pluck('id')->toArray());
-            $brand_id = fake()->randomElement(Brand::pluck('id')->toArray());
-            $vendor_id = fake()->randomElement(Vendor::pluck('id')->toArray());
             $avb_stock = rand(1000, 10000000);
             $suk = Str::upper(bin2hex(random_bytes(5)));
             $barcode = fake()->ean13();
@@ -103,8 +97,6 @@ class ProductFactory extends Factory
                 ProductVariation::factory()
                     ->make([
                         'country_id' => $country_id,
-                        'brand_id' => $brand_id,
-                        'vendor_id' => $vendor_id,
                         'avb_stock' => $avb_stock,
                         'sku' => $suk,
                         'barcode' => $barcode,

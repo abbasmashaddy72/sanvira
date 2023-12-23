@@ -3,7 +3,6 @@
 namespace App\Livewire\Frontend\Modal;
 
 use App\Models\Rfq;
-use App\Models\Enquiry;
 use WireUi\Traits\Actions;
 use LivewireUI\Modal\ModalComponent;
 
@@ -72,12 +71,10 @@ class RfqModal extends ModalComponent
         $productData = $rfqProducts->map(function ($product) {
             $originalPrice  = $product->variations
                 ->where('product_id', $product->id)
-                ->where('brand_id', $product->pivot->brand_id)
                 ->pluck('max_price')->first();
 
             return [
                 'product_id' => $product->id,
-                'brand_id' => $product->pivot->brand_id,
                 'size' => $product->pivot->size,
                 'weight' => $product->pivot->weight,
                 'diameter' => $product->pivot->diameter,
@@ -90,27 +87,8 @@ class RfqModal extends ModalComponent
             ];
         });
 
-        // Create or retrieve an Enquiry
-        $enquiry = Enquiry::where('buyer_id', auth()->user()->id)
-            ->where('status', 'Open')
-            ->first();
 
-        if (!$enquiry) {
-            // If no pending Enquiry exists, create a new Enquiry
-            $enquiry = Enquiry::create([
-                'rfq_id' => $rfq->id,
-                'buyer_id' => auth()->user()->id,
-                'staff_id' => auth()->user()->id,
-                'enquiry_no' => generateTableNumber('enquiries', 'enquiry_no'),
-                'rfq_submission_date_time' => now(),
-                'status' => 'Open',
-            ]);
-        }
-
-        // Attach the products to the Enquiry using the pivot table
-        $enquiry->products()->syncWithoutDetaching($productData);
-
-        // Optionally, you can update Enquiry status to 'Submitted' as well
+        // Optionally, you can update status to 'Submitted' as well
         $rfq->update(['status' => 'Submitted']);
 
         $this->notification()->success($title = 'RFQ Submitted Successfully');

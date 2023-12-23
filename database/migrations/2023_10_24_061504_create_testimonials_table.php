@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -14,11 +15,11 @@ return new class extends Migration {
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('name');
             $table->string('designation');
             $table->longText('logo')->nullable();
             $table->longText('message');
-            $table->boolean('show_designation');
+            $table->boolean('show_designation')->default(0);
             $table->integer('rating');
             $table->timestamps();
         });

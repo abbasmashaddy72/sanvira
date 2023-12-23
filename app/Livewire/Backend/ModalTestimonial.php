@@ -16,7 +16,7 @@ class ModalTestimonial extends ModalComponent
     // Set Data
     public $testimonial_id;
 
-    public $user_id;
+    public $name;
 
     // Model Keys
     public $designation;
@@ -31,8 +31,6 @@ class ModalTestimonial extends ModalComponent
 
     public $logoIsUploaded = false;
 
-    public $name;
-
     public function mount()
     {
         if (empty($this->testimonial_id)) {
@@ -42,17 +40,16 @@ class ModalTestimonial extends ModalComponent
         }
         abort_if(Gate::denies('testimonial_edit'), 403);
         $data = Testimonial::findOrFail($this->testimonial_id);
-        $this->user_id = $data->user_id;
+        $this->name = $data->name;
         $this->designation = $data->designation;
         $this->logo = $data->logo;
         $this->message = $data->message;
         $this->show_designation = $data->show_designation;
         $this->rating = $data->rating;
-        $this->name = $data->user->name;
     }
 
     protected $rules = [
-        'user_id' => 'required',
+        'name' => 'required',
         'designation' => 'required',
         'logo' => '',
         'message' => 'required',

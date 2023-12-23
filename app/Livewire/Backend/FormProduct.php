@@ -34,8 +34,6 @@ class FormProduct extends Component
 
     // ProductVariation Model Keys
     public $country_id_pv = [];
-    public $vendor_id_pv = [];
-    public $brand_id_pv = [];
     public $avb_stock_pv = [];
     public $sku_pv = [];
     public $barcode_pv = [];
@@ -137,8 +135,6 @@ class FormProduct extends Component
         $data_pv = ProductVariation::where('product_id', $this->product_id)->get();
         foreach ($data_pv as $key => $value) {
             $this->country_id_pv[] = $value->country_id;
-            $this->brand_id_pv[] = $value->brand_id;
-            $this->vendor_id_pv[] = $value->vendor_id;
             $this->avb_stock_pv[] = $value->avb_stock;
             $this->sku_pv[] = $value->sku;
             $this->barcode_pv[] = $value->barcode;
@@ -231,12 +227,10 @@ class FormProduct extends Component
                 ]);
             }
             ProductVariation::where('product_id', $this->product_id)->delete();
-            foreach ($this->brand_id_pv as $key => $value) {
+            foreach ($this->country_id_pv as $key => $value) {
                 ProductVariation::create([
                     'product_id' => $this->product_id,
                     'country_id' => $this->country_id_pv[$key] ?? null,
-                    'brand_id' => $this->brand_id_pv[$key] ?? null,
-                    'vendor_id' => $this->vendor_id_pv[$key] ?? null,
                     'avb_stock' => $this->avb_stock_pv[$key] ?? null,
                     'sku' => $this->sku_pv[$key] ?? null,
                     'barcode' => $this->barcode_pv[$key] ?? null,
@@ -288,12 +282,10 @@ class FormProduct extends Component
             foreach ($this->name_pa as $key => $value) {
                 ProductAttributes::create(['product_id' => $product->id, 'name' => $this->name_pa[$key], 'value' => $this->value_pa[$key]]);
             }
-            foreach ($this->brand_id_pv as $key => $value) {
+            foreach ($this->country_id_pv as $key => $value) {
                 ProductVariation::create([
                     'product_id' => $product->id,
                     'country_id' => $this->country_id_pv[$key] ?? null,
-                    'brand_id' => $this->brand_id_pv[$key] ?? null,
-                    'vendor_id' => $this->vendor_id_pv[$key] ?? null,
                     'avb_stock' => $this->avb_stock_pv[$key] ?? null,
                     'sku' => $this->sku_pv[$key] ?? null,
                     'barcode' => $this->barcode_pv[$key] ?? null,

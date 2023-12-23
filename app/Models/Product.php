@@ -54,29 +54,4 @@ class Product extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
-
-    public function enquiries()
-    {
-        return $this->belongsToMany(Enquiry::class, 'enquiry_product');
-    }
-
-    public function quotations()
-    {
-        return $this->belongsToMany(Quotation::class, 'quotation_product');
-    }
-
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class, 'order_product');
-    }
-
-    public function deliveryNotes()
-    {
-        return $this->belongsToMany(DeliveryNote::class, 'delivery_note_product');
-    }
-
-    public function invoices()
-    {
-        return $this->belongsToMany(Invoice::class, 'invoice_product');
-    }
 }

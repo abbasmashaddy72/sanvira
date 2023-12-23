@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
                     $user->roles()->attach([1]);
                 }
                 if ($user->id != 1) {
-                    $user->roles()->attach([rand(1, 4)]);
+                    $user->roles()->attach([rand(1, 3)]);
                 }
             }
         }

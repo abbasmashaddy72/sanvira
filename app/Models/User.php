@@ -88,9 +88,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(City::class);
     }
-
-    public function billingAddress()
-    {
-        return $this->hasOne(BillingAddress::class);
-    }
 }

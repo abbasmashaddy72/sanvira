@@ -29,8 +29,6 @@ class Products extends Component
 
     // 1st Filter Options
 
-    public $brand_id = [];
-
     public $category_id = [];
 
     public $country_id = [];
@@ -54,7 +52,6 @@ class Products extends Component
     public $colors = [];
     public $itemTypes = [];
 
-    public $variation_brand_id;
     public $variation_size_id;
     public $variation_weight_id;
     public $variation_diameter_id;
@@ -82,15 +79,8 @@ class Products extends Component
         $this->variations = []; // Reset the variations
     }
 
-    public function updatedVariationBrandId($brandId)
-    {
-        $this->variation_brand_id = $brandId;
-        $this->loadProductVariations();
-    }
-
     public function clearVariations()
     {
-        $this->variation_brand_id = null;
         $this->variation_size_id = null;
         $this->variation_weight_id = null;
         $this->variation_diameter_id = null;
@@ -101,13 +91,10 @@ class Products extends Component
 
     protected function loadProductVariations()
     {
-        $product = Product::with(['variations', 'variations.brand'])
+        $product = Product::with(['variations'])
             ->findOrFail($this->selectedProductId);
 
         $this->variations = $product->variations;
-        if ($this->variation_brand_id) {
-            $this->variations = $this->variations->where('brand_id', $this->variation_brand_id);
-        }
 
         $this->extractVariationDetails();
     }
@@ -195,7 +182,6 @@ class Products extends Component
 
     public function clearFilters()
     {
-        $this->brand_id = [];
         $this->category_id = [];
         $this->country_id = [];
         $this->setButton = 'relevance';
@@ -207,7 +193,6 @@ class Products extends Component
         // Fetch the selected variation Keys
         $selectedVariations = [
             $itemId => [
-                'brand_id' => $this->variation_brand_id,
                 'size' => $this->variation_size_id,
                 'weight' => $this->variation_weight_id,
                 'diameter' => $this->variation_diameter_id,
@@ -247,7 +232,6 @@ class Products extends Component
 
         // To reset the selected variations after adding to RFQ
         $this->reset([
-            'variation_brand_id',
             'variation_size_id',
             'variation_weight_id',
             'variation_diameter_id',
@@ -261,7 +245,7 @@ class Products extends Component
     public function render()
     {
         // Initial query setup
-        $productsQuery = Product::with(['variations', 'variations.brand', 'category', 'variations.country', 'productViews']);
+        $productsQuery = Product::with(['variations', 'category', 'variations.country', 'productViews']);
 
         // Search filter
         if ($this->search) {
@@ -272,12 +256,6 @@ class Products extends Component
         if ($this->applyFilter === true) {
             if ($this->type === 'On Sale' || $this->setButton === 'onSale') {
                 $productsQuery->where('on_sale', 1);
-            }
-
-            if (count($this->brand_id) > 0) {
-                $productsQuery->whereHas('variations.brand', function ($query) {
-                    $query->whereIn('brand_id', $this->brand_id);
-                });
             }
 
             if (count($this->category_id) > 0) {

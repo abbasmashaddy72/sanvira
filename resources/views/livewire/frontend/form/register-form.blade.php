@@ -48,8 +48,8 @@
                 <div>
                     <label class="font-semibold">{{ __('Trade Licence Number:') }}
                         <div class="relative mt-2">
-                            <input wire:model='tln' name="tln" type="text"
-                                class="form-input text-sm font-normal" placeholder="Trade Licence Number :">
+                            <input wire:model='tln' name="tln" type="text" class="form-input text-sm font-normal"
+                                placeholder="Trade Licence Number :">
                         </div>
                     </label>
                 </div>
@@ -64,8 +64,8 @@
                 <div>
                     <label class="font-semibold">{{ __('Type of Company:') }}
                         <div class="relative mt-2">
-                            <input wire:model='toc' name="toc" type="text"
-                                class="form-input text-sm font-normal" placeholder="Type of Company :">
+                            <input wire:model='toc' name="toc" type="text" class="form-input text-sm font-normal"
+                                placeholder="Type of Company :">
                         </div>
                     </label>
                 </div>
@@ -74,7 +74,7 @@
                         <div class="relative mt-2">
                             <select wire:model='tob' name="tob" class="form-input text-sm font-normal">
                                 <option hidden selected>Please Select</option>
-                                @foreach (['Vendor', 'Service Provider'] as $item)
+                                @foreach (['Service Provider'] as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
