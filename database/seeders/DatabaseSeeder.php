@@ -65,6 +65,8 @@ class DatabaseSeeder extends Seeder
                 '--only-fields' => 'id,country_id,state_id,name,state_code'
             ], $this->command->getOutput());
             $this->call(UserSeeder::class);
+            $this->call(BlogSeeder::class);
+            $this->call(FaqSeeder::class);
             $this->call(CategorySeeder::class);
             $this->call(ProductSeeder::class);
             $this->call(ProductAttributesSeeder::class);

@@ -46,11 +46,11 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.profile.update') }}" class="dropdown-item hover:bg-white/5">
-                        <i data-feather="user" class="mr-2 h-4 w-4" wire:navigate></i>{{ __('Profile') }}</a>
+                        <i data-feather="user" class="mr-2 h-4 w-4"></i>{{ __('Profile') }}</a>
                 </li>
                 <li>
                     <a href="" class="dropdown-item hover:bg-white/5">
-                        <i data-feather="help-circle" class="mr-2 h-4 w-4" wire:navigate></i>
+                        <i data-feather="help-circle" class="mr-2 h-4 w-4"></i>
                         {{ __('Help') }}
                     </a>
                 </li>
@@ -59,8 +59,7 @@
                 </li>
                 @impersonating($guard = null)
                     <li>
-                        <a href="{{ route('admin.users.leave-impersonate') }}" class="dropdown-item hover:bg-white/5"
-                            wire:navigate>
+                        <a href="{{ route('admin.users.leave-impersonate') }}" class="dropdown-item hover:bg-white/5">
                             <i data-feather="toggle-left" class="mr-2 h-4 w-4"></i>
                             {{ __('Leave impersonation') }}
                         </a>
@@ -69,7 +68,7 @@
                             @csrf
                             <a href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); this.closest('form').submit();"
-                                class="dropdown-item hover:bg-white/5" wire:navigate>
+                                class="dropdown-item hover:bg-white/5">
                                 <i data-feather="toggle-right" class="mr-2 h-4 w-4"></i>
                                 {{ __('Logout') }}
                             </a>

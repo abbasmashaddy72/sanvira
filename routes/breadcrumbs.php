@@ -32,6 +32,12 @@ Breadcrumbs::for('role.index', function (BreadcrumbTrail $trail) {
     $trail->push('Role', route('admin.role'));
 });
 
+// Application > Faq
+Breadcrumbs::for('faq.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Faq', route('admin.faq'));
+});
+
 // Application > Testimonial
 Breadcrumbs::for('testimonial.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
@@ -42,6 +48,12 @@ Breadcrumbs::for('testimonial.index', function (BreadcrumbTrail $trail) {
 Breadcrumbs::for('product.index', function (BreadcrumbTrail $trail) {
     $trail->parent('#');
     $trail->push('Product', route('admin.product'));
+});
+
+// Application > Blog
+Breadcrumbs::for('blog.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('#');
+    $trail->push('Blog', route('admin.blog'));
 });
 
 // Application > Product Reviews

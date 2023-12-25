@@ -19,8 +19,8 @@ class FrontendController extends Controller
     {
         $sliders = Slider::get();
         $testimonials = Testimonial::inRandomOrder()->take(8)->get();
-        $blogs =  [] ?? Blog::inRandomOrder()->take(6)->get();
-        $faqs =  [] ?? Faqs::get();
+        $blogs =  Blog::inRandomOrder()->take(6)->get();
+        $faqs =  Faq::get();
 
         return view('pages.frontend.index', compact([
             'sliders',
@@ -28,6 +28,33 @@ class FrontendController extends Controller
             'blogs',
             'faqs',
         ]));
+    }
+
+    public function blogs()
+    {
+        /**
+         * @get('/blogs')
+         * @name('blogs')
+         * @middlewares('web')
+         */
+        view()->share('title', 'Blogs');
+
+        return view('pages.frontend.blogs');
+    }
+
+    public function blog_single($id)
+    {
+        /**
+         * @get('/blog_single')
+         * @name('blog_single')
+         * @middlewares('web')
+         */
+        Blog::where('id', $id)->increment('clicks');
+        $data = Blog::findOrFail($id);
+        view()->share('title', $data->title);
+        $related = Blog::whereNotIn('id', [$data->id])->orderBy('clicks', 'DESC')->limit(3)->get();
+
+        return view('pages.frontend.blog_single', compact('data', 'related'));
     }
 
     public function searchForm(Request $request)

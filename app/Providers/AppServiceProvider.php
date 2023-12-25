@@ -28,13 +28,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Model::preventLazyLoading(App::isLocal());
         Model::shouldBeStrict(App::isLocal());
-
-        Button::macro('wire', function () {
-            $this->dynamicProperties['wire'] = [
-                'component' => 'a wire:navigate',
-            ];
-
-            return $this;
-        });
     }
 }

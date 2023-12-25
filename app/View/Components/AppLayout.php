@@ -58,6 +58,14 @@ class AppLayout extends Component
                 'route_name' => 'admin.profile.edit',
                 'params' => null,
             ],
+            'blogs' => [
+                'can' => 'blog_list',
+                'role' => auth()->user()->roles->first()->slug,
+                'icon' => 'news',
+                'title' => 'Blogs',
+                'route_name' => 'admin.blog',
+                'params' => null,
+            ],
             'categories' => [
                 'can' => 'category_list',
                 'role' => auth()->user()->roles->first()->slug,
@@ -88,6 +96,14 @@ class AppLayout extends Component
                 'icon' => 'double-quotes-l',
                 'title' => 'Testimonials',
                 'route_name' => 'admin.testimonial',
+                'params' => null,
+            ],
+            'faq' => [
+                'can' => 'faq_list',
+                'role' => auth()->user()->roles->first()->slug,
+                'icon' => 'question-answer',
+                'title' => 'Faqs',
+                'route_name' => 'admin.faq',
                 'params' => null,
             ],
             'homepage' => [

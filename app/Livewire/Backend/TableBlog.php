@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Backend;
 
-use App\Models\Product;
+use App\Models\Blog;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use PowerComponents\LivewirePowerGrid\Button;
@@ -16,7 +16,7 @@ use PowerComponents\LivewirePowerGrid\PowerGridColumns;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
 use PowerComponents\LivewirePowerGrid\Traits\WithExport;
 
-final class TableProduct extends PowerGridComponent
+final class TableBlog extends PowerGridComponent
 {
     use WithExport;
 
@@ -37,57 +37,51 @@ final class TableProduct extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        return Product::query()->latest()->with(['category']);
+        return Blog::query();
     }
 
     public function relationSearch(): array
     {
-        return [
-            'category' => [
-                'name'
-            ]
-        ];
+        return [];
     }
 
     public function addColumns(): PowerGridColumns
     {
         return PowerGrid::columns()
             ->addColumn('id')
-            ->addColumn('category_id', function (Product $model) {
-                return e($model->category->name);
-            })
             ->addColumn('title')
 
             /** Example of custom column using a closure **/
-            ->addColumn('title_lower', fn (Product $model) => strtolower(e($model->title)))
+            ->addColumn('title_lower', fn (Blog $model) => strtolower(e($model->title)))
 
-            ->addColumn('slug')
-            ->addColumn('edt')
-            ->addColumn('model')
-            ->addColumn('on_sale')
-            ->addColumn('created_at_formatted', fn (Product $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
+            ->addColumn('image')
+            ->addColumn('tags')
+            ->addColumn('excerpt')
+            ->addColumn('clicks')
+            ->addColumn('created_at_formatted', fn (Blog $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id'),
-            Column::make('Category Name', 'category_id'),
             Column::make('Title', 'title')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Edt', 'edt')
+            Column::make('Image', 'image')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('Model', 'model')
+            Column::make('Tags', 'tags')
                 ->sortable()
                 ->searchable(),
 
-            Column::make('On sale', 'on_sale')
-                ->toggleable(),
+            Column::make('Excerpt', 'excerpt')
+                ->sortable()
+                ->searchable(),
 
+            Column::make('Clicks', 'clicks'),
             Column::make('Created at', 'created_at_formatted', 'created_at')
                 ->sortable(),
 
@@ -99,10 +93,7 @@ final class TableProduct extends PowerGridComponent
     {
         return [
             Filter::inputText('title')->operators(['contains']),
-            Filter::inputText('edt')->operators(['contains']),
-            Filter::inputText('model')->operators(['contains']),
-            Filter::inputText('barcode')->operators(['contains']),
-            Filter::boolean('on_sale'),
+            Filter::inputText('image')->operators(['contains']),
             Filter::datetimepicker('created_at'),
         ];
     }
@@ -113,13 +104,13 @@ final class TableProduct extends PowerGridComponent
         $this->js('alert(' . $rowId . ')');
     }
 
-    public function actions(\App\Models\Product $row): array
+    public function actions(\App\Models\Blog $row): array
     {
         return [
             Button::add('edit')
                 ->slot('Edit')
                 ->class('btn btn-primary')
-                ->route('admin.product_edit', ['id' => $row->id])
+                ->route('admin.blog_edit', ['id' => $row->id])
         ];
     }
 

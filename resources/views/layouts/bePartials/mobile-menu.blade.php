@@ -18,8 +18,7 @@
                     @role($menu['role'])
                         @can($menu['can'])
                             <a href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}"
-                                class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}"
-                                wire:navigate>
+                                class="{{ $first_level_active_index == $menuKey ? 'menu menu--active' : 'menu' }}">
                                 <div class="menu__icon">
                                     <i class="{{ 'ri-' . $menu['icon'] . '-line text-xl' }}"></i>
                                 </div>
@@ -40,8 +39,7 @@
                                     @role($subMenu['role'])
                                         @can($subMenu['can'])
                                             <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}"
-                                                class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}"
-                                                wire:navigate>
+                                                class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
                                                 <div class="menu__icon">
                                                     <i data-feather="activity"></i>
                                                 </div>
@@ -63,8 +61,7 @@
                                                     @role($lastSubMenu['role'])
                                                         @can($lastSubMenu['can'])
                                                             <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}"
-                                                                class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}"
-                                                                wire:navigate>
+                                                                class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
                                                                 <div class="menu__icon">
                                                                     <i data-feather="zap"></i>
                                                                 </div>

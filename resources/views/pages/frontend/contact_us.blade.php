@@ -12,8 +12,8 @@
                     <p class="mt-3 text-slate-400"></p>
 
                     <div class="mt-5">
-                        <a href="tel:{{ get_static_option('contant_no') }}"
-                            class="btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">{{ get_static_option('contant_no') }}</a>
+                        <a href="tel:{{ get_static_option('contact_no') }}"
+                            class="btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">{{ get_static_option('contact_no') }}</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
 
                     <div class="mt-5">
                         <a href="{{ get_static_option('google_map_link') }}" target="_blank" data-type="iframe"
-                            class="video-play-icon read-more lightbox btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">{{ __('View on Google map') }}</a>
+                            class="btn btn-link text-blue-600 duration-500 ease-in-out after:bg-blue-600 hover:text-blue-600">{{ __('View on Google map') }}</a>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
     <x-frontend.index-container>
         <div class="grid grid-cols-1 items-center gap-4 md:grid-cols-12">
             <div class="md:col-span-6 lg:col-span-7">
-                <img src="assets/images/contact.svg" alt="">
+                <img src="{{ asset('images/contact.svg') }}" alt="">
             </div>
 
             @livewire('frontend.form.contact-us')

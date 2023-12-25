@@ -14,8 +14,7 @@
                     @role($menu['role'])
                         @can($menu['can'])
                             <a href="{{ isset($menu['route_name']) ? route($menu['route_name'], $menu['params']) : 'javascript:;' }}"
-                                class="{{ $first_level_active_index == $menuKey ? 'side-menu side-menu--active' : 'side-menu' }}"
-                                wire:navigate>
+                                class="{{ $first_level_active_index == $menuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                 <div class="side-menu__icon">
                                     @if ($menu['icon'] != 'double-quotes-l')
                                         <i class="{{ 'ri-' . $menu['icon'] . '-line text-xl' }}"></i>
@@ -42,8 +41,7 @@
                                     @role($subMenu['role'])
                                         @can($subMenu['can'])
                                             <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}"
-                                                class="{{ $second_level_active_index == $subMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}"
-                                                wire:navigate>
+                                                class="{{ $second_level_active_index == $subMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                                 <div class="side-menu__icon">
                                                     <i data-feather="activity"></i>
                                                 </div>
@@ -67,8 +65,7 @@
                                                     @role($lastSubMenu['role'])
                                                         @can($lastSubMenu['can'])
                                                             <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}"
-                                                                class="{{ $third_level_active_index == $lastSubMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}"
-                                                                wire:navigate>
+                                                                class="{{ $third_level_active_index == $lastSubMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                                                 <div class="side-menu__icon">
                                                                     <i data-feather="zap"></i>
                                                                 </div>

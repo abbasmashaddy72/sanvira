@@ -7,7 +7,7 @@
                         class="mb-5 text-4xl font-semibold leading-normal text-black dark:text-white lg:text-5xl lg:leading-normal">
                         {{ get_static_option('tag_line') }}
                     </h4>
-                    <p class="max-w-xl text-lg text-slate-400">{{ get_static_option('message') }}</p>
+                    <p class="max-w-xl text-lg text-slate-400">{{ get_static_option('hero_message') }}</p>
 
                     <div class="mt-6">
                         <a href="{{ route('contact_us') }}"
@@ -68,18 +68,18 @@
                         Vision
                     </h3>
                     <p class="max-w-xl text-slate-400">
-                        {{ get_static_option('vission_message') }}
+                        {{ get_static_option('vision_message') }}
                     </p>
 
                     @php
-                        $vission_points_data = explode(';', get_static_option('vission_points')) ?? [];
+                        $vision_points_data = explode(';', get_static_option('vision_points')) ?? [];
                     @endphp
                     <ul class="mt-4 list-none text-slate-400">
-                        @for ($i = 0; $i < count($vission_points_data); $i++)
-                            @if (!empty($vission_points_data[$i]))
+                        @for ($i = 0; $i < count($vision_points_data); $i++)
+                            @if (!empty($vision_points_data[$i]))
                                 <li class="mb-1 flex">
                                     <i class="ri-checkbox-circle-line me-2 text-xl text-indigo-600"></i>
-                                    {{ $vission_points_data[$i] }}
+                                    {{ $vision_points_data[$i] }}
                                 </li>
                             @endif
                         @endfor
@@ -99,7 +99,8 @@
                             <div
                                 class="relative m-2 overflow-hidden rounded-md p-6 shadow dark:shadow-gray-800 lg:flex lg:p-0">
                                 <img class="mx-auto h-24 w-24 rounded-full lg:h-auto lg:w-48 lg:rounded-none"
-                                    src="assets/images/client/01.jpg" alt width="384" height="512" />
+                                    src="{{ asset('storage/' . $item->logo) }}" alt width="384" height="512"
+                                    onerror="this.onerror=null; this.src='https://placehold.co/512x512';" />
                                 <div class="space-y-4 pt-6 text-center lg:p-6 ltr:lg:text-left rtl:lg:text-right">
                                     <p class="text-base text-slate-400">
                                         " {{ $item->message }} "
@@ -127,14 +128,15 @@
                 @foreach ($blogs as $item)
                     <div class="blog wow animate__animated animate__fadeInUp relative overflow-hidden rounded-md shadow dark:shadow-gray-800"
                         data-wow-delay=".3s">
-                        <img src="{{ asset('storage/' . $item->image) }}" alt="" />
+                        <img src="{{ asset('storage/' . $item->image) }}" alt=""
+                            onerror="this.onerror=null; this.src='https://placehold.co/512x320';" />
 
                         <div class="content p-6">
                             <a href="{{ route('blogs', ['id' => $item->id]) }}"
                                 class="title h5 text-lg font-medium duration-500 ease-in-out hover:text-indigo-600">{{ $item->title }}</a>
-                            <p class="mt-3 text-slate-400">
+                            {{-- <p class="mt-3 text-slate-400">
                                 {{ $item->excert }}
-                            </p>
+                            </p> --}}
 
                             <div class="mt-4">
                                 <a href="{{ route('blogs', ['id' => $item->id]) }}"
@@ -144,6 +146,11 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="mt-6 text-center">
+                <a href="{{ route('blogs') }}"
+                    class="btn mt-4 rounded-md border-indigo-600 bg-indigo-600 text-white hover:border-indigo-700 hover:bg-indigo-700">All
+                    Blogs</a>
             </div>
         </x-frontend.index-container>
     @endif
@@ -195,7 +202,7 @@
             </h3>
 
             <p class="mx-auto max-w-xl text-slate-400">
-                {{ get_static_option('contact_us_message') }}
+                {{ get_static_option('cta_message') }}
             </p>
 
             <div class="mt-6">

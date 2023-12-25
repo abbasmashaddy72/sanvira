@@ -7,55 +7,51 @@
             </span>
             <ul class="mt-6 flex justify-center space-x-4">
                 @if (!empty(get_static_option('facebook')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('facebook') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-facebook-f align-middle text-blue-600 hover:text-white"
-                                title="Buy Now"></i>
+                            <i class="ri-facebook-line align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
                 @if (!empty(get_static_option('instagram')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('instagram') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-instagram align-middle text-blue-600 hover:text-white"
+                            <i class="ri-instagram-line align-middle text-blue-600 hover:text-white"
                                 title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
                 @if (!empty(get_static_option('linkedin')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('linkedin') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-linkedin-alt align-middle text-blue-600 hover:text-white"
-                                title="Buy Now"></i>
+                            <i class="ri-linkedin-line align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
                 @if (!empty(get_static_option('twitter')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('twitter') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-twitter-alt align-middle text-blue-600 hover:text-white"
-                                title="Buy Now"></i>
+                            <i class="ri-twitter-line align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
                 @if (!empty(get_static_option('youtube')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('youtube') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-youtube align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
+                            <i class="ri-youtube-line align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
                 @if (!empty(get_static_option('google_business')))
-                    <li class="inline">
+                    <li class="inline shadow-md">
                         <a href="{{ get_static_option('google_business') }}" target="_blank"
                             class="btn btn-icon btn-sm rounded-md border border-gray-800 hover:border-blue-600 hover:bg-blue-600 dark:hover:border-blue-600 dark:hover:bg-blue-600">
-                            <i class="uil uil-map-marker align-middle text-blue-600 hover:text-white"
-                                title="Buy Now"></i>
+                            <i class="ri-map-line align-middle text-blue-600 hover:text-white" title="Buy Now"></i>
                         </a>
                     </li>
                 @endif
@@ -77,8 +73,8 @@
         <label
             class="label flex h-8 w-14 cursor-pointer items-center justify-between rounded-full bg-slate-900 p-1 shadow dark:bg-white dark:shadow-gray-800"
             for="chk">
-            <i class="uil uil-moon text-[20px] text-yellow-500"></i>
-            <i class="uil uil-sun text-[20px] text-yellow-500"></i>
+            <i class="ri-moon-l text-[20px] text-yellow-500"></i>
+            <i class="ri-sun-l text-[20px] text-yellow-500"></i>
             <span class="ball absolute left-[2px] top-[2px] h-7 w-7 rounded-full bg-white dark:bg-slate-900"></span>
         </label>
     </span>

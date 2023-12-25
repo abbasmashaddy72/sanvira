@@ -1,7 +1,8 @@
 <nav id='topnav' class="defaultscroll is-sticky nav-sticky z-10 items-center bg-white py-2">
     <div class="container">
-        <a class="logo mr-4 flex items-center pt-1" href="{{ route('homepage') }}">
-            <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="h-14 w-24 object-cover" alt="Logo" />
+        <a class="logo" href="{{ route('homepage') }}">
+            <img src="{{ asset('storage/' . get_static_option('logo')) }}" class="inline-block h-8 w-auto"
+                alt="Logo" />
         </a>
 
         <div class="menu-extras float-right">
@@ -29,7 +30,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="sub-menu-item" href="#">{{ __('Blogs') }}</a>
+                    <a class="sub-menu-item" href="{{ route('blogs') }}">{{ __('Blogs') }}</a>
                 </li>
                 <li>
                     <a class="sub-menu-item" href="{{ route('contact_us') }}">{{ __('Contact Us') }}</a>
